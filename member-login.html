@@ -1,221 +1,1235 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+<title>
+    Member Login | BWI-RHA Ado LG
+</title>
+
+<style>
+
+    /* =====================================================
+       BWI-RHA MEMBER LOGIN
+       GREEN + WHITE DESIGN
+    ===================================================== */
+
+    :root {
+        --green: #16833b;
+        --dark-green: #17351f;
+        --light-green: #e9f7ef;
+        --very-light: #f7faf8;
+        --white: #ffffff;
+        --black: #172018;
+        --gray: #66736a;
+        --border: #dce8df;
+        --shadow: 0 12px 35px rgba(0, 80, 40, 0.12);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--very-light);
+        color: var(--black);
+        line-height: 1.6;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--green);
+    }
+
+    button,
+    input {
+        font: inherit;
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .site-header {
+        background: var(--white);
+        border-bottom: 4px solid var(--green);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-container {
+        width: min(1200px, 94%);
+        min-height: 82px;
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 20px;
+    }
+
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        color: var(--black);
+        min-width: 0;
+    }
+
+    .site-logo {
+        width: 58px;
+        height: 58px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .logo-text {
+        min-width: 0;
+    }
+
+    .logo-text h1 {
+        margin: 0;
+        color: var(--green);
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    .logo-text p {
+        margin: 3px 0 0;
+        color: var(--dark-green);
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .main-nav a {
+        padding: 10px 12px;
+        border-radius: 7px;
+        color: var(--black);
+        font-weight: 600;
+        transition: .2s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+        background: var(--green);
+        color: var(--white);
+    }
+
+    .menu-btn {
+        display: none;
+
+        border: 0;
+        background: var(--green);
+        color: white;
+
+        padding: 10px 14px;
+        border-radius: 8px;
+
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    .login-section {
+        min-height: calc(100vh - 82px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 60px 20px;
+    }
+
+    .login-wrapper {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    /* =====================================================
+       LOGIN BOX
+    ===================================================== */
+
+    .login-box {
+        background: var(--white);
+
+        border: 1px solid var(--border);
+        border-top: 6px solid var(--green);
+
+        border-radius: 18px;
+
+        padding: 38px;
+
+        box-shadow: var(--shadow);
+    }
+
+    .login-logo {
+        width: 85px;
+        height: 85px;
+
+        object-fit: contain;
+
+        display: block;
+
+        margin: 0 auto 18px;
+    }
+
+    .login-title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-title span {
+        display: inline-block;
+
+        color: var(--green);
+
+        font-size: 13px;
+        font-weight: bold;
+
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        margin-bottom: 5px;
+    }
+
+    .login-title h2 {
+        margin: 0 0 8px;
+
+        color: var(--dark-green);
+
+        font-size: 30px;
+    }
+
+    .login-title p {
+        margin: 0;
+
+        color: var(--gray);
+
+        font-size: 15px;
+    }
+
+    /* =====================================================
+       FORM
+    ===================================================== */
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: var(--dark-green);
+
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .form-input {
+        width: 100%;
+
+        padding: 14px 15px;
+
+        border: 2px solid var(--border);
+
+        border-radius: 10px;
+
+        background: var(--white);
+
+        color: var(--black);
+
+        outline: none;
+
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .form-input:focus {
+        border-color: var(--green);
+
+        box-shadow:
+            0 0 0 4px
+            rgba(22, 131, 59, .10);
+    }
+
+    .password-input {
+        padding-right: 55px;
+    }
+
+    .password-toggle {
+        position: absolute;
+
+        right: 10px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        border: 0;
+
+        background: transparent;
+
+        color: var(--green);
+
+        font-size: 13px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        padding: 8px;
+    }
+
+    .password-toggle:hover {
+        color: var(--dark-green);
+    }
+
+    /* =====================================================
+       LOGIN BUTTON
+    ===================================================== */
+
+    .login-button {
+        width: 100%;
+
+        padding: 14px 20px;
+
+        border: 0;
+
+        border-radius: 10px;
+
+        background: var(--green);
+
+        color: var(--white);
+
+        font-size: 16px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition:
+            background .2s ease,
+            transform .2s ease;
+    }
+
+    .login-button:hover {
+        background: var(--dark-green);
+
+        transform: translateY(-1px);
+    }
+
+    .login-button:disabled {
+        opacity: .7;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
+
+    .form-message {
+        display: none;
+
+        margin-top: 18px;
+
+        padding: 13px 15px;
+
+        border-radius: 9px;
+
+        font-size: 14px;
+
+        font-weight: 600;
+    }
+
+    .form-message.show {
+        display: block;
+    }
+
+    .message-error {
+        background: #e9f7ef;
+        color: var(--dark-green);
+        border: 1px solid #b9ddc6;
+    }
+
+    .message-success {
+        background: #e9f7ef;
+        color: var(--dark-green);
+        border: 1px solid #a9d5b8;
+    }
+
+    /* =====================================================
+       REGISTER LINK
+    ===================================================== */
+
+    .register-text {
+        text-align: center;
+
+        margin: 25px 0 0;
+
+        color: var(--gray);
+
+        font-size: 14px;
+    }
+
+    .register-text a {
+        font-weight: bold;
+    }
+
+    .register-text a:hover {
+        color: var(--dark-green);
+    }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .site-footer {
+        background: var(--dark-green);
+        color: white;
+
+        padding: 35px 20px;
+
+        text-align: center;
+    }
+
+    .site-footer h3 {
+        margin: 0 0 5px;
+
+        font-size: 17px;
+    }
+
+    .site-footer p {
+        margin: 5px 0;
+
+        color: #e4f3e8;
+
+        font-size: 14px;
+    }
+
+    .footer-bottom {
+        margin-top: 20px;
+
+        padding-top: 15px;
+
+        border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 800px) {
+
+        .menu-btn {
+            display: block;
+        }
+
+        .main-nav {
+            display: none;
+
+            position: absolute;
+
+            top: 82px;
+            left: 0;
+            right: 0;
+
+            background: white;
+
+            padding: 15px;
+
+            border-bottom: 3px solid var(--green);
+
+            box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+            flex-direction: column;
+        }
+
+        .main-nav.show {
+            display: flex;
+        }
+
+        .main-nav a {
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-text h1 {
+            font-size: 14px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+        }
+
+        .site-logo {
+            width: 48px;
+            height: 48px;
+        }
+
+    }
+
+    @media (max-width: 550px) {
+
+        .login-section {
+            padding: 30px 15px;
+        }
+
+        .login-box {
+            padding: 25px 20px;
+            border-radius: 14px;
+        }
+
+        .login-title h2 {
+            font-size: 26px;
+        }
+
+        .login-logo {
+            width: 70px;
+            height: 70px;
+        }
+
+    }
+
+</style>
+
+</head><body><!-- =====================================================
+     HEADER
+===================================================== --><header class="site-header"><div class="header-container">
+
+    <a
+        href="index.html"
+        class="logo-area"
     >
 
-    <title>
-        Login | BWI-RHA EKITI STATE CHAPTER
-    </title>
+        <img
+            src="logo.jpeg"
+            alt="BWI-RHA Logo"
+            class="site-logo"
+        >
 
-    <link rel="stylesheet" href="style.css">
+        <div class="logo-text">
 
-</head>
+            <h1>
+                BWI-RHA EKITI STATE CHAPTER
+            </h1>
 
-<body>
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
 
-<header class="site-header">
+        </div>
 
-    <div class="header-container">
+    </a>
 
-        <a href="index.html" class="logo-area">
+
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuButton"
+        aria-label="Open navigation"
+    >
+        ☰
+    </button>
+
+
+    <nav
+        class="main-nav"
+        id="mobileNav"
+    >
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="wards.html">
+            Wards
+        </a>
+
+        <a
+            href="member-login.html"
+            class="active"
+        >
+            Login
+        </a>
+
+        <a href="member-signup.html">
+            Registration
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+    </nav>
+
+</div>
+
+</header><!-- =====================================================
+     LOGIN
+===================================================== --><main><section class="login-section">
+
+    <div class="login-wrapper">
+
+        <div class="login-box">
 
             <img
                 src="logo.jpeg"
                 alt="BWI-RHA Logo"
-                class="site-logo"
+                class="login-logo"
             >
 
-            <div class="logo-text">
 
-                <h1>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h1>
+            <div class="login-title">
+
+                <span>
+                    MEMBER PORTAL
+                </span>
+
+                <h2>
+                    Member Login
+                </h2>
 
                 <p>
-                    ADO LG
+                    Sign in to access your BWI-RHA account.
                 </p>
 
             </div>
 
-        </a>
 
-
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            type="button"
-            aria-label="Open menu"
-        >
-            ☰
-        </button>
-
-
-        <nav
-            class="main-nav"
-            id="navMenu"
-        >
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="wards.html">
-                Wards
-            </a>
-
-            <a
-                href="member-login.html"
-                class="active"
-            >
-                Login
-            </a>
-
-            <a href="member-signup.html">
-                Create Account
-            </a>
-
-            <a href="admin.html">
-                Admin
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-<main class="auth-page">
-
-    <div class="auth-card">
-
-        <div class="auth-logo">
-
-            <img
-                src="logo.jpeg"
-                alt="BWI-RHA Logo"
+            <form
+                id="memberLoginForm"
+                novalidate
             >
 
-        </div>
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
 
 
-        <h2>
-            Member Login
-        </h2>
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-input password-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
 
 
-        <p class="auth-subtitle">
-            Login to continue your BWI-RHA registration.
-        </p>
+                <!-- LOGIN -->
 
-
-        <form id="loginForm">
-
-            <div class="form-group">
-
-                <label for="loginEmail">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    name="email"
-                    required
-                    autocomplete="email"
-                    placeholder="Enter your email"
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
                 >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="loginPassword">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    name="password"
-                    required
-                    autocomplete="current-password"
-                    placeholder="Enter your password"
-                >
-
-            </div>
+                    Login
+                </button>
 
 
-            <button
-                type="submit"
-                class="btn primary full-width"
-                id="loginBtn"
-            >
-                Login
-            </button>
+                <!-- MESSAGE -->
+
+                <div
+                    id="loginMessage"
+                    class="form-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+            </form>
 
 
-            <div
-                id="loginMessage"
-                class="form-message"
-                role="alert"
-                aria-live="polite"
-            ></div>
+            <p class="register-text">
 
-        </form>
-
-
-        <div class="auth-footer">
-
-            <p>
                 Don't have an account?
+
                 <a href="member-signup.html">
-                    Create an account
+                    Register here
                 </a>
-            </p>
 
-
-            <p>
-                After login, you can continue your membership registration.
             </p>
 
         </div>
 
     </div>
 
-</main>
+</section>
+
+</main><!-- =====================================================
+     FOOTER
+===================================================== --><footer class="site-footer"><h3>
+    BWI-RHA EKITI STATE CHAPTER
+</h3>
+
+<p>
+    ADO LOCAL GOVERNMENT
+</p>
+
+<p>
+    Green Economy E-Mobility Program
+</p>
+
+<div class="footer-bottom">
+
+    <p>
+        ©
+        <span id="currentYear"></span>
+        BWI-RHA Ekiti State Chapter.
+        All rights reserved.
+    </p>
+
+</div>
+
+</footer><!-- =====================================================
+     SUPABASE
+===================================================== --><script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script><script>
+
+    /* =====================================================
+       SUPABASE CONFIGURATION
+    ===================================================== */
+
+    const SUPABASE_URL =
+        "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
 
-<footer class="site-footer">
-
-    <div class="container">
-
-        <p>
-            BWI-RHA EKITI STATE CHAPTER
-        </p>
-
-        <p>
-            ADO LG
-        </p>
-
-        <p>
-            Green Economy E-Mobility Program
-        </p>
-
-    </div>
-
-</footer>
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-</body>
-</html>
+    const loginForm =
+        document.getElementById(
+            "memberLoginForm"
+        );
+
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+    const loginButton =
+        document.getElementById(
+            "loginButton"
+        );
+
+    const loginMessage =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    const passwordToggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+    const menuButton =
+        document.getElementById(
+            "menuButton"
+        );
+
+    const mobileNav =
+        document.getElementById(
+            "mobileNav"
+        );
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            mobileNav.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       PASSWORD SHOW / HIDE
+    ===================================================== */
+
+    passwordToggle.addEventListener(
+        "click",
+        function () {
+
+            if (
+                passwordInput.type === "password"
+            ) {
+
+                passwordInput.type =
+                    "text";
+
+                passwordToggle.textContent =
+                    "Hide";
+
+            } else {
+
+                passwordInput.type =
+                    "password";
+
+                passwordToggle.textContent =
+                    "Show";
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       MESSAGE HELPER
+    ===================================================== */
+
+    function showMessage(
+        message,
+        type
+    ) {
+
+        loginMessage.textContent =
+            message;
+
+        loginMessage.className =
+            "form-message show " +
+            (
+                type === "success"
+                    ? "message-success"
+                    : "message-error"
+            );
+
+    }
+
+
+    function clearMessage() {
+
+        loginMessage.textContent =
+            "";
+
+        loginMessage.className =
+            "form-message";
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            clearMessage();
+
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            /* VALIDATION */
+
+            if (!email) {
+
+                showMessage(
+                    "Please enter your email address.",
+                    "error"
+                );
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (!password) {
+
+                showMessage(
+                    "Please enter your password.",
+                    "error"
+                );
+
+                passwordInput.focus();
+
+                return;
+
+            }
+
+
+            /* LOADING */
+
+            loginButton.disabled =
+                true;
+
+            loginButton.textContent =
+                "Logging in...";
+
+
+            try {
+
+                /* SUPABASE AUTH */
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient
+                        .auth
+                        .signInWithPassword({
+
+                            email:
+                                email,
+
+                            password:
+                                password
+
+                        });
+
+
+                /* ERROR */
+
+                if (error) {
+
+                    console.error(
+                        "Login error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        getFriendlyError(
+                            error
+                        ),
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* NO USER */
+
+                if (
+                    !data ||
+                    !data.user
+                ) {
+
+                    showMessage(
+                        "Login could not be completed. Please try again.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /* SUCCESS */
+
+                showMessage(
+                    "Login successful. Opening your dashboard...",
+                    "success"
+                );
+
+
+                loginButton.textContent =
+                    "Success ✓";
+
+
+                /*
+                 * Give Supabase a moment to save
+                 * the session before redirecting.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "member-dashboard.html";
+
+                    },
+                    700
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Unexpected login error:",
+                    error
+                );
+
+
+                showMessage(
+                    "Unable to connect to the login service. Please check your internet connection and try again.",
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                /*
+                 * Only restore the button if
+                 * we are not redirecting.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        if (
+                            window.location.pathname
+                            .includes(
+                                "member-login.html"
+                            )
+                        ) {
+
+                            loginButton.disabled =
+                                false;
+
+                            loginButton.textContent =
+                                "Login";
+
+                        }
+
+                    },
+                    1200
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       FRIENDLY AUTH ERRORS
+    ===================================================== */
+
+    function getFriendlyError(
+        error
+    ) {
+
+        const message =
+            String(
+                error?.message || ""
+            ).toLowerCase();
+
+
+        if (
+            message.includes(
+                "invalid login credentials"
+            )
+        ) {
+
+            return "Incorrect email or password.";
+
+        }
+
+
+        if (
+            message.includes(
+                "email not confirmed"
+            )
+        ) {
+
+            return "Your email address has not been confirmed yet.";
+
+        }
+
+
+        if (
+            message.includes(
+                "too many requests"
+            )
+        ) {
+
+            return "Too many login attempts. Please wait a moment and try again.";
+
+        }
+
+
+        if (
+            message.includes(
+                "network"
+            )
+        ) {
+
+            return "Network error. Please check your internet connection.";
+
+        }
+
+
+        return (
+            error?.message ||
+            "Login failed. Please try again."
+        );
+
+    }
+
+
+    /* =====================================================
+       CHECK EXISTING SESSION
+    ===================================================== */
+
+    async function checkExistingSession() {
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (error) {
+
+                console.error(
+                    "Session check error:",
+                    error
+                );
+
+                return;
+
+            }
+
+
+            if (
+                data?.session
+            ) {
+
+                /*
+                 * User is already logged in.
+                 * Send them directly to dashboard.
+                 */
+
+                window.location.href =
+                    "member-dashboard.html";
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Session check failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    checkExistingSession();
+
+
+    /* =====================================================
+       CURRENT YEAR
+    ===================================================== */
+
+    document
+        .getElementById(
+            "currentYear"
+        )
+        .textContent =
+            new Date().getFullYear();
+
+</script></body></html>
