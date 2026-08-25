@@ -538,5 +538,124 @@
 
         font-size: 25px;
     }
+/* =========================================================
+   FORCE NO RED — FINAL OVERRIDE
+========================================================= */
 
+/* Remove red from validation */
+input:invalid,
+input:valid,
+input:focus:invalid,
+input:focus:valid,
+textarea:invalid,
+textarea:valid,
+select:invalid,
+select:valid {
+    border-color: #dce8df !important;
+    box-shadow: none !important;
+}
+
+/* Focus should always be green */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #16833b !important;
+    outline: none !important;
+}
+
+/* Force buttons green */
+button,
+.btn,
+.button,
+input[type="submit"],
+input[type="button"] {
+    background: #16833b !important;
+    border-color: #16833b !important;
+    color: #ffffff !important;
+}
+
+/* Button hover */
+button:hover,
+.btn:hover,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: #17351f !important;
+    border-color: #17351f !important;
+    color: #ffffff !important;
+}
+
+/* Admin input boxes */
+#adminLogin input,
+#adminLogin textarea,
+#adminLogin select {
+    background: #f7faf8 !important;
+    border: 2px solid #dce8df !important;
+    color: #172018 !important;
+}
+
+/* Admin input focus */
+#adminLogin input:focus,
+#adminLogin textarea:focus,
+#adminLogin select:focus {
+    background: #ffffff !important;
+    border: 2px solid #16833b !important;
+    box-shadow: 0 0 0 4px rgba(22,131,59,.10) !important;
+}
+
+/* No red error messages */
+.error,
+.error-message,
+.form-error,
+.alert-error,
+.danger,
+.text-danger,
+.error-text {
+    color: #17351f !important;
+    background: #e9f7ef !important;
+    border-color: #b9dec5 !important;
+}
+
+/* Admin login message */
+#adminLoginMessage {
+    color: #17351f !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+/* Admin login card */
+#adminLogin {
+    background: #ffffff !important;
+    border: 1px solid #dce8df !important;
+    border-top: 6px solid #16833b !important;
+    box-shadow: 0 15px 45px rgba(0,80,40,.12) !important;
+}
+
+/* Admin heading */
+#adminLogin h2 {
+    color: #17351f !important;
+}
+
+/* Admin labels */
+#adminLogin label {
+    color: #17351f !important;
+}
+
+/* Admin login button */
+#adminLogin #adminLoginBtn {
+    background: #16833b !important;
+    border: 2px solid #16833b !important;
+    color: #ffffff !important;
+}
+
+/* Admin login button hover */
+#adminLogin #adminLoginBtn:hover {
+    background: #17351f !important;
+    border-color: #17351f !important;
+}
+
+/* Remove browser red outline */
+*:focus-visible {
+    outline-color: #16833b !important;
+}
    
