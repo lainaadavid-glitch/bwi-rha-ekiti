@@ -3,7 +3,9 @@
    ADO LOCAL GOVERNMENT
    RESTORED ORIGINAL GREEN + WHITE DESIGN
 ========================================================= */
-
+body {
+    background: red !important;
+}
 :root {
     --green: #16833b;
     --dark-green: #17351f;
