@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Account | BWI-RHA Ekiti State Chapter</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Create Account | BWI-RHA EKITI STATE CHAPTER
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
+
 
 <header class="site-header">
 
     <div class="header-container">
 
-        <a href="index.html" class="logo-area">
+        <a
+            href="index.html"
+            class="logo-area"
+        >
 
             <img
                 src="logo.jpeg"
@@ -24,27 +39,59 @@
             >
 
             <div class="logo-text">
-                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
-                <p>ADO LG</p>
+
+                <h1>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h1>
+
+                <p>
+                    ADO LG
+                </p>
+
             </div>
 
         </a>
+
 
         <button
             type="button"
             class="menu-btn"
             id="menuButton"
+            aria-label="Open menu"
         >
             ☰
         </button>
 
-        <nav class="main-nav" id="mobileNav">
 
-            <a href="index.html">Home</a>
-            <a href="wards.html">Wards</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html" class="active">Create Account</a>
-            <a href="admin.html">Admin</a>
+        <nav
+            class="main-nav"
+            id="mobileNav"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="wards.html">
+                Wards
+            </a>
+
+            <a
+                href="member-login.html"
+            >
+                Login
+            </a>
+
+            <a
+                href="member-signup.html"
+                class="active"
+            >
+                Create Account
+            </a>
+
+            <a href="admin.html">
+                Admin
+            </a>
 
         </nav>
 
@@ -53,25 +100,32 @@
 </header>
 
 
+
 <main class="section">
 
     <div class="container">
 
         <div class="form-container">
 
+
             <div class="section-title">
 
-                <h2>Create Account</h2>
+                <h2>
+                    Create Account
+                </h2>
 
                 <p>
-                    Create your account before completing
-                    your membership registration.
+                    Create your account before
+                    completing your membership
+                    registration.
                 </p>
 
             </div>
 
 
+
             <form id="signupForm">
+
 
                 <div class="form-group">
 
@@ -90,6 +144,7 @@
                 </div>
 
 
+
                 <div class="form-group">
 
                     <label for="signupPassword">
@@ -106,10 +161,12 @@
                     >
 
                     <small class="input-help">
-                        Password must contain at least 6 characters.
+                        Password must contain at least
+                        6 characters.
                     </small>
 
                 </div>
+
 
 
                 <div class="form-group">
@@ -123,10 +180,12 @@
                         id="signupPassword2"
                         placeholder="Confirm your password"
                         autocomplete="new-password"
+                        minlength="6"
                         required
                     >
 
                 </div>
+
 
 
                 <button
@@ -138,30 +197,49 @@
                 </button>
 
 
+
                 <div
                     id="signupMessage"
                     class="form-message"
                     role="alert"
+                    aria-live="polite"
                 ></div>
 
+
             </form>
+
 
 
             <p class="form-link">
 
                 Already have an account?
 
-                <a href="login.html">
+                <a href="member-login.html">
                     Login here
                 </a>
 
             </p>
+
+
+            <p class="form-link">
+
+                After creating your account,
+
+                <a href="member-login.html">
+                    login to continue
+                </a>
+
+                your registration.
+
+            </p>
+
 
         </div>
 
     </div>
 
 </main>
+
 
 
 <footer class="site-footer">
@@ -185,8 +263,11 @@
 </footer>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="script.js"></script>
+
 
 </body>
 </html>
