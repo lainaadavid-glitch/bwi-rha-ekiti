@@ -668,4 +668,1647 @@
 
             text-align: center;
 
-            color: var(--gray
+            color: var(--gray);
+        }
+
+        .empty {
+            padding: 30px;
+
+            text-align: center;
+
+            background: var(--very-light);
+
+            border-radius: 10px;
+
+            color: var(--gray);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+            background: var(--dark-green);
+            color: white;
+
+            padding: 35px 20px;
+
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin: 5px 0;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .main-nav {
+                display: none;
+
+                position: absolute;
+
+                top: 82px;
+                left: 0;
+                right: 0;
+
+                background: white;
+
+                flex-direction: column;
+
+                padding: 15px;
+
+                border-bottom: 3px solid var(--green);
+
+                box-shadow: 0 10px 20px rgba(0,0,0,.08);
+            }
+
+            .main-nav.show {
+                display: flex;
+            }
+
+            .main-nav a {
+                width: 100%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .member-info {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .logo-text h1 {
+                font-size: 14px;
+            }
+
+            .logo-text p {
+                font-size: 12px;
+            }
+
+            .site-logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .login-box {
+                padding: 25px 20px;
+            }
+
+            .dashboard-header {
+                padding: 22px;
+            }
+
+            .admin-section {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <a href="index.html" class="logo-area">
+
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
+
+            <div class="logo-text">
+
+                <h1>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h1>
+
+                <p>
+                    ADO LOCAL GOVERNMENT
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuBtn"
+        >
+            ☰
+        </button>
+
+
+        <nav class="main-nav" id="navMenu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="wards.html">
+                Wards
+            </a>
+
+            <a href="member-signup.html">
+                Register
+            </a>
+
+            <a href="admin.html" class="active">
+                Admin
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <img
+            src="logo.jpeg"
+            alt="BWI-RHA Logo"
+            class="login-logo"
+        >
+
+        <div class="login-title">
+
+            <h2>
+                Administrator Login
+            </h2>
+
+            <p>
+                Authorized administrators only.
+            </p>
+
+        </div>
+
+
+        <form id="adminLoginForm">
+
+            <div class="form-group">
+
+                <label for="adminEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Admin email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Admin password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="adminLoginBtn"
+            >
+                Admin Login
+            </button>
+
+
+            <div
+                id="loginMessage"
+                class="message"
+            ></div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section id="adminDashboard">
+
+    <div class="container dashboard">
+
+
+        <!-- HEADER -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h2>
+                    BWI-RHA Admin Dashboard
+                </h2>
+
+                <p id="adminUserEmail">
+                    Administrator
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <h3 id="pendingCount">
+                    0
+                </h3>
+
+                <p>
+                    Pending Registrations
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <h3 id="approvedCount">
+                    0
+                </h3>
+
+                <p>
+                    Approved Members
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📋
+                </div>
+
+                <h3 id="declinedCount">
+                    0
+                </h3>
+
+                <p>
+                    Declined Members
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PENDING REGISTRATIONS
+        ================================================== -->
+
+        <section class="admin-section">
+
+            <div class="admin-section-header">
+
+                <h2>
+                    Pending Registrations
+                </h2>
+
+                <button
+                    type="button"
+                    class="refresh-btn"
+                    id="refreshBtn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                id="pendingList"
+                class="members-list"
+            >
+
+                <div class="loading">
+                    Loading registrations...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             APPROVED MEMBERS
+        ================================================== -->
+
+        <section class="admin-section">
+
+            <div class="admin-section-header">
+
+                <h2>
+                    Approved Members
+                </h2>
+
+            </div>
+
+
+            <div class="filter-row">
+
+                <select id="approvedWardFilter">
+
+                    <option value="all">
+                        All Wards
+                    </option>
+
+                    <option value="1">Ward 1</option>
+                    <option value="2">Ward 2</option>
+                    <option value="3">Ward 3</option>
+                    <option value="4">Ward 4</option>
+                    <option value="5">Ward 5</option>
+                    <option value="6">Ward 6</option>
+                    <option value="7">Ward 7</option>
+                    <option value="8">Ward 8</option>
+                    <option value="9">Ward 9</option>
+                    <option value="10">Ward 10</option>
+                    <option value="11">Ward 11</option>
+                    <option value="12">Ward 12</option>
+                    <option value="13">Ward 13</option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="approvedList"
+                class="members-list"
+            >
+
+                <div class="loading">
+                    Loading approved members...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DECLINED MEMBERS
+        ================================================== -->
+
+        <section class="admin-section">
+
+            <h2>
+                Declined Registrations
+            </h2>
+
+
+            <div
+                id="declinedList"
+                class="members-list"
+                style="margin-top:20px;"
+            >
+
+                <div class="loading">
+                    Loading declined members...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WARDS
+        ================================================== -->
+
+        <section class="admin-section">
+
+            <h2>
+                Members by Ward
+            </h2>
+
+            <p style="color:#66736a;">
+                Overview of approved members in each ward.
+            </p>
+
+
+            <div
+                id="wardGrid"
+                class="ward-grid"
+            >
+
+                <div class="loading">
+                    Loading wards...
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <p>
+        <strong>
+            BWI-RHA EKITI STATE CHAPTER
+        </strong>
+    </p>
+
+    <p>
+        ADO LOCAL GOVERNMENT
+    </p>
+
+    <p>
+        Green Economy E-Mobility Program
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+    /* =====================================================
+       SUPABASE CONFIGURATION
+    ===================================================== */
+
+    const SUPABASE_URL =
+        "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const loginPage =
+        document.getElementById("loginPage");
+
+    const adminDashboard =
+        document.getElementById("adminDashboard");
+
+    const loginForm =
+        document.getElementById("adminLoginForm");
+
+    const loginBtn =
+        document.getElementById("adminLoginBtn");
+
+    const loginMessage =
+        document.getElementById("loginMessage");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const adminUserEmail =
+        document.getElementById("adminUserEmail");
+
+    const pendingList =
+        document.getElementById("pendingList");
+
+    const approvedList =
+        document.getElementById("approvedList");
+
+    const declinedList =
+        document.getElementById("declinedList");
+
+    const wardGrid =
+        document.getElementById("wardGrid");
+
+    const pendingCount =
+        document.getElementById("pendingCount");
+
+    const approvedCount =
+        document.getElementById("approvedCount");
+
+    const declinedCount =
+        document.getElementById("declinedCount");
+
+    const refreshBtn =
+        document.getElementById("refreshBtn");
+
+    const approvedWardFilter =
+        document.getElementById(
+            "approvedWardFilter"
+        );
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    /* =====================================================
+       LOGIN MESSAGE
+    ===================================================== */
+
+    function showLoginMessage(
+        message,
+        type = "info"
+    ) {
+
+        loginMessage.textContent = message;
+
+        loginMessage.className =
+            "message show " + type;
+
+    }
+
+
+    function clearLoginMessage() {
+
+        loginMessage.textContent = "";
+
+        loginMessage.className =
+            "message";
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            clearLoginMessage();
+
+            const email =
+                document
+                    .getElementById("adminEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("adminPassword")
+                    .value;
+
+
+            if (!email || !password) {
+
+                showLoginMessage(
+                    "Please enter your email and password."
+                );
+
+                return;
+
+            }
+
+
+            loginBtn.disabled = true;
+
+            loginBtn.textContent =
+                "Signing in...";
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth
+                    .signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+                showLoginMessage(
+                    error.message
+                );
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "Admin Login";
+
+                return;
+
+            }
+
+
+            if (!data.user) {
+
+                showLoginMessage(
+                    "Login could not be completed."
+                );
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent =
+                    "Admin Login";
+
+                return;
+
+            }
+
+
+            showDashboard(
+                data.user
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       SHOW DASHBOARD
+    ===================================================== */
+
+    function showDashboard(user) {
+
+        loginPage.style.display =
+            "none";
+
+        adminDashboard.style.display =
+            "block";
+
+        adminUserEmail.textContent =
+            user.email || "Administrator";
+
+        loadDashboard();
+
+    }
+
+
+    /* =====================================================
+       LOAD DASHBOARD
+    ===================================================== */
+
+    async function loadDashboard() {
+
+        await Promise.all([
+            loadStatistics(),
+            loadPendingMembers(),
+            loadApprovedMembers(),
+            loadDeclinedMembers(),
+            loadWardStatistics()
+        ]);
+
+    }
+
+
+    /* =====================================================
+       STATISTICS
+    ===================================================== */
+
+    async function loadStatistics() {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("status");
+
+
+        if (error) {
+
+            console.error(
+                "Statistics error:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        const pending =
+            data.filter(
+                member =>
+                    member.status === "pending"
+            ).length;
+
+
+        const approved =
+            data.filter(
+                member =>
+                    member.status === "approved"
+            ).length;
+
+
+        const declined =
+            data.filter(
+                member =>
+                    member.status === "declined"
+            ).length;
+
+
+        pendingCount.textContent =
+            pending;
+
+        approvedCount.textContent =
+            approved;
+
+        declinedCount.textContent =
+            declined;
+
+    }
+
+
+    /* =====================================================
+       MEMBER CARD
+    ===================================================== */
+
+    function createMemberCard(
+        member,
+        showActions = false
+    ) {
+
+        const ward =
+            member.ward_id
+                ? `Ward ${member.ward_id}`
+                : "Ward not provided";
+
+
+        const status =
+            String(
+                member.status || ""
+            ).toLowerCase();
+
+
+        let statusClass =
+            "status-pending";
+
+
+        if (status === "approved") {
+            statusClass =
+                "status-approved";
+        }
+
+        if (status === "declined") {
+            statusClass =
+                "status-declined";
+        }
+
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "member-card";
+
+
+        card.innerHTML = `
+
+            <div class="member-card-top">
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(
+                            member.full_name
+                        )}
+                    </h3>
+
+                    <small>
+                        ${escapeHTML(ward)}
+                    </small>
+
+                </div>
+
+                <span
+                    class="status-badge ${statusClass}"
+                >
+                    ${escapeHTML(
+                        member.status || "pending"
+                    )}
+                </span>
+
+            </div>
+
+
+            <div class="member-info">
+
+                <div>
+                    <strong>Phone:</strong>
+                    ${escapeHTML(
+                        member.phone
+                    )}
+                </div>
+
+                <div>
+                    <strong>Polling Booth:</strong>
+                    ${escapeHTML(
+                        member.polling_booth ||
+                        "Not provided"
+                    )}
+                </div>
+
+                <div>
+                    <strong>Bank:</strong>
+                    ${escapeHTML(
+                        member.bank_name ||
+                        "Not provided"
+                    )}
+                </div>
+
+                <div>
+                    <strong>Account Name:</strong>
+                    ${escapeHTML(
+                        member.account_name ||
+                        "Not provided"
+                    )}
+                </div>
+
+                <div>
+                    <strong>Account Number:</strong>
+                    ${escapeHTML(
+                        member.account_number ||
+                        "Not provided"
+                    )}
+                </div>
+
+                <div>
+                    <strong>EXCO:</strong>
+                    ${escapeHTML(
+                        member.exco_position ||
+                        "Not assigned"
+                    )}
+                </div>
+
+            </div>
+
+        `;
+
+
+        if (showActions) {
+
+            const actions =
+                document.createElement("div");
+
+            actions.className =
+                "actions";
+
+
+            const approve =
+                document.createElement("button");
+
+            approve.type =
+                "button";
+
+            approve.className =
+                "action-btn approve-btn";
+
+            approve.textContent =
+                "✓ Approve";
+
+
+            approve.addEventListener(
+                "click",
+                () =>
+                    updateMemberStatus(
+                        member.id,
+                        "approved"
+                    )
+            );
+
+
+            const decline =
+                document.createElement("button");
+
+            decline.type =
+                "button";
+
+            decline.className =
+                "action-btn decline-btn";
+
+            decline.textContent =
+                "Decline";
+
+
+            decline.addEventListener(
+                "click",
+                () =>
+                    updateMemberStatus(
+                        member.id,
+                        "declined"
+                    )
+            );
+
+
+            actions.appendChild(
+                approve
+            );
+
+            actions.appendChild(
+                decline
+            );
+
+            card.appendChild(
+                actions
+            );
+
+        }
+
+
+        return card;
+
+    }
+
+
+    /* =====================================================
+       PENDING MEMBERS
+    ===================================================== */
+
+    async function loadPendingMembers() {
+
+        pendingList.innerHTML = `
+            <div class="loading">
+                Loading pending registrations...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq("status", "pending")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Pending members error:",
+                error
+            );
+
+            pendingList.innerHTML = `
+                <div class="empty">
+                    Unable to load pending registrations.
+                    <br>
+                    ${escapeHTML(error.message)}
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        pendingList.innerHTML = "";
+
+
+        if (!data || data.length === 0) {
+
+            pendingList.innerHTML = `
+                <div class="empty">
+                    ✓ There are no pending registrations.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        data.forEach(member => {
+
+            pendingList.appendChild(
+                createMemberCard(
+                    member,
+                    true
+                )
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       APPROVED MEMBERS
+    ===================================================== */
+
+    async function loadApprovedMembers() {
+
+        approvedList.innerHTML = `
+            <div class="loading">
+                Loading approved members...
+            </div>
+        `;
+
+
+        let query =
+            supabaseClient
+                .from("members")
+                .select("*")
+                .eq("status", "approved")
+                .order(
+                    "full_name",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        const ward =
+            approvedWardFilter.value;
+
+
+        if (ward !== "all") {
+
+            query =
+                query.eq(
+                    "ward_id",
+                    Number(ward)
+                );
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await query;
+
+
+        if (error) {
+
+            console.error(
+                "Approved members error:",
+                error
+            );
+
+            approvedList.innerHTML = `
+                <div class="empty">
+                    Unable to load approved members.
+                    <br>
+                    ${escapeHTML(error.message)}
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        approvedList.innerHTML = "";
+
+
+        if (!data || data.length === 0) {
+
+            approvedList.innerHTML = `
+                <div class="empty">
+                    No approved members found.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        data.forEach(member => {
+
+            approvedList.appendChild(
+                createMemberCard(
+                    member,
+                    false
+                )
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       DECLINED MEMBERS
+    ===================================================== */
+
+    async function loadDeclinedMembers() {
+
+        declinedList.innerHTML = `
+            <div class="loading">
+                Loading declined registrations...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq("status", "declined")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Declined members error:",
+                error
+            );
+
+            declinedList.innerHTML = `
+                <div class="empty">
+                    Unable to load declined registrations.
+                    <br>
+                    ${escapeHTML(error.message)}
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        declinedList.innerHTML = "";
+
+
+        if (!data || data.length === 0) {
+
+            declinedList.innerHTML = `
+                <div class="empty">
+                    No declined registrations.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        data.forEach(member => {
+
+            declinedList.appendChild(
+                createMemberCard(
+                    member,
+                    false
+                )
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       UPDATE MEMBER STATUS
+    ===================================================== */
+
+    async function updateMemberStatus(
+        memberId,
+        newStatus
+    ) {
+
+        const action =
+            newStatus === "approved"
+                ? "approve"
+                : "decline";
+
+
+        const confirmed =
+            confirm(
+                `Are you sure you want to ${action} this member?`
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .update({
+                    status: newStatus
+                })
+                .eq(
+                    "id",
+                    memberId
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Status update error:",
+                error
+            );
+
+            alert(
+                "Unable to update member: " +
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        await loadDashboard();
+
+    }
+
+
+    /* =====================================================
+       WARD STATISTICS
+    ===================================================== */
+
+    async function loadWardStatistics() {
+
+        wardGrid.innerHTML = `
+            <div class="loading">
+                Loading ward statistics...
+            </div>
+        `;
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("ward_id")
+                .eq(
+                    "status",
+                    "approved"
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Ward statistics error:",
+                error
+            );
+
+            wardGrid.innerHTML = `
+                <div class="empty">
+                    Unable to load ward statistics.
+                    <br>
+                    ${escapeHTML(error.message)}
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const counts = {};
+
+
+        for (
+            let ward = 1;
+            ward <= 13;
+            ward++
+        ) {
+
+            counts[ward] = 0;
+
+        }
+
+
+        data.forEach(member => {
+
+            const ward =
+                Number(member.ward_id);
+
+
+            if (
+                ward >= 1 &&
+                ward <= 13
+            ) {
+
+                counts[ward]++;
+
+            }
+
+        });
+
+
+        wardGrid.innerHTML = "";
+
+
+        for (
+            let ward = 1;
+            ward <= 13;
+            ward++
+        ) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "ward-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    Ward ${ward}
+                </h3>
+
+                <p>
+                    ${counts[ward]}
+                    approved member${counts[ward] === 1 ? "" : "s"}
+                </p>
+
+            `;
+
+
+            wardGrid.appendChild(
+                card
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       REFRESH
+    ===================================================== */
+
+    refreshBtn.addEventListener(
+        "click",
+        async function() {
+
+            refreshBtn.disabled =
+                true;
+
+            refreshBtn.textContent =
+                "Refreshing...";
+
+
+            await loadDashboard();
+
+
+            refreshBtn.disabled =
+                false;
+
+            refreshBtn.textContent =
+                "↻ Refresh";
+
+        }
+    );
+
+
+    /* =====================================================
+       WARD FILTER
+    ===================================================== */
+
+    approvedWardFilter.addEventListener(
+        "change",
+        loadApprovedMembers
+    );
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    logoutBtn.addEventListener(
+        "click",
+        async function() {
+
+            await supabaseClient.auth.signOut();
+
+            adminDashboard.style.display =
+                "none";
+
+            loginPage.style.display =
+                "flex";
+
+            document
+                .getElementById("adminPassword")
+                .value = "";
+
+            clearLoginMessage();
+
+        }
+    );
+
+
+    /* =====================================================
+       CHECK EXISTING SESSION
+    ===================================================== */
+
+    async function checkSession() {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth
+                .getSession();
+
+
+        if (error) {
+
+            console.error(
+                "Session error:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.session &&
+            data.session.user
+        ) {
+
+            showDashboard(
+                data.session.user
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const menuBtn =
+        document.getElementById(
+            "menuBtn"
+        );
+
+    const navMenu =
+        document.getElementById(
+            "navMenu"
+        );
+
+
+    menuBtn.addEventListener(
+        "click",
+        function() {
+
+            navMenu.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    checkSession();
+
+</script>
+
+</body>
+
+</html>
