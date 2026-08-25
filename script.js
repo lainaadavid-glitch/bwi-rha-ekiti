@@ -21,13 +21,20 @@ if (
     window.supabase &&
     typeof window.supabase.createClient === "function"
 ) {
+
     supabaseClient =
         window.supabase.createClient(
             SUPABASE_URL,
             SUPABASE_KEY
         );
+
+    console.log("Supabase initialized.");
+
 } else {
-    console.error("Supabase library was not loaded.");
+
+    console.error(
+        "Supabase library was not loaded."
+    );
 }
 
 
@@ -36,19 +43,85 @@ if (
 ========================================================= */
 
 const wards = [
-    { number: 1, name: "Ado A", area: "Idofin" },
-    { number: 2, name: "Ado B", area: "Inisa" },
-    { number: 3, name: "Ado C", area: "Idolofin" },
-    { number: 4, name: "Ado D", area: "Ijigbo" },
-    { number: 5, name: "Ado E", area: "Ijoka / Orereowu" },
-    { number: 6, name: "Ado F", area: "Okeyinmi" },
-    { number: 7, name: "Ado G", area: "Oke Ila" },
-    { number: 8, name: "Ado H", area: "Ereguru" },
-    { number: 9, name: "Ado I", area: "Dallimore" },
-    { number: 10, name: "Ado J", area: "Okesa" },
-    { number: 11, name: "Ado K", area: "Irona" },
-    { number: 12, name: "Ado L", area: "Igbehin" },
-    { number: 13, name: "Ado M", area: "Farm Settlement" }
+
+    {
+        number: 1,
+        name: "Ado A",
+        area: "Idofin"
+    },
+
+    {
+        number: 2,
+        name: "Ado B",
+        area: "Inisa"
+    },
+
+    {
+        number: 3,
+        name: "Ado C",
+        area: "Idolofin"
+    },
+
+    {
+        number: 4,
+        name: "Ado D",
+        area: "Ijigbo"
+    },
+
+    {
+        number: 5,
+        name: "Ado E",
+        area: "Ijoka / Orereowu"
+    },
+
+    {
+        number: 6,
+        name: "Ado F",
+        area: "Okeyinmi"
+    },
+
+    {
+        number: 7,
+        name: "Ado G",
+        area: "Oke Ila"
+    },
+
+    {
+        number: 8,
+        name: "Ado H",
+        area: "Ereguru"
+    },
+
+    {
+        number: 9,
+        name: "Ado I",
+        area: "Dallimore"
+    },
+
+    {
+        number: 10,
+        name: "Ado J",
+        area: "Okesa"
+    },
+
+    {
+        number: 11,
+        name: "Ado K",
+        area: "Irona"
+    },
+
+    {
+        number: 12,
+        name: "Ado L",
+        area: "Igbehin"
+    },
+
+    {
+        number: 13,
+        name: "Ado M",
+        area: "Farm Settlement"
+    }
+
 ];
 
 
@@ -57,14 +130,23 @@ const wards = [
 ========================================================= */
 
 const wardOffices = [
+
     "Ward Coordinator",
+
     "Deputy Ward Coordinator",
+
     "Secretary",
+
     "Mobilization Officer",
+
     "Women Empowerment Officer",
+
     "Media/Publicity Officer",
+
     "Welfare Officer",
+
     "Polling Unit Officer"
+
 ];
 
 
@@ -73,115 +155,175 @@ const wardOffices = [
 ========================================================= */
 
 function escapeHTML(value) {
+
     return String(value ?? "")
+
         .replaceAll("&", "&amp;")
+
         .replaceAll("<", "&lt;")
+
         .replaceAll(">", "&gt;")
+
         .replaceAll('"', "&quot;")
+
         .replaceAll("'", "&#039;");
+
 }
 
 
-function showMessage(element, message, type = "info") {
-    if (!element) return;
+function showMessage(
+    element,
+    message,
+    type = "info"
+) {
 
-    element.textContent = message;
-    element.className = "form-message " + type;
+    if (!element) {
+        return;
+    }
+
+    element.textContent =
+        message;
+
+    element.className =
+        "form-message " + type;
+
 }
 
 
 /* =========================================================
-   DOM
+   DOM ELEMENTS
 ========================================================= */
 
 const wardsGrid =
-    document.getElementById("wardsGrid");
+    document.getElementById(
+        "wardsGrid"
+    );
 
 const wardDisplay =
-    document.getElementById("wardDisplay");
+    document.getElementById(
+        "wardDisplay"
+    );
 
 const wardSelect =
-    document.getElementById("ward");
+    document.getElementById(
+        "ward"
+    );
 
 const registrationForm =
-    document.getElementById("registrationForm");
+    document.getElementById(
+        "registrationForm"
+    );
 
 const formMessage =
-    document.getElementById("formMessage");
+    document.getElementById(
+        "formMessage"
+    );
 
 const menuButton =
-    document.getElementById("menuButton");
+    document.getElementById(
+        "menuButton"
+    );
 
 const mobileNav =
-    document.getElementById("mobileNav");
+    document.getElementById(
+        "mobileNav"
+    );
 
 const currentYear =
-    document.getElementById("currentYear");
+    document.getElementById(
+        "currentYear"
+    );
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-if (menuButton && mobileNav) {
+if (
+    menuButton &&
+    mobileNav
+) {
 
-    menuButton.addEventListener("click", () => {
-        mobileNav.classList.toggle("active");
-    });
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            mobileNav.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
 
     mobileNav
         .querySelectorAll("a")
-        .forEach(link => {
+        .forEach(
+            function (link) {
 
-            link.addEventListener("click", () => {
-                mobileNav.classList.remove("active");
-            });
+                link.addEventListener(
+                    "click",
+                    function () {
 
-        });
+                        mobileNav.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
 }
 
 
 /* =========================================================
-   YEAR
+   CURRENT YEAR
 ========================================================= */
 
 if (currentYear) {
+
     currentYear.textContent =
         new Date().getFullYear();
+
 }
 
 
 /* =========================================================
-   SIGNUP
    CREATE ACCOUNT
+   member-signup.html
 ========================================================= */
 
 const signupForm =
-    document.getElementById("signupForm");
+    document.getElementById(
+        "signupForm"
+    );
+
 
 if (signupForm) {
 
     signupForm.addEventListener(
         "submit",
-        async event => {
+        async function (event) {
 
             event.preventDefault();
 
-            const email =
-                document
-                    .getElementById("signupEmail")
-                    .value
-                    .trim();
 
-            const password =
-                document
-                    .getElementById("signupPassword")
-                    .value;
+            const emailInput =
+                document.getElementById(
+                    "signupEmail"
+                );
 
-            const password2 =
-                document
-                    .getElementById("signupPassword2")
-                    .value;
+            const passwordInput =
+                document.getElementById(
+                    "signupPassword"
+                );
+
+            const password2Input =
+                document.getElementById(
+                    "signupPassword2"
+                );
 
             const message =
                 document.getElementById(
@@ -194,11 +336,21 @@ if (signupForm) {
                 );
 
 
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            const password2 =
+                password2Input.value;
+
+
             if (!supabaseClient) {
 
                 showMessage(
                     message,
-                    "Supabase is not available.",
+                    "Supabase is not available. Please refresh the page.",
                     "error"
                 );
 
@@ -206,11 +358,11 @@ if (signupForm) {
             }
 
 
-            if (password !== password2) {
+            if (!email || !password || !password2) {
 
                 showMessage(
                     message,
-                    "Passwords do not match.",
+                    "Please complete all fields.",
                     "error"
                 );
 
@@ -230,10 +382,23 @@ if (signupForm) {
             }
 
 
-            if (button) {
-                button.disabled = true;
-                button.textContent = "Creating Account...";
+            if (password !== password2) {
+
+                showMessage(
+                    message,
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
             }
+
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "Creating Account...";
 
 
             try {
@@ -243,8 +408,13 @@ if (signupForm) {
                     error
                 } =
                     await supabaseClient.auth.signUp({
-                        email: email,
-                        password: password
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
                     });
 
 
@@ -253,9 +423,15 @@ if (signupForm) {
                 }
 
 
+                console.log(
+                    "Signup result:",
+                    data
+                );
+
+
                 /*
-                   If Supabase requires email confirmation,
-                   the user must confirm their email first.
+                   If email confirmation is enabled,
+                   Supabase will not return a session.
                 */
 
                 if (
@@ -266,7 +442,7 @@ if (signupForm) {
 
                     showMessage(
                         message,
-                        "Account created successfully. Please check your email and confirm your account, then login.",
+                        "Account created. Please check your email and confirm your account before logging in.",
                         "success"
                     );
 
@@ -274,23 +450,31 @@ if (signupForm) {
 
                     showMessage(
                         message,
-                        "Account created successfully. Redirecting to login...",
+                        "Account created successfully. Opening login...",
                         "success"
                     );
 
-                    setTimeout(() => {
-                        window.location.href =
-                            "login.html";
-                    }, 1200);
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "member-login.html";
+
+                        },
+                        1200
+                    );
 
                 }
+
 
             } catch (error) {
 
                 console.error(
-                    "Signup error:",
+                    "SIGNUP ERROR:",
                     error
                 );
+
 
                 showMessage(
                     message,
@@ -299,12 +483,14 @@ if (signupForm) {
                     "error"
                 );
 
+
             } finally {
 
-                if (button) {
-                    button.disabled = false;
-                    button.textContent = "Create Account";
-                }
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "Create Account";
 
             }
 
@@ -315,65 +501,72 @@ if (signupForm) {
 
 
 /* =========================================================
-   LOGIN
+   MEMBER LOGIN
+   member-login.html
+
    LOGIN → REGISTER
 ========================================================= */
 
 const loginForm =
-    document.getElementById("loginForm");
+    document.getElementById(
+        "loginForm"
+    );
+
 
 if (loginForm) {
 
     loginForm.addEventListener(
         "submit",
-        async event => {
+        async function (event) {
+
+            /*
+               VERY IMPORTANT:
+               Prevent the browser from submitting
+               the form normally.
+            */
 
             event.preventDefault();
 
+            event.stopPropagation();
 
-            if (!supabaseClient) {
 
-                const message =
-                    document.getElementById(
-                        "loginMessage"
-                    );
+            console.log(
+                "LOGIN FORM SUBMITTED"
+            );
 
-                showMessage(
-                    message,
-                    "Supabase is not available.",
-                    "error"
+
+            const emailInput =
+                document.getElementById(
+                    "loginEmail"
                 );
 
-                return;
-            }
+            const passwordInput =
+                document.getElementById(
+                    "loginPassword"
+                );
 
+            const loginButton =
+                document.getElementById(
+                    "loginBtn"
+                );
 
-            const email =
-                document
-                    .getElementById("loginEmail")
-                    .value
-                    .trim();
-
-            const password =
-                document
-                    .getElementById("loginPassword")
-                    .value;
-
-            const message =
+            const loginMessage =
                 document.getElementById(
                     "loginMessage"
                 );
 
-            const button =
-                document.getElementById(
-                    "loginBtn"
-                );
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
 
 
             if (!email || !password) {
 
                 showMessage(
-                    message,
+                    loginMessage,
                     "Please enter your email and password.",
                     "error"
                 );
@@ -382,24 +575,59 @@ if (loginForm) {
             }
 
 
-            if (button) {
+            if (!supabaseClient) {
 
-                button.disabled = true;
-                button.textContent = "Logging in...";
+                showMessage(
+                    loginMessage,
+                    "Supabase is not loaded. Please refresh the page.",
+                    "error"
+                );
 
+                return;
             }
 
 
+            loginButton.disabled =
+                true;
+
+            loginButton.textContent =
+                "Logging in...";
+
+
+            showMessage(
+                loginMessage,
+                "Checking your account...",
+                "info"
+            );
+
+
             try {
+
+                console.log(
+                    "Calling Supabase login..."
+                );
+
 
                 const {
                     data,
                     error
                 } =
                     await supabaseClient.auth.signInWithPassword({
-                        email: email,
-                        password: password
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
                     });
+
+
+                console.log(
+                    "Login response:",
+                    data,
+                    error
+                );
 
 
                 if (error) {
@@ -407,7 +635,10 @@ if (loginForm) {
                 }
 
 
-                if (!data || !data.user) {
+                if (
+                    !data ||
+                    !data.user
+                ) {
 
                     throw new Error(
                         "Login succeeded but no user session was returned."
@@ -416,48 +647,57 @@ if (loginForm) {
                 }
 
 
-                /*
-                   IMPORTANT:
-                   Successful member login goes directly
-                   to the registration page.
-                */
-
                 showMessage(
-                    message,
-                    "Login successful. Opening registration...",
+                    loginMessage,
+                    "Login successful! Opening registration...",
                     "success"
                 );
 
 
-                setTimeout(() => {
+                console.log(
+                    "Redirecting to register.html"
+                );
 
-                    window.location.replace(
-                        "register.html"
-                    );
 
-                }, 500);
+                /*
+                   THIS IS THE IMPORTANT PART.
+                   Successful login goes to
+                   register.html.
+                */
+
+                setTimeout(
+                    function () {
+
+                        window.location.replace(
+                            "register.html"
+                        );
+
+                    },
+                    700
+                );
 
 
             } catch (error) {
 
                 console.error(
-                    "Login error:",
+                    "LOGIN ERROR:",
                     error
                 );
 
 
                 showMessage(
-                    message,
+                    loginMessage,
                     "Login failed: " +
                     error.message,
                     "error"
                 );
 
 
-                if (button) {
-                    button.disabled = false;
-                    button.textContent = "Login";
-                }
+                loginButton.disabled =
+                    false;
+
+                loginButton.textContent =
+                    "Login";
 
             }
 
@@ -473,80 +713,129 @@ if (loginForm) {
 
 function createWardButtons() {
 
-    if (!wardsGrid) return;
+    if (!wardsGrid) {
+        return;
+    }
 
-    wardsGrid.innerHTML = "";
 
-    wards.forEach(ward => {
+    wardsGrid.innerHTML =
+        "";
 
-        const button =
-            document.createElement("button");
 
-        button.type = "button";
-        button.className = "ward-button";
-        button.dataset.ward = ward.number;
+    wards.forEach(
+        function (ward) {
 
-        button.innerHTML = `
+            const button =
+                document.createElement(
+                    "button"
+                );
 
-            <strong>
-                Ward ${ward.number}
-            </strong>
 
-            <span>
-                ${escapeHTML(ward.name)}
-            </span>
+            button.type =
+                "button";
 
-            <small>
-                ${escapeHTML(ward.area)}
-            </small>
 
-        `;
+            button.className =
+                "ward-button";
 
-        button.addEventListener(
-            "click",
-            () => showWard(ward.number)
-        );
 
-        wardsGrid.appendChild(button);
+            button.dataset.ward =
+                ward.number;
 
-    });
+
+            button.innerHTML = `
+
+                <strong>
+                    Ward ${ward.number}
+                </strong>
+
+                <span>
+                    ${escapeHTML(
+                        ward.name
+                    )}
+                </span>
+
+                <small>
+                    ${escapeHTML(
+                        ward.area
+                    )}
+                </small>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    showWard(
+                        ward.number
+                    );
+
+                }
+            );
+
+
+            wardsGrid.appendChild(
+                button
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   CREATE WARD OPTIONS
+   CREATE WARD SELECT OPTIONS
 ========================================================= */
 
 function createWardOptions() {
 
-    if (!wardSelect) return;
+    if (!wardSelect) {
+        return;
+    }
+
 
     wardSelect.innerHTML = `
+
         <option value="">
             Select your ward
         </option>
+
     `;
 
-    wards.forEach(ward => {
 
-        const option =
-            document.createElement("option");
+    wards.forEach(
+        function (ward) {
 
-        option.value = ward.number;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.textContent =
-            `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
 
-        wardSelect.appendChild(option);
+            option.value =
+                ward.number;
 
-    });
+
+            option.textContent =
+                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
+
+
+            wardSelect.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
    REGISTRATION
+   register.html
 ========================================================= */
 
 if (registrationForm) {
@@ -559,7 +848,9 @@ if (registrationForm) {
 }
 
 
-async function submitRegistration(event) {
+async function submitRegistration(
+    event
+) {
 
     event.preventDefault();
 
@@ -577,7 +868,7 @@ async function submitRegistration(event) {
 
 
     /*
-       Make sure the member is logged in.
+       Make sure the person is logged in.
     */
 
     const {
@@ -596,10 +887,17 @@ async function submitRegistration(event) {
             "error"
         );
 
-        setTimeout(() => {
-            window.location.href =
-                "login.html";
-        }, 1200);
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "member-login.html";
+
+            },
+            1200
+        );
+
 
         return;
     }
@@ -611,16 +909,20 @@ async function submitRegistration(event) {
         );
 
 
-    const getValue = id => {
+    function getValue(id) {
 
         const element =
             document.getElementById(id);
 
-        return element
-            ? element.value.trim()
-            : "";
 
-    };
+        if (!element) {
+            return "";
+        }
+
+
+        return element.value.trim();
+
+    }
 
 
     const fullName =
@@ -669,7 +971,11 @@ async function submitRegistration(event) {
     }
 
 
-    if (!/^\d{10}$/.test(accountNumber)) {
+    if (
+        !/^\d{10}$/.test(
+            accountNumber
+        )
+    ) {
 
         showMessage(
             formMessage,
@@ -683,7 +989,9 @@ async function submitRegistration(event) {
 
     if (submitButton) {
 
-        submitButton.disabled = true;
+        submitButton.disabled =
+            true;
+
         submitButton.textContent =
             "Submitting...";
 
@@ -693,8 +1001,8 @@ async function submitRegistration(event) {
     try {
 
         /*
-           Check whether this account already
-           has a member registration.
+           Check if this email already
+           has a registration.
         */
 
         const {
@@ -703,8 +1011,13 @@ async function submitRegistration(event) {
         } =
             await supabaseClient
                 .from("members")
-                .select("id,status")
-                .eq("email", email)
+                .select(
+                    "id,status"
+                )
+                .eq(
+                    "email",
+                    email
+                )
                 .maybeSingle();
 
 
@@ -724,6 +1037,10 @@ async function submitRegistration(event) {
             return;
         }
 
+
+        /*
+           Insert registration.
+        */
 
         const {
             error
@@ -769,7 +1086,7 @@ async function submitRegistration(event) {
 
         showMessage(
             formMessage,
-            "Registration submitted successfully. Your application is now awaiting admin approval.",
+            "Registration submitted successfully. Your application is awaiting admin approval.",
             "success"
         );
 
@@ -780,9 +1097,10 @@ async function submitRegistration(event) {
     } catch (error) {
 
         console.error(
-            "Registration error:",
+            "REGISTRATION ERROR:",
             error
         );
+
 
         showMessage(
             formMessage,
@@ -791,11 +1109,14 @@ async function submitRegistration(event) {
             "error"
         );
 
+
     } finally {
 
         if (submitButton) {
 
-            submitButton.disabled = false;
+            submitButton.disabled =
+                false;
+
             submitButton.textContent =
                 "Submit Registration";
 
@@ -810,30 +1131,45 @@ async function submitRegistration(event) {
    SHOW WARD
 ========================================================= */
 
-async function showWard(wardNumber) {
+async function showWard(
+    wardNumber
+) {
 
     const ward =
         wards.find(
-            item =>
-                item.number ===
-                Number(wardNumber)
+            function (item) {
+
+                return (
+                    item.number ===
+                    Number(wardNumber)
+                );
+
+            }
         );
 
 
-    if (!ward || !wardDisplay) {
+    if (
+        !ward ||
+        !wardDisplay
+    ) {
+
         return;
     }
 
 
     document
-        .querySelectorAll(".ward-button")
-        .forEach(button => {
+        .querySelectorAll(
+            ".ward-button"
+        )
+        .forEach(
+            function (button) {
 
-            button.classList.remove(
-                "active"
-            );
+                button.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     const activeButton =
@@ -843,23 +1179,36 @@ async function showWard(wardNumber) {
 
 
     if (activeButton) {
-        activeButton.classList.add("active");
+
+        activeButton.classList.add(
+            "active"
+        );
+
     }
 
 
     wardDisplay.innerHTML = `
+
         <div class="loading">
-            Loading Ward ${ward.number}...
+
+            Loading Ward
+            ${ward.number}...
+
         </div>
+
     `;
 
 
     if (!supabaseClient) {
 
         wardDisplay.innerHTML = `
+
             <div class="empty-state error">
+
                 Supabase is not available.
+
             </div>
+
         `;
 
         return;
@@ -910,53 +1259,72 @@ async function showWard(wardNumber) {
 
         const officesHTML =
             wardOffices
-                .map(position => {
+                .map(
+                    function (position) {
 
-                    const holder =
-                        approvedMembers.find(
-                            member =>
-                                member.exco_position ===
-                                position
-                        );
+                        const holder =
+                            approvedMembers.find(
+                                function (member) {
 
+                                    return (
+                                        member.exco_position ===
+                                        position
+                                    );
 
-                    return `
-
-                        <div class="registration-item">
-
-                            <strong>
-                                ${escapeHTML(position)}
-                            </strong>
-
-                            <p>
-                                ${
-                                    holder
-                                    ?
-                                    escapeHTML(
-                                        holder.full_name
-                                    )
-                                    :
-                                    "Not yet assigned"
                                 }
-                            </p>
+                            );
 
-                        </div>
 
-                    `;
+                        return `
 
-                })
+                            <div class="registration-item">
+
+                                <strong>
+                                    ${escapeHTML(
+                                        position
+                                    )}
+                                </strong>
+
+                                <p>
+
+                                    ${
+                                        holder
+                                        ?
+                                        escapeHTML(
+                                            holder.full_name
+                                        )
+                                        :
+                                        "Not yet assigned"
+                                    }
+
+                                </p>
+
+                            </div>
+
+                        `;
+
+                    }
+                )
                 .join("");
 
 
-        let membersHTML = "";
+        let membersHTML =
+            "";
 
 
-        if (approvedMembers.length === 0) {
+        if (
+            approvedMembers.length ===
+            0
+        ) {
 
             membersHTML = `
+
                 <div class="empty-state">
+
                     No approved members yet.
+
                 </div>
+
             `;
 
         } else {
@@ -964,39 +1332,43 @@ async function showWard(wardNumber) {
             membersHTML =
                 approvedMembers
                     .map(
-                        member => `
+                        function (member) {
 
-                            <div class="registration-item">
+                            return `
 
-                                <h3>
-                                    ${escapeHTML(
-                                        member.full_name
-                                    )}
-                                </h3>
+                                <div class="registration-item">
 
-                                <p>
-                                    ${escapeHTML(
-                                        member.phone
-                                    )}
-                                </p>
-
-                                ${
-                                    member.exco_position
-                                    ?
-                                    `
-                                    <strong>
+                                    <h3>
                                         ${escapeHTML(
-                                            member.exco_position
+                                            member.full_name
                                         )}
-                                    </strong>
-                                    `
-                                    :
-                                    ""
-                                }
+                                    </h3>
 
-                            </div>
+                                    <p>
+                                        ${escapeHTML(
+                                            member.phone
+                                        )}
+                                    </p>
 
-                        `
+                                    ${
+                                        member.exco_position
+                                        ?
+                                        `
+                                        <strong>
+                                            ${escapeHTML(
+                                                member.exco_position
+                                            )}
+                                        </strong>
+                                        `
+                                        :
+                                        ""
+                                    }
+
+                                </div>
+
+                            `;
+
+                        }
                     )
                     .join("");
 
@@ -1008,24 +1380,40 @@ async function showWard(wardNumber) {
             <div class="panel">
 
                 <h2>
+
                     Ward ${ward.number}
-                    — ${escapeHTML(ward.name)}
+                    —
+                    ${escapeHTML(
+                        ward.name
+                    )}
+
                 </h2>
 
+
                 <p>
-                    ${escapeHTML(ward.area)}
+
+                    ${escapeHTML(
+                        ward.area
+                    )}
+
                 </p>
+
 
                 <h3>
                     Ward Executive Offices
                 </h3>
 
+
                 ${officesHTML}
 
+
                 <h3>
+
                     Approved Members
                     (${approvedMembers.length})
+
                 </h3>
+
 
                 ${membersHTML}
 
@@ -1066,13 +1454,14 @@ async function showWard(wardNumber) {
 
 
 /* =========================================================
-   START
+   START WEBSITE
 ========================================================= */
 
 createWardButtons();
+
 createWardOptions();
 
 
 console.log(
-    "BWI-RHA website loaded successfully."
+    "BWI-RHA Ado LG website loaded successfully."
 );
