@@ -1,362 +1,175 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Account | BWI-RHA Ado LG</title>
+    <title>Create Account | BWI-RHA Ekiti State Chapter</title>
 
-<style>
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f7f5;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.card{
-    width:100%;
-    max-width:500px;
-    background:#fff;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 12px 40px rgba(0,0,0,.12);
-}
-
-.logo{
-    display:block;
-    width:100px;
-    height:100px;
-    object-fit:contain;
-    margin:0 auto 20px;
-}
-
-h1{
-    text-align:center;
-    color:#17351f;
-    margin:0;
-}
-
-.subtitle{
-    text-align:center;
-    color:#666;
-    line-height:1.5;
-    margin:10px 0 25px;
-}
-
-.group{
-    margin-bottom:17px;
-}
-
-label{
-    display:block;
-    font-weight:700;
-    margin-bottom:7px;
-}
-
-input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:15px;
-}
-
-input:focus{
-    outline:none;
-    border-color:#16833b;
-}
-
-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:8px;
-    background:#16833b;
-    color:white;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-button:disabled{
-    opacity:.6;
-}
-
-.message{
-    display:none;
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:18px;
-    line-height:1.5;
-    font-size:14px;
-}
-
-.error{
-    display:block;
-    background:#ffe5e5;
-    color:#a00000;
-}
-
-.success{
-    display:block;
-    background:#e1f6e8;
-    color:#12652c;
-}
-
-.links{
-    text-align:center;
-    margin-top:20px;
-}
-
-.links a{
-    color:#16833b;
-    font-weight:bold;
-    text-decoration:none;
-}
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:15px;
-    color:#777;
-    text-decoration:none;
-    font-size:14px;
-}
-</style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="card">
+<header class="site-header">
 
-<img src="logo.jpeg" alt="BWI-RHA Logo" class="logo">
+    <div class="header-container">
 
-<h1>Create Account</h1>
+        <a href="index.html" class="logo-area">
 
-<p class="subtitle">
-BWI-RHA Ekiti State Chapter — Ado Local Government
-</p>
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
 
-<div id="message" class="message"></div>
+            <div class="logo-text">
+                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
+                <p>ADO LG</p>
+            </div>
 
-<form id="signupForm">
+        </a>
 
-<div class="group">
-<label for="fullName">Full Name</label>
-<input
-    id="fullName"
-    type="text"
-    placeholder="Enter your full name"
-    required
->
-</div>
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+        >
+            ☰
+        </button>
 
-<div class="group">
-<label for="phone">Phone Number</label>
-<input
-    id="phone"
-    type="tel"
-    placeholder="Enter your phone number"
-    required
->
-</div>
+        <nav class="main-nav" id="navMenu">
 
-<div class="group">
-<label for="email">Email Address</label>
-<input
-    id="email"
-    type="email"
-    placeholder="Enter your email address"
-    required
->
-</div>
+            <a href="index.html">Home</a>
+            <a href="wards.html">Wards</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html" class="active">Create Account</a>
+            <a href="admin.html">Admin</a>
 
-<div class="group">
-<label for="password">Password</label>
-<input
-    id="password"
-    type="password"
-    minlength="6"
-    placeholder="At least 6 characters"
-    required
->
-</div>
+        </nav>
 
-<div class="group">
-<label for="confirmPassword">Confirm Password</label>
-<input
-    id="confirmPassword"
-    type="password"
-    minlength="6"
-    placeholder="Repeat your password"
-    required
->
-</div>
+    </div>
 
-<button id="signupButton" type="submit">
-Create Account
-</button>
+</header>
 
-</form>
 
-<div class="links">
-Already have an account?
-<a href="member-login.html">Login</a>
-</div>
+<main class="auth-page">
 
-<a href="index.html" class="back">
-← Back to Home
-</a>
+    <div class="auth-card">
 
-</div>
+        <div class="auth-logo">
+            <img src="logo.jpeg" alt="BWI-RHA Logo">
+        </div>
+
+        <h2>Create Account</h2>
+
+        <p class="auth-subtitle">
+            Create your account before completing your membership registration.
+        </p>
+
+        <form id="signupForm">
+
+            <div class="form-group">
+
+                <label for="signupEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    required
+                    autocomplete="email"
+                    placeholder="Enter your email address"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    required
+                    minlength="6"
+                    autocomplete="new-password"
+                    placeholder="Create a password"
+                >
+
+                <small>
+                    Password must contain at least 6 characters.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="signupConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    required
+                    minlength="6"
+                    autocomplete="new-password"
+                    placeholder="Confirm your password"
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn primary full-width"
+                id="signupBtn"
+            >
+                Create Account
+            </button>
+
+
+            <div
+                id="signupMessage"
+                class="form-message"
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <p>
+                Already have an account?
+                <a href="login.html">Login here</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <p>BWI-RHA EKITI STATE CHAPTER</p>
+    <p>ADO LG</p>
+    <p>Green Economy E-Mobility Program</p>
+
+</footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-const SUPABASE_URL =
-"https://xfjrmgendmmpnumsbjte.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
-
-const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
-const form =
-document.getElementById("signupForm");
-
-const button =
-document.getElementById("signupButton");
-
-const message =
-document.getElementById("message");
-
-function showMessage(text,type){
-
-    message.textContent=text;
-    message.className="message "+type;
-
-}
-
-form.addEventListener("submit",async(event)=>{
-
-    event.preventDefault();
-
-    const fullName =
-    document.getElementById("fullName").value.trim();
-
-    const phone =
-    document.getElementById("phone").value.trim();
-
-    const email =
-    document.getElementById("email").value.trim();
-
-    const password =
-    document.getElementById("password").value;
-
-    const confirmPassword =
-    document.getElementById("confirmPassword").value;
-
-    if(password !== confirmPassword){
-
-        showMessage(
-            "Passwords do not match.",
-            "error"
-        );
-
-        return;
-    }
-
-    if(password.length < 6){
-
-        showMessage(
-            "Password must contain at least 6 characters.",
-            "error"
-        );
-
-        return;
-    }
-
-    button.disabled=true;
-    button.textContent="Creating Account...";
-
-    const {data,error} =
-    await supabaseClient.auth.signUp({
-
-        email:email,
-
-        password:password,
-
-        options:{
-            data:{
-                full_name:fullName,
-                phone:phone
-            }
-        }
-
-    });
-
-    if(error){
-
-        showMessage(
-            error.message,
-            "error"
-        );
-
-        button.disabled=false;
-        button.textContent="Create Account";
-
-        return;
-    }
-
-    /*
-      IMPORTANT:
-      We do NOT insert into members here.
-      ward_id is required by your database,
-      so the member completes registration
-      from the dashboard.
-    */
-
-    if(data.session){
-
-        showMessage(
-            "Account created successfully. Opening your dashboard...",
-            "success"
-        );
-
-        setTimeout(()=>{
-            window.location.href=
-            "member-dashboard.html";
-        },1000);
-
-    }else{
-
-        showMessage(
-            "Account created successfully. Please check your email if confirmation is required, then log in.",
-            "success"
-        );
-
-        button.disabled=false;
-        button.textContent="Account Created";
-
-    }
-
-});
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
