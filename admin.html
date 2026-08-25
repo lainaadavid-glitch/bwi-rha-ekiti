@@ -1,20 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Admin Login | BWI-RHA Ekiti State Chapter</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link rel="stylesheet" href="style.css">
 
-    <title>
-        Admin | BWI-RHA Ekiti State Chapter
-    </title>
+<style>
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
-    <link rel="stylesheet" href="style.css">
+.admin-login-page {
+    min-height: calc(100vh - 82px);
+    background: #f7faf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
 
+.admin-login-box {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border: 1px solid #dce8df;
+    border-top: 6px solid #16833b;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 12px 35px rgba(0,80,40,.12);
+}
+
+.admin-logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.admin-logo img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+.admin-login-box h2 {
+    text-align: center;
+    color: #17351f;
+    margin: 10px 0 8px;
+    font-size: 28px;
+}
+
+.admin-subtitle {
+    text-align: center;
+    color: #66736a;
+    margin-bottom: 30px;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #17351f;
+    font-weight: 700;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 2px solid #dce8df;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #172018;
+    font-size: 16px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.admin-form-group input:focus {
+    border-color: #16833b;
+    box-shadow: 0 0 0 3px rgba(22,131,59,.10);
+}
+
+.admin-login-button {
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px;
+    background: #16833b;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.admin-login-button:hover {
+    background: #17351f;
+}
+
+.admin-login-button:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.admin-message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 9px;
+    text-align: center;
+    display: none;
+    font-weight: 600;
+}
+
+.admin-message.show {
+    display: block;
+}
+
+.admin-message.success {
+    background: #e9f7ef;
+    color: #12652c;
+    border: 1px solid #b9dfc6;
+}
+
+.admin-message.error {
+    background: #f7faf8;
+    color: #17351f;
+    border: 1px solid #dce8df;
+}
+
+.admin-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #66736a;
+    font-size: 14px;
+}
+
+@media(max-width:600px) {
+
+    .admin-login-page {
+        padding: 30px 15px;
+    }
+
+    .admin-login-box {
+        padding: 25px 20px;
+    }
+
+    .admin-login-box h2 {
+        font-size: 24px;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -32,33 +171,21 @@
             >
 
             <div class="logo-text">
-
-                <h1>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h1>
-
-                <p>
-                    ADO LG
-                </p>
-
+                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
+                <p>ADO LOCAL GOVERNMENT</p>
             </div>
 
         </a>
 
-
         <button
-            class="menu-btn"
-            id="menuBtn"
             type="button"
+            class="menu-btn"
+            id="menuButton"
         >
             ☰
         </button>
 
-
-        <nav
-            class="main-nav"
-            id="navMenu"
-        >
+        <nav class="main-nav" id="mobileNav">
 
             <a href="index.html">
                 Home
@@ -68,16 +195,11 @@
                 Wards
             </a>
 
-            <a href="login.html">
-                Login
+            <a href="member-signup.html">
+                Register
             </a>
 
-            <a href="register.html">
-                Registration
-            </a>
-
-            <a href="admin.html"
-               class="active">
+            <a href="admin.html" class="active">
                 Admin
             </a>
 
@@ -88,295 +210,338 @@
 </header>
 
 
-<main class="section">
+<main class="admin-login-page">
 
-    <div class="container">
+    <section class="admin-login-box">
+
+        <div class="admin-logo">
+
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+            >
+
+        </div>
+
+        <h2>
+            Administrator Login
+        </h2>
+
+        <p class="admin-subtitle">
+            Authorized administrators only.
+        </p>
 
 
-        <!-- ADMIN LOGIN -->
+        <form id="adminLoginForm">
 
-        <section
-            id="adminLogin"
-            class="form-container"
-        >
+            <div class="admin-form-group">
 
-            <div class="section-title">
+                <label for="adminEmail">
+                    Email Address
+                </label>
 
-                <h2>
-                    Administrator Login
-                </h2>
-
-                <p>
-                    Authorized administrators only.
-                </p>
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                    autocomplete="email"
+                    required
+                >
 
             </div>
 
 
-            <form id="adminLoginForm">
+            <div class="admin-form-group">
 
-                <div class="form-group">
+                <label for="adminPassword">
+                    Password
+                </label>
 
-                    <label for="adminEmail">
-                        Email Address
-                    </label>
-
-                    <input
-                        type="email"
-                        id="adminEmail"
-                        required
-                        autocomplete="email"
-                        placeholder="Admin email"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="adminPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="adminPassword"
-                        required
-                        autocomplete="current-password"
-                        placeholder="Admin password"
-                    >
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="btn primary full-width"
-                    id="adminLoginBtn"
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter admin password"
+                    autocomplete="current-password"
+                    required
                 >
-                    Admin Login
-                </button>
-
-
-                <div
-                    id="adminLoginMessage"
-                    class="form-message"
-                    role="alert"
-                ></div>
-
-            </form>
-
-        </section>
-
-
-        <!-- DASHBOARD -->
-
-        <section
-            id="adminDashboard"
-            style="display:none;"
-        >
-
-            <div class="admin-header">
-
-                <div>
-
-                    <h2>
-                        BWI-RHA Admin Dashboard
-                    </h2>
-
-                    <p id="adminUserEmail"></p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="btn"
-                    id="adminLogoutBtn"
-                >
-                    Logout
-                </button>
 
             </div>
 
 
-            <!-- STATISTICS -->
-
-            <div class="dashboard-stats">
-
-                <div class="stat-card">
-
-                    <h3 id="pendingCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Pending
-                    </p>
-
-                </div>
+            <button
+                type="submit"
+                class="admin-login-button"
+                id="adminLoginButton"
+            >
+                Admin Login
+            </button>
 
 
-                <div class="stat-card">
+            <div
+                id="adminMessage"
+                class="admin-message"
+            ></div>
 
-                    <h3 id="approvedCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Approved
-                    </p>
-
-                </div>
+        </form>
 
 
-                <div class="stat-card">
+        <div class="admin-footer">
 
-                    <h3 id="declinedCount">
-                        0
-                    </h3>
+            BWI-RHA EKITI STATE CHAPTER<br>
+            ADO LOCAL GOVERNMENT
 
-                    <p>
-                        Declined
-                    </p>
+        </div>
 
-                </div>
-
-            </div>
-
-
-            <!-- PENDING -->
-
-            <section class="admin-section">
-
-                <div class="admin-section-header">
-
-                    <h2>
-                        Pending Registrations
-                    </h2>
-
-                    <button
-                        type="button"
-                        class="btn"
-                        id="refreshBtn"
-                    >
-                        Refresh
-                    </button>
-
-                </div>
-
-
-                <div id="pendingList">
-
-                    <div class="loading">
-                        Loading...
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- APPROVED -->
-
-            <section class="admin-section">
-
-                <h2>
-                    Approved Members
-                </h2>
-
-                <div id="approvedList">
-
-                    <div class="loading">
-                        Loading...
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- WARDS -->
-
-            <section class="admin-section">
-
-                <h2>
-                    Members by Ward
-                </h2>
-
-                <div id="wardMembers">
-
-                    <div class="loading">
-                        Loading...
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- EXCO -->
-
-            <section class="admin-section">
-
-                <h2>
-                    Ward Executive Management
-                </h2>
-
-                <p>
-                    Assign executive positions to approved members.
-                </p>
-
-                <div id="excoManager">
-
-                    <div class="loading">
-                        Loading...
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="btn primary"
-                    id="saveExcoBtn"
-                >
-                    Save Executive Positions
-                </button>
-
-
-                <div
-                    id="excoMessage"
-                    class="form-message"
-                ></div>
-
-            </section>
-
-        </section>
-
-    </div>
+    </section>
 
 </main>
 
 
 <footer class="site-footer">
 
-    <p>
-        BWI-RHA EKITI STATE CHAPTER
-    </p>
+    <div class="container">
 
-    <p>
-        ADO LG
-    </p>
+        <p>
+            BWI-RHA EKITI STATE CHAPTER
+        </p>
 
-    <p>
-        Green Economy E-Mobility Program
-    </p>
+        <p>
+            ADO LG
+        </p>
+
+        <p>
+            Green Economy E-Mobility Program
+        </p>
+
+    </div>
 
 </footer>
 
 
+<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loginForm =
+    document.getElementById("adminLoginForm");
+
+const emailInput =
+    document.getElementById("adminEmail");
+
+const passwordInput =
+    document.getElementById("adminPassword");
+
+const loginButton =
+    document.getElementById("adminLoginButton");
+
+const message =
+    document.getElementById("adminMessage");
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text, type) {
+
+    message.textContent = text;
+
+    message.className =
+        "admin-message show " + type;
+
+}
+
+
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const email =
+            emailInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "Please enter your email and password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "Signing in...";
+
+
+        showMessage(
+            "Checking administrator account...",
+            "success"
+        );
+
+
+        try {
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+            if (error) {
+
+                console.error(
+                    "Admin login error:",
+                    error
+                );
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Admin Login";
+
+                return;
+            }
+
+
+            if (!data || !data.user) {
+
+                showMessage(
+                    "Login failed. No user account was returned.",
+                    "error"
+                );
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Admin Login";
+
+                return;
+            }
+
+
+            /*
+             * Successful Supabase authentication.
+             */
+
+            showMessage(
+                "Login successful. Opening dashboard...",
+                "success"
+            );
+
+
+            /*
+             * Give Supabase a moment to save
+             * the authentication session.
+             */
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                },
+                700
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Unexpected login error:",
+                error
+            );
+
+            showMessage(
+                "Unable to connect to the login service.",
+                "error"
+            );
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "Admin Login";
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileNav =
+    document.getElementById("mobileNav");
+
+if (menuButton && mobileNav) {
+
+    menuButton.addEventListener(
+        "click",
+        function() {
+
+            mobileNav.classList.toggle(
+                "show"
+            );
+
+        }
+    );
+
+}
+
+</script>
+
 <script src="script.js"></script>
 
 </body>
