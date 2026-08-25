@@ -1600,3 +1600,21 @@ if (registrationForm) {
 console.log(
     "BWI-RHA Ado LG website loaded successfully."
 );
+                   /* =========================================================
+   MOBILE MENU FIX
+   PRESERVES EXISTING LAYOUT
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .menu-btn {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+}
