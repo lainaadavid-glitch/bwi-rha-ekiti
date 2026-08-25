@@ -3,23 +3,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- 
-<meta charset="UTF-8">
+```
+<title>BWI-RHA Ekiti State Chapter | Ado LG</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>
-    BWI-RHA Ekiti State Chapter | Ado LG
-</title>
-
-<link
-    rel="stylesheet"
-    href="style.css"
->
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -34,13 +24,14 @@
     .org-tree {
         width: 100%;
         max-width: 1100px;
-        margin: 40px auto 0;
+        margin: 40px auto;
         text-align: center;
     }
 
     .tree-level {
         display: flex;
         justify-content: center;
+        width: 100%;
     }
 
     .tree-card {
@@ -48,7 +39,7 @@
         padding: 25px 20px;
         background: #ffffff;
         border-radius: 16px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         border: 2px solid #e4eee7;
         transition: transform 0.2s ease;
     }
@@ -61,6 +52,7 @@
         margin: 10px 0 8px;
         color: #17351f;
         font-size: 18px;
+        line-height: 1.3;
     }
 
     .tree-icon {
@@ -95,6 +87,8 @@
         color: #16833b;
     }
 
+    /* STATE COORDINATOR */
+
     .state-card {
         background: #17351f;
         color: #ffffff;
@@ -118,6 +112,18 @@
         color: #17351f;
     }
 
+    /* ASSISTANT SECRETARY */
+
+    .assistant-card {
+        border: 3px solid #2d8f4e;
+    }
+
+    .assistant-card .tree-icon {
+        background: #2d8f4e;
+    }
+
+    /* ADO LG COORDINATOR */
+
     .coordinator-main {
         border: 3px solid #16833b;
     }
@@ -126,12 +132,16 @@
         font-size: 21px;
     }
 
+    /* CONNECTING LINES */
+
     .tree-line {
         width: 3px;
         height: 45px;
         background: #16833b;
         margin: 0 auto;
     }
+
+    /* THREE OFFICERS */
 
     .tree-branches {
         position: relative;
@@ -154,7 +164,49 @@
 
 
     /* =========================================
-       MOBILE TREE
+       WARDS
+    ========================================= */
+
+    .wards-preview {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 30px;
+    }
+
+    .ward-preview-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #17351f;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+        transition: transform 0.2s ease;
+    }
+
+    .ward-preview-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .ward-preview-card span {
+        font-size: 28px;
+        font-weight: 800;
+        color: #16833b;
+    }
+
+    .ward-preview-card strong {
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+
+    /* =========================================
+       MOBILE
     ========================================= */
 
     @media (max-width: 800px) {
@@ -178,6 +230,10 @@
             height: 30px;
         }
 
+        .wards-preview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
     }
 
 
@@ -199,73 +255,7 @@
             font-size: 18px;
         }
 
-    }
-
-
-    /* =========================================
-       WARD PREVIEW
-    ========================================= */
-
-    .wards-preview {
-        display: grid;
-        grid-template-columns:
-            repeat(4, 1fr);
-        gap: 18px;
-        margin-top: 30px;
-    }
-
-    .ward-preview-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 120px;
-        padding: 20px;
-        background: #ffffff;
-        border-radius: 15px;
-        text-decoration: none;
-        color: #17351f;
-        box-shadow:
-            0 6px 20px
-            rgba(0,0,0,0.07);
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-    }
-
-    .ward-preview-card:hover {
-        transform: translateY(-4px);
-        box-shadow:
-            0 10px 25px
-            rgba(0,0,0,0.12);
-    }
-
-    .ward-preview-card span {
-        font-size: 28px;
-        font-weight: 800;
-        color: #16833b;
-    }
-
-    .ward-preview-card strong {
-        margin-top: 8px;
-        font-size: 16px;
-    }
-
-
-    @media (max-width: 800px) {
-
         .wards-preview {
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
-
-    }
-
-
-    @media (max-width: 480px) {
-
-        .wards-preview {
-            grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
 
@@ -277,7 +267,7 @@
     }
 
 </style>
- 
+```
 
 </head>
 
@@ -289,16 +279,10 @@
 
 <header class="site-header">
 
- 
+```
 <div class="header-container">
 
-
-    <!-- LOGO -->
-
-    <a
-        href="index.html"
-        class="logo-area"
-    >
+    <a href="index.html" class="logo-area">
 
         <img
             src="logo.jpeg"
@@ -321,8 +305,6 @@
     </a>
 
 
-    <!-- MOBILE MENU -->
-
     <button
         type="button"
         class="menu-btn"
@@ -332,8 +314,6 @@
         ☰
     </button>
 
-
-    <!-- NAVIGATION -->
 
     <nav
         class="main-nav"
@@ -366,7 +346,7 @@
     </nav>
 
 </div>
- 
+```
 
 </header>
 
@@ -378,7 +358,7 @@
 
 <section class="hero">
 
- 
+```
 <div class="container hero-content">
 
     <div class="hero-text">
@@ -401,14 +381,12 @@
 
         <div class="buttons">
 
-
             <a
                 href="member-signup.html"
                 class="button signup-button"
             >
                 Sign Up
             </a>
-
 
             <a
                 href="member-login.html"
@@ -417,13 +395,12 @@
                 Login
             </a>
 
-
         </div>
 
     </div>
 
 </div>
- 
+```
 
 </section>
 
@@ -433,9 +410,8 @@
 
 <section class="section light-section">
 
- 
+```
 <div class="container">
-
 
     <div class="section-title">
 
@@ -459,7 +435,6 @@
 
 
     <div class="feature-grid">
-
 
         <article class="feature-card">
 
@@ -517,23 +492,21 @@
 
         </article>
 
-
     </div>
 
 </div>
- 
+```
 
 </section>
 
 <!-- =========================================
-     ORGANIZATIONAL TREE
+     LEADERSHIP TREE
 ========================================= -->
 
 <section class="section exco-tree-section">
 
- 
+```
 <div class="container">
-
 
     <div class="section-title">
 
@@ -542,11 +515,12 @@
         </span>
 
         <h2>
-            ADO LOCAL GOVERNMENT
+            LEADERSHIP STRUCTURE
         </h2>
 
         <p>
-            Organizational Leadership Structure
+            State and Ado Local Government
+            Executive Structure
         </p>
 
     </div>
@@ -555,16 +529,47 @@
     <div class="org-tree">
 
 
-        <!-- ==============================
-             STATE SECRETARY
-        =============================== -->
+        <!-- STATE COORDINATOR -->
 
         <div class="tree-level">
 
             <div class="tree-card state-card">
 
                 <div class="tree-icon">
-                    🏛️
+                    ⭐
+                </div>
+
+                <h3>
+                    ODUNAYO AYOOLA CHRISTIANA
+                </h3>
+
+                <p class="tree-position">
+                    STATE COORDINATOR
+                </p>
+
+                <a
+                    href="tel:+2348160121062"
+                    class="tree-phone"
+                >
+                    📞 +234 816 012 1062
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="tree-line"></div>
+
+
+        <!-- ASSISTANT SECRETARY -->
+
+        <div class="tree-level">
+
+            <div class="tree-card assistant-card">
+
+                <div class="tree-icon">
+                    📝
                 </div>
 
                 <h3>
@@ -572,7 +577,7 @@
                 </h3>
 
                 <p class="tree-position">
-                    STATE SECRETARY
+                    ASSISTANT SECRETARY
                 </p>
 
                 <a
@@ -590,15 +595,11 @@
         <div class="tree-line"></div>
 
 
-        <!-- ==============================
-             ADO LG COORDINATOR
-        =============================== -->
+        <!-- ADO LG COORDINATOR -->
 
         <div class="tree-level">
 
-            <div
-                class="tree-card coordinator-main"
-            >
+            <div class="tree-card coordinator-main">
 
                 <div class="tree-icon">
                     👑
@@ -627,9 +628,7 @@
         <div class="tree-line"></div>
 
 
-        <!-- ==============================
-             FIRST LEVEL
-        =============================== -->
+        <!-- ADO LG FIRST LEVEL -->
 
         <div class="tree-branches">
 
@@ -699,8 +698,7 @@
                 </h3>
 
                 <p class="tree-position">
-                    PUBLIC RELATIONS
-                    OFFICER (PRO)
+                    PUBLIC RELATIONS OFFICER (PRO)
                 </p>
 
                 <a
@@ -712,16 +710,13 @@
 
             </div>
 
-
         </div>
 
 
         <div class="tree-line"></div>
 
 
-        <!-- ==============================
-             SECOND LEVEL
-        =============================== -->
+        <!-- ADO LG SECOND LEVEL -->
 
         <div class="tree-branches">
 
@@ -803,26 +798,23 @@
 
             </div>
 
-
         </div>
-
 
     </div>
 
 </div>
- 
+```
 
 </section>
 
 <!-- =========================================
-     WARDS
+     13 WARDS
 ========================================= -->
 
 <section class="section">
 
- 
+```
 <div class="container">
-
 
     <div class="section-title">
 
@@ -845,132 +837,75 @@
     <div class="wards-preview">
 
 
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>01</span>
             <strong>Ward 1</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>02</span>
             <strong>Ward 2</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>03</span>
             <strong>Ward 3</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>04</span>
             <strong>Ward 4</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>05</span>
             <strong>Ward 5</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>06</span>
             <strong>Ward 6</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>07</span>
             <strong>Ward 7</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>08</span>
             <strong>Ward 8</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>09</span>
             <strong>Ward 9</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>10</span>
             <strong>Ward 10</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>11</span>
             <strong>Ward 11</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>12</span>
             <strong>Ward 12</strong>
         </a>
 
-
-        <a
-            href="wards.html"
-            class="ward-preview-card"
-        >
+        <a href="wards.html" class="ward-preview-card">
             <span>13</span>
             <strong>Ward 13</strong>
         </a>
 
-
     </div>
 
 
-    <div
-        style="
-            text-align:center;
-            margin-top:30px;
-        "
-    >
+    <div style="text-align:center; margin-top:30px;">
 
         <a
             href="wards.html"
@@ -981,9 +916,8 @@
 
     </div>
 
-
 </div>
- 
+```
 
 </section>
 
@@ -993,14 +927,13 @@
 
 <section class="section light-section">
 
- 
+```
 <div class="container">
-
 
     <div class="section-title">
 
         <span>
-            BECOME A MEMBER
+            MEMBERSHIP
         </span>
 
         <h2>
@@ -1008,9 +941,8 @@
         </h2>
 
         <p>
-            Create your account and
-            complete your membership
-            registration.
+            Create an account and submit
+            your membership registration.
         </p>
 
     </div>
@@ -1030,9 +962,8 @@
             </h3>
 
             <p>
-                Create your personal
-                account with your email
-                and password.
+                Create your account using
+                your email and password.
             </p>
 
         </article>
@@ -1045,13 +976,12 @@
             </div>
 
             <h3>
-                Complete Registration
+                Register
             </h3>
 
             <p>
-                Select your ward and
-                provide your membership
-                information.
+                Select your ward and submit
+                your membership information.
             </p>
 
         </article>
@@ -1068,9 +998,8 @@
             </h3>
 
             <p>
-                Your registration remains
-                pending until reviewed by
-                an administrator.
+                Monitor your registration
+                status from your dashboard.
             </p>
 
         </article>
@@ -1079,12 +1008,7 @@
     </div>
 
 
-    <div
-        style="
-            text-align:center;
-            margin-top:30px;
-        "
-    >
+    <div style="text-align:center; margin-top:30px;">
 
         <a
             href="member-signup.html"
@@ -1095,9 +1019,8 @@
 
     </div>
 
-
 </div>
- 
+```
 
 </section>
 
@@ -1109,11 +1032,10 @@
 
 <footer class="site-footer">
 
- 
+```
 <div class="container">
 
     <div class="footer-content">
-
 
         <div>
 
@@ -1141,33 +1063,24 @@
 
         </div>
 
-
     </div>
 
 
     <div class="footer-bottom">
 
         <p>
-
             ©
             <span id="currentYear"></span>
-
             BWI-RHA Ekiti State Chapter.
-
             All rights reserved.
-
         </p>
 
     </div>
 
 </div>
- 
+```
 
 </footer>
-
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
 
 <script>
 
@@ -1175,8 +1088,7 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-
-        /* YEAR */
+        /* CURRENT YEAR */
 
         const year =
             document.getElementById(
@@ -1184,10 +1096,8 @@ document.addEventListener(
             );
 
         if (year) {
-
             year.textContent =
                 new Date().getFullYear();
-
         }
 
 
@@ -1222,12 +1132,10 @@ document.addEventListener(
 
         }
 
-
     }
 );
 
 </script>
 
 </body>
-
 </html>
