@@ -611,8 +611,6 @@ async function submitRegistration(event) {
 
         registrationForm.reset();
 
-        createWardOptions();
-
 
     } catch (error) {
 
