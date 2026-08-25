@@ -6,9 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
-<title>Registration | BWI-RHA Ado LG</title>
+<title>Register | BWI-RHA Ado LG</title>
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+    .registration-page {
+        min-height: 70vh;
+        padding: 60px 20px;
+    }
+
+    .registration-box {
+        max-width: 650px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    .registration-title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .registration-title h2 {
+        margin-bottom: 10px;
+    }
+
+    .registration-title p {
+        margin: 0;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px;
+        border: 1px solid #d5d5d5;
+        border-radius: 8px;
+        font-size: 16px;
+        background: #fff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #16833b;
+        box-shadow: 0 0 0 3px rgba(22, 131, 59, 0.1);
+    }
+
+    .required {
+        color: #d00000;
+    }
+
+    #submitButton {
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    #submitButton:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .form-message {
+        display: none;
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: 8px;
+        line-height: 1.5;
+    }
+
+    .form-message.show {
+        display: block;
+    }
+
+    .form-message.success {
+        background: #e8f7ed;
+        color: #116b2d;
+        border: 1px solid #a9dfb8;
+    }
+
+    .form-message.error {
+        background: #fff0f0;
+        color: #a40000;
+        border: 1px solid #efb0b0;
+    }
+
+    .form-message.info {
+        background: #eef6ff;
+        color: #14528a;
+        border: 1px solid #b7d6f5;
+    }
+
+    .ward-help {
+        margin-top: 7px;
+        font-size: 13px;
+        opacity: 0.75;
+    }
+</style>
 ```
 
 </head>
@@ -42,15 +152,14 @@
 
     </a>
 
-
     <button
         type="button"
         class="menu-btn"
         id="menuButton"
+        aria-label="Open menu"
     >
         ☰
     </button>
-
 
     <nav
         class="main-nav"
@@ -86,8 +195,6 @@
 <main>
 
 ```
-<!-- HERO -->
-
 <section class="hero">
 
     <div class="container hero-content">
@@ -106,11 +213,6 @@
                 EKITI STATE WOMEN OF INFLUENCE
             </p>
 
-            <p>
-                Register to become part of our
-                growing community.
-            </p>
-
         </div>
 
     </div>
@@ -118,247 +220,214 @@
 </section>
 
 
-<!-- REGISTRATION -->
+<section class="registration-page">
 
-<section class="section">
+    <div class="registration-box">
 
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>
-                REGISTER NOW
-            </span>
+        <div class="registration-title">
 
             <h2>
-                Member Information
+                EKITI STATE WOMEN OF INFLUENCE
             </h2>
 
             <p>
-                Please provide the information
-                below correctly.
+                ADO LOCAL GOVERNMENT
+            </p>
+
+            <p>
+                Please complete the registration form below.
             </p>
 
         </div>
 
 
-        <div class="form-container">
+        <form
+            id="registrationForm"
+            novalidate
+        >
 
-            <form id="registrationForm">
+            <!-- NAME -->
 
+            <div class="form-group">
 
-                <!-- NAME -->
+                <label for="fullName">
+                    Name
+                    <span class="required">*</span>
+                </label>
 
-                <div class="form-group">
-
-                    <label for="fullName">
-                        Name *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="full_name"
-                        placeholder="Enter your full name"
-                        autocomplete="name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- PHONE -->
-
-                <div class="form-group">
-
-                    <label for="phone">
-                        Phone No *
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="08012345678"
-                        autocomplete="tel"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- BANK -->
-
-                <div class="form-group">
-
-                    <label for="bankName">
-                        Bank Name *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="bankName"
-                        name="bank_name"
-                        placeholder="Enter your bank name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- ACCOUNT -->
-
-                <div class="form-group">
-
-                    <label for="accountNumber">
-                        Account No *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="accountNumber"
-                        name="account_number"
-                        inputmode="numeric"
-                        maxlength="10"
-                        minlength="10"
-                        pattern="[0-9]{10}"
-                        placeholder="Enter 10-digit account number"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- WARD -->
-
-                <div class="form-group">
-
-                    <label for="ward">
-                        Ward *
-                    </label>
-
-                    <select
-                        id="ward"
-                        name="ward"
-                        required
-                    >
-
-                        <option value="">
-                            Select your ward
-                        </option>
-
-                        <option value="1">
-                            Ward 1 — Ado A — Idofin
-                        </option>
-
-                        <option value="2">
-                            Ward 2 — Ado B — Inisa
-                        </option>
-
-                        <option value="3">
-                            Ward 3 — Ado C — Idolofin
-                        </option>
-
-                        <option value="4">
-                            Ward 4 — Ado D — Ijigbo
-                        </option>
-
-                        <option value="5">
-                            Ward 5 — Ado E — Ijoka / Orereowu
-                        </option>
-
-                        <option value="6">
-                            Ward 6 — Ado F — Okeyinmi
-                        </option>
-
-                        <option value="7">
-                            Ward 7 — Ado G — Oke Ila
-                        </option>
-
-                        <option value="8">
-                            Ward 8 — Ado H — Ereguru
-                        </option>
-
-                        <option value="9">
-                            Ward 9 — Ado I — Dallimore
-                        </option>
-
-                        <option value="10">
-                            Ward 10 — Ado J — Okesa
-                        </option>
-
-                        <option value="11">
-                            Ward 11 — Ado K — Irona
-                        </option>
-
-                        <option value="12">
-                            Ward 12 — Ado L — Igbehin
-                        </option>
-
-                        <option value="13">
-                            Ward 13 — Ado M — Farm Settlement
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- SUBMIT -->
-
-                <button
-                    type="submit"
-                    class="btn primary"
-                    id="submitButton"
-                    style="width:100%;"
+                <input
+                    type="text"
+                    id="fullName"
+                    name="full_name"
+                    placeholder="Enter full name"
+                    autocomplete="name"
+                    required
                 >
-                    Submit Registration
-                </button>
+
+            </div>
 
 
-                <!-- MESSAGE -->
+            <!-- PHONE -->
 
-                <div
-                    id="formMessage"
-                    class="form-message"
-                ></div>
+            <div class="form-group">
 
-            </form>
+                <label for="phone">
+                    Phone No
+                    <span class="required">*</span>
+                </label>
 
-        </div>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="08012345678"
+                    autocomplete="tel"
+                    required
+                >
 
-    </div>
-
-</section>
+            </div>
 
 
-<!-- INFORMATION -->
+            <!-- BANK -->
 
-<section class="section light-section">
+            <div class="form-group">
 
-    <div class="container">
+                <label for="bankName">
+                    Bank Name
+                    <span class="required">*</span>
+                </label>
 
-        <div class="section-title">
+                <input
+                    type="text"
+                    id="bankName"
+                    name="bank_name"
+                    placeholder="Enter bank name"
+                    required
+                >
 
-            <span>
-                BWI-RHA
-            </span>
+            </div>
 
-            <h2>
-                Empowering Our Community
-            </h2>
 
-            <p>
-                This platform serves as the hub for
-                mobilizing, empowering, connecting,
-                and supporting women across Ekiti
-                State through entrepreneurship,
-                leadership development, business
-                growth, mentorship, advocacy, and
-                community impact.
-            </p>
+            <!-- ACCOUNT -->
 
-        </div>
+            <div class="form-group">
+
+                <label for="accountNumber">
+                    Account No
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="accountNumber"
+                    name="account_number"
+                    placeholder="Enter 10-digit account number"
+                    inputmode="numeric"
+                    maxlength="10"
+                    minlength="10"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <!-- WARD -->
+
+            <div class="form-group">
+
+                <label for="ward">
+                    Ward
+                    <span class="required">*</span>
+                </label>
+
+                <select
+                    id="ward"
+                    name="ward_id"
+                    required
+                >
+
+                    <option value="">
+                        Select your ward
+                    </option>
+
+                    <option value="1">
+                        Ward 1 — Ado A — Idofin
+                    </option>
+
+                    <option value="2">
+                        Ward 2 — Ado B — Inisa
+                    </option>
+
+                    <option value="3">
+                        Ward 3 — Ado C — Idolofin
+                    </option>
+
+                    <option value="4">
+                        Ward 4 — Ado D — Ijigbo
+                    </option>
+
+                    <option value="5">
+                        Ward 5 — Ado E — Ijoka / Orereowu
+                    </option>
+
+                    <option value="6">
+                        Ward 6 — Ado F — Okeyinmi
+                    </option>
+
+                    <option value="7">
+                        Ward 7 — Ado G — Oke Ila
+                    </option>
+
+                    <option value="8">
+                        Ward 8 — Ado H — Ereguru
+                    </option>
+
+                    <option value="9">
+                        Ward 9 — Ado I — Dallimore
+                    </option>
+
+                    <option value="10">
+                        Ward 10 — Ado J — Okesa
+                    </option>
+
+                    <option value="11">
+                        Ward 11 — Ado K — Irona
+                    </option>
+
+                    <option value="12">
+                        Ward 12 — Ado L — Igbehin
+                    </option>
+
+                    <option value="13">
+                        Ward 13 — Ado M — Farm Settlement
+                    </option>
+
+                </select>
+
+                <div class="ward-help">
+                    Select the ward where you belong.
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn primary"
+                id="submitButton"
+            >
+                Submit Registration
+            </button>
+
+
+            <div
+                id="formMessage"
+                class="form-message"
+                role="alert"
+            ></div>
+
+        </form>
 
     </div>
 
@@ -386,7 +455,6 @@
 
         </div>
 
-
         <div>
 
             <p>
@@ -394,14 +462,13 @@
             </p>
 
             <p>
-                Empowering women, youths and
-                persons with disabilities.
+                Empowering women, youths and persons
+                with disabilities.
             </p>
 
         </div>
 
     </div>
-
 
     <div class="footer-bottom">
 
@@ -426,20 +493,20 @@
 <script>
 
 /* =====================================================
-   SUPABASE CONFIGURATION
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
     "https://xfjrmgendmmpnumsbjte.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
+const SUPABASE_KEY =
     "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
 
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_KEY
     );
 
 
@@ -447,7 +514,7 @@ const supabaseClient =
    ELEMENTS
 ===================================================== */
 
-const registrationForm =
+const form =
     document.getElementById(
         "registrationForm"
     );
@@ -457,7 +524,7 @@ const submitButton =
         "submitButton"
     );
 
-const formMessage =
+const message =
     document.getElementById(
         "formMessage"
     );
@@ -468,33 +535,66 @@ const formMessage =
 ===================================================== */
 
 function showMessage(
-    message,
+    text,
     type
 ) {
 
-    formMessage.textContent =
-        message;
+    message.textContent =
+        text;
 
-    formMessage.className =
-        "form-message " + type;
+    message.className =
+        "form-message show " +
+        type;
 
 }
 
 
 /* =====================================================
-   FORM SUBMISSION
+   VALIDATE PHONE
 ===================================================== */
 
-registrationForm.addEventListener(
+function validPhone(
+    phone
+) {
+
+    const cleaned =
+        phone.replace(
+            /[\s-]/g,
+            ""
+        );
+
+    return /^(\+234|0)[0-9]{10}$/.test(
+        cleaned
+    );
+
+}
+
+
+/* =====================================================
+   VALIDATE ACCOUNT
+===================================================== */
+
+function validAccount(
+    account
+) {
+
+    return /^[0-9]{10}$/.test(
+        account
+    );
+
+}
+
+
+/* =====================================================
+   SUBMIT REGISTRATION
+===================================================== */
+
+form.addEventListener(
     "submit",
     async function(event) {
 
         event.preventDefault();
 
-
-        /* ---------------------------------------------
-           GET VALUES
-        --------------------------------------------- */
 
         const fullName =
             document
@@ -532,7 +632,7 @@ registrationForm.addEventListener(
                 .trim();
 
 
-        const ward =
+        const wardId =
             document
                 .getElementById(
                     "ward"
@@ -556,10 +656,10 @@ registrationForm.addEventListener(
         }
 
 
-        if (!phone) {
+        if (!validPhone(phone)) {
 
             showMessage(
-                "Please enter your phone number.",
+                "Please enter a valid Nigerian phone number.",
                 "error"
             );
 
@@ -580,7 +680,7 @@ registrationForm.addEventListener(
         }
 
 
-        if (!/^[0-9]{10}$/.test(accountNumber)) {
+        if (!validAccount(accountNumber)) {
 
             showMessage(
                 "Account number must contain exactly 10 digits.",
@@ -592,7 +692,7 @@ registrationForm.addEventListener(
         }
 
 
-        if (!ward) {
+        if (!wardId) {
 
             showMessage(
                 "Please select your ward.",
@@ -605,7 +705,7 @@ registrationForm.addEventListener(
 
 
         /* ---------------------------------------------
-           DISABLE BUTTON
+           BUTTON
         --------------------------------------------- */
 
         submitButton.disabled =
@@ -616,7 +716,7 @@ registrationForm.addEventListener(
 
 
         showMessage(
-            "Submitting your registration...",
+            "Submitting registration...",
             "info"
         );
 
@@ -624,47 +724,52 @@ registrationForm.addEventListener(
         try {
 
             /* -----------------------------------------
-               INSERT INTO SUPABASE
+               DATABASE INSERT
             ----------------------------------------- */
 
+            const registration = {
+
+                full_name:
+                    fullName,
+
+                phone:
+                    phone,
+
+                bank_name:
+                    bankName,
+
+                account_number:
+                    accountNumber,
+
+                ward_id:
+                    Number(wardId),
+
+                status:
+                    "pending"
+
+            };
+
+
+            console.log(
+                "Sending registration:",
+                registration
+            );
+
+
             const {
-                data,
                 error
             } =
                 await supabaseClient
                     .from("members")
-                    .insert({
+                    .insert(
+                        registration
+                    );
 
-                        full_name:
-                            fullName,
-
-                        phone:
-                            phone,
-
-                        bank_name:
-                            bankName,
-
-                        account_number:
-                            accountNumber,
-
-                        ward_id:
-                            Number(ward),
-
-                        status:
-                            "pending"
-
-                    })
-                    .select();
-
-
-            /* -----------------------------------------
-               HANDLE ERROR
-            ----------------------------------------- */
 
             if (error) {
 
                 console.error(
-                    "Supabase error:",
+                    "SUPABASE ERROR:",
                     error
                 );
 
@@ -678,41 +783,44 @@ registrationForm.addEventListener(
             ----------------------------------------- */
 
             showMessage(
-                "Registration submitted successfully! Your information is now awaiting admin approval.",
+                "Registration submitted successfully! Your registration is now awaiting admin approval.",
                 "success"
             );
 
 
-            registrationForm.reset();
+            form.reset();
 
 
         } catch (error) {
 
             console.error(
-                "Registration error:",
+                "REGISTRATION ERROR:",
                 error
             );
 
 
-            let message =
-                "Registration failed. Please try again.";
-
-
             if (
-                error.message
+                error.code ===
+                "42501"
             ) {
 
-                message =
-                    error.message;
+                showMessage(
+                    "Registration was blocked by Supabase security (RLS). The public registration policy needs to be enabled.",
+                    "error"
+                );
+
+            } else {
+
+                showMessage(
+                    "Registration failed: " +
+                    (
+                        error.message ||
+                        "Unknown error"
+                    ),
+                    "error"
+                );
 
             }
-
-
-            showMessage(
-                message,
-                "error"
-            );
-
 
         } finally {
 
@@ -763,7 +871,7 @@ if (
 
 
 /* =====================================================
-   CURRENT YEAR
+   YEAR
 ===================================================== */
 
 const currentYear =
