@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | BWI-RHA Ado LG</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <a href="index.html" class="logo-area">
+
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
+
+            <div class="logo-text">
+                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
+                <p>ADO LOCAL GOVERNMENT</p>
+            </div>
+
+        </a>
+
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuButton"
+        >
+            ☰
+        </button>
+
+        <nav
+            class="main-nav"
+            id="mobileNav"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="wards.html">
+                Wards
+            </a>
+
+            <a
+                href="register.html"
+                class="active"
+            >
+                Register
+            </a>
+
+            <a href="admin.html">
+                Admin
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>
+                    MEMBERSHIP REGISTRATION
+                </span>
+
+                <h2>
+                    Join BWI-RHA Ado LG
+                </h2>
+
+                <p>
+                    Complete the form below to register.
+                    Your information will be reviewed by
+                    the administrator before approval.
+                </p>
+
+            </div>
+
+
+            <div class="form-container">
+
+                <form id="registrationForm">
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="08012345678"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label for="gender">
+                            Gender
+                        </label>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                        >
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address *
+                        </label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            placeholder="Enter your residential address"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- WARD -->
+
+                    <div class="form-group">
+
+                        <label for="ward">
+                            Ward *
+                        </label>
+
+                        <select
+                            id="ward"
+                            name="ward"
+                            required
+                        >
+
+                            <option value="">
+                                Loading wards...
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- BANK -->
+
+                    <div class="form-group">
+
+                        <label for="bankName">
+                            Bank Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bankName"
+                            name="bank_name"
+                            placeholder="Enter your bank name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ACCOUNT -->
+
+                    <div class="form-group">
+
+                        <label for="accountNumber">
+                            Account Number *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="accountNumber"
+                            name="account_number"
+                            inputmode="numeric"
+                            maxlength="10"
+                            minlength="10"
+                            placeholder="10-digit account number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn primary"
+                        style="width:100%;"
+                    >
+                        Submit Registration
+                    </button>
+
+
+                    <div
+                        id="formMessage"
+                        class="form-message"
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="cta-section">
+
+        <div class="container">
+
+            <h2>
+                Thank You
+            </h2>
+
+            <p>
+                Your registration helps us build a
+                stronger and more connected BWI-RHA
+                community across Ado LG.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h3>
+
+                <p>
+                    ADO LOCAL GOVERNMENT
+                </p>
+
+            </div>
+
+            <div>
+
+                <p>
+                    Green Economy E-Mobility Program
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                ©
+                <span id="currentYear"></span>
+                BWI-RHA Ekiti State Chapter.
+                All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
