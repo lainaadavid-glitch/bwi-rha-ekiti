@@ -1,413 +1,1253 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Wards | BWI-RHA Ado LG</title>
+```
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="style.css">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Wards | BWI-RHA Ado LG
+</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+<style>
+
+    /* ================================
+       MEMBER DIRECTORY
+    ================================= */
+
+    .member-directory {
+        margin-top: 35px;
+    }
+
+    .member-directory-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .member-directory-header h3 {
+        margin: 0;
+    }
+
+    .member-count {
+        background: #16833b;
+        color: #fff;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .members-grid {
+        display: grid;
+        grid-template-columns:
+            repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+    }
+
+    .member-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.07);
+        cursor: pointer;
+        transition: .2s ease;
+        border: 1px solid #eee;
+    }
+
+    .member-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 9px 28px rgba(0,0,0,.12);
+    }
+
+    .member-card h4 {
+        margin: 0 0 12px;
+        color: #16833b;
+        font-size: 18px;
+    }
+
+    .member-card p {
+        margin: 7px 0;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .approved-badge {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 6px 11px;
+        border-radius: 20px;
+        background: #dff6e7;
+        color: #12652c;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .loading-members {
+        text-align: center;
+        padding: 30px;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    .no-members {
+        background: #fff;
+        padding: 30px;
+        text-align: center;
+        border-radius: 12px;
+        color: #666;
+    }
+
+    /* ================================
+       MEMBER MODAL
+    ================================= */
+
+    .member-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0,0,0,.6);
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .member-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .member-modal-box {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        background: #fff;
+        border-radius: 18px;
+        padding: 30px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .member-modal-box h2 {
+        margin-top: 0;
+        color: #16833b;
+        padding-right: 35px;
+    }
+
+    .close-member-modal {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: #eee;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    .member-detail {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 13px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .member-detail strong {
+        color: #555;
+    }
+
+    .member-detail span {
+        text-align: right;
+        font-weight: 600;
+        word-break: break-word;
+    }
+
+    .status-approved {
+        color: #12652c;
+        font-weight: 800;
+    }
+
+    @media(max-width:600px) {
+
+        .member-detail {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .member-detail span {
+            text-align: left;
+        }
+
+        .member-modal-box {
+            padding: 22px;
+        }
+
+    }
+
+</style>
+```
+
 </head>
 
 <body>
 
 <header class="site-header">
 
-    <div class="header-container">
+```
+<div class="header-container">
 
-        <a href="index.html" class="logo-area">
+    <a
+        href="index.html"
+        class="logo-area"
+    >
 
-            <img
-                src="logo.jpeg"
-                alt="BWI-RHA Logo"
-                class="site-logo"
-            >
+        <img
+            src="logo.jpeg"
+            alt="BWI-RHA Logo"
+            class="site-logo"
+        >
 
-            <div class="logo-text">
+        <div class="logo-text">
 
-                <h1>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h1>
+            <h1>
+                BWI-RHA EKITI STATE CHAPTER
+            </h1>
 
-                <p>
-                    ADO LOCAL GOVERNMENT
-                </p>
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
 
-            </div>
+        </div>
 
+    </a>
+
+
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuButton"
+    >
+        ☰
+    </button>
+
+
+    <nav
+        class="main-nav"
+        id="mobileNav"
+    >
+
+        <a href="index.html">
+            Home
         </a>
 
-
-        <button
-            type="button"
-            class="menu-btn"
-            id="menuButton"
+        <a
+            href="wards.html"
+            class="active"
         >
-            ☰
-        </button>
+            Wards
+        </a>
 
+        <a href="member-signup.html">
+            Register
+        </a>
 
-        <nav
-            class="main-nav"
-            id="mobileNav"
-        >
+        <a href="admin.html">
+            Admin
+        </a>
 
-            <a href="index.html">
-                Home
-            </a>
+    </nav>
 
-            <a
-                href="wards.html"
-                class="active"
-            >
-                Wards
-            </a>
-
-            <a href="register.html">
-                Register
-            </a>
-
-            <a href="admin.html">
-                Admin
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
 <main>
 
-    <!-- PAGE HEADER -->
+```
+<!-- PAGE HEADER -->
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="container hero-content">
+    <div class="container hero-content">
 
-            <div class="hero-text">
+        <div class="hero-text">
 
-                <span class="hero-label">
-                    ADO LOCAL GOVERNMENT
-                </span>
+            <span class="hero-label">
+                ADO LOCAL GOVERNMENT
+            </span>
 
-                <h2>
-                    Our 13 Wards
-                </h2>
-
-                <p>
-                    Explore the wards of BWI-RHA
-                    Ado Local Government.
-                </p>
-
-                <p>
-                    Select a ward below to view
-                    approved members and its
-                    executive structure.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- WARDS -->
-
-    <section class="section light-section">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>
-                    WARD STRUCTURE
-                </span>
-
-                <h2>
-                    Select Your Ward
-                </h2>
-
-                <p>
-                    There are 13 wards within
-                    Ado Local Government.
-                </p>
-
-            </div>
-
-
-            <div
-                class="wards-grid"
-                id="wardsGrid"
-            ></div>
-
-
-            <div
-                id="wardDisplay"
-                class="ward-display"
-            >
-
-                <div class="empty-state">
-
-                    <div
-                        class="empty-icon"
-                        style="font-size:35px;"
-                    >
-                        👥
-                    </div>
-
-                    <h3>
-                        Select a Ward
-                    </h3>
-
-                    <p>
-                        Click a ward above to
-                        view its information.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- EXCO STRUCTURE -->
-
-    <section class="section">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>
-                    WARD EXECUTIVE STRUCTURE
-                </span>
-
-                <h2>
-                    Structured Offices
-                </h2>
-
-                <p>
-                    Each ward is structured around
-                    the following executive offices.
-                </p>
-
-            </div>
-
-
-            <div class="feature-grid">
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        👑
-                    </div>
-
-                    <h3>
-                        Ward Coordinator
-                    </h3>
-
-                    <p>
-                        Leads and coordinates activities
-                        within the ward.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        🤝
-                    </div>
-
-                    <h3>
-                        Deputy Ward Coordinator
-                    </h3>
-
-                    <p>
-                        Supports the Ward Coordinator
-                        in organizational activities.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        Secretary
-                    </h3>
-
-                    <p>
-                        Handles records, documentation
-                        and communications.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📣
-                    </div>
-
-                    <h3>
-                        Mobilization Officer
-                    </h3>
-
-                    <p>
-                        Coordinates mobilization and
-                        community participation.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        💼
-                    </div>
-
-                    <h3>
-                        Women Empowerment Officer
-                    </h3>
-
-                    <p>
-                        Supports women empowerment
-                        initiatives and opportunities.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        📱
-                    </div>
-
-                    <h3>
-                        Media/Publicity Officer
-                    </h3>
-
-                    <p>
-                        Handles publicity, information
-                        and media communication.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        ❤️
-                    </div>
-
-                    <h3>
-                        Welfare Officer
-                    </h3>
-
-                    <p>
-                        Supports member welfare and
-                        community assistance.
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card">
-
-                    <div class="feature-icon">
-                        🗳️
-                    </div>
-
-                    <h3>
-                        Polling Unit Officer
-                    </h3>
-
-                    <p>
-                        Coordinates activities relating
-                        to polling units.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h3>
-
-                <p>
-                    ADO LOCAL GOVERNMENT
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <p>
-                    Green Economy E-Mobility Program
-                </p>
-
-                <p>
-                    Empowering women, youths and
-                    persons with disabilities.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
+            <h2>
+                Our 13 Wards
+            </h2>
 
             <p>
-                ©
-                <span id="currentYear"></span>
-                BWI-RHA Ekiti State Chapter.
-                All rights reserved.
+                Explore the wards of BWI-RHA
+                Ado Local Government.
+            </p>
+
+            <p>
+                Select a ward below to view
+                approved members and its
+                executive structure.
             </p>
 
         </div>
 
     </div>
 
+</section>
+
+
+<!-- WARDS -->
+
+<section class="section light-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                WARD STRUCTURE
+            </span>
+
+            <h2>
+                Select Your Ward
+            </h2>
+
+            <p>
+                There are 13 wards within
+                Ado Local Government.
+            </p>
+
+        </div>
+
+
+        <div
+            class="wards-grid"
+            id="wardsGrid"
+        ></div>
+
+
+        <div
+            id="wardDisplay"
+            class="ward-display"
+        >
+
+            <div class="empty-state">
+
+                <div
+                    class="empty-icon"
+                    style="font-size:35px;"
+                >
+                    👥
+                </div>
+
+                <h3>
+                    Select a Ward
+                </h3>
+
+                <p>
+                    Click a ward above to
+                    view approved members.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMBER DIRECTORY -->
+
+        <div
+            id="memberDirectory"
+            class="member-directory"
+            style="display:none;"
+        >
+
+            <div class="member-directory-header">
+
+                <h3 id="memberWardTitle">
+                    Approved Members
+                </h3>
+
+                <span
+                    id="memberCount"
+                    class="member-count"
+                >
+                    0 Members
+                </span>
+
+            </div>
+
+
+            <div
+                id="membersGrid"
+                class="members-grid"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXCO STRUCTURE -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                WARD EXECUTIVE STRUCTURE
+            </span>
+
+            <h2>
+                Structured Offices
+            </h2>
+
+            <p>
+                Each ward is structured around
+                the following executive offices.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    👑
+                </div>
+
+                <h3>
+                    Ward Coordinator
+                </h3>
+
+                <p>
+                    Leads and coordinates activities
+                    within the ward.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    Deputy Ward Coordinator
+                </h3>
+
+                <p>
+                    Supports the Ward Coordinator
+                    in organizational activities.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Secretary
+                </h3>
+
+                <p>
+                    Handles records, documentation
+                    and communications.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    📣
+                </div>
+
+                <h3>
+                    Mobilization Officer
+                </h3>
+
+                <p>
+                    Coordinates mobilization and
+                    community participation.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Women Empowerment Officer
+                </h3>
+
+                <p>
+                    Supports women empowerment
+                    initiatives and opportunities.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Media/Publicity Officer
+                </h3>
+
+                <p>
+                    Handles publicity, information
+                    and media communication.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    Welfare Officer
+                </h3>
+
+                <p>
+                    Supports member welfare and
+                    community assistance.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    🗳️
+                </div>
+
+                <h3>
+                    Polling Unit Officer
+                </h3>
+
+                <p>
+                    Coordinates activities relating
+                    to polling units.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- MEMBER DETAILS MODAL -->
+
+<div
+    id="memberModal"
+    class="member-modal"
+>
+
+```
+<div class="member-modal-box">
+
+    <button
+        type="button"
+        id="closeMemberModal"
+        class="close-member-modal"
+    >
+        ×
+    </button>
+
+    <h2 id="modalMemberName">
+        Member Details
+    </h2>
+
+    <div
+        id="memberDetails"
+    ></div>
+
+</div>
+```
+
+</div>
+
+<footer class="site-footer">
+
+```
+<div class="container">
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>
+                BWI-RHA EKITI STATE CHAPTER
+            </h3>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p>
+                Green Economy E-Mobility Program
+            </p>
+
+            <p>
+                Empowering women, youths and
+                persons with disabilities.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©
+            <span id="currentYear"></span>
+            BWI-RHA Ekiti State Chapter.
+            All rights reserved.
+        </p>
+
+    </div>
+
+</div>
+```
+
 </footer>
 
+<!-- SUPABASE -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* ================================
+   HELPERS
+================================ */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* ================================
+   WARDS
+================================ */
+
+const wardsGrid =
+    document.getElementById(
+        "wardsGrid"
+    );
+
+const wardDisplay =
+    document.getElementById(
+        "wardDisplay"
+    );
+
+const memberDirectory =
+    document.getElementById(
+        "memberDirectory"
+    );
+
+const memberWardTitle =
+    document.getElementById(
+        "memberWardTitle"
+    );
+
+const memberCount =
+    document.getElementById(
+        "memberCount"
+    );
+
+const membersGrid =
+    document.getElementById(
+        "membersGrid"
+    );
+
+
+for (
+    let ward = 1;
+    ward <= 13;
+    ward++
+) {
+
+    const button =
+        document.createElement("button");
+
+    button.type = "button";
+
+    button.className =
+        "ward-button";
+
+    button.textContent =
+        `Ward ${ward}`;
+
+    button.dataset.ward =
+        ward;
+
+    button.addEventListener(
+        "click",
+        () => loadWard(ward, button)
+    );
+
+    wardsGrid.appendChild(button);
+
+}
+
+
+/* ================================
+   LOAD MEMBERS
+================================ */
+
+async function loadWard(
+    wardNumber,
+    clickedButton
+) {
+
+    document
+        .querySelectorAll(".ward-button")
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    clickedButton.classList.add(
+        "active"
+    );
+
+
+    wardDisplay.innerHTML = `
+
+        <div class="empty-state">
+
+            <div
+                class="empty-icon"
+                style="font-size:35px;"
+            >
+                🔄
+            </div>
+
+            <h3>
+                Loading Ward ${wardNumber}
+            </h3>
+
+            <p>
+                Loading approved members...
+            </p>
+
+        </div>
+
+    `;
+
+
+    memberDirectory.style.display =
+        "block";
+
+
+    memberWardTitle.textContent =
+        `Ward ${wardNumber} — Approved Members`;
+
+
+    memberCount.textContent =
+        "Loading...";
+
+
+    membersGrid.innerHTML = `
+
+        <div class="loading-members">
+
+            Loading members...
+
+        </div>
+
+    `;
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("members")
+        .select("*")
+        .eq(
+            "ward_id",
+            wardNumber
+        )
+        .eq(
+            "status",
+            "approved"
+        )
+        .order(
+            "full_name",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Supabase error:",
+            error
+        );
+
+
+        membersGrid.innerHTML = `
+
+            <div class="no-members">
+
+                <h3>
+                    Unable to load members
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+
+        memberCount.textContent =
+            "Error";
+
+        return;
+
+    }
+
+
+    wardDisplay.innerHTML = `
+
+        <div class="empty-state">
+
+            <div
+                class="empty-icon"
+                style="font-size:35px;"
+            >
+                👥
+            </div>
+
+            <h3>
+                Ward ${wardNumber}
+            </h3>
+
+            <p>
+                ${data.length}
+                approved member${data.length === 1 ? "" : "s"} found.
+            </p>
+
+        </div>
+
+    `;
+
+
+    memberCount.textContent =
+        `${data.length} Member${data.length === 1 ? "" : "s"}`;
+
+
+    if (!data.length) {
+
+        membersGrid.innerHTML = `
+
+            <div class="no-members">
+
+                <h3>
+                    No Approved Members
+                </h3>
+
+                <p>
+                    There are currently no approved
+                    members in Ward ${wardNumber}.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    membersGrid.innerHTML = "";
+
+
+    data.forEach(member => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "member-card";
+
+
+        card.innerHTML = `
+
+            <h4>
+                ${escapeHTML(
+                    member.full_name
+                )}
+            </h4>
+
+            <p>
+                <strong>
+                    Phone:
+                </strong>
+
+                ${escapeHTML(
+                    member.phone
+                )}
+            </p>
+
+            <p>
+                <strong>
+                    Polling Booth:
+                </strong>
+
+                ${escapeHTML(
+                    member.polling_booth ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>
+                    EXCO:
+                </strong>
+
+                ${escapeHTML(
+                    member.exco_position ||
+                    "Not assigned"
+                )}
+            </p>
+
+            <span class="approved-badge">
+                ✓ Approved Member
+            </span>
+
+        `;
+
+
+        card.addEventListener(
+            "click",
+            () => showMemberDetails(member)
+        );
+
+
+        membersGrid.appendChild(
+            card
+        );
+
+    });
+
+}
+
+
+/* ================================
+   MEMBER DETAILS
+================================ */
+
+const memberModal =
+    document.getElementById(
+        "memberModal"
+    );
+
+const modalMemberName =
+    document.getElementById(
+        "modalMemberName"
+    );
+
+const memberDetails =
+    document.getElementById(
+        "memberDetails"
+    );
+
+
+function showMemberDetails(
+    member
+) {
+
+    modalMemberName.textContent =
+        member.full_name ||
+        "Member Details";
+
+
+    memberDetails.innerHTML = `
+
+        <div class="member-detail">
+
+            <strong>
+                Full Name
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.full_name
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Phone Number
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.phone
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Bank Name
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.bank_name
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Account Name
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.account_name
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Account Number
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.account_number
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Polling Booth
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.polling_booth ||
+                    "Not provided"
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                EXCO Position
+            </strong>
+
+            <span>
+                ${escapeHTML(
+                    member.exco_position ||
+                    "Not assigned"
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="member-detail">
+
+            <strong>
+                Membership Status
+            </strong>
+
+            <span class="status-approved">
+                ${escapeHTML(
+                    member.status
+                )}
+            </span>
+
+        </div>
+
+    `;
+
+
+    memberModal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* ================================
+   CLOSE MODAL
+================================ */
+
+document
+    .getElementById(
+        "closeMemberModal"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            memberModal.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+
+memberModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === memberModal
+        ) {
+
+            memberModal.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* ================================
+   YEAR
+================================ */
+
+document
+    .getElementById(
+        "currentYear"
+    )
+    .textContent =
+        new Date().getFullYear();
+
+</script>
+
+<!-- EXISTING SITE SCRIPT -->
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
