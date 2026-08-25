@@ -1,157 +1,245 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Member Dashboard | BWI-RHA Ado LG</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-<link rel="stylesheet" href="style.css">
+>
+
+<title>
+Member Dashboard | BWI-RHA Ado LG
+</title>
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
-margin:0;
-background:#f4f7f5;
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7f5;
+    color:#222;
 }
 
-.dashboard{
-max-width:1000px;
-margin:auto;
-padding:35px 20px;
+.header{
+    background:#16833b;
+    color:white;
+    padding:16px 20px;
 }
 
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-flex-wrap:wrap;
-margin-bottom:30px;
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
-.top h1{
-margin:0;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:58px;
+    height:58px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+}
+
+.brand h1{
+    margin:0;
+    font-size:18px;
+}
+
+.brand p{
+    margin:4px 0 0;
+    font-size:13px;
 }
 
 .logout{
-background:#b42318;
-color:#fff;
-border:0;
-padding:11px 18px;
-border-radius:8px;
-cursor:pointer;
-font-weight:700;
+    background:white;
+    color:#16833b;
+    border:0;
+    padding:10px 15px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.container{
+    max-width:850px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h2{
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#666;
 }
 
 .card{
-background:#fff;
-border-radius:16px;
-padding:25px;
-margin-bottom:22px;
-box-shadow:0 6px 25px rgba(0,0,0,.07);
+    background:white;
+    border-radius:16px;
+    padding:28px;
+    box-shadow:0 7px 25px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-top:0;
+    color:#16833b;
 }
 
 .status{
-display:inline-block;
-padding:9px 15px;
-border-radius:30px;
-font-weight:800;
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:20px;
 }
 
 .pending{
-background:#fff4cc;
-color:#8a6200;
+    background:#fff5cc;
+    color:#755900;
 }
 
 .approved{
-background:#dff6e7;
-color:#12652c;
+    background:#dff6e7;
+    color:#12652c;
 }
 
 .rejected{
-background:#ffe3e3;
-color:#a00000;
+    background:#ffe5e5;
+    color:#9a0000;
 }
 
-.info-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-}
-
-.info{
-background:#f7f7f7;
-padding:15px;
-border-radius:9px;
-}
-
-.info strong{
-display:block;
-margin-bottom:5px;
-}
-
-form{
-margin-top:20px;
-}
-
-.form-group{
-margin-bottom:18px;
+.group{
+    margin-bottom:17px;
 }
 
 label{
-display:block;
-font-weight:700;
-margin-bottom:7px;
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
-input,select,textarea{
-width:100%;
-padding:12px;
-box-sizing:border-box;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:15px;
+input,
+select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
 }
 
-button.primary{
-background:#16833b;
-color:#fff;
-border:0;
-padding:13px 20px;
-border-radius:8px;
-font-weight:700;
-cursor:pointer;
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#16833b;
+}
+
+button.submit{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    background:#16833b;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button.submit:disabled{
+    opacity:.6;
 }
 
 .message{
-display:none;
-padding:13px;
-margin:15px 0;
-border-radius:8px;
-}
-
-.message.show{
-display:block;
+    display:none;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:18px;
+    line-height:1.5;
 }
 
 .error{
-background:#fff0f0;
-color:#a00000;
+    display:block;
+    background:#ffe5e5;
+    color:#a00000;
 }
 
 .success{
-background:#e8f7ed;
-color:#12652c;
+    display:block;
+    background:#e1f6e8;
+    color:#12652c;
 }
 
-@media(max-width:650px){
-
-.info-grid{
-grid-template-columns:1fr;
+.details{
+    display:grid;
+    gap:0;
 }
+
+.detail{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
+}
+
+.detail strong{
+    color:#555;
+}
+
+.detail span{
+    text-align:right;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+
+    .header-inner{
+        align-items:flex-start;
+    }
+
+    .brand h1{
+        font-size:15px;
+    }
+
+    .container{
+        padding:20px 15px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .detail{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .detail span{
+        text-align:left;
+    }
 
 }
 
@@ -161,20 +249,20 @@ grid-template-columns:1fr;
 
 <body>
 
-<header class="site-header">
+<header class="header">
 
-<div class="header-container">
+<div class="header-inner">
 
-<a href="index.html" class="logo-area">
+<div class="brand">
 
 <img
 src="logo.jpeg"
+class="logo"
 alt="BWI-RHA Logo"
-class="site-logo"
 
 >
 
-<div class="logo-text">
+<div>
 
 <h1>
 BWI-RHA EKITI STATE CHAPTER
@@ -186,31 +274,11 @@ ADO LOCAL GOVERNMENT
 
 </div>
 
-</a>
-
-</div>
-
-</header>
-
-<main class="dashboard">
-
-<div class="top">
-
-<div>
-
-<h1>
-My Member Dashboard
-</h1>
-
-<p id="welcome">
-Loading...
-</p>
-
 </div>
 
 <button
-class="logout"
 id="logoutButton"
+class="logout"
 
 >
 
@@ -218,78 +286,60 @@ Logout </button>
 
 </div>
 
+</header>
+
+<main class="container">
+
+<div class="welcome">
+
+<h2 id="welcomeName">
+Member Dashboard
+</h2>
+
+<p>
+Complete your registration below.
+Your registration will be reviewed by the administrator.
+</p>
+
+</div>
+
 <div
-id="message"
-class="message"
+    id="message"
+    class="message"
 ></div>
-
-<!-- STATUS -->
-
-<div class="card">
-
-<h2>
-Registration Status
-</h2>
-
-<div id="statusArea">
-Loading...
-</div>
-
-</div>
-
-<!-- MEMBER INFORMATION -->
-
-<div
-class="card"
-id="memberInfoCard"
->
-
-<h2>
-My Registration
-</h2>
-
-<div
-id="memberInfo"
->
-Loading...
-</div>
-
-</div>
 
 <!-- REGISTRATION FORM -->
 
 <div
-class="card"
-id="registrationCard"
+    id="registrationCard"
+    class="card"
+    style="display:none;"
 >
 
-<h2>
-Complete Registration
-</h2>
-
-<p>
-Submit your membership information below.
-</p>
+<h3>
+Complete Your Registration
+</h3>
 
 <form id="registrationForm">
 
-<div class="form-group">
+<div class="group">
 
-<label>
+<label for="fullName">
 Full Name
 </label>
 
 <input
 id="fullName"
+type="text"
 required
 
 >
 
 </div>
 
-<div class="form-group">
+<div class="group">
 
-<label>
+<label for="phone">
 Phone Number
 </label>
 
@@ -302,46 +352,9 @@ required
 
 </div>
 
-<div class="form-group">
+<div class="group">
 
-<label>
-Gender
-</label>
-
-<select id="gender">
-
-<option value="">
-Select gender
-</option>
-
-<option value="Female">
-Female
-</option>
-
-<option value="Male">
-Male
-</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>
-Address
-</label>
-
-<textarea
-id="address"
-rows="3"
-></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>
+<label for="ward">
 Ward
 </label>
 
@@ -355,58 +368,90 @@ required
 Select your ward
 </option>
 
+<option value="1">Ward 1</option>
+<option value="2">Ward 2</option>
+<option value="3">Ward 3</option>
+<option value="4">Ward 4</option>
+<option value="5">Ward 5</option>
+<option value="6">Ward 6</option>
+<option value="7">Ward 7</option>
+<option value="8">Ward 8</option>
+<option value="9">Ward 9</option>
+<option value="10">Ward 10</option>
+<option value="11">Ward 11</option>
+<option value="12">Ward 12</option>
+<option value="13">Ward 13</option>
+
 </select>
 
 </div>
 
-<div class="form-group">
+<div class="group">
 
-<label>
+<label for="bankName">
 Bank Name
 </label>
 
-<input id="bankName">
-
-</div>
-
-<div class="form-group">
-
-<label>
-Account Name
-</label>
-
-<input id="accountName">
-
-</div>
-
-<div class="form-group">
-
-<label>
-Account Number
-</label>
-
 <input
-id="accountNumber"
-inputmode="numeric"
+id="bankName"
+type="text"
+placeholder="Enter bank name"
 
 >
 
 </div>
 
-<div class="form-group">
+<div class="group">
 
-<label>
+<label for="accountName">
+Account Name
+</label>
+
+<input
+id="accountName"
+type="text"
+placeholder="Enter account name"
+
+>
+
+</div>
+
+<div class="group">
+
+<label for="accountNumber">
+Account Number
+</label>
+
+<input
+id="accountNumber"
+type="text"
+inputmode="numeric"
+maxlength="20"
+placeholder="Enter account number"
+
+>
+
+</div>
+
+<div class="group">
+
+<label for="pollingBooth">
 Polling Booth
 </label>
 
-<input id="pollingBooth">
+<input
+id="pollingBooth"
+type="text"
+placeholder="Enter polling booth"
+
+>
 
 </div>
 
 <button
-type="submit"
-class="primary"
 id="submitButton"
+class="submit"
+type="submit"
 
 >
 
@@ -416,29 +461,35 @@ Submit Registration </button>
 
 </div>
 
-<!-- APPROVED -->
+<!-- PENDING/APPROVED INFORMATION -->
 
 <div
-class="card"
-id="approvedCard"
-style="display:none"
+    id="statusCard"
+    class="card"
+    style="display:none;"
 >
 
-<h2>
-🎉 Membership Approved
-</h2>
+<h3>
+Registration Status
+</h3>
 
-<p>
-Your BWI-RHA membership has been approved.
-</p>
+<div
+    id="statusBox"
+    class="status"
+></div>
 
-<div id="excoInfo"></div>
+<div
+    id="memberDetails"
+    class="details"
+></div>
 
 </div>
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script>
 
@@ -450,499 +501,576 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-const WARDS = [
-
-{ id:1,name:"Ado A",area:"Idofin" },
-{ id:2,name:"Ado B",area:"Inisa" },
-{ id:3,name:"Ado C",area:"Idolofin" },
-{ id:4,name:"Ado D",area:"Ijigbo" },
-{ id:5,name:"Ado E",area:"Ijoka / Orereowu" },
-{ id:6,name:"Ado F",area:"Okeyinmi" },
-{ id:7,name:"Ado G",area:"Oke Ila" },
-{ id:8,name:"Ado H",area:"Ereguru" },
-{ id:9,name:"Ado I",area:"Dallimore" },
-{ id:10,name:"Ado J",area:"Okesa" },
-{ id:11,name:"Ado K",area:"Irona" },
-{ id:12,name:"Ado L",area:"Igbehin" },
-{ id:13,name:"Ado M",area:"Farm Settlement" }
-
-];
-
-
-let currentUser = null;
-let currentMember = null;
-
-
-const statusArea =
-document.getElementById("statusArea");
-
-const memberInfo =
-document.getElementById("memberInfo");
-
 const registrationCard =
-document.getElementById("registrationCard");
+document.getElementById(
+    "registrationCard"
+);
 
-const approvedCard =
-document.getElementById("approvedCard");
+const statusCard =
+document.getElementById(
+    "statusCard"
+);
 
-const form =
-document.getElementById("registrationForm");
+const statusBox =
+document.getElementById(
+    "statusBox"
+);
+
+const memberDetails =
+document.getElementById(
+    "memberDetails"
+);
 
 const message =
-document.getElementById("message");
+document.getElementById(
+    "message"
+);
+
+const welcomeName =
+document.getElementById(
+    "welcomeName"
+);
+
+
+function showMessage(
+    text,
+    type
+){
+
+    message.textContent=text;
+
+    message.className=
+        "message "+type;
+
+}
 
 
 function escapeHTML(value){
 
-return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
 
-function showMessage(text,type){
+/* ================================
+   CHECK LOGIN
+================================ */
 
-message.textContent=text;
+async function initialize(){
 
-message.className=
-"message show "+type;
-
-}
-
-
-function loadWards(){
-
-const wardSelect =
-document.getElementById("ward");
-
-WARDS.forEach(ward=>{
-
-const option =
-document.createElement("option");
-
-option.value=ward.id;
-
-option.textContent=
-`Ward ${ward.id} — ${ward.name} — ${ward.area}`;
-
-wardSelect.appendChild(option);
-
-});
-
-}
+    const {
+        data:{
+            user
+        }
+    } =
+    await supabaseClient.auth.getUser();
 
 
-function getWard(id){
+    if(!user){
 
-return WARDS.find(
-ward=>ward.id===Number(id)
-);
+        window.location.href=
+            "member-login.html";
+
+        return;
+
+    }
+
+
+    const fullName =
+        user.user_metadata?.full_name ||
+        "Member";
+
+
+    welcomeName.textContent =
+        `Welcome, ${fullName}`;
+
+
+    await loadRegistration(user);
 
 }
 
 
-async function start(){
+/* ================================
+   LOAD MEMBER RECORD
+================================ */
 
-const {
-data
-} =
-await supabaseClient.auth.getSession();
+async function loadRegistration(user){
 
-if(
-!data.session ||
-!data.session.user
-){
-
-window.location.href=
-"member-login.html";
-
-return;
-
-}
-
-currentUser =
-data.session.user;
-
-document.getElementById("welcome").textContent =
-`Signed in as ${currentUser.email}`;
-
-loadWards();
-
-await loadMember();
-
-}
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("members")
+        .select("*")
+        .eq(
+            "auth_user_id",
+            user.id
+        )
+        .maybeSingle();
 
 
-async function loadMember(){
+    if(error){
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("members")
-.select("*")
-.eq(
-"auth_user_id",
-currentUser.id
-)
-.maybeSingle();
+        console.error(error);
 
-if(error){
+        showMessage(
+            error.message,
+            "error"
+        );
 
-console.error(error);
+        return;
 
-showMessage(
-"Unable to load your registration: "+
-error.message,
-"error"
-);
-
-return;
-
-}
+    }
 
 
-currentMember=data;
+    if(!data){
+
+        registrationCard.style.display=
+            "block";
+
+        statusCard.style.display=
+            "none";
 
 
-if(!currentMember){
+        document.getElementById(
+            "fullName"
+        ).value =
+            user.user_metadata?.full_name ||
+            "";
 
-statusArea.innerHTML=`
 
-<p>
-You have not submitted your membership
-registration yet.
-</p>
+        document.getElementById(
+            "phone"
+        ).value =
+            user.user_metadata?.phone ||
+            "";
 
-<span class="status pending">
-NOT REGISTERED
-</span>
 
-`;
+        return;
 
-registrationCard.style.display=
-"block";
+    }
 
-memberInfo.innerHTML=
-"<p>Please complete the registration form below.</p>";
 
-return;
+    registrationCard.style.display=
+        "none";
+
+    statusCard.style.display=
+        "block";
+
+
+    showRegistrationStatus(data);
 
 }
 
 
-registrationCard.style.display=
-"none";
+/* ================================
+   SHOW STATUS
+================================ */
+
+function showRegistrationStatus(member){
+
+    const status =
+        member.status;
 
 
-const status =
-currentMember.status;
+    if(status === "pending"){
+
+        statusBox.className=
+            "status pending";
+
+        statusBox.innerHTML=
+            "<strong>🟡 Pending Registration</strong><br><br>" +
+            "Your registration has been submitted and is waiting for administrator approval.";
+
+    }
 
 
-if(status==="approved"){
+    else if(status === "approved"){
 
-statusArea.innerHTML=`
+        statusBox.className=
+            "status approved";
 
-<span class="status approved">
-🟢 APPROVED
-</span>
+        statusBox.innerHTML=
+            "<strong>🟢 Approved</strong><br><br>" +
+            "Congratulations! Your BWI-RHA membership has been approved.";
 
-<p>
-Congratulations! Your BWI-RHA membership
-has been approved.
-</p>
-
-`;
-
-approvedCard.style.display=
-"block";
-
-if(currentMember.exco_position){
-
-document.getElementById(
-"excoInfo"
-).innerHTML=`
-
-<p>
-<strong>Your EXCO Position:</strong>
-</p>
-
-<span class="status approved">
-${escapeHTML(
-currentMember.exco_position
-)}
-</span>
-
-`;
-
-}else{
-
-document.getElementById(
-"excoInfo"
-).innerHTML=`
-
-<p>
-No EXCO position has been assigned
-to you yet.
-</p>
-
-`;
-
-}
-
-}else if(status==="rejected"){
-
-statusArea.innerHTML=`
-
-<span class="status rejected">
-🔴 REJECTED
-</span>
-
-<p>
-Your registration was not approved.
-Please contact the administrator
-for further information.
-</p>
-
-`;
-
-}else{
-
-statusArea.innerHTML=`
-
-<span class="status pending">
-🟡 PENDING
-</span>
-
-<p>
-Your registration has been submitted
-successfully and is currently awaiting
-administrator approval.
-</p>
-
-`;
-
-}
+    }
 
 
-const ward =
-getWard(currentMember.ward_id);
+    else if(status === "rejected"){
+
+        statusBox.className=
+            "status rejected";
+
+        statusBox.innerHTML=
+            "<strong>🔴 Registration Rejected</strong><br><br>" +
+            "Your registration was not approved. Please contact the administrator.";
+
+    }
 
 
-memberInfo.innerHTML=`
+    memberDetails.innerHTML=`
 
-<div class="info-grid">
+        <div class="detail">
+            <strong>Full Name</strong>
+            <span>
+                ${escapeHTML(member.full_name)}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Full Name</strong>
-${escapeHTML(currentMember.full_name)}
-</div>
+        <div class="detail">
+            <strong>Phone</strong>
+            <span>
+                ${escapeHTML(member.phone)}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Email</strong>
-${escapeHTML(currentMember.email)}
-</div>
+        <div class="detail">
+            <strong>Ward</strong>
+            <span>
+                Ward ${escapeHTML(member.ward_id)}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Phone</strong>
-${escapeHTML(currentMember.phone)}
-</div>
+        <div class="detail">
+            <strong>Bank Name</strong>
+            <span>
+                ${escapeHTML(member.bank_name || "Not provided")}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Ward</strong>
-${
-ward
-?
-`Ward ${ward.id} — ${escapeHTML(ward.name)}`
-:
-"Unknown"
-}
-</div>
+        <div class="detail">
+            <strong>Account Name</strong>
+            <span>
+                ${escapeHTML(member.account_name || "Not provided")}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Gender</strong>
-${escapeHTML(currentMember.gender)}
-</div>
+        <div class="detail">
+            <strong>Account Number</strong>
+            <span>
+                ${escapeHTML(member.account_number || "Not provided")}
+            </span>
+        </div>
 
-<div class="info">
-<strong>Bank</strong>
-${escapeHTML(currentMember.bank_name)}
-</div>
+        <div class="detail">
+            <strong>Polling Booth</strong>
+            <span>
+                ${escapeHTML(member.polling_booth || "Not provided")}
+            </span>
+        </div>
 
-</div>
+        <div class="detail">
+            <strong>EXCO Position</strong>
+            <span>
+                ${escapeHTML(member.exco_position || "Not assigned")}
+            </span>
+        </div>
 
-`;
+    `;
 
 }
 
 
-form.addEventListener(
+/* ================================
+   SUBMIT REGISTRATION
+================================ */
+
+document
+.getElementById("registrationForm")
+.addEventListener(
 "submit",
-async function(e){
+async(event)=>{
 
-e.preventDefault();
-
-
-const {
-data:sessionData
-} =
-await supabaseClient.auth.getSession();
+    event.preventDefault();
 
 
-if(
-!sessionData.session
-){
-
-window.location.href=
-"member-login.html";
-
-return;
-
-}
+    const {
+        data:{
+            user
+        }
+    } =
+    await supabaseClient.auth.getUser();
 
 
-const user =
-sessionData.session.user;
+    if(!user){
+
+        window.location.href=
+            "member-login.html";
+
+        return;
+
+    }
 
 
-const payload={
-
-auth_user_id:user.id,
-
-full_name:
-document.getElementById(
-"fullName"
-).value.trim(),
-
-email:user.email,
-
-phone:
-document.getElementById(
-"phone"
-).value.trim(),
-
-gender:
-document.getElementById(
-"gender"
-).value,
-
-address:
-document.getElementById(
-"address"
-).value.trim(),
-
-ward_id:Number(
-document.getElementById(
-"ward"
-).value
-),
-
-bank_name:
-document.getElementById(
-"bankName"
-).value.trim(),
-
-account_name:
-document.getElementById(
-"accountName"
-).value.trim(),
-
-account_number:
-document.getElementById(
-"accountNumber"
-).value.trim(),
-
-polling_booth:
-document.getElementById(
-"pollingBooth"
-).value.trim(),
-
-status:"pending"
-
-};
+    const fullName =
+        document
+        .getElementById("fullName")
+        .value.trim();
 
 
-const button =
-document.getElementById(
-"submitButton"
-);
-
-button.disabled=true;
-button.textContent=
-"Submitting...";
+    const phone =
+        document
+        .getElementById("phone")
+        .value.trim();
 
 
-try{
-
-const {
-error
-} =
-await supabaseClient
-.from("members")
-.insert(payload);
-
-if(error) throw error;
+    const ward =
+        Number(
+            document
+            .getElementById("ward")
+            .value
+        );
 
 
-showMessage(
-"Registration submitted successfully. Your status is now Pending.",
-"success"
-);
-
-form.reset();
-
-registrationCard.style.display=
-"none";
-
-await loadMember();
+    const bankName =
+        document
+        .getElementById("bankName")
+        .value.trim();
 
 
-}catch(error){
+    const accountName =
+        document
+        .getElementById("accountName")
+        .value.trim();
 
-console.error(error);
 
-showMessage(
-"Unable to submit registration: "+
-error.message,
-"error"
-);
+    const accountNumber =
+        document
+        .getElementById("accountNumber")
+        .value.trim();
 
-}finally{
 
-button.disabled=false;
-button.textContent=
-"Submit Registration";
+    const pollingBooth =
+        document
+        .getElementById("pollingBooth")
+        .value.trim();
 
-}
+
+    if(
+        !fullName ||
+        !phone ||
+        !ward
+    ){
+
+        showMessage(
+            "Please complete your name, phone number and ward.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        ward < 1 ||
+        ward > 13
+    ){
+
+        showMessage(
+            "Please select a valid ward from Ward 1 to Ward 13.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const submitButton =
+        document.getElementById(
+            "submitButton"
+        );
+
+
+    submitButton.disabled=true;
+
+    submitButton.textContent=
+        "Submitting...";
+
+
+    const {
+        data:existing,
+        error:findError
+    } =
+    await supabaseClient
+        .from("members")
+        .select("id,status")
+        .eq(
+            "auth_user_id",
+            user.id
+        )
+        .maybeSingle();
+
+
+    if(findError){
+
+        showMessage(
+            findError.message,
+            "error"
+        );
+
+        submitButton.disabled=false;
+        submitButton.textContent=
+            "Submit Registration";
+
+        return;
+
+    }
+
+
+    let result;
+
+
+    if(existing){
+
+        /*
+         * Update an existing registration.
+         * A rejected member can resubmit.
+         */
+
+        result =
+        await supabaseClient
+            .from("members")
+            .update({
+
+                full_name:fullName,
+
+                phone:phone,
+
+                ward_id:ward,
+
+                bank_name:bankName || null,
+
+                account_name:accountName || null,
+
+                account_number:accountNumber || null,
+
+                polling_booth:pollingBooth || null,
+
+                status:"pending",
+
+                reviewed_at:null
+
+            })
+            .eq(
+                "id",
+                existing.id
+            );
+
+    }else{
+
+        /*
+         * Create the member record.
+         *
+         * id is generated by the database.
+         * auth_user_id connects the record
+         * to the logged-in Supabase user.
+         */
+
+        result =
+        await supabaseClient
+            .from("members")
+            .insert({
+
+                full_name:fullName,
+
+                phone:phone,
+
+                email:user.email,
+
+                ward_id:ward,
+
+                bank_name:bankName || null,
+
+                account_name:accountName || null,
+
+                account_number:accountNumber || null,
+
+                polling_booth:pollingBooth || null,
+
+                status:"pending",
+
+                auth_user_id:user.id
+
+            });
+
+    }
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showMessage(
+            result.error.message,
+            "error"
+        );
+
+        submitButton.disabled=false;
+        submitButton.textContent=
+            "Submit Registration";
+
+        return;
+
+    }
+
+
+    showMessage(
+        "Registration submitted successfully. Your status is now Pending.",
+        "success"
+    );
+
+
+    setTimeout(
+        ()=>{
+
+            loadRegistration(user);
+
+        },
+        800
+    );
 
 });
 
+
+/* ================================
+   LOGOUT
+================================ */
 
 document
 .getElementById("logoutButton")
 .addEventListener(
 "click",
-async function(){
+async()=>{
 
-await supabaseClient.auth.signOut();
+    await supabaseClient.auth.signOut();
 
-window.location.href=
-"member-login.html";
+    window.location.href=
+        "index.html";
 
 });
 
 
-start();
+/* ================================
+   START
+================================ */
+
+initialize();
 
 </script>
 
