@@ -1,56 +1,843 @@
 /* =========================================================
-   FINAL OVERRIDES
-   GREEN + WHITE DESIGN ONLY
    BWI-RHA EKITI STATE CHAPTER
-========================================================= */
-
-
-/* =========================================================
-   REMOVE RED COLORS
+   ADO LOCAL GOVERNMENT
+   GREEN + WHITE DESIGN
 ========================================================= */
 
 :root {
-    --red: #16833b;
+    --green: #16833b;
+    --dark-green: #17351f;
+    --light-green: #e9f7ef;
+    --very-light: #f7faf8;
+    --white: #ffffff;
+    --black: #172018;
+    --gray: #66736a;
+    --border: #dce8df;
+    --shadow: 0 8px 30px rgba(0, 80, 40, 0.10);
 }
 
+* {
+    box-sizing: border-box;
+}
 
-/* Replace common red/error styling */
+html {
+    scroll-behavior: smooth;
+}
 
-.error,
-.error-message,
-.form-error,
-.alert-error,
-.danger,
-.text-danger {
-    color: #17351f !important;
-    background: #e9f7ef !important;
-    border-color: #b9dec5 !important;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
 }
 
 
 /* =========================================================
-   GENERAL FORM MESSAGE
+   HEADER
 ========================================================= */
 
-.form-message {
-    margin-top: 18px;
-    padding: 12px 15px;
+.site-header {
+    background: var(--white);
+    border-bottom: 4px solid var(--green);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-    color: #17351f;
-    background: #e9f7ef;
+.header-container {
+    width: min(1200px, 94%);
+    min-height: 82px;
+    margin: 0 auto;
 
-    border: 1px solid #b9dec5;
-    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    font-size: 14px;
-    font-weight: 600;
+    gap: 20px;
+}
 
-    min-height: 0;
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--black);
+    text-decoration: none;
+    min-width: 0;
+}
+
+.site-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    min-width: 0;
+}
+
+.logo-text h1 {
+    margin: 0;
+    color: var(--green);
+    font-size: 19px;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    margin: 3px 0 0;
+    font-weight: bold;
+    color: var(--dark-green);
 }
 
 
 /* =========================================================
-   ADMIN LOGIN CARD
+   NAVIGATION
+========================================================= */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.main-nav a {
+    padding: 10px 12px;
+    border-radius: 7px;
+
+    color: var(--black);
+    font-weight: 600;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    background: var(--green);
+    color: var(--white);
+}
+
+.menu-btn {
+    display: none;
+
+    border: 0;
+    background: var(--green);
+    color: var(--white);
+
+    padding: 10px 14px;
+    border-radius: 7px;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(23, 53, 31, .96),
+            rgba(22, 131, 59, .90)
+        );
+
+    color: var(--white);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 720px;
+    padding: 70px 0;
+}
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: #dff5e7;
+}
+
+.hero h2 {
+    margin: 0 0 18px;
+
+    font-size: clamp(36px, 6vw, 62px);
+    line-height: 1.05;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: 0 0 20px;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    color: #f1fff5;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+    padding: 70px 0;
+}
+
+.light-section {
+    background: var(--very-light);
+}
+
+.section-title {
+    max-width: 800px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.section-title span {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    margin: 0 0 12px;
+
+    color: var(--dark-green);
+
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.section-title p {
+    margin: 0 auto;
+    color: var(--gray);
+    max-width: 750px;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.button,
+.btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    border: 2px solid var(--green);
+
+    background: var(--green);
+    color: var(--white);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease,
+        box-shadow .2s ease;
+}
+
+.button:hover,
+.btn:hover {
+    background: var(--dark-green);
+    border-color: var(--dark-green);
+    color: var(--white);
+
+    transform: translateY(-2px);
+}
+
+.signup-button {
+    background: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+}
+
+.login-button {
+    background: var(--white);
+    color: var(--green);
+    border-color: var(--white);
+}
+
+.login-button:hover {
+    background: var(--light-green);
+    color: var(--dark-green);
+}
+
+.primary {
+    background: var(--green);
+    color: var(--white);
+    border-color: var(--green);
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.feature-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--green);
+
+    border-radius: 14px;
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 35px
+        rgba(0, 80, 40, .14);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--light-green);
+
+    font-size: 32px;
+}
+
+.feature-card h3 {
+    margin: 0 0 10px;
+    color: var(--dark-green);
+    font-size: 20px;
+}
+
+.feature-card p {
+    margin: 0;
+    color: var(--gray);
+}
+
+
+/* =========================================================
+   WARDS GRID
+========================================================= */
+
+.wards-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.ward-button {
+    min-height: 65px;
+
+    padding: 15px;
+
+    border: 2px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--white);
+    color: var(--dark-green);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.ward-button:hover,
+.ward-button.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(22, 131, 59, .18);
+}
+
+
+/* =========================================================
+   WARD DISPLAY
+========================================================= */
+
+.ward-display {
+    margin-top: 25px;
+}
+
+.empty-state {
+    padding: 35px;
+
+    text-align: center;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+}
+
+.empty-state h3 {
+    margin: 10px 0;
+
+    color: var(--dark-green);
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: var(--gray);
+}
+
+.empty-icon {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   MEMBER DIRECTORY
+========================================================= */
+
+.member-directory {
+    margin-top: 35px;
+}
+
+.member-directory-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin-bottom: 20px;
+}
+
+.member-directory-header h3 {
+    margin: 0;
+    color: var(--dark-green);
+}
+
+.member-count {
+    background: var(--green);
+    color: var(--white);
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.members-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 18px;
+}
+
+.member-card {
+    background: var(--white);
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, .07);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+    border: 1px solid var(--border);
+}
+
+.member-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 9px 28px
+        rgba(0, 0, 0, .12);
+}
+
+.member-card h4 {
+    margin: 0 0 12px;
+
+    color: var(--green);
+
+    font-size: 18px;
+}
+
+.member-card p {
+    margin: 7px 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+.approved-badge {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: var(--light-green);
+
+    color: #12652c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.loading-members,
+.no-members {
+    background: var(--white);
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    color: var(--gray);
+}
+
+.loading-members {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   MEMBER MODAL
+========================================================= */
+
+.member-modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: rgba(0, 40, 20, .65);
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
+
+.member-modal.show {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.member-modal-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+
+    background: var(--white);
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border-top: 5px solid var(--green);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, .20);
+}
+
+.member-modal-box h2 {
+    margin-top: 0;
+
+    color: var(--green);
+
+    padding-right: 35px;
+}
+
+.close-member-modal {
+    position: absolute;
+
+    right: 15px;
+    top: 15px;
+
+    width: 38px;
+    height: 38px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: var(--light-green);
+
+    color: var(--dark-green);
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.close-member-modal:hover {
+    background: var(--green);
+    color: var(--white);
+}
+
+.member-detail {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.member-detail strong {
+    color: #555;
+}
+
+.member-detail span {
+    text-align: right;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+.status-approved {
+    color: #12652c;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
+.form-container {
+    width: 100%;
+    max-width: 620px;
+
+    margin: 50px auto;
+
+    padding: 35px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-top: 6px solid var(--green);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 80, 40, .12);
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label,
+form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--dark-green);
+
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+form input,
+form textarea,
+form select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 2px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--very-light);
+
+    color: var(--black);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--green);
+
+    background: var(--white);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(22, 131, 59, .10);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+form input::placeholder,
+form textarea::placeholder {
+    color: #8a968e;
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
 ========================================================= */
 
 #adminLogin {
@@ -59,25 +846,20 @@
 
     margin: 60px auto;
 
-    background: #ffffff;
-
     padding: 40px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-top: 6px solid var(--green);
 
     border-radius: 20px;
 
-    border: 1px solid #dce8df;
-
-    border-top: 6px solid #16833b;
-
     box-shadow:
         0 15px 45px
-        rgba(0, 80, 40, 0.12);
+        rgba(0, 80, 40, .12);
 }
-
-
-/* =========================================================
-   ADMIN LOGIN TITLE
-========================================================= */
 
 #adminLogin .section-title {
     margin-bottom: 30px;
@@ -87,63 +869,37 @@
 #adminLogin .section-title h2 {
     margin: 0 0 8px;
 
-    color: #17351f;
+    color: var(--dark-green);
 
     font-size: 30px;
-    line-height: 1.2;
 }
 
 #adminLogin .section-title p {
     margin: 0;
 
-    color: #66736a;
+    color: var(--gray);
 
     font-size: 15px;
 }
 
-
-/* =========================================================
-   ADMIN LOGIN FORM
-========================================================= */
-
-#adminLoginForm {
-    width: 100%;
-}
-
-
-/* =========================================================
-   FORM GROUP
-========================================================= */
-
 #adminLogin .form-group {
     margin-bottom: 22px;
 }
-
-
-/* =========================================================
-   LABEL
-========================================================= */
 
 #adminLogin label {
     display: block;
 
     margin-bottom: 8px;
 
-    color: #17351f;
+    color: var(--dark-green);
 
     font-size: 15px;
 
     font-weight: 700;
 }
 
-
-/* =========================================================
-   EMAIL + PASSWORD INPUT BOXES
-========================================================= */
-
 #adminLogin input[type="email"],
 #adminLogin input[type="password"] {
-
     display: block;
 
     width: 100%;
@@ -151,20 +907,15 @@
 
     padding: 0 16px;
 
-    border: 2px solid #dce8df;
+    border: 2px solid var(--border);
 
     border-radius: 10px;
 
-    background: #f7faf8;
+    background: var(--very-light);
 
-    color: #172018;
+    color: var(--black);
 
     font-size: 16px;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
 
     outline: none;
 
@@ -174,39 +925,23 @@
         box-shadow .2s ease;
 }
 
-
-/* =========================================================
-   INPUT FOCUS
-========================================================= */
-
 #adminLogin input[type="email"]:focus,
 #adminLogin input[type="password"]:focus {
+    border-color: var(--green);
 
-    border-color: #16833b;
-
-    background: #ffffff;
+    background: var(--white);
 
     box-shadow:
         0 0 0 4px
-        rgba(22, 131, 59, 0.10);
+        rgba(22, 131, 59, .10);
 }
-
-
-/* =========================================================
-   INPUT PLACEHOLDER
-========================================================= */
 
 #adminLogin input::placeholder {
     color: #8a968e;
 }
 
-
-/* =========================================================
-   ADMIN LOGIN BUTTON
-========================================================= */
-
-#adminLogin .btn.primary {
-
+#adminLogin .btn.primary,
+#adminLogin #adminLoginBtn {
     display: block;
 
     width: 100%;
@@ -214,22 +949,17 @@
 
     padding: 0 20px;
 
-    border: none;
+    border: 0;
 
     border-radius: 10px;
 
-    background: #16833b;
+    background: var(--green);
 
-    color: #ffffff;
+    color: var(--white);
 
     font-size: 16px;
 
     font-weight: 700;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
 
     cursor: pointer;
 
@@ -239,48 +969,29 @@
         box-shadow .2s ease;
 }
 
-
-/* =========================================================
-   LOGIN BUTTON HOVER
-========================================================= */
-
-#adminLogin .btn.primary:hover {
-
-    background: #17351f;
+#adminLogin .btn.primary:hover,
+#adminLogin #adminLoginBtn:hover {
+    background: var(--dark-green);
 
     transform: translateY(-2px);
 
     box-shadow:
         0 8px 20px
-        rgba(22, 131, 59, 0.20);
+        rgba(22, 131, 59, .20);
 }
-
-
-/* =========================================================
-   LOGIN BUTTON CLICK
-========================================================= */
-
-#adminLogin .btn.primary:active {
-
-    transform: translateY(0);
-
-    box-shadow: none;
-}
-
-
-/* =========================================================
-   LOGIN MESSAGE
-========================================================= */
 
 #adminLoginMessage {
-
     margin-top: 18px;
 
-    padding: 0;
+    padding: 10px;
 
     text-align: center;
 
-    color: #17351f;
+    color: var(--dark-green);
+
+    background: var(--light-green);
+
+    border-radius: 8px;
 
     font-size: 14px;
 
@@ -296,13 +1007,7 @@
     width: 100%;
 }
 
-
-/* =========================================================
-   ADMIN HEADER
-========================================================= */
-
 .admin-header {
-
     display: flex;
 
     align-items: center;
@@ -317,38 +1022,30 @@
 
     padding: 25px;
 
-    background: #ffffff;
+    background: var(--white);
 
     border-radius: 16px;
 
-    border: 1px solid #dce8df;
+    border: 1px solid var(--border);
 
-    border-left: 5px solid #16833b;
+    border-left: 5px solid var(--green);
 
     box-shadow: var(--shadow);
 }
 
 .admin-header h2 {
-
     margin: 0 0 5px;
 
-    color: #17351f;
+    color: var(--dark-green);
 }
 
 .admin-header p {
-
     margin: 0;
 
-    color: #66736a;
+    color: var(--gray);
 }
 
-
-/* =========================================================
-   DASHBOARD STATISTICS
-========================================================= */
-
 .dashboard-stats {
-
     display: grid;
 
     grid-template-columns:
@@ -360,83 +1057,66 @@
 }
 
 .stat-card {
-
     padding: 25px;
 
     text-align: center;
 
-    background: #ffffff;
+    background: var(--white);
 
-    border: 1px solid #dce8df;
+    border: 1px solid var(--border);
 
-    border-top: 4px solid #16833b;
+    border-top: 4px solid var(--green);
 
     border-radius: 14px;
 
     box-shadow:
         0 8px 25px
-        rgba(0, 80, 40, 0.08);
+        rgba(0, 80, 40, .08);
 }
 
 .stat-card h3 {
-
     margin: 0;
 
-    color: #16833b;
+    color: var(--green);
 
     font-size: 32px;
 }
 
 .stat-card p {
-
     margin: 5px 0 0;
 
-    color: #66736a;
+    color: var(--gray);
 
     font-weight: 600;
 }
 
-
-/* =========================================================
-   ADMIN SECTIONS
-========================================================= */
-
 .admin-section {
-
     margin-bottom: 30px;
 
     padding: 28px;
 
-    background: #ffffff;
+    background: var(--white);
 
-    border: 1px solid #dce8df;
+    border: 1px solid var(--border);
 
     border-radius: 16px;
 
     box-shadow:
         0 8px 25px
-        rgba(0, 80, 40, 0.08);
+        rgba(0, 80, 40, .08);
 }
 
 .admin-section h2 {
-
     margin-top: 0;
 
-    color: #17351f;
+    color: var(--dark-green);
 }
 
 .admin-section p {
-
-    color: #66736a;
+    color: var(--gray);
 }
 
-
-/* =========================================================
-   ADMIN SECTION HEADER
-========================================================= */
-
 .admin-section-header {
-
     display: flex;
 
     align-items: center;
@@ -450,57 +1130,14 @@
     margin-bottom: 20px;
 }
 
-
-/* =========================================================
-   ADMIN BUTTONS
-========================================================= */
-
-.admin-section .btn,
-.admin-header .btn {
-
-    display: inline-block;
-
-    padding: 11px 18px;
-
-    border: 2px solid #16833b;
-
-    border-radius: 9px;
-
-    background: #16833b;
-
-    color: #ffffff;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: .2s ease;
-}
-
-.admin-section .btn:hover,
-.admin-header .btn:hover {
-
-    background: #17351f;
-
-    border-color: #17351f;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
 .loading {
-
     padding: 30px;
 
     text-align: center;
 
-    color: #16833b;
+    color: var(--green);
 
-    background: #f7faf8;
+    background: var(--very-light);
 
     border-radius: 10px;
 
@@ -509,22 +1146,411 @@
 
 
 /* =========================================================
-   FULL WIDTH BUTTON
+   FORM MESSAGES
 ========================================================= */
 
-.full-width {
-    width: 100%;
+.form-message {
+    margin-top: 15px;
+
+    padding: 11px 14px;
+
+    color: var(--dark-green);
+
+    background: var(--light-green);
+
+    border: 1px solid #b9dec5;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
 }
 
 
 /* =========================================================
-   MOBILE ADMIN LOGIN
+   EXECUTIVE MANAGEMENT
 ========================================================= */
 
-@media (max-width: 700px) {
+.exco-manager {
+    display: grid;
 
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 18px;
+}
+
+.exco-card {
+    padding: 20px;
+
+    background: var(--very-light);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+}
+
+.exco-card h3 {
+    margin-top: 0;
+
+    color: var(--dark-green);
+}
+
+
+/* =========================================================
+   ORGANIZATIONAL TREE
+========================================================= */
+
+.exco-tree-section {
+    background: var(--very-light);
+}
+
+.org-tree {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    text-align: center;
+}
+
+.tree-level {
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+}
+
+.tree-card {
+    width: 280px;
+
+    padding: 25px 20px;
+
+    background: var(--white);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, .08);
+
+    border: 2px solid var(--border);
+
+    transition:
+        transform .2s ease;
+}
+
+.tree-card:hover {
+    transform: translateY(-5px);
+}
+
+.tree-card h3 {
+    margin: 10px 0 8px;
+
+    color: var(--dark-green);
+
+    font-size: 18px;
+}
+
+.tree-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+}
+
+.tree-position {
+    margin: 0 0 12px;
+
+    color: var(--green);
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+.tree-phone {
+    display: inline-block;
+
+    color: #333333;
+
+    font-weight: 600;
+
+    font-size: 15px;
+}
+
+.tree-phone:hover {
+    color: var(--green);
+}
+
+.state-card {
+    background: var(--dark-green);
+    color: var(--white);
+
+    border-color: var(--dark-green);
+}
+
+.state-card h3 {
+    color: var(--white);
+}
+
+.state-card .tree-position {
+    color: var(--white);
+}
+
+.state-card .tree-phone {
+    color: var(--white);
+}
+
+.state-card .tree-icon {
+    background: var(--white);
+    color: var(--dark-green);
+}
+
+.assistant-card {
+    border: 3px solid #2d8f4e;
+}
+
+.assistant-card .tree-icon {
+    background: #2d8f4e;
+}
+
+.coordinator-main {
+    border: 3px solid var(--green);
+}
+
+.coordinator-main h3 {
+    font-size: 21px;
+}
+
+.tree-line {
+    width: 3px;
+
+    height: 45px;
+
+    background: var(--green);
+
+    margin: 0 auto;
+}
+
+.tree-branches {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+}
+
+.tree-branches::before {
+    content: "";
+
+    position: absolute;
+
+    top: -22px;
+
+    left: calc(16.666% + 12px);
+
+    right: calc(16.666% + 12px);
+
+    height: 3px;
+
+    background: var(--green);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    background: var(--dark-green);
+
+    color: var(--white);
+
+    padding: 45px 0 20px;
+
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 40px;
+
+    flex-wrap: wrap;
+}
+
+.footer-content h3 {
+    margin-top: 0;
+
+    color: var(--white);
+}
+
+.footer-content p {
+    color: #dceee2;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,.15);
+
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #dceee2;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .menu-btn {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+
+        position: absolute;
+
+        top: 82px;
+
+        left: 0;
+        right: 0;
+
+        padding: 15px;
+
+        background: var(--white);
+
+        border-bottom: 3px solid var(--green);
+
+        box-shadow:
+            0 10px 25px
+            rgba(0, 0, 0, .08);
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .main-nav.show,
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav a {
+        text-align: center;
+    }
+
+    .feature-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .wards-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .tree-branches {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .tree-branches::before {
+        display: none;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header-container {
+        min-height: 72px;
+    }
+
+    .site-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo-text h1 {
+        font-size: 14px;
+    }
+
+    .logo-text p {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 380px;
+    }
+
+    .hero-text {
+        padding: 50px 0;
+    }
+
+    .hero h2 {
+        font-size: 38px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wards-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .form-container,
     #adminLogin {
-
         width: 92%;
 
         margin: 35px auto;
@@ -535,127 +1561,73 @@
     }
 
     #adminLogin .section-title h2 {
-
         font-size: 25px;
     }
-/* =========================================================
-   FORCE NO RED — FINAL OVERRIDE
-========================================================= */
 
-/* Remove red from validation */
-input:invalid,
-input:valid,
-input:focus:invalid,
-input:focus:valid,
-textarea:invalid,
-textarea:valid,
-select:invalid,
-select:valid {
-    border-color: #dce8df !important;
-    box-shadow: none !important;
+    #adminLogin input[type="email"],
+    #adminLogin input[type="password"] {
+        height: 50px;
+        font-size: 15px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-section {
+        padding: 20px;
+    }
+
+    .member-detail {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .member-detail span {
+        text-align: left;
+    }
+
+    .member-modal-box {
+        padding: 22px;
+    }
+
+    .tree-branches {
+        grid-template-columns: 1fr;
+    }
+
+    .tree-card {
+        width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+
+        gap: 15px;
+    }
 }
 
-/* Focus should always be green */
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: #16833b !important;
-    outline: none !important;
-}
 
-/* Force buttons green */
-button,
-.btn,
-.button,
-input[type="submit"],
-input[type="button"] {
-    background: #16833b !important;
-    border-color: #16833b !important;
-    color: #ffffff !important;
-}
+@media (max-width: 400px) {
 
-/* Button hover */
-button:hover,
-.btn:hover,
-.button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover {
-    background: #17351f !important;
-    border-color: #17351f !important;
-    color: #ffffff !important;
-}
+    .logo-text h1 {
+        font-size: 12px;
+    }
 
-/* Admin input boxes */
-#adminLogin input,
-#adminLogin textarea,
-#adminLogin select {
-    background: #f7faf8 !important;
-    border: 2px solid #dce8df !important;
-    color: #172018 !important;
-}
+    .logo-text p {
+        font-size: 11px;
+    }
 
-/* Admin input focus */
-#adminLogin input:focus,
-#adminLogin textarea:focus,
-#adminLogin select:focus {
-    background: #ffffff !important;
-    border: 2px solid #16833b !important;
-    box-shadow: 0 0 0 4px rgba(22,131,59,.10) !important;
-}
+    .wards-grid {
+        grid-template-columns: 1fr;
+    }
 
-/* No red error messages */
-.error,
-.error-message,
-.form-error,
-.alert-error,
-.danger,
-.text-danger,
-.error-text {
-    color: #17351f !important;
-    background: #e9f7ef !important;
-    border-color: #b9dec5 !important;
-}
+    #adminLogin {
+        width: 94%;
+        padding: 24px 18px;
+    }
 
-/* Admin login message */
-#adminLoginMessage {
-    color: #17351f !important;
-    background: transparent !important;
-    border-color: transparent !important;
+    #adminLogin .section-title h2 {
+        font-size: 23px;
+    }
 }
-
-/* Admin login card */
-#adminLogin {
-    background: #ffffff !important;
-    border: 1px solid #dce8df !important;
-    border-top: 6px solid #16833b !important;
-    box-shadow: 0 15px 45px rgba(0,80,40,.12) !important;
-}
-
-/* Admin heading */
-#adminLogin h2 {
-    color: #17351f !important;
-}
-
-/* Admin labels */
-#adminLogin label {
-    color: #17351f !important;
-}
-
-/* Admin login button */
-#adminLogin #adminLoginBtn {
-    background: #16833b !important;
-    border: 2px solid #16833b !important;
-    color: #ffffff !important;
-}
-
-/* Admin login button hover */
-#adminLogin #adminLoginBtn:hover {
-    background: #17351f !important;
-    border-color: #17351f !important;
-}
-
-/* Remove browser red outline */
-*:focus-visible {
-    outline-color: #16833b !important;
-}
-   
