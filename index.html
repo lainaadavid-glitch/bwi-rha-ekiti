@@ -13,286 +13,755 @@
 >
 
 <title>
-    BWI-RHA Ado LG | Member Access
+    BWI-RHA Ekiti State Chapter | Ado LG
 </title>
 
-<style>
-
-    * {
-        box-sizing: border-box;
-    }
-
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-    }
-
-    body {
-        min-height: 100vh;
-        font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-        background:
-            linear-gradient(
-                135deg,
-                #f4f7f5,
-                #e9f4ec
-            );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .welcome-wrapper {
-        width: 100%;
-        max-width: 520px;
-    }
-
-    .welcome-card {
-        width: 100%;
-        background: #ffffff;
-        border-radius: 22px;
-        padding: 45px 35px;
-        text-align: center;
-        box-shadow:
-            0 15px 45px
-            rgba(0, 0, 0, 0.12);
-    }
-
-    .logo-container {
-        margin-bottom: 22px;
-    }
-
-    .logo-container img {
-        width: 125px;
-        height: 125px;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .welcome-card h1 {
-        margin: 0;
-        font-size: 27px;
-        line-height: 1.25;
-        color: #17351f;
-    }
-
-    .organization {
-        margin-top: 8px;
-        font-size: 15px;
-        font-weight: 700;
-        color: #16833b;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-    }
-
-    .description {
-        margin: 20px auto 30px;
-        max-width: 400px;
-        color: #666;
-        line-height: 1.6;
-        font-size: 15px;
-    }
-
-    .buttons {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .button {
-        flex: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 50px;
-        padding: 13px 20px;
-        border-radius: 9px;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 700;
-        transition:
-            transform .15s ease,
-            opacity .15s ease;
-    }
-
-    .button:hover {
-        transform: translateY(-2px);
-        opacity: .9;
-    }
-
-    .signup-button {
-        background: #16833b;
-        color: #ffffff;
-    }
-
-    .login-button {
-        background: #ffffff;
-        color: #16833b;
-        border: 2px solid #16833b;
-    }
-
-    .admin-link {
-        display: inline-block;
-        margin-top: 27px;
-        color: #555;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .admin-link:hover {
-        color: #16833b;
-        text-decoration: underline;
-    }
-
-    .footer-text {
-        margin-top: 25px;
-        color: #888;
-        font-size: 12px;
-        line-height: 1.5;
-    }
-
-    @media (max-width: 520px) {
-
-        body {
-            padding: 15px;
-        }
-
-        .welcome-card {
-            padding: 35px 22px;
-        }
-
-        .welcome-card h1 {
-            font-size: 23px;
-        }
-
-        .buttons {
-            flex-direction: column;
-        }
-
-        .button {
-            width: 100%;
-        }
-
-    }
-
-</style>
+<link
+    rel="stylesheet"
+    href="style.css"
+>
 ```
 
 </head>
 
 <body>
 
-<div class="welcome-wrapper">
+<header class="site-header">
 
 ```
-<main class="welcome-card">
+<div class="header-container">
 
 
     <!-- LOGO -->
 
-    <div class="logo-container">
+    <a
+        href="index.html"
+        class="logo-area"
+    >
 
         <img
             src="logo.jpeg"
             alt="BWI-RHA Logo"
+            class="site-logo"
         >
 
-    </div>
+        <div class="logo-text">
 
+            <h1>
+                BWI-RHA EKITI STATE CHAPTER
+            </h1>
 
-    <!-- TITLE -->
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
 
-    <h1>
-        Welcome to BWI-RHA
-    </h1>
-
-
-    <div class="organization">
-
-        Ekiti State Chapter —
-        Ado Local Government
-
-    </div>
-
-
-    <!-- DESCRIPTION -->
-
-    <p class="description">
-
-        Welcome to the BWI-RHA Ado Local Government
-        membership portal.
-
-        New members can create an account,
-        while existing members can sign in
-        to access their individual dashboard.
-
-    </p>
-
-
-    <!-- MEMBER BUTTONS -->
-
-    <div class="buttons">
-
-
-        <a
-            href="register.html"
-            class="button signup-button"
-        >
-
-            Sign Up
-
-        </a>
-
-
-        <a
-            href="member-login.html"
-            class="button login-button"
-        >
-
-            Login
-
-        </a>
-
-
-    </div>
-
-
-    <!-- ADMIN -->
-
-    <a
-        href="login.html"
-        class="admin-link"
-    >
-
-        Admin Login
+        </div>
 
     </a>
 
 
-    <!-- FOOTER -->
+    <!-- MOBILE MENU -->
 
-    <div class="footer-text">
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuButton"
+        aria-label="Open menu"
+    >
+        ☰
+    </button>
 
-        BWI-RHA Ekiti State Chapter<br>
 
-        Ado Local Government
+    <!-- NAVIGATION -->
+
+    <nav
+        class="main-nav"
+        id="mobileNav"
+    >
+
+        <a
+            href="index.html"
+            class="active"
+        >
+            Home
+        </a>
+
+        <a href="wards.html">
+            Wards
+        </a>
+
+        <a href="member-signup.html">
+            Sign Up
+        </a>
+
+        <a href="member-login.html">
+            Login
+        </a>
+
+        <a href="admin.html">
+            Admin
+        </a>
+
+    </nav>
+
+</div>
+```
+
+</header>
+
+<main>
+
+```
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container hero-content">
+
+
+        <div class="hero-text">
+
+            <span class="hero-label">
+                BWI-RHA EKITI STATE CHAPTER
+            </span>
+
+
+            <h2>
+                ADO LOCAL GOVERNMENT
+            </h2>
+
+
+            <p>
+                Building an inclusive community
+                through women empowerment,
+                youth participation and
+                community development.
+            </p>
+
+
+            <!-- ACCOUNT BUTTONS -->
+
+            <div class="buttons">
+
+
+                <!-- IMPORTANT:
+                     This goes to ACCOUNT CREATION,
+                     NOT register.html -->
+
+                <a
+                    href="member-signup.html"
+                    class="button signup-button"
+                >
+                    Sign Up
+                </a>
+
+
+                <!-- MEMBER LOGIN -->
+
+                <a
+                    href="member-login.html"
+                    class="button login-button"
+                >
+                    Login
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+
+<section class="section light-section">
+
+    <div class="container">
+
+
+        <div class="section-title">
+
+            <span>
+                ABOUT BWI-RHA
+            </span>
+
+            <h2>
+                Empowering Our Community
+            </h2>
+
+            <p>
+                BWI-RHA Ado Local Government
+                provides a structured platform
+                for members to participate in
+                community development and
+                empowerment activities.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    👩‍💼
+                </div>
+
+                <h3>
+                    Women Empowerment
+                </h3>
+
+                <p>
+                    Supporting women through
+                    opportunities, development
+                    programmes and participation.
+                </p>
+
+            </article>
+
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    Community
+                </h3>
+
+                <p>
+                    Connecting members across
+                    the 13 wards of Ado Local
+                    Government.
+                </p>
+
+            </article>
+
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Development
+                </h3>
+
+                <p>
+                    Promoting sustainable
+                    community development
+                    initiatives.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- WARDS -->
+
+<section class="section">
+
+    <div class="container">
+
+
+        <div class="section-title">
+
+            <span>
+                OUR STRUCTURE
+            </span>
+
+            <h2>
+                13 Wards
+            </h2>
+
+            <p>
+                Explore the wards of
+                BWI-RHA Ado Local Government.
+            </p>
+
+        </div>
+
+
+        <div class="wards-preview">
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    01
+                </span>
+
+                <strong>
+                    Ward 1
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    02
+                </span>
+
+                <strong>
+                    Ward 2
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    03
+                </span>
+
+                <strong>
+                    Ward 3
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    04
+                </span>
+
+                <strong>
+                    Ward 4
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    05
+                </span>
+
+                <strong>
+                    Ward 5
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    06
+                </span>
+
+                <strong>
+                    Ward 6
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    07
+                </span>
+
+                <strong>
+                    Ward 7
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    08
+                </span>
+
+                <strong>
+                    Ward 8
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    09
+                </span>
+
+                <strong>
+                    Ward 9
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    10
+                </span>
+
+                <strong>
+                    Ward 10
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    11
+                </span>
+
+                <strong>
+                    Ward 11
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    12
+                </span>
+
+                <strong>
+                    Ward 12
+                </strong>
+
+            </a>
+
+
+            <a
+                href="wards.html"
+                class="ward-preview-card"
+            >
+
+                <span>
+                    13
+                </span>
+
+                <strong>
+                    Ward 13
+                </strong>
+
+            </a>
+
+
+        </div>
+
+
+        <div
+            style="
+                text-align:center;
+                margin-top:30px;
+            "
+        >
+
+            <a
+                href="wards.html"
+                class="button"
+            >
+                View All Wards
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- MEMBERSHIP -->
+
+<section class="section light-section">
+
+    <div class="container">
+
+
+        <div class="section-title">
+
+            <span>
+                BECOME A MEMBER
+            </span>
+
+            <h2>
+                Join BWI-RHA Ado LG
+            </h2>
+
+            <p>
+                Create your account and
+                complete your membership
+                registration.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    1️⃣
+                </div>
+
+                <h3>
+                    Create Account
+                </h3>
+
+                <p>
+                    Create your personal
+                    account with your email
+                    and password.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    2️⃣
+                </div>
+
+                <h3>
+                    Complete Registration
+                </h3>
+
+                <p>
+                    Select your ward and
+                    provide your membership
+                    information.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-icon">
+                    3️⃣
+                </div>
+
+                <h3>
+                    Await Approval
+                </h3>
+
+                <p>
+                    Your registration will
+                    remain pending until it is
+                    reviewed by an administrator.
+                </p>
+
+            </article>
+
+
+        </div>
+
+
+        <div
+            style="
+                text-align:center;
+                margin-top:30px;
+            "
+        >
+
+            <a
+                href="member-signup.html"
+                class="button signup-button"
+            >
+                Create My Account
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+```
+<div class="container">
+
+    <div class="footer-content">
+
+
+        <div>
+
+            <h3>
+                BWI-RHA EKITI STATE CHAPTER
+            </h3>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p>
+                Green Economy E-Mobility Program
+            </p>
+
+            <p>
+                Empowering women, youths and
+                persons with disabilities.
+            </p>
+
+        </div>
+
 
     </div>
 
 
-</main>
-```
+    <div class="footer-bottom">
+
+        <p>
+
+            ©
+            <span id="currentYear"></span>
+
+            BWI-RHA Ekiti State Chapter.
+
+            All rights reserved.
+
+        </p>
+
+    </div>
 
 </div>
+```
+
+</footer>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const year =
+            document.getElementById(
+                "currentYear"
+            );
+
+        if(year){
+
+            year.textContent =
+                new Date().getFullYear();
+
+        }
+
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
+
+        const mobileNav =
+            document.getElementById(
+                "mobileNav"
+            );
+
+
+        if(
+            menuButton &&
+            mobileNav
+        ){
+
+            menuButton.addEventListener(
+                "click",
+                function(){
+
+                    mobileNav.classList.toggle(
+                        "open"
+                    );
+
+                }
+            );
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 
