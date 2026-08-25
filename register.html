@@ -1,125 +1,19 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Register | BWI-RHA Ado LG</title>
+    <title>
+        Registration | BWI-RHA Ekiti State Chapter
+    </title>
 
-<link rel="stylesheet" href="style.css">
-
-<style>
-    .registration-page {
-        min-height: 70vh;
-        padding: 60px 20px;
-    }
-
-    .registration-box {
-        max-width: 650px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 35px;
-        border-radius: 18px;
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
-    }
-
-    .registration-title {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .registration-title h2 {
-        margin-bottom: 10px;
-    }
-
-    .registration-title p {
-        margin: 0;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 700;
-    }
-
-    .form-group input,
-    .form-group select {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 14px;
-        border: 1px solid #d5d5d5;
-        border-radius: 8px;
-        font-size: 16px;
-        background: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-        outline: none;
-        border-color: #16833b;
-        box-shadow: 0 0 0 3px rgba(22, 131, 59, 0.1);
-    }
-
-    .required {
-        color: #d00000;
-    }
-
-    #submitButton {
-        width: 100%;
-        border: none;
-        cursor: pointer;
-        padding: 15px;
-        font-size: 16px;
-    }
-
-    #submitButton:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
-    .form-message {
-        display: none;
-        margin-top: 20px;
-        padding: 14px;
-        border-radius: 8px;
-        line-height: 1.5;
-    }
-
-    .form-message.show {
-        display: block;
-    }
-
-    .form-message.success {
-        background: #e8f7ed;
-        color: #116b2d;
-        border: 1px solid #a9dfb8;
-    }
-
-    .form-message.error {
-        background: #fff0f0;
-        color: #a40000;
-        border: 1px solid #efb0b0;
-    }
-
-    .form-message.info {
-        background: #eef6ff;
-        color: #14528a;
-        border: 1px solid #b7d6f5;
-    }
-
-    .ward-help {
-        margin-top: 7px;
-        font-size: 13px;
-        opacity: 0.75;
-    }
-</style>
-
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -127,767 +21,370 @@
 
 <header class="site-header">
 
+    <div class="header-container">
 
-<div class="header-container">
+        <a href="index.html" class="logo-area">
 
-    <a href="index.html" class="logo-area">
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
 
-        <img
-            src="logo.jpeg"
-            alt="BWI-RHA Logo"
-            class="site-logo"
+            <div class="logo-text">
+
+                <h1>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h1>
+
+                <p>
+                    ADO LG
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+        >
+            ☰
+        </button>
+
+
+        <nav
+            class="main-nav"
+            id="navMenu"
         >
 
-        <div class="logo-text">
+            <a href="index.html">
+                Home
+            </a>
 
-            <h1>
-                BWI-RHA EKITI STATE CHAPTER
-            </h1>
+            <a href="wards.html">
+                Wards
+            </a>
 
-            <p>
-                ADO LOCAL GOVERNMENT
-            </p>
+            <a href="login.html">
+                Login
+            </a>
 
-        </div>
+            <a href="register.html"
+               class="active">
+                Registration
+            </a>
 
-    </a>
+            <a href="admin.html">
+                Admin
+            </a>
 
-    <button
-        type="button"
-        class="menu-btn"
-        id="menuButton"
-        aria-label="Open menu"
-    >
-        ☰
-    </button>
+        </nav>
 
-    <nav
-        class="main-nav"
-        id="mobileNav"
-    >
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="wards.html">
-            Wards
-        </a>
-
-        <a
-            href="register.html"
-            class="active"
-        >
-            Register
-        </a>
-
-        <a href="admin.html">
-            Admin
-        </a>
-
-    </nav>
-
-</div>
-
+    </div>
 
 </header>
 
-<main>
 
+<section class="page-header">
 
-<section class="hero">
+    <div class="container">
 
-    <div class="container hero-content">
-
-        <div class="hero-text">
-
-            <span class="hero-label">
-                BWI-RHA ADO LOCAL GOVERNMENT
-            </span>
-
-            <h2>
-                Membership Registration
-            </h2>
-
-            <p>
-                EKITI STATE WOMEN OF INFLUENCE
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="registration-page">
-
-    <div class="registration-box">
-
-        <div class="registration-title">
-
-            <h2>
-                EKITI STATE WOMEN OF INFLUENCE
-            </h2>
-
-            <p>
-                ADO LOCAL GOVERNMENT
-            </p>
-
-            <p>
-                Please complete the registration form below.
-            </p>
-
-        </div>
-
-
-        <form
-            id="registrationForm"
-            novalidate
-        >
-
-            <!-- NAME -->
-
-            <div class="form-group">
-
-                <label for="fullName">
-                    Name
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="fullName"
-                    name="full_name"
-                    placeholder="Enter full name"
-                    autocomplete="name"
-                    required
-                >
-
-            </div>
-
-
-            <!-- PHONE -->
-
-            <div class="form-group">
-
-                <label for="phone">
-                    Phone No
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="08012345678"
-                    autocomplete="tel"
-                    required
-                >
-
-            </div>
-
-
-            <!-- BANK -->
-
-            <div class="form-group">
-
-                <label for="bankName">
-                    Bank Name
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="bankName"
-                    name="bank_name"
-                    placeholder="Enter bank name"
-                    required
-                >
-
-            </div>
-
-
-            <!-- ACCOUNT -->
-
-            <div class="form-group">
-
-                <label for="accountNumber">
-                    Account No
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="accountNumber"
-                    name="account_number"
-                    placeholder="Enter 10-digit account number"
-                    inputmode="numeric"
-                    maxlength="10"
-                    minlength="10"
-                    autocomplete="off"
-                    required
-                >
-
-            </div>
-
-
-            <!-- WARD -->
-
-            <div class="form-group">
-
-                <label for="ward">
-                    Ward
-                    <span class="required">*</span>
-                </label>
-
-                <select
-                    id="ward"
-                    name="ward_id"
-                    required
-                >
-
-                    <option value="">
-                        Select your ward
-                    </option>
-
-                    <option value="1">
-                        Ward 1 — Ado A — Idofin
-                    </option>
-
-                    <option value="2">
-                        Ward 2 — Ado B — Inisa
-                    </option>
-
-                    <option value="3">
-                        Ward 3 — Ado C — Idolofin
-                    </option>
-
-                    <option value="4">
-                        Ward 4 — Ado D — Ijigbo
-                    </option>
-
-                    <option value="5">
-                        Ward 5 — Ado E — Ijoka / Orereowu
-                    </option>
-
-                    <option value="6">
-                        Ward 6 — Ado F — Okeyinmi
-                    </option>
-
-                    <option value="7">
-                        Ward 7 — Ado G — Oke Ila
-                    </option>
-
-                    <option value="8">
-                        Ward 8 — Ado H — Ereguru
-                    </option>
-
-                    <option value="9">
-                        Ward 9 — Ado I — Dallimore
-                    </option>
-
-                    <option value="10">
-                        Ward 10 — Ado J — Okesa
-                    </option>
-
-                    <option value="11">
-                        Ward 11 — Ado K — Irona
-                    </option>
-
-                    <option value="12">
-                        Ward 12 — Ado L — Igbehin
-                    </option>
-
-                    <option value="13">
-                        Ward 13 — Ado M — Farm Settlement
-                    </option>
-
-                </select>
-
-                <div class="ward-help">
-                    Select the ward where you belong.
-                </div>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="btn primary"
-                id="submitButton"
-            >
-                Submit Registration
-            </button>
-
-
-            <div
-                id="formMessage"
-                class="form-message"
-                role="alert"
-            ></div>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-</main>
-
-<footer class="site-footer">
-
-
-<div class="container">
-
-    <div class="footer-content">
-
-        <div>
-
-            <h3>
-                BWI-RHA EKITI STATE CHAPTER
-            </h3>
-
-            <p>
-                ADO LOCAL GOVERNMENT
-            </p>
-
-        </div>
-
-        <div>
-
-            <p>
-                Green Economy E-Mobility Program
-            </p>
-
-            <p>
-                Empowering women, youths and persons
-                with disabilities.
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
+        <h2>
+            Membership Registration
+        </h2>
 
         <p>
-            ©
-            <span id="currentYear"></span>
-            BWI-RHA Ekiti State Chapter.
-            All rights reserved.
+            BWI-RHA Green Economy E-Mobility Program
+            EKITI CHAPTER — ADO LOCAL GOVERNMENT
         </p>
 
     </div>
 
-</div>
+</section>
 
+
+<main class="section">
+
+    <div class="container">
+
+        <div id="loginRequired"
+             class="notice warning"
+             style="display:none;">
+
+            <h3>
+                Account Required
+            </h3>
+
+            <p>
+                You must create an account and log in
+                before completing membership registration.
+            </p>
+
+            <a
+                href="login.html"
+                class="btn primary"
+            >
+                Login
+            </a>
+
+            <a
+                href="signup.html"
+                class="btn"
+            >
+                Create Account
+            </a>
+
+        </div>
+
+
+        <div
+            id="registrationArea"
+            class="form-container"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    Member Information
+                </h2>
+
+                <p>
+                    Complete your information carefully.
+                    Your application will be reviewed by an administrator.
+                </p>
+
+            </div>
+
+
+            <div class="logged-user">
+
+                <strong>
+                    Logged in as:
+                </strong>
+
+                <span id="registeredEmail">
+                    Loading...
+                </span>
+
+                <button
+                    type="button"
+                    id="registrationLogout"
+                    class="link-button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <form id="registrationForm">
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        required
+                        placeholder="Enter your full name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <select id="gender">
+
+                        <option value="">
+                            Select gender
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Prefer not to say">
+                            Prefer not to say
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Address *
+                    </label>
+
+                    <textarea
+                        id="address"
+                        rows="3"
+                        required
+                        placeholder="Enter your address"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ward">
+                        Ward *
+                    </label>
+
+                    <select
+                        id="ward"
+                        required
+                    >
+
+                        <option value="">
+                            Select your ward
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="pollingBooth">
+                        Polling Booth
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pollingBooth"
+                        placeholder="Enter your polling booth"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bankName">
+                        Bank Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bankName"
+                        placeholder="Enter bank name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="accountName">
+                        Account Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="accountName"
+                        placeholder="Enter account name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="accountNumber">
+                        Account Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        inputmode="numeric"
+                        maxlength="10"
+                        placeholder="Enter 10-digit account number"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn primary full-width"
+                    id="submitRegistration"
+                >
+                    Submit Registration
+                </button>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                    role="alert"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <p>
+        BWI-RHA EKITI STATE CHAPTER
+    </p>
+
+    <p>
+        ADO LG
+    </p>
+
+    <p>
+        Green Economy E-Mobility Program
+    </p>
 
 </footer>
 
-<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-/* =====================================================
-   SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-    "https://xfjrmgendmmpnumsbjte.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
-
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const form =
-    document.getElementById(
-        "registrationForm"
-    );
-
-const submitButton =
-    document.getElementById(
-        "submitButton"
-    );
-
-const message =
-    document.getElementById(
-        "formMessage"
-    );
-
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(
-    text,
-    type
-) {
-
-    message.textContent =
-        text;
-
-    message.className =
-        "form-message show " +
-        type;
-
-}
-
-
-/* =====================================================
-   VALIDATE PHONE
-===================================================== */
-
-function validPhone(
-    phone
-) {
-
-    const cleaned =
-        phone.replace(
-            /[\s-]/g,
-            ""
-        );
-
-    return /^(\+234|0)[0-9]{10}$/.test(
-        cleaned
-    );
-
-}
-
-
-/* =====================================================
-   VALIDATE ACCOUNT
-===================================================== */
-
-function validAccount(
-    account
-) {
-
-    return /^[0-9]{10}$/.test(
-        account
-    );
-
-}
-
-
-/* =====================================================
-   SUBMIT REGISTRATION
-===================================================== */
-
-form.addEventListener(
-    "submit",
-    async function(event) {
-
-        event.preventDefault();
-
-
-        const fullName =
-            document
-                .getElementById(
-                    "fullName"
-                )
-                .value
-                .trim();
-
-
-        const phone =
-            document
-                .getElementById(
-                    "phone"
-                )
-                .value
-                .trim();
-
-
-        const bankName =
-            document
-                .getElementById(
-                    "bankName"
-                )
-                .value
-                .trim();
-
-
-        const accountNumber =
-            document
-                .getElementById(
-                    "accountNumber"
-                )
-                .value
-                .trim();
-
-
-        const wardId =
-            document
-                .getElementById(
-                    "ward"
-                )
-                .value;
-
-
-        /* ---------------------------------------------
-           VALIDATION
-        --------------------------------------------- */
-
-        if (!fullName) {
-
-            showMessage(
-                "Please enter your name.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (!validPhone(phone)) {
-
-            showMessage(
-                "Please enter a valid Nigerian phone number.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (!bankName) {
-
-            showMessage(
-                "Please enter your bank name.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (!validAccount(accountNumber)) {
-
-            showMessage(
-                "Account number must contain exactly 10 digits.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (!wardId) {
-
-            showMessage(
-                "Please select your ward.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* ---------------------------------------------
-           BUTTON
-        --------------------------------------------- */
-
-        submitButton.disabled =
-            true;
-
-        submitButton.textContent =
-            "Submitting...";
-
-
-        showMessage(
-            "Submitting registration...",
-            "info"
-        );
-
-
-        try {
-
-            /* -----------------------------------------
-               DATABASE INSERT
-            ----------------------------------------- */
-
-            const registration = {
-
-                full_name:
-                    fullName,
-
-                phone:
-                    phone,
-
-                bank_name:
-                    bankName,
-
-                account_number:
-                    accountNumber,
-
-                ward_id:
-                    Number(wardId),
-
-                status:
-                    "pending"
-
-            };
-
-
-            console.log(
-                "Sending registration:",
-                registration
-            );
-
-
-            const {
-                error
-            } =
-                await supabaseClient
-                    .from("members")
-                    .insert(
-                        registration
-                    );
-
-
-            if (error) {
-
-                console.error(
-                    "SUPABASE ERROR:",
-                    error
-                );
-
-                throw error;
-
-            }
-
-
-            /* -----------------------------------------
-               SUCCESS
-            ----------------------------------------- */
-
-            showMessage(
-                "Registration submitted successfully! Your registration is now awaiting admin approval.",
-                "success"
-            );
-
-
-            form.reset();
-
-
-        } catch (error) {
-
-            console.error(
-                "REGISTRATION ERROR:",
-                error
-            );
-
-
-            if (
-                error.code ===
-                "42501"
-            ) {
-
-                showMessage(
-                    "Registration was blocked by Supabase security (RLS). The public registration policy needs to be enabled.",
-                    "error"
-                );
-
-            } else {
-
-                showMessage(
-                    "Registration failed: " +
-                    (
-                        error.message ||
-                        "Unknown error"
-                    ),
-                    "error"
-                );
-
-            }
-
-        } finally {
-
-            submitButton.disabled =
-                false;
-
-            submitButton.textContent =
-                "Submit Registration";
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
-
-const mobileNav =
-    document.getElementById(
-        "mobileNav"
-    );
-
-
-if (
-    menuButton &&
-    mobileNav
-) {
-
-    menuButton.addEventListener(
-        "click",
-        function() {
-
-            mobileNav.classList.toggle(
-                "active"
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   YEAR
-===================================================== */
-
-const currentYear =
-    document.getElementById(
-        "currentYear"
-    );
-
-
-if (currentYear) {
-
-    currentYear.textContent =
-        new Date().getFullYear();
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
