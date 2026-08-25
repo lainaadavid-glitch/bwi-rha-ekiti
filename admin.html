@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | BWI-RHA Ado LG</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <a href="index.html" class="logo-area">
+
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
+
+            <div class="logo-text">
+                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
+                <p>ADO LOCAL GOVERNMENT</p>
+            </div>
+
+        </a>
+
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuButton"
+        >
+            ☰
+        </button>
+
+        <nav
+            class="main-nav"
+            id="mobileNav"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="wards.html">
+                Wards
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+            <a
+                href="admin.html"
+                class="active"
+            >
+                Admin
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =================================================
+         LOGIN
+    ================================================== -->
+
+    <section
+        class="section"
+        id="loginSection"
+    >
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <span>
+                    ADMINISTRATION
+                </span>
+
+                <h2>
+                    Admin Login
+                </h2>
+
+                <p>
+                    Authorized administrators only.
+                </p>
+
+            </div>
+
+
+            <div class="form-container">
+
+                <form id="adminLoginForm">
+
+                    <div class="form-group">
+
+                        <label for="adminEmail">
+                            Admin Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="adminEmail"
+                            placeholder="Enter admin email"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="adminPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="adminPassword"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn primary"
+                        id="loginButton"
+                        style="width:100%;"
+                    >
+                        Login
+                    </button>
+
+
+                    <div
+                        id="loginMessage"
+                        class="form-message"
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ADMIN DASHBOARD
+    ================================================== -->
+
+    <section
+        class="section"
+        id="dashboardSection"
+        style="display:none;"
+    >
+
+        <div class="container">
+
+            <div class="admin-header">
+
+                <div>
+
+                    <span class="hero-label">
+                        ADMIN DASHBOARD
+                    </span>
+
+                    <h2>
+                        BWI-RHA Ado LG
+                    </h2>
+
+                    <p id="loggedInEmail"></p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn"
+                    id="logoutButton"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="dashboard-stats">
+
+                <div class="stat-card">
+
+                    <h3 id="totalCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Registrations
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3 id="pendingCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Pending
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3 id="approvedCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Approved
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="adminMessage"
+                class="form-message"
+            ></div>
+
+
+            <!-- PENDING -->
+
+            <div class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <h2>
+                        Pending Registrations
+                    </h2>
+
+                    <button
+                        type="button"
+                        class="small-btn accept-btn"
+                        id="refreshButton"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div id="pendingMembers">
+
+                    <div class="loading">
+                        Loading registrations...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPROVED -->
+
+            <div class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <h2>
+                        Approved Members
+                    </h2>
+
+                </div>
+
+
+                <div id="approvedMembers">
+
+                    <div class="loading">
+                        Loading approved members...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXCO -->
+
+            <div class="admin-section">
+
+                <div class="admin-section-header">
+
+                    <div>
+
+                        <h2>
+                            Ward EXCO Management
+                        </h2>
+
+                        <p>
+                            Assign approved members to
+                            the structured ward offices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="excoManagement">
+
+                    <div class="loading">
+                        Loading EXCO management...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h3>
+
+                <p>
+                    ADO LOCAL GOVERNMENT
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Green Economy E-Mobility Program
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                ©
+                <span id="currentYear"></span>
+                BWI-RHA Ekiti State Chapter.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+const ADMIN_EMAIL =
+    "agatha4jesu@gmail.com";
+
+
+const WARDS = [
+
+    {
+        id: 1,
+        name: "Ado A",
+        area: "Idofin"
+    },
+
+    {
+        id: 2,
+        name: "Ado B",
+        area: "Inisa"
+    },
+
+    {
+        id: 3,
+        name: "Ado C",
+        area: "Idolofin"
+    },
+
+    {
+        id: 4,
+        name: "Ado D",
+        area: "Ijigbo"
+    },
+
+    {
+        id: 5,
+        name: "Ado E",
+        area: "Ijoka / Orereowu"
+    },
+
+    {
+        id: 6,
+        name: "Ado F",
+        area: "Okeyinmi"
+    },
+
+    {
+        id: 7,
+        name: "Ado G",
+        area: "Oke Ila"
+    },
+
+    {
+        id: 8,
+        name: "Ado H",
+        area: "Ereguru"
+    },
+
+    {
+        id: 9,
+        name: "Ado I",
+        area: "Dallimore"
+    },
+
+    {
+        id: 10,
+        name: "Ado J",
+        area: "Okesa"
+    },
+
+    {
+        id: 11,
+        name: "Ado K",
+        area: "Irona"
+    },
+
+    {
+        id: 12,
+        name: "Ado L",
+        area: "Igbehin"
+    },
+
+    {
+        id: 13,
+        name: "Ado M",
+        area: "Farm Settlement"
+    }
+
+];
+
+
+const WARD_OFFICES = [
+
+    "Ward Coordinator",
+
+    "Deputy Ward Coordinator",
+
+    "Secretary",
+
+    "Mobilization Officer",
+
+    "Women Empowerment Officer",
+
+    "Media/Publicity Officer",
+
+    "Welfare Officer",
+
+    "Polling Unit Officer"
+
+];
+
+
+const loginSection =
+    document.getElementById(
+        "loginSection"
+    );
+
+
+const dashboardSection =
+    document.getElementById(
+        "dashboardSection"
+    );
+
+
+const loginForm =
+    document.getElementById(
+        "adminLoginForm"
+    );
+
+
+const loginMessage =
+    document.getElementById(
+        "loginMessage"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const logoutButton =
+    document.getElementById(
+        "logoutButton"
+    );
+
+
+const adminMessage =
+    document.getElementById(
+        "adminMessage"
+    );
+
+
+const pendingMembers =
+    document.getElementById(
+        "pendingMembers"
+    );
+
+
+const approvedMembers =
+    document.getElementById(
+        "approvedMembers"
+    );
+
+
+const excoManagement =
+    document.getElementById(
+        "excoManagement"
+    );
+
+
+const totalCount =
+    document.getElementById(
+        "totalCount"
+    );
+
+
+const pendingCount =
+    document.getElementById(
+        "pendingCount"
+    );
+
+
+const approvedCount =
+    document.getElementById(
+        "approvedCount"
+    );
+
+
+const refreshButton =
+    document.getElementById(
+        "refreshButton"
+    );
+
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+}
+
+
+function showLoginMessage(
+    text,
+    type = "error"
+) {
+
+    loginMessage.textContent =
+        text;
+
+    loginMessage.className =
+        "form-message " + type;
+
+}
+
+
+function showAdminMessage(
+    text,
+    type = "info"
+) {
+
+    adminMessage.textContent =
+        text;
+
+    adminMessage.className =
+        "form-message " + type;
+
+}
+
+
+/* =================================================
+   CHECK CURRENT LOGIN
+================================================= */
+
+async function checkAdminSession() {
+
+    const {
+        data
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    const session =
+        data.session;
+
+
+    if (
+        session &&
+        session.user
+    ) {
+
+        if (
+            session.user.email
+                .toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ) {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+            showLoginMessage(
+                "This account is not authorized as an administrator.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        openDashboard(
+            session.user.email
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   LOGIN
+================================================= */
+
+loginForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById(
+                    "adminEmail"
+                )
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById(
+                    "adminPassword"
+                )
+                .value;
+
+
+        if (
+            email.toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ) {
+
+            showLoginMessage(
+                "Only the authorized admin email can log in.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signInWithPassword({
+                        email,
+                        password
+                    });
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            if (
+                !data.user ||
+                data.user.email
+                    .toLowerCase() !==
+                ADMIN_EMAIL.toLowerCase()
+            ) {
+
+                await supabaseClient
+                    .auth
+                    .signOut();
+
+                throw new Error(
+                    "This account is not authorized."
+                );
+
+            }
+
+
+            showLoginMessage(
+                "Login successful.",
+                "success"
+            );
+
+
+            openDashboard(
+                data.user.email
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            showLoginMessage(
+                "Login failed: " +
+                error.message,
+                "error"
+            );
+
+        } finally {
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "Login";
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   OPEN DASHBOARD
+================================================= */
+
+function openDashboard(
+    email
+) {
+
+    loginSection.style.display =
+        "none";
+
+    dashboardSection.style.display =
+        "block";
+
+
+    document.getElementById(
+        "loggedInEmail"
+    ).textContent =
+        email;
+
+
+    loadDashboard();
+
+}
+
+
+/* =================================================
+   LOGOUT
+================================================= */
+
+logoutButton.addEventListener(
+    "click",
+    async () => {
+
+        await supabaseClient
+            .auth
+            .signOut();
+
+        dashboardSection.style.display =
+            "none";
+
+        loginSection.style.display =
+            "block";
+
+        loginForm.reset();
+
+    }
+);
+
+
+/* =================================================
+   LOAD DASHBOARD
+================================================= */
+
+async function loadDashboard() {
+
+    await Promise.all([
+
+        loadStats(),
+
+        loadPendingMembers(),
+
+        loadApprovedMembers(),
+
+        loadExcoManagement()
+
+    ]);
+
+}
+
+
+/* =================================================
+   STATS
+================================================= */
+
+async function loadStats() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select(
+                    "id,status"
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        const members =
+            data || [];
+
+
+        const pending =
+            members.filter(
+                member =>
+                    member.status ===
+                    "pending"
+            ).length;
+
+
+        const approved =
+            members.filter(
+                member =>
+                    member.status ===
+                        "approved" ||
+                    member.status ===
+                        "accepted"
+            ).length;
+
+
+        totalCount.textContent =
+            members.length;
+
+        pendingCount.textContent =
+            pending;
+
+        approvedCount.textContent =
+            approved;
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   PENDING MEMBERS
+================================================= */
+
+async function loadPendingMembers() {
+
+    pendingMembers.innerHTML = `
+
+        <div class="loading">
+            Loading pending registrations...
+        </div>
+
+    `;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq(
+                    "status",
+                    "pending"
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            pendingMembers.innerHTML = `
+
+                <div class="empty-state">
+
+                    No pending registrations.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        pendingMembers.innerHTML =
+            data.map(
+                member =>
+                    renderPendingMember(
+                        member
+                    )
+            ).join("");
+
+
+    } catch (error) {
+
+        pendingMembers.innerHTML = `
+
+            <div class="empty-state error">
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =================================================
+   RENDER PENDING MEMBER
+================================================= */
+
+function renderPendingMember(
+    member
+) {
+
+    const ward =
+        WARDS.find(
+            item =>
+                item.id ===
+                Number(
+                    member.ward_id
+                )
+        );
+
+
+    return `
+
+        <div class="registration-item">
+
+            <h3>
+                ${escapeHTML(
+                    member.full_name
+                )}
+            </h3>
+
+            <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(
+                    member.phone
+                )}
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                ${escapeHTML(
+                    member.email ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Gender:</strong>
+                ${escapeHTML(
+                    member.gender ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                ${escapeHTML(
+                    member.address
+                )}
+            </p>
+
+            <p>
+                <strong>Ward:</strong>
+                ${
+                    ward
+                    ?
+                    `Ward ${ward.id} —
+                     ${escapeHTML(
+                         ward.name
+                     )} —
+                     ${escapeHTML(
+                         ward.area
+                     )}`
+                    :
+                    "Unknown"
+                }
+            </p>
+
+            <p>
+                <strong>Bank:</strong>
+                ${escapeHTML(
+                    member.bank_name
+                )}
+            </p>
+
+            <p>
+                <strong>Account:</strong>
+                ${escapeHTML(
+                    member.account_number
+                )}
+            </p>
+
+            <div class="registration-actions">
+
+                <button
+                    type="button"
+                    class="small-btn accept-btn"
+                    onclick="updateMemberStatus('${member.id}', 'approved')"
+                >
+                    Approve
+                </button>
+
+                <button
+                    type="button"
+                    class="small-btn decline-btn"
+                    onclick="updateMemberStatus('${member.id}', 'rejected')"
+                >
+                    Reject
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =================================================
+   APPROVE / REJECT
+================================================= */
+
+async function updateMemberStatus(
+    memberId,
+    status
+) {
+
+    const action =
+        status === "approved"
+        ? "approve"
+        : "reject";
+
+
+    if (
+        !confirm(
+            `Are you sure you want to ${action} this registration?`
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .update({
+                    status
+                })
+                .eq(
+                    "id",
+                    memberId
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        showAdminMessage(
+            `Member ${action}d successfully.`,
+            "success"
+        );
+
+
+        await loadDashboard();
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showAdminMessage(
+            "Unable to update member: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   APPROVED MEMBERS
+================================================= */
+
+async function loadApprovedMembers() {
+
+    approvedMembers.innerHTML = `
+
+        <div class="loading">
+            Loading approved members...
+        </div>
+
+    `;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .in(
+                    "status",
+                    [
+                        "approved",
+                        "accepted"
+                    ]
+                )
+                .order(
+                    "full_name",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            approvedMembers.innerHTML = `
+
+                <div class="empty-state">
+
+                    No approved members yet.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        approvedMembers.innerHTML = `
+
+            <div class="member-table-wrapper">
+
+                <table class="member-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Ward
+                            </th>
+
+                            <th>
+                                Office
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${
+                            data.map(
+                                member =>
+                                    renderApprovedRow(
+                                        member
+                                    )
+                            ).join("")
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        `;
+
+
+    } catch (error) {
+
+        approvedMembers.innerHTML = `
+
+            <div class="empty-state error">
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =================================================
+   APPROVED ROW
+================================================= */
+
+function renderApprovedRow(
+    member
+) {
+
+    const ward =
+        WARDS.find(
+            item =>
+                item.id ===
+                Number(
+                    member.ward_id
+                )
+        );
+
+
+    return `
+
+        <tr>
+
+            <td>
+                ${escapeHTML(
+                    member.full_name
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    member.phone
+                )}
+            </td>
+
+            <td>
+                ${
+                    ward
+                    ?
+                    `Ward ${ward.id} — ${escapeHTML(
+                        ward.name
+                    )}`
+                    :
+                    "Unknown"
+                }
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    member.exco_position ||
+                    "Member"
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    member.status
+                )}
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+
+/* =================================================
+   EXCO MANAGEMENT
+================================================= */
+
+async function loadExcoManagement() {
+
+    excoManagement.innerHTML = `
+
+        <div class="loading">
+            Loading approved members...
+        </div>
+
+    `;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select(
+                    "id,full_name,ward_id,status,exco_position"
+                )
+                .in(
+                    "status",
+                    [
+                        "approved",
+                        "accepted"
+                    ]
+                )
+                .order(
+                    "full_name",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        let html = "";
+
+
+        WARDS.forEach(
+            ward => {
+
+                const members =
+                    (data || [])
+                        .filter(
+                            member =>
+                                Number(
+                                    member.ward_id
+                                ) ===
+                                ward.id
+                        );
+
+
+                html += `
+
+                    <div class="ward-admin-section">
+
+                        <h3>
+
+                            Ward ${ward.id}
+                            —
+                            ${escapeHTML(
+                                ward.name
+                            )}
+
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                ward.area
+                            )}
+                        </p>
+
+                `;
+
+
+                WARD_OFFICES.forEach(
+                    office => {
+
+                        const holder =
+                            members.find(
+                                member =>
+                                    member.exco_position ===
+                                    office
+                            );
+
+
+                        html += `
+
+                            <div class="exco-position">
+
+                                <label>
+
+                                    ${escapeHTML(
+                                        office
+                                    )}
+
+                                </label>
+
+
+                                <select
+                                    class="exco-select"
+                                    data-ward="${ward.id}"
+                                    data-position="${escapeHTML(
+                                        office
+                                    )}"
+                                >
+
+                                    <option value="">
+                                        Not assigned
+                                    </option>
+
+                                    ${
+                                        members.map(
+                                            member => `
+
+                                                <option
+                                                    value="${member.id}"
+                                                    ${
+                                                        holder &&
+                                                        holder.id ===
+                                                        member.id
+                                                        ?
+                                                        "selected"
+                                                        :
+                                                        ""
+                                                    }
+                                                >
+
+                                                    ${escapeHTML(
+                                                        member.full_name
+                                                    )}
+
+                                                </option>
+
+                                            `
+                                        ).join("")
+                                    }
+
+                                </select>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                html += `
+
+                        <button
+                            type="button"
+                            class="btn primary"
+                            onclick="saveWardExco(${ward.id})"
+                        >
+                            Save Ward ${ward.id} EXCO
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        excoManagement.innerHTML =
+            html;
+
+
+    } catch (error) {
+
+        excoManagement.innerHTML = `
+
+            <div class="empty-state error">
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =================================================
+   SAVE WARD EXCO
+================================================= */
+
+async function saveWardExco(
+    wardId
+) {
+
+    const selects =
+        document.querySelectorAll(
+            `.exco-select[data-ward="${wardId}"]`
+        );
+
+
+    try {
+
+        /*
+         * First clear current EXCO positions
+         * for this ward.
+         */
+
+        const {
+            error: clearError
+        } =
+            await supabaseClient
+                .from("members")
+                .update({
+                    exco_position: null
+                })
+                .eq(
+                    "ward_id",
+                    wardId
+                );
+
+
+        if (clearError) {
+
+            throw clearError;
+
+        }
+
+
+        /*
+         * Assign selected positions.
+         */
+
+        for (
+            const select of selects
+        ) {
+
+            const memberId =
+                select.value;
+
+            const position =
+                select.dataset.position;
+
+
+            if (!memberId) {
+
+                continue;
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabaseClient
+                    .from("members")
+                    .update({
+                        exco_position:
+                            position
+                    })
+                    .eq(
+                        "id",
+                        memberId
+                    )
+                    .eq(
+                        "ward_id",
+                        wardId
+                    );
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+        }
+
+
+        showAdminMessage(
+            `Ward ${wardId} EXCO saved successfully.`,
+            "success"
+        );
+
+
+        await loadApprovedMembers();
+
+        await loadExcoManagement();
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showAdminMessage(
+            "Could not save EXCO: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   REFRESH
+================================================= */
+
+refreshButton.addEventListener(
+    "click",
+    loadDashboard
+);
+
+
+/* =================================================
+   MOBILE MENU
+================================================= */
+
+const menuButton =
+    document.getElementById(
+        "menuButton"
+    );
+
+const mobileNav =
+    document.getElementById(
+        "mobileNav"
+    );
+
+
+if (
+    menuButton &&
+    mobileNav
+) {
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+            mobileNav.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   YEAR
+================================================= */
+
+const currentYear =
+    document.getElementById(
+        "currentYear"
+    );
+
+
+if (currentYear) {
+
+    currentYear.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =================================================
+   START
+================================================= */
+
+checkAdminSession();
+
+</script>
+
+</body>
+</html>
