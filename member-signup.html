@@ -1,582 +1,362 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
-
-```
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>
-    Create Account | BWI-RHA Ado LG
-</title>
+<title>Create Account | BWI-RHA Ado LG</title>
 
 <style>
+*{box-sizing:border-box}
 
-    * {
-        box-sizing: border-box;
-    }
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f4f7f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+.card{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 12px 40px rgba(0,0,0,.12);
+}
 
-    .signup-card {
-        width: 100%;
-        max-width: 500px;
-        background: #ffffff;
-        padding: 35px;
-        border-radius: 18px;
-        box-shadow: 0 10px 35px rgba(0,0,0,.1);
-    }
+.logo{
+    display:block;
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    margin:0 auto 20px;
+}
 
-    .logo {
-        display: block;
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-        margin: 0 auto 20px;
-    }
+h1{
+    text-align:center;
+    color:#17351f;
+    margin:0;
+}
 
-    h1 {
-        text-align: center;
-        margin: 0;
-        color: #17351f;
-    }
+.subtitle{
+    text-align:center;
+    color:#666;
+    line-height:1.5;
+    margin:10px 0 25px;
+}
 
-    .subtitle {
-        text-align: center;
-        color: #666;
-        margin: 10px 0 25px;
-        line-height: 1.5;
-    }
+.group{
+    margin-bottom:17px;
+}
 
-    .form-group {
-        margin-bottom: 17px;
-    }
+label{
+    display:block;
+    font-weight:700;
+    margin-bottom:7px;
+}
 
-    label {
-        display: block;
-        margin-bottom: 7px;
-        font-weight: 700;
-        color: #333;
-    }
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
 
-    input {
-        width: 100%;
-        padding: 13px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 15px;
-        outline: none;
-    }
+input:focus{
+    outline:none;
+    border-color:#16833b;
+}
 
-    input:focus {
-        border-color: #16833b;
-    }
+button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    background:#16833b;
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
 
-    button {
-        width: 100%;
-        padding: 14px;
-        border: 0;
-        border-radius: 8px;
-        background: #16833b;
-        color: white;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-    }
+button:disabled{
+    opacity:.6;
+}
 
-    button:hover {
-        opacity: .9;
-    }
+.message{
+    display:none;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:18px;
+    line-height:1.5;
+    font-size:14px;
+}
 
-    button:disabled {
-        opacity: .6;
-        cursor: not-allowed;
-    }
+.error{
+    display:block;
+    background:#ffe5e5;
+    color:#a00000;
+}
 
-    .message {
-        display: none;
-        margin-bottom: 18px;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 14px;
-        line-height: 1.5;
-    }
+.success{
+    display:block;
+    background:#e1f6e8;
+    color:#12652c;
+}
 
-    .error {
-        display: block;
-        background: #ffe5e5;
-        color: #a00000;
-    }
+.links{
+    text-align:center;
+    margin-top:20px;
+}
 
-    .success {
-        display: block;
-        background: #e2f7e8;
-        color: #12652c;
-    }
+.links a{
+    color:#16833b;
+    font-weight:bold;
+    text-decoration:none;
+}
 
-    .login-link {
-        text-align: center;
-        margin-top: 20px;
-        color: #666;
-    }
-
-    .login-link a {
-        color: #16833b;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .back-link {
-        display: block;
-        text-align: center;
-        margin-top: 15px;
-        color: #777;
-        text-decoration: none;
-        font-size: 14px;
-    }
-
+.back{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#777;
+    text-decoration:none;
+    font-size:14px;
+}
 </style>
-```
 
 </head>
 
 <body>
 
-<div class="signup-card">
+<div class="card">
 
-```
-<img
-    src="logo.jpeg"
-    alt="BWI-RHA Logo"
-    class="logo"
->
+<img src="logo.jpeg" alt="BWI-RHA Logo" class="logo">
 
-
-<h1>
-    Create Your Account
-</h1>
-
+<h1>Create Account</h1>
 
 <p class="subtitle">
-
-    BWI-RHA Ekiti State Chapter —
-    Ado Local Government
-
+BWI-RHA Ekiti State Chapter — Ado Local Government
 </p>
 
-
-<div
-    id="message"
-    class="message"
-></div>
-
+<div id="message" class="message"></div>
 
 <form id="signupForm">
 
+<div class="group">
+<label for="fullName">Full Name</label>
+<input
+    id="fullName"
+    type="text"
+    placeholder="Enter your full name"
+    required
+>
+</div>
 
-    <div class="form-group">
+<div class="group">
+<label for="phone">Phone Number</label>
+<input
+    id="phone"
+    type="tel"
+    placeholder="Enter your phone number"
+    required
+>
+</div>
 
-        <label for="fullName">
-            Full Name
-        </label>
+<div class="group">
+<label for="email">Email Address</label>
+<input
+    id="email"
+    type="email"
+    placeholder="Enter your email address"
+    required
+>
+</div>
 
-        <input
-            type="text"
-            id="fullName"
-            placeholder="Enter your full name"
-            required
-        >
+<div class="group">
+<label for="password">Password</label>
+<input
+    id="password"
+    type="password"
+    minlength="6"
+    placeholder="At least 6 characters"
+    required
+>
+</div>
 
-    </div>
+<div class="group">
+<label for="confirmPassword">Confirm Password</label>
+<input
+    id="confirmPassword"
+    type="password"
+    minlength="6"
+    placeholder="Repeat your password"
+    required
+>
+</div>
 
-
-    <div class="form-group">
-
-        <label for="phone">
-            Phone Number
-        </label>
-
-        <input
-            type="tel"
-            id="phone"
-            placeholder="Enter your phone number"
-            required
-        >
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label for="email">
-            Email Address
-        </label>
-
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-        >
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label for="password">
-            Password
-        </label>
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Create a password"
-            minlength="6"
-            required
-        >
-
-    </div>
-
-
-    <div class="form-group">
-
-        <label for="confirmPassword">
-            Confirm Password
-        </label>
-
-        <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Repeat your password"
-            minlength="6"
-            required
-        >
-
-    </div>
-
-
-    <button
-        type="submit"
-        id="signupButton"
-    >
-        Create Account
-    </button>
-
+<button id="signupButton" type="submit">
+Create Account
+</button>
 
 </form>
 
-
-<div class="login-link">
-
-    Already have an account?
-
-    <a href="member-login.html">
-        Login
-    </a>
-
+<div class="links">
+Already have an account?
+<a href="member-login.html">Login</a>
 </div>
 
-
-<a
-    href="index.html"
-    class="back-link"
->
-    ← Back
+<a href="index.html" class="back">
+← Back to Home
 </a>
-```
 
 </div>
 
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-
 const SUPABASE_URL =
-    "https://xfjrmgendmmpnumsbjte.supabase.co";
-
+"https://xfjrmgendmmpnumsbjte.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
-
+"sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
 const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 const form =
-    document.getElementById(
-        "signupForm"
-    );
-
+document.getElementById("signupForm");
 
 const button =
-    document.getElementById(
-        "signupButton"
-    );
-
+document.getElementById("signupButton");
 
 const message =
-    document.getElementById(
-        "message"
-    );
+document.getElementById("message");
 
+function showMessage(text,type){
 
-function showMessage(
-    text,
-    type
-) {
-
-    message.textContent = text;
-
-    message.className =
-        `message ${type}`;
+    message.textContent=text;
+    message.className="message "+type;
 
 }
 
+form.addEventListener("submit",async(event)=>{
 
-form.addEventListener(
-    "submit",
-    async function(event) {
+    event.preventDefault();
 
-        event.preventDefault();
+    const fullName =
+    document.getElementById("fullName").value.trim();
 
+    const phone =
+    document.getElementById("phone").value.trim();
 
-        const fullName =
-            document
-                .getElementById("fullName")
-                .value
-                .trim();
+    const email =
+    document.getElementById("email").value.trim();
 
+    const password =
+    document.getElementById("password").value;
 
-        const phone =
-            document
-                .getElementById("phone")
-                .value
-                .trim();
+    const confirmPassword =
+    document.getElementById("confirmPassword").value;
 
+    if(password !== confirmPassword){
 
-        const email =
-            document
-                .getElementById("email")
-                .value
-                .trim();
+        showMessage(
+            "Passwords do not match.",
+            "error"
+        );
 
+        return;
+    }
 
-        const password =
-            document
-                .getElementById("password")
-                .value;
+    if(password.length < 6){
 
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
 
-        const confirmPassword =
-            document
-                .getElementById("confirmPassword")
-                .value;
+        return;
+    }
 
+    button.disabled=true;
+    button.textContent="Creating Account...";
 
-        if (
-            password !==
-            confirmPassword
-        ) {
+    const {data,error} =
+    await supabaseClient.auth.signUp({
 
-            showMessage(
-                "Passwords do not match.",
-                "error"
-            );
+        email:email,
 
-            return;
+        password:password,
 
-        }
-
-
-        if (password.length < 6) {
-
-            showMessage(
-                "Password must contain at least 6 characters.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        button.disabled = true;
-
-        button.textContent =
-            "Creating Account...";
-
-
-        try {
-
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.signUp({
-
-                    email: email,
-
-                    password: password,
-
-                    options: {
-
-                        data: {
-
-                            full_name:
-                                fullName,
-
-                            phone:
-                                phone
-
-                        }
-
-                    }
-
-                });
-
-
-            if (error) {
-
-                throw error;
-
+        options:{
+            data:{
+                full_name:fullName,
+                phone:phone
             }
-
-
-            /*
-             * If email confirmation is enabled,
-             * Supabase may not immediately create
-             * an authenticated session.
-             */
-
-            if (!data.user) {
-
-                throw new Error(
-                    "Account could not be created."
-                );
-
-            }
-
-
-            /*
-             * Create the member profile.
-             *
-             * IMPORTANT:
-             * This requires your members table
-             * RLS policy to allow the authenticated
-             * user to insert their own record.
-             */
-
-            const {
-                error: memberError
-            } =
-                await supabaseClient
-                    .from("members")
-                    .insert({
-
-                        id:
-                            data.user.id,
-
-                        full_name:
-                            fullName,
-
-                        phone:
-                            phone,
-
-                        email:
-                            email,
-
-                        status:
-                            "pending"
-
-                    });
-
-
-            if (memberError) {
-
-                console.error(
-                    memberError
-                );
-
-                showMessage(
-                    "Account created, but your member profile could not be created. Please contact the administrator.",
-                    "error"
-                );
-
-                button.disabled = false;
-
-                button.textContent =
-                    "Create Account";
-
-                return;
-
-            }
-
-
-            showMessage(
-                "Account created successfully! Redirecting to your dashboard...",
-                "success"
-            );
-
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "member-dashboard.html";
-
-                },
-                1500
-            );
-
-
-        }
-
-        catch(error) {
-
-            console.error(error);
-
-            showMessage(
-                error.message ||
-                "Unable to create account.",
-                "error"
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-                "Create Account";
-
         }
 
     });
 
+    if(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        button.disabled=false;
+        button.textContent="Create Account";
+
+        return;
+    }
+
+    /*
+      IMPORTANT:
+      We do NOT insert into members here.
+      ward_id is required by your database,
+      so the member completes registration
+      from the dashboard.
+    */
+
+    if(data.session){
+
+        showMessage(
+            "Account created successfully. Opening your dashboard...",
+            "success"
+        );
+
+        setTimeout(()=>{
+            window.location.href=
+            "member-dashboard.html";
+        },1000);
+
+    }else{
+
+        showMessage(
+            "Account created successfully. Please check your email if confirmation is required, then log in.",
+            "success"
+        );
+
+        button.disabled=false;
+        button.textContent="Account Created";
+
+    }
+
+});
 
 </script>
 
 </body>
-
 </html>
