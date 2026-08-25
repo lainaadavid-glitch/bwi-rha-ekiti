@@ -1,39 +1,596 @@
 /* =========================================================
    BWI-RHA EKITI STATE CHAPTER
    ADO LOCAL GOVERNMENT
-   COMPLETE WEBSITE SCRIPT
+   RESTORED ORIGINAL GREEN + WHITE DESIGN
 ========================================================= */
+
+:root {
+    --green: #16833b;
+    --dark-green: #17351f;
+    --light-green: #e9f7ef;
+    --very-light: #f7faf8;
+    --white: #ffffff;
+    --black: #172018;
+    --gray: #66736a;
+    --border: #dce8df;
+    --red: #c62828;
+    --shadow: 0 8px 30px rgba(0, 80, 40, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
 
 
 /* =========================================================
-   SUPABASE
+   HEADER
 ========================================================= */
 
-const SUPABASE_URL =
-    "https://xfjrmgendmmpnumsbjte.supabase.co";
+.site-header {
+    background: var(--white);
+    border-bottom: 4px solid var(--green);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-const SUPABASE_KEY =
-    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+.header-container {
+    width: min(1200px, 94%);
+    min-height: 82px;
+    margin: 0 auto;
 
-let supabaseClient = null;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-if (
-    window.supabase &&
-    typeof window.supabase.createClient === "function"
-) {
+    gap: 20px;
+}
 
-    supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--black);
+    text-decoration: none;
+
+    min-width: 0;
+}
+
+.site-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    min-width: 0;
+}
+
+.logo-text h1 {
+    margin: 0;
+    color: var(--green);
+    font-size: 19px;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    margin: 3px 0 0;
+    font-weight: bold;
+    color: var(--dark-green);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.main-nav a {
+    padding: 10px 12px;
+    border-radius: 7px;
+
+    color: var(--black);
+    font-weight: 600;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    background: var(--green);
+    color: var(--white);
+    text-decoration: none;
+}
+
+
+/* MOBILE MENU BUTTON */
+
+.menu-btn {
+    display: none;
+
+    border: 0;
+    background: var(--green);
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 7px;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 520px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(23, 53, 31, .96),
+            rgba(22, 131, 59, .88)
         );
 
-} else {
+    color: white;
+}
 
-    console.error(
-        "Supabase library was not loaded."
-    );
+.hero-content {
+    display: flex;
+    align-items: center;
+}
 
+.hero-text {
+    max-width: 720px;
+    padding: 70px 0;
+}
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: #dff5e7;
+}
+
+.hero h2 {
+    margin: 0 0 18px;
+
+    font-size: clamp(36px, 6vw, 62px);
+    line-height: 1.05;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: 0 0 28px;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    color: #f1fff5;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    border: 2px solid var(--green);
+
+    background: var(--white);
+    color: var(--green);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        color .2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.signup-button {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+}
+
+.signup-button:hover {
+    background: var(--dark-green);
+    border-color: var(--dark-green);
+    color: white;
+}
+
+.login-button {
+    background: white;
+    color: var(--green);
+    border-color: white;
+}
+
+.login-button:hover {
+    background: var(--light-green);
+    color: var(--dark-green);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+    padding: 70px 0;
+}
+
+.light-section {
+    background: var(--very-light);
+}
+
+.section-title {
+    max-width: 800px;
+    margin: 0 auto 35px;
+
+    text-align: center;
+}
+
+.section-title span {
+    display: inline-block;
+
+    margin-bottom: 7px;
+
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    margin: 0 0 12px;
+
+    color: var(--dark-green);
+
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.section-title p {
+    margin: 0 auto;
+
+    color: var(--gray);
+
+    max-width: 750px;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+
+    margin-top: 30px;
+}
+
+.feature-card {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-top: 4px solid var(--green);
+
+    border-radius: 14px;
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 35px
+        rgba(0, 80, 40, .14);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--light-green);
+
+    font-size: 32px;
+}
+
+.feature-card h3 {
+    margin: 0 0 10px;
+
+    color: var(--dark-green);
+
+    font-size: 20px;
+}
+
+.feature-card p {
+    margin: 0;
+
+    color: var(--gray);
+}
+
+
+/* =========================================================
+   ORGANIZATIONAL TREE
+========================================================= */
+
+.exco-tree-section {
+    background: #f7faf8;
+}
+
+.org-tree {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    text-align: center;
+}
+
+.tree-level {
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+}
+
+.tree-card {
+    width: 280px;
+
+    padding: 25px 20px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.08);
+
+    border: 2px solid #e4eee7;
+
+    transition:
+        transform .2s ease;
+}
+
+.tree-card:hover {
+    transform: translateY(-5px);
+}
+
+.tree-card h3 {
+    margin: 10px 0 8px;
+
+    color: #17351f;
+
+    font-size: 18px;
+
+    line-height: 1.3;
+}
+
+.tree-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 50%;
+
+    background: #16833b;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+}
+
+.tree-position {
+    margin: 0 0 12px;
+
+    color: #16833b;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+.tree-phone {
+    display: inline-block;
+
+    color: #333333;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    font-size: 15px;
+}
+
+.tree-phone:hover {
+    color: #16833b;
+}
+
+.state-card {
+    background: #17351f;
+    color: #ffffff;
+
+    border-color: #17351f;
+}
+
+.state-card h3 {
+    color: #ffffff;
+}
+
+.state-card .tree-position {
+    color: #ffffff;
+}
+
+.state-card .tree-phone {
+    color: #ffffff;
+}
+
+.state-card .tree-icon {
+    background: #ffffff;
+    color: #17351f;
+}
+
+.assistant-card {
+    border: 3px solid #2d8f4e;
+}
+
+.assistant-card .tree-icon {
+    background: #2d8f4e;
+}
+
+.coordinator-main {
+    border: 3px solid #16833b;
+}
+
+.coordinator-main h3 {
+    font-size: 21px;
+}
+
+.tree-line {
+    width: 3px;
+
+    height: 45px;
+
+    background: #16833b;
+
+    margin: 0 auto;
+}
+
+.tree-branches {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 950px;
+
+    margin: 0 auto;
+}
+
+.tree-branches::before {
+    content: "";
+
+    position: absolute;
+
+    top: -22px;
+
+    left: calc(16.666% + 12px);
+    right: calc(16.666% + 12px);
+
+    height: 3px;
+
+    background: #16833b;
 }
 
 
@@ -41,1550 +598,21 @@ if (
    WARDS
 ========================================================= */
 
-const wards = [
+.wards-preview {
+    display: grid;
 
-    {
-        number: 1,
-        name: "Ado A",
-        area: "Idofin"
-    },
+    grid-template-columns:
+        repeat(4, 1fr);
 
-    {
-        number: 2,
-        name: "Ado B",
-        area: "Inisa"
-    },
+    gap: 18px;
 
-    {
-        number: 3,
-        name: "Ado C",
-        area: "Idolofin"
-    },
-
-    {
-        number: 4,
-        name: "Ado D",
-        area: "Ijigbo"
-    },
-
-    {
-        number: 5,
-        name: "Ado E",
-        area: "Ijoka / Orereowu"
-    },
-
-    {
-        number: 6,
-        name: "Ado F",
-        area: "Okeyinmi"
-    },
-
-    {
-        number: 7,
-        name: "Ado G",
-        area: "Oke Ila"
-    },
-
-    {
-        number: 8,
-        name: "Ado H",
-        area: "Ereguru"
-    },
-
-    {
-        number: 9,
-        name: "Ado I",
-        area: "Dallimore"
-    },
-
-    {
-        number: 10,
-        name: "Ado J",
-        area: "Okesa"
-    },
-
-    {
-        number: 11,
-        name: "Ado K",
-        area: "Irona"
-    },
-
-    {
-        number: 12,
-        name: "Ado L",
-        area: "Igbehin"
-    },
-
-    {
-        number: 13,
-        name: "Ado M",
-        area: "Farm Settlement"
-    }
-
-];
-
-
-/* =========================================================
-   WARD EXCO POSITIONS
-========================================================= */
-
-const wardOffices = [
-
-    "Ward Coordinator",
-
-    "Deputy Ward Coordinator",
-
-    "Secretary",
-
-    "Mobilization Officer",
-
-    "Women Empowerment Officer",
-
-    "Media/Publicity Officer",
-
-    "Welfare Officer",
-
-    "Polling Unit Officer"
-
-];
-
-
-/* =========================================================
-   LG EXCO POSITIONS
-========================================================= */
-
-const lgOffices = [
-
-    "LG Coordinator",
-
-    "Deputy LG Coordinator"
-
-];
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function escapeHTML(value) {
-
-    return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
+    margin-top: 30px;
 }
 
+.ward-preview-card {
+    display: flex;
 
-function showMessage(
-    element,
-    message,
-    type = "info"
-) {
+    flex-direction: column;
 
-    if (!element) {
-        return;
-    }
-
-    element.textContent =
-        message;
-
-    element.className =
-        "form-message " + type;
-
-}
-
-
-/* =========================================================
-   MOBILE MENU
-   Supports both versions of your HTML
-========================================================= */
-
-const menuButton =
-    document.getElementById("menuButton") ||
-    document.getElementById("menuBtn");
-
-const mobileNav =
-    document.getElementById("mobileNav") ||
-    document.getElementById("navMenu");
-
-
-if (
-    menuButton &&
-    mobileNav
-) {
-
-    menuButton.addEventListener(
-        "click",
-        function (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-            mobileNav.classList.toggle(
-                "active"
-            );
-
-        }
-    );
-
-
-    mobileNav
-        .querySelectorAll("a")
-        .forEach(
-            function (link) {
-
-                link.addEventListener(
-                    "click",
-                    function () {
-
-                        mobileNav.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
-========================================================= */
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        if (
-            !mobileNav ||
-            !menuButton
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            !mobileNav.contains(
-                event.target
-            ) &&
-            !menuButton.contains(
-                event.target
-            )
-        ) {
-
-            mobileNav.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CURRENT YEAR
-========================================================= */
-
-const currentYear =
-    document.getElementById(
-        "currentYear"
-    );
-
-
-if (currentYear) {
-
-    currentYear.textContent =
-        new Date().getFullYear();
-
-}
-
-
-/* =========================================================
-   SIGNUP
-========================================================= */
-
-const signupForm =
-    document.getElementById(
-        "signupForm"
-    );
-
-
-if (signupForm) {
-
-    signupForm.addEventListener(
-        "submit",
-        handleSignup
-    );
-
-}
-
-
-async function handleSignup(event) {
-
-    event.preventDefault();
-
-
-    const message =
-        document.getElementById(
-            "signupMessage"
-        );
-
-
-    const button =
-        document.getElementById(
-            "signupButton"
-        );
-
-
-    if (!supabaseClient) {
-
-        showMessage(
-            message,
-            "Supabase is not available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const emailElement =
-        document.getElementById(
-            "signupEmail"
-        );
-
-
-    const passwordElement =
-        document.getElementById(
-            "signupPassword"
-        );
-
-
-    const password2Element =
-        document.getElementById(
-            "signupPassword2"
-        );
-
-
-    const email =
-        emailElement
-            ? emailElement.value.trim()
-            : "";
-
-
-    const password =
-        passwordElement
-            ? passwordElement.value
-            : "";
-
-
-    const password2 =
-        password2Element
-            ? password2Element.value
-            : "";
-
-
-    if (
-        !email ||
-        !password ||
-        !password2
-    ) {
-
-        showMessage(
-            message,
-            "Please complete all fields.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (password.length < 6) {
-
-        showMessage(
-            message,
-            "Password must contain at least 6 characters.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (password !== password2) {
-
-        showMessage(
-            message,
-            "Passwords do not match.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.textContent =
-            "Creating Account...";
-
-    }
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.signUp({
-
-                email: email,
-
-                password: password
-
-            });
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        /*
-           If Supabase immediately created a session,
-           go directly to login.
-
-           If email confirmation is enabled,
-           tell the user to confirm email first.
-        */
-
-        if (
-            data &&
-            data.session
-        ) {
-
-            showMessage(
-                message,
-                "Account created successfully. Redirecting to login...",
-                "success"
-            );
-
-
-            setTimeout(
-                function () {
-
-                    window.location.href =
-                        "member-login.html";
-
-                },
-                1000
-            );
-
-        } else {
-
-            showMessage(
-                message,
-                "Account created successfully. Please check your email if confirmation is required, then login.",
-                "success"
-            );
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "SIGNUP ERROR:",
-            error
-        );
-
-
-        showMessage(
-            message,
-            "Account creation failed: " +
-            error.message,
-            "error"
-        );
-
-
-    } finally {
-
-        if (button) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "Create Account";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        handleLogin
-    );
-
-}
-
-
-async function handleLogin(event) {
-
-    event.preventDefault();
-
-
-    const message =
-        document.getElementById(
-            "loginMessage"
-        );
-
-
-    const button =
-        document.getElementById(
-            "loginBtn"
-        );
-
-
-    if (!supabaseClient) {
-
-        showMessage(
-            message,
-            "Supabase is not available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const emailElement =
-        document.getElementById(
-            "loginEmail"
-        );
-
-
-    const passwordElement =
-        document.getElementById(
-            "loginPassword"
-        );
-
-
-    const email =
-        emailElement
-            ? emailElement.value.trim()
-            : "";
-
-
-    const password =
-        passwordElement
-            ? passwordElement.value
-            : "";
-
-
-    if (
-        !email ||
-        !password
-    ) {
-
-        showMessage(
-            message,
-            "Please enter your email and password.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.textContent =
-            "Logging in...";
-
-    }
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.signInWithPassword({
-
-                email: email,
-
-                password: password
-
-            });
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        if (
-            !data ||
-            !data.user
-        ) {
-
-            throw new Error(
-                "Login was unsuccessful."
-            );
-
-        }
-
-
-        showMessage(
-            message,
-            "Login successful. Redirecting to registration...",
-            "success"
-        );
-
-
-        /*
-           IMPORTANT:
-           Login goes to register.html
-        */
-
-        setTimeout(
-            function () {
-
-                window.location.href =
-                    "register.html";
-
-            },
-            700
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "LOGIN ERROR:",
-            error
-        );
-
-
-        showMessage(
-            message,
-            "Login failed: " +
-            error.message,
-            "error"
-        );
-
-
-    } finally {
-
-        if (button) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "Login";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   REGISTRATION DOM
-========================================================= */
-
-const registrationForm =
-    document.getElementById(
-        "registrationForm"
-    );
-
-const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
-
-const wardSelect =
-    document.getElementById(
-        "ward"
-    );
-
-const wardsGrid =
-    document.getElementById(
-        "wardsGrid"
-    );
-
-const wardDisplay =
-    document.getElementById(
-        "wardDisplay"
-    );
-
-
-/* =========================================================
-   CHECK LOGIN BEFORE REGISTRATION
-========================================================= */
-
-async function checkRegistrationLogin() {
-
-    if (
-        !registrationForm ||
-        !supabaseClient
-    ) {
-
-        return;
-
-    }
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient.auth.getUser();
-
-
-    if (
-        error ||
-        !data ||
-        !data.user
-    ) {
-
-        showMessage(
-            formMessage,
-            "Please login before completing your registration.",
-            "error"
-        );
-
-
-        setTimeout(
-            function () {
-
-                window.location.href =
-                    "member-login.html";
-
-            },
-            1200
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   REGISTRATION FORM
-========================================================= */
-
-if (registrationForm) {
-
-    registrationForm.addEventListener(
-        "submit",
-        submitRegistration
-    );
-
-}
-
-
-/* =========================================================
-   SUBMIT REGISTRATION
-========================================================= */
-
-async function submitRegistration(event) {
-
-    event.preventDefault();
-
-
-    if (!supabaseClient) {
-
-        showMessage(
-            formMessage,
-            "Supabase is not available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Get currently logged-in user.
-    */
-
-    const {
-        data: userData,
-        error: userError
-    } =
-        await supabaseClient.auth.getUser();
-
-
-    if (
-        userError ||
-        !userData ||
-        !userData.user
-    ) {
-
-        showMessage(
-            formMessage,
-            "You must login before submitting your registration.",
-            "error"
-        );
-
-
-        setTimeout(
-            function () {
-
-                window.location.href =
-                    "member-login.html";
-
-            },
-            1200
-        );
-
-
-        return;
-
-    }
-
-
-    const user =
-        userData.user;
-
-
-    const submitButton =
-        registrationForm.querySelector(
-            "button[type='submit']"
-        );
-
-
-    function getValue(id) {
-
-        const element =
-            document.getElementById(id);
-
-
-        return element
-            ? element.value.trim()
-            : "";
-
-    }
-
-
-    const fullName =
-        getValue("fullName");
-
-
-    const phone =
-        getValue("phone");
-
-
-    const gender =
-        getValue("gender");
-
-
-    const address =
-        getValue("address");
-
-
-    const ward =
-        getValue("ward");
-
-
-    const bankName =
-        getValue("bankName");
-
-
-    const accountNumber =
-        getValue("accountNumber");
-
-
-    if (
-        !fullName ||
-        !phone ||
-        !address ||
-        !ward ||
-        !bankName ||
-        !accountNumber
-    ) {
-
-        showMessage(
-            formMessage,
-            "Please complete all required fields.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !/^\d{10}$/.test(
-            accountNumber
-        )
-    ) {
-
-        showMessage(
-            formMessage,
-            "Account number must contain exactly 10 digits.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (submitButton) {
-
-        submitButton.disabled = true;
-
-        submitButton.textContent =
-            "Submitting...";
-
-    }
-
-
-    try {
-
-        /*
-           Prevent duplicate registration.
-
-           Your members table has:
-           id
-           full_name
-           phone
-           email
-           gender
-           address
-           ward_id
-           created_at
-           bank_name
-           account_number
-           status
-        */
-
-        const {
-            data: existingMember,
-            error: existingError
-        } =
-            await supabaseClient
-                .from("members")
-                .select(
-                    "id,status"
-                )
-                .eq(
-                    "email",
-                    user.email
-                )
-                .maybeSingle();
-
-
-        if (
-            existingError &&
-            existingError.code !==
-            "PGRST116"
-        ) {
-
-            throw existingError;
-
-        }
-
-
-        if (existingMember) {
-
-            showMessage(
-                formMessage,
-                "You have already submitted a registration. Status: " +
-                existingMember.status,
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /*
-           Insert registration.
-
-           We deliberately use ONLY the columns
-           that exist in your members table.
-        */
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("members")
-                .insert({
-
-                    full_name:
-                        fullName,
-
-                    phone:
-                        phone,
-
-                    email:
-                        user.email,
-
-                    gender:
-                        gender || null,
-
-                    address:
-                        address,
-
-                    ward_id:
-                        Number(ward),
-
-                    bank_name:
-                        bankName,
-
-                    account_number:
-                        accountNumber,
-
-                    status:
-                        "pending"
-
-                });
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        showMessage(
-            formMessage,
-            "Registration submitted successfully. Your application is awaiting admin approval.",
-            "success"
-        );
-
-
-        registrationForm.reset();
-
-
-    } catch (error) {
-
-        console.error(
-            "REGISTRATION ERROR:",
-            error
-        );
-
-
-        let errorMessage =
-            error.message ||
-            "Unknown error.";
-
-
-        /*
-           Friendly message for RLS.
-        */
-
-        if (
-            errorMessage
-                .toLowerCase()
-                .includes(
-                    "row-level security"
-                )
-        ) {
-
-            errorMessage =
-                "Supabase blocked the registration because the members table does not currently allow logged-in users to insert registrations. The database RLS INSERT policy must be fixed.";
-
-        }
-
-
-        showMessage(
-            formMessage,
-            "Registration failed: " +
-            errorMessage,
-            "error"
-        );
-
-
-    } finally {
-
-        if (submitButton) {
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-                "Submit Registration";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   CREATE WARD SELECT OPTIONS
-========================================================= */
-
-function createWardOptions() {
-
-    if (!wardSelect) {
-
-        return;
-
-    }
-
-
-    wardSelect.innerHTML = `
-
-        <option value="">
-            Select your ward
-        </option>
-
-    `;
-
-
-    wards.forEach(
-        function (ward) {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                ward.number;
-
-
-            option.textContent =
-                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
-
-
-            wardSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   CREATE WARD BUTTONS
-========================================================= */
-
-function createWardButtons() {
-
-    if (!wardsGrid) {
-
-        return;
-
-    }
-
-
-    wardsGrid.innerHTML = "";
-
-
-    wards.forEach(
-        function (ward) {
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.type =
-                "button";
-
-
-            button.className =
-                "ward-button";
-
-
-            button.dataset.ward =
-                ward.number;
-
-
-            button.innerHTML = `
-
-                <strong>
-                    Ward ${ward.number}
-                </strong>
-
-                <span>
-                    ${escapeHTML(
-                        ward.name
-                    )}
-                </span>
-
-                <small>
-                    ${escapeHTML(
-                        ward.area
-                    )}
-                </small>
-
-            `;
-
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    showWard(
-                        ward.number
-                    );
-
-                }
-            );
-
-
-            wardsGrid.appendChild(
-                button
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SHOW WARD
-========================================================= */
-
-async function showWard(
-    wardNumber
-) {
-
-    const ward =
-        wards.find(
-            function (item) {
-
-                return item.number ===
-                    Number(wardNumber);
-
-            }
-        );
-
-
-    if (
-        !ward ||
-        !wardDisplay
-    ) {
-
-        return;
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".ward-button"
-        )
-        .forEach(
-            function (button) {
-
-                button.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    const activeButton =
-        document.querySelector(
-            `.ward-button[data-ward="${ward.number}"]`
-        );
-
-
-    if (activeButton) {
-
-        activeButton.classList.add(
-            "active"
-        );
-
-    }
-
-
-    wardDisplay.innerHTML = `
-
-        <div class="loading">
-
-            Loading Ward ${ward.number}...
-
-        </div>
-
-    `;
-
-
-    if (!supabaseClient) {
-
-        wardDisplay.innerHTML = `
-
-            <div class="empty-state">
-
-                Supabase is not available.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    try {
-
-        const {
-            data: members,
-            error
-        } =
-            await supabaseClient
-                .from("members")
-                .select(`
-                    id,
-                    full_name,
-                    phone
-                `)
-                .eq(
-                    "ward_id",
-                    ward.number
-                )
-                .in(
-                    "status",
-                    [
-                        "approved",
-                        "accepted"
-                    ]
-                )
-                .order(
-                    "full_name",
-                    {
-                        ascending: true
-                    }
-                );
-
-
-        if (error) {
-
-            throw error;
-
-        }
-
-
-        const approvedMembers =
-            members || [];
-
-
-        let membersHTML = "";
-
-
-        if (
-            approvedMembers.length === 0
-        ) {
-
-            membersHTML = `
-
-                <div class="empty-state">
-
-                    No approved members yet.
-
-                </div>
-
-            `;
-
-        } else {
-
-            membersHTML =
-                approvedMembers
-                    .map(
-                        function (member) {
-
-                            return `
-
-                                <div class="registration-item">
-
-                                    <h3>
-                                        ${escapeHTML(
-                                            member.full_name
-                                        )}
-                                    </h3>
-
-                                    <p>
-                                        ${escapeHTML(
-                                            member.phone
-                                        )}
-                                    </p>
-
-                                </div>
-
-                            `;
-
-                        }
-                    )
-                    .join("");
-
-        }
-
-
-        const officesHTML =
-            wardOffices
-                .map(
-                    function (position) {
-
-                        return `
-
-                            <div class="registration-item">
-
-                                <strong>
-                                    ${escapeHTML(
-                                        position
-                                    )}
-                                </strong>
-
-                                <p>
-                                    Not yet assigned
-                                </p>
-
-                            </div>
-
-                        `;
-
-                    }
-                )
-                .join("");
-
-
-        wardDisplay.innerHTML = `
-
-            <div class="panel">
-
-                <h2>
-                    Ward ${ward.number}
-                    — ${escapeHTML(
-                        ward.name
-                    )}
-                </h2>
-
-                <p>
-                    ${escapeHTML(
-                        ward.area
-                    )}
-                </p>
-
-
-                <h3>
-                    Ward Executive Offices
-                </h3>
-
-                ${officesHTML}
-
-
-                <h3>
-                    Approved Members
-                    (${approvedMembers.length})
-                </h3>
-
-                ${membersHTML}
-
-            </div>
-
-        `;
-
-
-    } catch (error) {
-
-        console.error(
-            "WARD ERROR:",
-            error
-        );
-
-
-        wardDisplay.innerHTML = `
-
-            <div class="empty-state">
-
-                <strong>
-                    Unable to load members.
-                </strong>
-
-                <p>
-                    ${escapeHTML(
-                        error.message
-                    )}
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-createWardOptions();
-
-createWardButtons();
-
-
-if (registrationForm) {
-
-    checkRegistrationLogin();
-
-}
-
-
-console.log(
-    "BWI-RHA Ado LG website loaded successfully."
-);
+    align-items: center;
+    justify
