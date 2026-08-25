@@ -27,9 +27,7 @@ if (
             SUPABASE_KEY
         );
 } else {
-    console.error(
-        "Supabase library was not loaded."
-    );
+    console.error("Supabase library was not loaded.");
 }
 
 
@@ -38,71 +36,19 @@ if (
 ========================================================= */
 
 const wards = [
-    {
-        number: 1,
-        name: "Ado A",
-        area: "Idofin"
-    },
-    {
-        number: 2,
-        name: "Ado B",
-        area: "Inisa"
-    },
-    {
-        number: 3,
-        name: "Ado C",
-        area: "Idolofin"
-    },
-    {
-        number: 4,
-        name: "Ado D",
-        area: "Ijigbo"
-    },
-    {
-        number: 5,
-        name: "Ado E",
-        area: "Ijoka / Orereowu"
-    },
-    {
-        number: 6,
-        name: "Ado F",
-        area: "Okeyinmi"
-    },
-    {
-        number: 7,
-        name: "Ado G",
-        area: "Oke Ila"
-    },
-    {
-        number: 8,
-        name: "Ado H",
-        area: "Ereguru"
-    },
-    {
-        number: 9,
-        name: "Ado I",
-        area: "Dallimore"
-    },
-    {
-        number: 10,
-        name: "Ado J",
-        area: "Okesa"
-    },
-    {
-        number: 11,
-        name: "Ado K",
-        area: "Irona"
-    },
-    {
-        number: 12,
-        name: "Ado L",
-        area: "Igbehin"
-    },
-    {
-        number: 13,
-        name: "Ado M",
-        area: "Farm Settlement"
-    }
+    { number: 1, name: "Ado A", area: "Idofin" },
+    { number: 2, name: "Ado B", area: "Inisa" },
+    { number: 3, name: "Ado C", area: "Idolofin" },
+    { number: 4, name: "Ado D", area: "Ijigbo" },
+    { number: 5, name: "Ado E", area: "Ijoka / Orereowu" },
+    { number: 6, name: "Ado F", area: "Okeyinmi" },
+    { number: 7, name: "Ado G", area: "Oke Ila" },
+    { number: 8, name: "Ado H", area: "Ereguru" },
+    { number: 9, name: "Ado I", area: "Dallimore" },
+    { number: 10, name: "Ado J", area: "Okesa" },
+    { number: 11, name: "Ado K", area: "Irona" },
+    { number: 12, name: "Ado L", area: "Igbehin" },
+    { number: 13, name: "Ado M", area: "Farm Settlement" }
 ];
 
 
@@ -123,21 +69,10 @@ const wardOffices = [
 
 
 /* =========================================================
-   LG EXCO
-========================================================= */
-
-const lgOffices = [
-    "LG Coordinator",
-    "Deputy LG Coordinator"
-];
-
-
-/* =========================================================
    HELPERS
 ========================================================= */
 
 function escapeHTML(value) {
-
     return String(value ?? "")
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
@@ -147,40 +82,11 @@ function escapeHTML(value) {
 }
 
 
-function getInitials(name) {
+function showMessage(element, message, type = "info") {
+    if (!element) return;
 
-    if (!name) {
-        return "?";
-    }
-
-    return name
-        .trim()
-        .split(/\s+/)
-        .slice(0, 2)
-        .map(
-            word =>
-                word.charAt(0)
-        )
-        .join("")
-        .toUpperCase();
-}
-
-
-function showMessage(
-    element,
-    message,
-    type = "info"
-) {
-
-    if (!element) {
-        return;
-    }
-
-    element.textContent =
-        message;
-
-    element.className =
-        "form-message " + type;
+    element.textContent = message;
+    element.className = "form-message " + type;
 }
 
 
@@ -189,81 +95,47 @@ function showMessage(
 ========================================================= */
 
 const wardsGrid =
-    document.getElementById(
-        "wardsGrid"
-    );
+    document.getElementById("wardsGrid");
 
 const wardDisplay =
-    document.getElementById(
-        "wardDisplay"
-    );
+    document.getElementById("wardDisplay");
 
 const wardSelect =
-    document.getElementById(
-        "ward"
-    );
+    document.getElementById("ward");
 
 const registrationForm =
-    document.getElementById(
-        "registrationForm"
-    );
+    document.getElementById("registrationForm");
 
 const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
+    document.getElementById("formMessage");
 
 const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
+    document.getElementById("menuButton");
 
 const mobileNav =
-    document.getElementById(
-        "mobileNav"
-    );
+    document.getElementById("mobileNav");
 
 const currentYear =
-    document.getElementById(
-        "currentYear"
-    );
+    document.getElementById("currentYear");
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-if (
-    menuButton &&
-    mobileNav
-) {
+if (menuButton && mobileNav) {
 
-    menuButton.addEventListener(
-        "click",
-        () => {
-
-            mobileNav.classList.toggle(
-                "active"
-            );
-
-        }
-    );
-
+    menuButton.addEventListener("click", () => {
+        mobileNav.classList.toggle("active");
+    });
 
     mobileNav
         .querySelectorAll("a")
         .forEach(link => {
 
-            link.addEventListener(
-                "click",
-                () => {
-
-                    mobileNav.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
+            link.addEventListener("click", () => {
+                mobileNav.classList.remove("active");
+            });
 
         });
 }
@@ -274,9 +146,323 @@ if (
 ========================================================= */
 
 if (currentYear) {
-
     currentYear.textContent =
         new Date().getFullYear();
+}
+
+
+/* =========================================================
+   SIGNUP
+   CREATE ACCOUNT
+========================================================= */
+
+const signupForm =
+    document.getElementById("signupForm");
+
+if (signupForm) {
+
+    signupForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            const email =
+                document
+                    .getElementById("signupEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("signupPassword")
+                    .value;
+
+            const password2 =
+                document
+                    .getElementById("signupPassword2")
+                    .value;
+
+            const message =
+                document.getElementById(
+                    "signupMessage"
+                );
+
+            const button =
+                document.getElementById(
+                    "signupButton"
+                );
+
+
+            if (!supabaseClient) {
+
+                showMessage(
+                    message,
+                    "Supabase is not available.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password !== password2) {
+
+                showMessage(
+                    message,
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                showMessage(
+                    message,
+                    "Password must contain at least 6 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (button) {
+                button.disabled = true;
+                button.textContent = "Creating Account...";
+            }
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signUp({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                /*
+                   If Supabase requires email confirmation,
+                   the user must confirm their email first.
+                */
+
+                if (
+                    data &&
+                    data.user &&
+                    !data.session
+                ) {
+
+                    showMessage(
+                        message,
+                        "Account created successfully. Please check your email and confirm your account, then login.",
+                        "success"
+                    );
+
+                } else {
+
+                    showMessage(
+                        message,
+                        "Account created successfully. Redirecting to login...",
+                        "success"
+                    );
+
+                    setTimeout(() => {
+                        window.location.href =
+                            "login.html";
+                    }, 1200);
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Signup error:",
+                    error
+                );
+
+                showMessage(
+                    message,
+                    "Account creation failed: " +
+                    error.message,
+                    "error"
+                );
+
+            } finally {
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent = "Create Account";
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOGIN
+   LOGIN → REGISTER
+========================================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+
+            if (!supabaseClient) {
+
+                const message =
+                    document.getElementById(
+                        "loginMessage"
+                    );
+
+                showMessage(
+                    message,
+                    "Supabase is not available.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
+
+            const message =
+                document.getElementById(
+                    "loginMessage"
+                );
+
+            const button =
+                document.getElementById(
+                    "loginBtn"
+                );
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    message,
+                    "Please enter your email and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (button) {
+
+                button.disabled = true;
+                button.textContent = "Logging in...";
+
+            }
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (!data || !data.user) {
+
+                    throw new Error(
+                        "Login succeeded but no user session was returned."
+                    );
+
+                }
+
+
+                /*
+                   IMPORTANT:
+                   Successful member login goes directly
+                   to the registration page.
+                */
+
+                showMessage(
+                    message,
+                    "Login successful. Opening registration...",
+                    "success"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.replace(
+                        "register.html"
+                    );
+
+                }, 500);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                showMessage(
+                    message,
+                    "Login failed: " +
+                    error.message,
+                    "error"
+                );
+
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent = "Login";
+                }
+
+            }
+
+        }
+    );
 
 }
 
@@ -287,166 +473,101 @@ if (currentYear) {
 
 function createWardButtons() {
 
-    if (!wardsGrid) {
-        return;
-    }
+    if (!wardsGrid) return;
 
     wardsGrid.innerHTML = "";
 
-    wards.forEach(
-        ward => {
+    wards.forEach(ward => {
 
-            const button =
-                document.createElement(
-                    "button"
-                );
+        const button =
+            document.createElement("button");
 
-            button.type =
-                "button";
+        button.type = "button";
+        button.className = "ward-button";
+        button.dataset.ward = ward.number;
 
-            button.className =
-                "ward-button";
+        button.innerHTML = `
 
-            button.dataset.ward =
-                ward.number;
+            <strong>
+                Ward ${ward.number}
+            </strong>
 
-            button.innerHTML = `
+            <span>
+                ${escapeHTML(ward.name)}
+            </span>
 
-                <strong>
-                    Ward ${ward.number}
-                </strong>
+            <small>
+                ${escapeHTML(ward.area)}
+            </small>
 
-                <span>
-                    ${escapeHTML(
-                        ward.name
-                    )}
-                </span>
+        `;
 
-                <small>
-                    ${escapeHTML(
-                        ward.area
-                    )}
-                </small>
+        button.addEventListener(
+            "click",
+            () => showWard(ward.number)
+        );
 
-            `;
+        wardsGrid.appendChild(button);
 
-            button.addEventListener(
-                "click",
-                () =>
-                    showWard(
-                        ward.number
-                    )
-            );
+    });
 
-            wardsGrid.appendChild(
-                button
-            );
-
-        }
-    );
 }
 
 
 /* =========================================================
-   CREATE WARD SELECT
+   CREATE WARD OPTIONS
 ========================================================= */
 
 function createWardOptions() {
 
-    if (!wardSelect) {
-        return;
-    }
+    if (!wardSelect) return;
 
     wardSelect.innerHTML = `
-
         <option value="">
             Select your ward
         </option>
-
     `;
 
-    wards.forEach(
-        ward => {
+    wards.forEach(ward => {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+        const option =
+            document.createElement("option");
 
-            option.value =
-                ward.number;
+        option.value = ward.number;
 
-            option.textContent =
-                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
+        option.textContent =
+            `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
 
-            wardSelect.appendChild(
-                option
-            );
+        wardSelect.appendChild(option);
 
-        }
-    );
+    });
+
 }
 
 
 /* =========================================================
-   MEMBER SIGNUP
+   REGISTRATION
 ========================================================= */
 
-const signupForm =
-    document.getElementById(
-        "signupForm"
-    );
+if (registrationForm) {
 
-if (signupForm) {
-
-    signupForm.addEventListener(
+    registrationForm.addEventListener(
         "submit",
-        handleSignup
+        submitRegistration
     );
+
 }
 
 
-async function handleSignup(event) {
+async function submitRegistration(event) {
 
     event.preventDefault();
-
-    const email =
-        document
-            .getElementById(
-                "signupEmail"
-            )
-            ?.value
-            .trim();
-
-    const password =
-        document
-            .getElementById(
-                "signupPassword"
-            )
-            ?.value;
-
-    const password2 =
-        document
-            .getElementById(
-                "signupPassword2"
-            )
-            ?.value;
-
-    const message =
-        document.getElementById(
-            "signupMessage"
-        );
-
-    const button =
-        document.getElementById(
-            "signupButton"
-        );
 
 
     if (!supabaseClient) {
 
         showMessage(
-            message,
+            formMessage,
             "Supabase is not available.",
             "error"
         );
@@ -455,192 +576,92 @@ async function handleSignup(event) {
     }
 
 
-    if (!email || !password || !password2) {
+    /*
+       Make sure the member is logged in.
+    */
+
+    const {
+        data: {
+            user
+        }
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (!user) {
 
         showMessage(
-            message,
-            "Please complete all fields.",
+            formMessage,
+            "You must login before completing registration.",
             "error"
         );
+
+        setTimeout(() => {
+            window.location.href =
+                "login.html";
+        }, 1200);
 
         return;
     }
 
 
-    if (password.length < 6) {
-
-        showMessage(
-            message,
-            "Password must contain at least 6 characters.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (password !== password2) {
-
-        showMessage(
-            message,
-            "Passwords do not match.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (button) {
-
-        button.disabled =
-            true;
-
-        button.textContent =
-            "Creating Account...";
-
-    }
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth.signUp({
-
-                email:
-                    email,
-
-                password:
-                    password
-
-            });
-
-
-        if (error) {
-            throw error;
-        }
-
-
-        if (
-            data &&
-            data.session
-        ) {
-
-            showMessage(
-                message,
-                "Account created successfully. Redirecting to login...",
-                "success"
-            );
-
-        } else {
-
-            showMessage(
-                message,
-                "Account created. Check your email for confirmation, then login.",
-                "success"
-            );
-
-        }
-
-
-        setTimeout(
-            () => {
-
-                window.location.href =
-                    "member-login.html";
-
-            },
-            1500
+    const submitButton =
+        registrationForm.querySelector(
+            "button[type='submit']"
         );
 
 
-    } catch (error) {
+    const getValue = id => {
 
-        console.error(
-            "SIGNUP ERROR:",
-            error
-        );
+        const element =
+            document.getElementById(id);
 
-        showMessage(
-            message,
-            "Account creation failed: " +
-            error.message,
-            "error"
-        );
+        return element
+            ? element.value.trim()
+            : "";
 
-    } finally {
-
-        if (button) {
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "Create Account";
-
-        }
-
-    }
-}
+    };
 
 
-/* =========================================================
-   MEMBER LOGIN
-========================================================= */
+    const fullName =
+        getValue("fullName");
 
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        handleLogin
-    );
-}
-
-
-async function handleLogin(event) {
-
-    event.preventDefault();
-
+    const phone =
+        getValue("phone");
 
     const email =
-        document
-            .getElementById(
-                "loginEmail"
-            )
-            ?.value
-            .trim();
+        getValue("email") ||
+        user.email ||
+        "";
 
-    const password =
-        document
-            .getElementById(
-                "loginPassword"
-            )
-            ?.value;
+    const gender =
+        getValue("gender");
 
-    const message =
-        document.getElementById(
-            "loginMessage"
-        );
+    const address =
+        getValue("address");
 
-    const button =
-        document.getElementById(
-            "loginBtn"
-        );
+    const ward =
+        getValue("ward");
+
+    const bankName =
+        getValue("bankName");
+
+    const accountNumber =
+        getValue("accountNumber");
 
 
-    if (!supabaseClient) {
+    if (
+        !fullName ||
+        !phone ||
+        !address ||
+        !ward ||
+        !bankName ||
+        !accountNumber
+    ) {
 
         showMessage(
-            message,
-            "Supabase is not available.",
+            formMessage,
+            "Please complete all required fields.",
             "error"
         );
 
@@ -648,11 +669,11 @@ async function handleLogin(event) {
     }
 
 
-    if (!email || !password) {
+    if (!/^\d{10}$/.test(accountNumber)) {
 
         showMessage(
-            message,
-            "Please enter your email and password.",
+            formMessage,
+            "Account number must contain exactly 10 digits.",
             "error"
         );
 
@@ -660,32 +681,85 @@ async function handleLogin(event) {
     }
 
 
-    if (button) {
+    if (submitButton) {
 
-        button.disabled =
-            true;
-
-        button.textContent =
-            "Logging in...";
+        submitButton.disabled = true;
+        submitButton.textContent =
+            "Submitting...";
 
     }
 
 
     try {
 
+        /*
+           Check whether this account already
+           has a member registration.
+        */
+
         const {
-            data,
+            data: existingMember,
+            error: existingError
+        } =
+            await supabaseClient
+                .from("members")
+                .select("id,status")
+                .eq("email", email)
+                .maybeSingle();
+
+
+        if (existingError) {
+            throw existingError;
+        }
+
+
+        if (existingMember) {
+
+            showMessage(
+                formMessage,
+                "A registration already exists for this account.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const {
             error
         } =
-            await supabaseClient.auth.signInWithPassword({
+            await supabaseClient
+                .from("members")
+                .insert({
 
-                email:
-                    email,
+                    full_name:
+                        fullName,
 
-                password:
-                    password
+                    phone:
+                        phone,
 
-            });
+                    email:
+                        email,
+
+                    gender:
+                        gender || null,
+
+                    address:
+                        address,
+
+                    ward_id:
+                        Number(ward),
+
+                    bank_name:
+                        bankName,
+
+                    account_number:
+                        accountNumber,
+
+                    status:
+                        "pending"
+
+                });
 
 
         if (error) {
@@ -693,94 +767,312 @@ async function handleLogin(event) {
         }
 
 
-        if (
-            !data ||
-            !data.user
-        ) {
-
-            throw new Error(
-                "Login was unsuccessful."
-            );
-
-        }
-
-
         showMessage(
-            message,
-            "Login successful. Opening registration...",
+            formMessage,
+            "Registration submitted successfully. Your application is now awaiting admin approval.",
             "success"
         );
 
 
-        /*
-         * IMPORTANT:
-         * Successful login goes directly
-         * to the registration page.
-         */
-
-        setTimeout(
-            () => {
-
-                window.location.href =
-                    "register.html";
-
-            },
-            700
-        );
+        registrationForm.reset();
 
 
     } catch (error) {
 
         console.error(
-            "LOGIN ERROR:",
+            "Registration error:",
             error
         );
 
         showMessage(
-            message,
-            "Login failed: " +
+            formMessage,
+            "Registration failed: " +
             error.message,
             "error"
         );
 
     } finally {
 
-        if (button) {
+        if (submitButton) {
 
-            button.disabled =
-                false;
-
-            button.textContent =
-                "Login";
+            submitButton.disabled = false;
+            submitButton.textContent =
+                "Submit Registration";
 
         }
 
     }
+
 }
 
 
 /* =========================================================
-   CHECK LOGGED-IN USER
+   SHOW WARD
 ========================================================= */
 
-async function getCurrentUser() {
+async function showWard(wardNumber) {
+
+    const ward =
+        wards.find(
+            item =>
+                item.number ===
+                Number(wardNumber)
+        );
+
+
+    if (!ward || !wardDisplay) {
+        return;
+    }
+
+
+    document
+        .querySelectorAll(".ward-button")
+        .forEach(button => {
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const activeButton =
+        document.querySelector(
+            `.ward-button[data-ward="${ward.number}"]`
+        );
+
+
+    if (activeButton) {
+        activeButton.classList.add("active");
+    }
+
+
+    wardDisplay.innerHTML = `
+        <div class="loading">
+            Loading Ward ${ward.number}...
+        </div>
+    `;
+
 
     if (!supabaseClient) {
-        return null;
+
+        wardDisplay.innerHTML = `
+            <div class="empty-state error">
+                Supabase is not available.
+            </div>
+        `;
+
+        return;
     }
+
 
     try {
 
         const {
-            data,
+            data: members,
             error
         } =
-            await supabaseClient.auth.getUser();
+            await supabaseClient
+                .from("members")
+                .select(`
+                    id,
+                    full_name,
+                    phone,
+                    exco_position
+                `)
+                .eq(
+                    "ward_id",
+                    ward.number
+                )
+                .in(
+                    "status",
+                    [
+                        "approved",
+                        "accepted"
+                    ]
+                )
+                .order(
+                    "full_name",
+                    {
+                        ascending: true
+                    }
+                );
+
 
         if (error) {
-            return null;
+            throw error;
         }
 
-        return data?.user || null;
 
-    } catch (
+        const approvedMembers =
+            members || [];
+
+
+        const officesHTML =
+            wardOffices
+                .map(position => {
+
+                    const holder =
+                        approvedMembers.find(
+                            member =>
+                                member.exco_position ===
+                                position
+                        );
+
+
+                    return `
+
+                        <div class="registration-item">
+
+                            <strong>
+                                ${escapeHTML(position)}
+                            </strong>
+
+                            <p>
+                                ${
+                                    holder
+                                    ?
+                                    escapeHTML(
+                                        holder.full_name
+                                    )
+                                    :
+                                    "Not yet assigned"
+                                }
+                            </p>
+
+                        </div>
+
+                    `;
+
+                })
+                .join("");
+
+
+        let membersHTML = "";
+
+
+        if (approvedMembers.length === 0) {
+
+            membersHTML = `
+                <div class="empty-state">
+                    No approved members yet.
+                </div>
+            `;
+
+        } else {
+
+            membersHTML =
+                approvedMembers
+                    .map(
+                        member => `
+
+                            <div class="registration-item">
+
+                                <h3>
+                                    ${escapeHTML(
+                                        member.full_name
+                                    )}
+                                </h3>
+
+                                <p>
+                                    ${escapeHTML(
+                                        member.phone
+                                    )}
+                                </p>
+
+                                ${
+                                    member.exco_position
+                                    ?
+                                    `
+                                    <strong>
+                                        ${escapeHTML(
+                                            member.exco_position
+                                        )}
+                                    </strong>
+                                    `
+                                    :
+                                    ""
+                                }
+
+                            </div>
+
+                        `
+                    )
+                    .join("");
+
+        }
+
+
+        wardDisplay.innerHTML = `
+
+            <div class="panel">
+
+                <h2>
+                    Ward ${ward.number}
+                    — ${escapeHTML(ward.name)}
+                </h2>
+
+                <p>
+                    ${escapeHTML(ward.area)}
+                </p>
+
+                <h3>
+                    Ward Executive Offices
+                </h3>
+
+                ${officesHTML}
+
+                <h3>
+                    Approved Members
+                    (${approvedMembers.length})
+                </h3>
+
+                ${membersHTML}
+
+            </div>
+
+        `;
+
+
+    } catch (error) {
+
+        console.error(
+            "WARD ERROR:",
+            error
+        );
+
+
+        wardDisplay.innerHTML = `
+
+            <div class="empty-state error">
+
+                <strong>
+                    Unable to load members.
+                </strong>
+
+                <p>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+createWardButtons();
+createWardOptions();
+
+
+console.log(
+    "BWI-RHA website loaded successfully."
+);
