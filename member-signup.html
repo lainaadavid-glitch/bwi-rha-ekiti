@@ -31,14 +31,14 @@
         </a>
 
         <button
-            class="menu-btn"
-            id="menuBtn"
             type="button"
+            class="menu-btn"
+            id="menuButton"
         >
             ☰
         </button>
 
-        <nav class="main-nav" id="navMenu">
+        <nav class="main-nav" id="mobileNav">
 
             <a href="index.html">Home</a>
             <a href="wards.html">Wards</a>
@@ -53,103 +53,108 @@
 </header>
 
 
-<main class="auth-page">
+<main class="section">
 
-    <div class="auth-card">
+    <div class="container">
 
-        <div class="auth-logo">
-            <img src="logo.jpeg" alt="BWI-RHA Logo">
-        </div>
+        <div class="form-container">
 
-        <h2>Create Account</h2>
+            <div class="section-title">
 
-        <p class="auth-subtitle">
-            Create your account before completing your membership registration.
-        </p>
+                <h2>Create Account</h2>
 
-        <form id="signupForm">
-
-            <div class="form-group">
-
-                <label for="signupEmail">
-                    Email Address
-                </label>
-
-                <input
-                    type="email"
-                    id="signupEmail"
-                    required
-                    autocomplete="email"
-                    placeholder="Enter your email address"
-                >
+                <p>
+                    Create your account before completing
+                    your membership registration.
+                </p>
 
             </div>
 
 
-            <div class="form-group">
+            <form id="signupForm">
 
-                <label for="signupPassword">
-                    Password
-                </label>
+                <div class="form-group">
 
-                <input
-                    type="password"
-                    id="signupPassword"
-                    required
-                    minlength="6"
-                    autocomplete="new-password"
-                    placeholder="Create a password"
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <small class="input-help">
+                        Password must contain at least 6 characters.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="signupPassword2">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword2"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn primary"
+                    id="signupButton"
                 >
-
-                <small>
-                    Password must contain at least 6 characters.
-                </small>
-
-            </div>
+                    Create Account
+                </button>
 
 
-            <div class="form-group">
+                <div
+                    id="signupMessage"
+                    class="form-message"
+                    role="alert"
+                ></div>
 
-                <label for="signupConfirmPassword">
-                    Confirm Password
-                </label>
-
-                <input
-                    type="password"
-                    id="signupConfirmPassword"
-                    required
-                    minlength="6"
-                    autocomplete="new-password"
-                    placeholder="Confirm your password"
-                >
-
-            </div>
+            </form>
 
 
-            <button
-                type="submit"
-                class="btn primary full-width"
-                id="signupBtn"
-            >
-                Create Account
-            </button>
+            <p class="form-link">
 
-
-            <div
-                id="signupMessage"
-                class="form-message"
-                role="alert"
-                aria-live="polite"
-            ></div>
-
-        </form>
-
-
-        <div class="auth-footer">
-
-            <p>
                 Already have an account?
-                <a href="login.html">Login here</a>
+
+                <a href="login.html">
+                    Login here
+                </a>
+
             </p>
 
         </div>
@@ -161,9 +166,21 @@
 
 <footer class="site-footer">
 
-    <p>BWI-RHA EKITI STATE CHAPTER</p>
-    <p>ADO LG</p>
-    <p>Green Economy E-Mobility Program</p>
+    <div class="container">
+
+        <h3>
+            BWI-RHA EKITI STATE CHAPTER
+        </h3>
+
+        <p>
+            ADO LG
+        </p>
+
+        <p>
+            Green Economy E-Mobility Program
+        </p>
+
+    </div>
 
 </footer>
 
