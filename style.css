@@ -1,677 +1,1602 @@
 /* =========================================================
    BWI-RHA EKITI STATE CHAPTER
-   GREEN + WHITE DESIGN
+   ADO LOCAL GOVERNMENT
+   COMPLETE WEBSITE SCRIPT
 ========================================================= */
-
-:root {
-    --green: #00843d;
-    --dark-green: #005f2c;
-    --light-green: #e9f7ef;
-    --white: #ffffff;
-    --black: #172018;
-    --gray: #66736a;
-    --light-gray: #f4f7f5;
-    --border: #dce8df;
-    --red: #c62828;
-    --yellow: #fff8df;
-    --shadow: 0 8px 30px rgba(0, 80, 40, 0.10);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--black);
-    background: var(--white);
-    line-height: 1.6;
-}
-
-a {
-    color: var(--green);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.container {
-    width: min(1100px, 92%);
-    margin: auto;
-}
 
 
 /* =========================================================
-   HEADER
+   SUPABASE
 ========================================================= */
 
-.site-header {
-    background: var(--white);
-    border-bottom: 4px solid var(--green);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
 
-.header-container {
-    width: min(1200px, 94%);
-    margin: auto;
-    min-height: 82px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--black);
-    text-decoration: none;
-}
-
-.site-logo {
-    width: 58px;
-    height: 58px;
-    object-fit: contain;
-}
-
-.logo-text h1 {
-    margin: 0;
-    color: var(--green);
-    font-size: 19px;
-}
-
-.logo-text p {
-    margin: 0;
-    font-weight: bold;
-    color: var(--dark-green);
-}
-
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.main-nav a {
-    padding: 10px 12px;
-    border-radius: 7px;
-    color: var(--black);
-    font-weight: 600;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-    background: var(--green);
-    color: var(--white);
-    text-decoration: none;
-}
-
-.menu-btn {
-    display: none;
-    border: 0;
-    background: var(--green);
-    color: white;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 22px;
-}
+const SUPABASE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
 
-/* =========================================================
-   PAGE HEADER
-========================================================= */
+let supabaseClient = null;
 
-.page-header {
-    background: linear-gradient(
-        135deg,
-        var(--dark-green),
-        var(--green)
+
+if (
+    window.supabase &&
+    typeof window.supabase.createClient === "function"
+) {
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+} else {
+
+    console.error(
+        "Supabase library was not loaded."
     );
 
-    color: white;
-    padding: 55px 0;
-    text-align: center;
-}
-
-.page-header h2 {
-    margin: 0 0 10px;
-    font-size: 32px;
-}
-
-.page-header p {
-    max-width: 800px;
-    margin: auto;
 }
 
 
 /* =========================================================
-   SECTIONS
+   WARDS
 ========================================================= */
 
-.section {
-    padding: 55px 0;
-}
-
-.section-title {
-    margin-bottom: 25px;
-}
-
-.section-title h2 {
-    margin-bottom: 5px;
-    color: var(--dark-green);
-}
-
-.section-title p {
-    color: var(--gray);
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn {
-    display: inline-block;
-    border: 1px solid var(--green);
-    background: white;
-    color: var(--green);
-    padding: 11px 18px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;
-}
-
-.btn:hover {
-    background: var(--light-green);
-    text-decoration: none;
-}
-
-.btn.primary {
-    background: var(--green);
-    color: white;
-}
-
-.btn.primary:hover {
-    background: var(--dark-green);
-}
-
-.btn:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-}
-
-.full-width {
-    width: 100%;
-}
-
-
-/* =========================================================
-   FORMS
-========================================================= */
-
-.form-container {
-    width: min(700px, 100%);
-    margin: auto;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.form-group {
-    margin-bottom: 19px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    border: 1px solid #cbd8cf;
-    border-radius: 7px;
-    padding: 13px;
-    font: inherit;
-    background: white;
-    color: var(--black);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: 2px solid rgba(0, 132, 61, .20);
-    border-color: var(--green);
-}
-
-.form-group small {
-    color: var(--gray);
-}
-
-.form-message {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 7px;
-    display: none;
-}
-
-.form-message.success,
-.form-message.error,
-.form-message.info {
-    display: block;
-}
-
-.form-message.success {
-    background: #e7f7ec;
-    color: #11652f;
-}
-
-.form-message.error {
-    background: #ffebeb;
-    color: var(--red);
-}
-
-.form-message.info {
-    background: #eaf4ff;
-    color: #155b91;
-}
-
-
-/* =========================================================
-   AUTH
-========================================================= */
-
-.auth-page {
-    min-height: calc(100vh - 170px);
-    padding: 60px 20px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--light-gray);
-}
-
-.auth-card {
-    width: min(480px, 100%);
-    background: white;
-    border: 1px solid var(--border);
-    border-top: 5px solid var(--green);
-    border-radius: 15px;
-    padding: 35px;
-    box-shadow: var(--shadow);
-}
-
-.auth-card h2 {
-    text-align: center;
-    color: var(--dark-green);
-    margin-bottom: 5px;
-}
-
-.auth-subtitle {
-    text-align: center;
-    color: var(--gray);
-    margin-bottom: 25px;
-}
-
-.auth-logo {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.auth-logo img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-}
-
-.auth-footer {
-    text-align: center;
-    margin-top: 22px;
-    color: var(--gray);
-}
-
-.link-button {
-    border: 0;
-    background: none;
-    color: var(--green);
-    cursor: pointer;
-    font-weight: bold;
-}
-
-
-/* =========================================================
-   NOTICE
-========================================================= */
-
-.notice {
-    width: min(700px, 100%);
-    margin: 0 auto 25px;
-    padding: 22px;
-    border-radius: 10px;
-}
-
-.notice.warning {
-    background: var(--yellow);
-    border: 1px solid #eadb98;
-}
-
-
-/* =========================================================
-   LOGGED USER
-========================================================= */
-
-.logged-user {
-    background: var(--light-green);
-    border-left: 4px solid var(--green);
-    padding: 13px;
-    margin-bottom: 25px;
-    border-radius: 5px;
-}
-
-.logged-user span {
-    margin-left: 5px;
-}
-
-
-/* =========================================================
-   ADMIN
-========================================================= */
-
-.admin-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 30px;
-    background: var(--light-green);
-    border-left: 5px solid var(--green);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.admin-header h2 {
-    color: var(--dark-green);
-    margin: 0;
-}
-
-.dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 35px;
-}
-
-.stat-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--green);
-    padding: 22px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
-
-.stat-card h3 {
-    font-size: 32px;
-    color: var(--green);
-    margin: 0;
-}
-
-.stat-card p {
-    margin: 0;
-    color: var(--gray);
-}
-
-.admin-section {
-    background: white;
-    border: 1px solid var(--border);
-    padding: 25px;
-    margin-bottom: 30px;
-    border-radius: 12px;
-}
-
-.admin-section h2 {
-    color: var(--dark-green);
-}
-
-.admin-section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-
-/* =========================================================
-   REGISTRATION CARDS
-========================================================= */
-
-.registration-item {
-    border: 1px solid var(--border);
-    border-left: 5px solid var(--green);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background: var(--light-gray);
-}
-
-.registration-item h3 {
-    color: var(--dark-green);
-    margin-top: 0;
-}
-
-.registration-item p {
-    margin: 5px 0;
-}
-
-.registration-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.small-btn {
-    border: 0;
-    padding: 9px 13px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.accept-btn {
-    background: var(--green);
-    color: white;
-}
-
-.decline-btn {
-    background: var(--red);
-    color: white;
-}
-
-
-/* =========================================================
-   TABLES
-========================================================= */
-
-.member-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.member-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 750px;
-}
-
-.member-table th,
-.member-table td {
-    border: 1px solid var(--border);
-    padding: 11px;
-    text-align: left;
-}
-
-.member-table th {
-    background: var(--green);
-    color: white;
-}
-
-.member-table tr:nth-child(even) {
-    background: var(--light-gray);
-}
-
-
-/* =========================================================
-   WARD SECTIONS
-========================================================= */
-
-.ward-admin-section {
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
-    border-radius: 9px;
-    overflow: hidden;
-}
-
-.ward-admin-section h3 {
-    margin: 0;
-    padding: 14px;
-    background: var(--light-green);
-    color: var(--dark-green);
-}
-
-.empty-state,
-.loading {
-    padding: 20px;
-    color: var(--gray);
-}
-
-
-/* =========================================================
-   EXCO
-========================================================= */
-
-.exco-position {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 15px;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.exco-position label {
-    font-weight: bold;
-}
-
-.exco-position select {
-    width: 100%;
-    padding: 11px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.site-footer {
-    background: var(--dark-green);
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-}
-
-.site-footer p {
-    margin: 4px;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .menu-btn {
-        display: block;
+const wards = [
+
+    {
+        number: 1,
+        name: "Ado A",
+        area: "Idofin"
+    },
+
+    {
+        number: 2,
+        name: "Ado B",
+        area: "Inisa"
+    },
+
+    {
+        number: 3,
+        name: "Ado C",
+        area: "Idolofin"
+    },
+
+    {
+        number: 4,
+        name: "Ado D",
+        area: "Ijigbo"
+    },
+
+    {
+        number: 5,
+        name: "Ado E",
+        area: "Ijoka / Orereowu"
+    },
+
+    {
+        number: 6,
+        name: "Ado F",
+        area: "Okeyinmi"
+    },
+
+    {
+        number: 7,
+        name: "Ado G",
+        area: "Oke Ila"
+    },
+
+    {
+        number: 8,
+        name: "Ado H",
+        area: "Ereguru"
+    },
+
+    {
+        number: 9,
+        name: "Ado I",
+        area: "Dallimore"
+    },
+
+    {
+        number: 10,
+        name: "Ado J",
+        area: "Okesa"
+    },
+
+    {
+        number: 11,
+        name: "Ado K",
+        area: "Irona"
+    },
+
+    {
+        number: 12,
+        name: "Ado L",
+        area: "Igbehin"
+    },
+
+    {
+        number: 13,
+        name: "Ado M",
+        area: "Farm Settlement"
     }
 
-    .main-nav {
-        display: none;
-        position: absolute;
-        top: 82px;
-        left: 0;
-        right: 0;
-        background: white;
-        padding: 12px;
-        border-bottom: 3px solid var(--green);
-        flex-direction: column;
-        box-shadow: var(--shadow);
+];
+
+
+/* =========================================================
+   WARD OFFICES
+========================================================= */
+
+const wardOffices = [
+
+    "Ward Coordinator",
+
+    "Deputy Ward Coordinator",
+
+    "Secretary",
+
+    "Mobilization Officer",
+
+    "Women Empowerment Officer",
+
+    "Media/Publicity Officer",
+
+    "Welfare Officer",
+
+    "Polling Unit Officer"
+
+];
+
+
+/* =========================================================
+   LG OFFICES
+========================================================= */
+
+const lgOffices = [
+
+    "LG Coordinator",
+
+    "Deputy LG Coordinator"
+
+];
+
+
+/* =========================================================
+   HTML SECURITY
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replaceAll("&", "&amp;")
+
+        .replaceAll("<", "&lt;")
+
+        .replaceAll(">", "&gt;")
+
+        .replaceAll('"', "&quot;")
+
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    element,
+    message,
+    type = "info"
+) {
+
+    if (!element) {
+        return;
     }
 
-    .main-nav.active {
-        display: flex;
+    element.textContent =
+        message;
+
+    element.className =
+        "form-message " + type;
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuButton =
+    document.getElementById("menuButton") ||
+    document.getElementById("menuBtn");
+
+
+const mobileNav =
+    document.getElementById("mobileNav") ||
+    document.getElementById("navMenu");
+
+
+if (
+    menuButton &&
+    mobileNav
+) {
+
+    menuButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            mobileNav.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+
+    const navLinks =
+        mobileNav.querySelectorAll("a");
+
+
+    navLinks.forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    mobileNav.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+} else {
+
+    console.warn(
+        "Mobile menu elements not found on this page."
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            !mobileNav ||
+            !menuButton
+        ) {
+            return;
+        }
+
+
+        const clickedInsideMenu =
+            mobileNav.contains(
+                event.target
+            );
+
+
+        const clickedButton =
+            menuButton.contains(
+                event.target
+            );
+
+
+        if (
+            !clickedInsideMenu &&
+            !clickedButton
+        ) {
+
+            mobileNav.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CURRENT YEAR
+========================================================= */
+
+const currentYear =
+    document.getElementById(
+        "currentYear"
+    );
+
+
+if (currentYear) {
+
+    currentYear.textContent =
+        new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   CREATE ACCOUNT
+========================================================= */
+
+const signupForm =
+    document.getElementById(
+        "signupForm"
+    );
+
+
+if (signupForm) {
+
+    signupForm.addEventListener(
+        "submit",
+        handleSignup
+    );
+
+}
+
+
+async function handleSignup(event) {
+
+    event.preventDefault();
+
+
+    if (!supabaseClient) {
+
+        showMessage(
+            document.getElementById(
+                "signupMessage"
+            ),
+            "Supabase is not available.",
+            "error"
+        );
+
+        return;
+
     }
 
-    .main-nav a {
-        width: 100%;
-        text-align: center;
+
+    const emailInput =
+        document.getElementById(
+            "signupEmail"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "signupPassword"
+        );
+
+
+    const password2Input =
+        document.getElementById(
+            "signupPassword2"
+        );
+
+
+    const message =
+        document.getElementById(
+            "signupMessage"
+        );
+
+
+    const button =
+        document.getElementById(
+            "signupButton"
+        );
+
+
+    const email =
+        emailInput
+            ? emailInput.value.trim()
+            : "";
+
+
+    const password =
+        passwordInput
+            ? passwordInput.value
+            : "";
+
+
+    const password2 =
+        password2Input
+            ? password2Input.value
+            : "";
+
+
+    if (
+        !email ||
+        !password ||
+        !password2
+    ) {
+
+        showMessage(
+            message,
+            "Please complete all fields.",
+            "error"
+        );
+
+        return;
+
     }
 
-    .logo-text h1 {
-        font-size: 14px;
+
+    if (password.length < 6) {
+
+        showMessage(
+            message,
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+
     }
 
-    .site-logo {
-        width: 45px;
-        height: 45px;
+
+    if (password !== password2) {
+
+        showMessage(
+            message,
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+
     }
 
-    .dashboard-stats {
-        grid-template-columns: 1fr;
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "Creating Account...";
+
     }
 
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .admin-section-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    try {
 
-    .registration-actions {
-        flex-direction: column;
-    }
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth.signUp({
 
-    .exco-position {
-        grid-template-columns: 1fr;
-        gap: 5px;
-    }
+                email: email,
 
-    .auth-card,
-    .form-container {
-        padding: 22px;
+                password: password
+
+            });
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+            showMessage(
+                message,
+                "Account created successfully. Redirecting to login...",
+                "success"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "member-login.html";
+
+                },
+                1000
+            );
+
+
+        } else {
+
+            showMessage(
+                message,
+                "Account created. Check your email if email confirmation is required, then login.",
+                "success"
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "SIGNUP ERROR:",
+            error
+        );
+
+
+        showMessage(
+            message,
+            "Account creation failed: " +
+            error.message,
+            "error"
+        );
+
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Create Account";
+
+        }
+
     }
 
 }
+
+
+/* =========================================================
+   MEMBER LOGIN
+========================================================= */
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        handleLogin
+    );
+
+}
+
+
+async function handleLogin(event) {
+
+    event.preventDefault();
+
+
+    if (!supabaseClient) {
+
+        showMessage(
+            document.getElementById(
+                "loginMessage"
+            ),
+            "Supabase is not available.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const emailInput =
+        document.getElementById(
+            "loginEmail"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "loginPassword"
+        );
+
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    const button =
+        document.getElementById(
+            "loginBtn"
+        );
+
+
+    const email =
+        emailInput
+            ? emailInput.value.trim()
+            : "";
+
+
+    const password =
+        passwordInput
+            ? passwordInput.value
+            : "";
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        showMessage(
+            message,
+            "Please enter your email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "Logging in...";
+
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !data ||
+            !data.user
+        ) {
+
+            throw new Error(
+                "Login was unsuccessful."
+            );
+
+        }
+
+
+        showMessage(
+            message,
+            "Login successful. Opening registration...",
+            "success"
+        );
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "register.html";
+
+            },
+            800
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+
+        showMessage(
+            message,
+            "Login failed: " +
+            error.message,
+            "error"
+        );
+
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Login";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK AUTH BEFORE REGISTRATION
+========================================================= */
+
+async function checkRegistrationLogin() {
+
+    if (
+        !registrationForm ||
+        !supabaseClient
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (
+        error ||
+        !data ||
+        !data.user
+    ) {
+
+        showMessage(
+            formMessage,
+            "Please login before completing your registration.",
+            "error"
+        );
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "member-login.html";
+
+            },
+            1500
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   REGISTRATION FORM
+========================================================= */
+
+const registrationForm =
+    document.getElementById(
+        "registrationForm"
+    );
+
+
+const formMessage =
+    document.getElementById(
+        "formMessage"
+    );
+
+
+if (registrationForm) {
+
+    registrationForm.addEventListener(
+        "submit",
+        submitRegistration
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT REGISTRATION
+========================================================= */
+
+async function submitRegistration(event) {
+
+    event.preventDefault();
+
+
+    if (!supabaseClient) {
+
+        showMessage(
+            formMessage,
+            "Supabase is not available.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Make sure the member is logged in.
+    */
+
+    const {
+        data: userData,
+        error: userError
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (
+        userError ||
+        !userData ||
+        !userData.user
+    ) {
+
+        showMessage(
+            formMessage,
+            "You must login before submitting your registration.",
+            "error"
+        );
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "member-login.html";
+
+            },
+            1200
+        );
+
+
+        return;
+
+    }
+
+
+    const user =
+        userData.user;
+
+
+    const submitButton =
+        registrationForm.querySelector(
+            "button[type='submit']"
+        );
+
+
+    function getValue(id) {
+
+        const element =
+            document.getElementById(id);
+
+
+        return element
+            ? element.value.trim()
+            : "";
+
+    }
+
+
+    const fullName =
+        getValue("fullName");
+
+
+    const phone =
+        getValue("phone");
+
+
+    const gender =
+        getValue("gender");
+
+
+    const address =
+        getValue("address");
+
+
+    const ward =
+        getValue("ward");
+
+
+    const bankName =
+        getValue("bankName");
+
+
+    const accountNumber =
+        getValue("accountNumber");
+
+
+    if (
+        !fullName ||
+        !phone ||
+        !address ||
+        !ward ||
+        !bankName ||
+        !accountNumber
+    ) {
+
+        showMessage(
+            formMessage,
+            "Please complete all required fields.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !/^\d{10}$/.test(
+            accountNumber
+        )
+    ) {
+
+        showMessage(
+            formMessage,
+            "Account number must contain exactly 10 digits.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (submitButton) {
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "Submitting...";
+
+    }
+
+
+    try {
+
+        /*
+           Check whether this email already
+           has a registration.
+        */
+
+        const {
+            data: existingMember,
+            error: existingError
+        } =
+            await supabaseClient
+                .from("members")
+                .select(
+                    "id,status"
+                )
+                .eq(
+                    "email",
+                    user.email
+                )
+                .maybeSingle();
+
+
+        if (
+            existingError &&
+            existingError.code !==
+            "PGRST116"
+        ) {
+
+            throw existingError;
+
+        }
+
+
+        if (existingMember) {
+
+            showMessage(
+                formMessage,
+                "You have already submitted a registration. Current status: " +
+                existingMember.status,
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /*
+           IMPORTANT
+
+           Your current members table contains:
+
+           id
+           full_name
+           phone
+           email
+           gender
+           address
+           ward_id
+           created_at
+           bank_name
+           account_number
+           status
+
+           Therefore we ONLY insert those columns.
+        */
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .insert({
+
+                    full_name:
+                        fullName,
+
+                    phone:
+                        phone,
+
+                    email:
+                        user.email,
+
+                    gender:
+                        gender || null,
+
+                    address:
+                        address,
+
+                    ward_id:
+                        Number(ward),
+
+                    bank_name:
+                        bankName,
+
+                    account_number:
+                        accountNumber,
+
+                    status:
+                        "pending"
+
+                });
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        showMessage(
+            formMessage,
+            "Registration submitted successfully! Your application is awaiting admin approval.",
+            "success"
+        );
+
+
+        registrationForm.reset();
+
+
+    } catch (error) {
+
+        console.error(
+            "REGISTRATION ERROR:",
+            error
+        );
+
+
+        let message =
+            error.message ||
+            "Unknown error.";
+
+
+        if (
+            message
+                .toLowerCase()
+                .includes(
+                    "row-level security"
+                )
+        ) {
+
+            message =
+                "Supabase blocked this registration because the members table policy does not allow the logged-in user to insert a row.";
+
+        }
+
+
+        showMessage(
+            formMessage,
+            "Registration failed: " +
+            message,
+            "error"
+        );
+
+
+    } finally {
+
+        if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "Submit Registration";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   WARD GRID
+========================================================= */
+
+const wardsGrid =
+    document.getElementById(
+        "wardsGrid"
+    );
+
+
+function createWardButtons() {
+
+    if (!wardsGrid) {
+
+        return;
+
+    }
+
+
+    wardsGrid.innerHTML = "";
+
+
+    wards.forEach(
+        function (ward) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "ward-button";
+
+
+            button.dataset.ward =
+                ward.number;
+
+
+            button.innerHTML = `
+
+                <strong>
+                    Ward ${ward.number}
+                </strong>
+
+                <span>
+                    ${escapeHTML(
+                        ward.name
+                    )}
+                </span>
+
+                <small>
+                    ${escapeHTML(
+                        ward.area
+                    )}
+                </small>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    showWard(
+                        ward.number
+                    );
+
+                }
+            );
+
+
+            wardsGrid.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WARD SELECT
+========================================================= */
+
+const wardSelect =
+    document.getElementById(
+        "ward"
+    );
+
+
+function createWardOptions() {
+
+    if (!wardSelect) {
+
+        return;
+
+    }
+
+
+    wardSelect.innerHTML = `
+
+        <option value="">
+            Select your ward
+        </option>
+
+    `;
+
+
+    wards.forEach(
+        function (ward) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                ward.number;
+
+
+            option.textContent =
+                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
+
+
+            wardSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SHOW WARD
+========================================================= */
+
+const wardDisplay =
+    document.getElementById(
+        "wardDisplay"
+    );
+
+
+async function showWard(
+    wardNumber
+) {
+
+    const ward =
+        wards.find(
+            function (item) {
+
+                return item.number ===
+                    Number(wardNumber);
+
+            }
+        );
+
+
+    if (
+        !ward ||
+        !wardDisplay
+    ) {
+
+        return;
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".ward-button"
+        )
+        .forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const activeButton =
+        document.querySelector(
+            `.ward-button[data-ward="${ward.number}"]`
+        );
+
+
+    if (activeButton) {
+
+        activeButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    wardDisplay.innerHTML = `
+
+        <div class="loading">
+
+            Loading Ward ${ward.number}...
+
+        </div>
+
+    `;
+
+
+    if (!supabaseClient) {
+
+        wardDisplay.innerHTML = `
+
+            <div class="empty-state error">
+
+                Supabase is not available.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            data: members,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select(`
+                    id,
+                    full_name,
+                    phone
+                `)
+                .eq(
+                    "ward_id",
+                    ward.number
+                )
+                .eq(
+                    "status",
+                    "approved"
+                )
+                .order(
+                    "full_name",
+                    {
+                        ascending: true
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        const approvedMembers =
+            members || [];
+
+
+        let membersHTML = "";
+
+
+        if (
+            approvedMembers.length === 0
+        ) {
+
+            membersHTML = `
+
+                <div class="empty-state">
+
+                    No approved members yet.
+
+                </div>
+
+            `;
+
+        } else {
+
+            membersHTML =
+                approvedMembers
+                    .map(
+                        function (member) {
+
+                            return `
+
+                                <div class="registration-item">
+
+                                    <h3>
+                                        ${escapeHTML(
+                                            member.full_name
+                                        )}
+                                    </h3>
+
+                                    <p>
+                                        ${escapeHTML(
+                                            member.phone
+                                        )}
+                                    </p>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        wardDisplay.innerHTML = `
+
+            <div class="panel">
+
+                <h2>
+                    Ward ${ward.number}
+                    — ${escapeHTML(
+                        ward.name
+                    )}
+                </h2>
+
+                <p>
+                    ${escapeHTML(
+                        ward.area
+                    )}
+                </p>
+
+
+                <h3>
+                    Ward Executive Offices
+                </h3>
+
+
+                ${
+                    wardOffices
+                        .map(
+                            function (position) {
+
+                                return `
+
+                                    <div class="registration-item">
+
+                                        <strong>
+                                            ${escapeHTML(
+                                                position
+                                            )}
+                                        </strong>
+
+                                        <p>
+                                            Not yet assigned
+                                        </p>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join("")
+                }
+
+
+                <h3>
+                    Approved Members
+                    (${approvedMembers.length})
+                </h3>
+
+
+                ${membersHTML}
+
+            </div>
+
+        `;
+
+
+    } catch (error) {
+
+        console.error(
+            "WARD ERROR:",
+            error
+        );
+
+
+        wardDisplay.innerHTML = `
+
+            <div class="empty-state error">
+
+                <strong>
+                    Unable to load members.
+                </strong>
+
+                <p>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+createWardButtons();
+
+createWardOptions();
+
+
+if (registrationForm) {
+
+    checkRegistrationLogin();
+
+}
+
+
+console.log(
+    "BWI-RHA Ado LG website loaded successfully."
+);
