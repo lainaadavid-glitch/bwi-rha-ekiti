@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -9,12 +8,9 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        Login | BWI-RHA EKITI STATE CHAPTER
-    </title>
+    <title>Login | BWI-RHA EKITI STATE CHAPTER</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -33,32 +29,31 @@
 
             <div class="logo-text">
 
-                <h1>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h1>
+                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
 
-                <p>
-                    ADO LG
-                </p>
+                <p>ADO LG</p>
 
             </div>
 
         </a>
 
 
+        <!-- MOBILE MENU -->
         <button
             class="menu-btn"
-            id="menuBtn"
+            id="menuButton"
             type="button"
             aria-label="Open menu"
+            aria-expanded="false"
         >
             ☰
         </button>
 
 
+        <!-- NAVIGATION -->
         <nav
             class="main-nav"
-            id="navMenu"
+            id="mobileNav"
         >
 
             <a href="index.html">
@@ -105,9 +100,7 @@
         </div>
 
 
-        <h2>
-            Member Login
-        </h2>
+        <h2>Member Login</h2>
 
 
         <p class="auth-subtitle">
@@ -180,7 +173,6 @@
                 <a href="member-signup.html">
                     Create an account
                 </a>
-
             </p>
 
 
@@ -217,8 +209,10 @@
 </footer>
 
 
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<!-- WEBSITE SCRIPT -->
 <script src="script.js"></script>
 
 </body>
