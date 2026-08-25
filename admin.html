@@ -1,403 +1,700 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin | BWI-RHA Ado LG</title>
+```
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="style.css">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Admin Dashboard | BWI-RHA Ado LG
+</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+<style>
+
+    .admin-page {
+        padding: 50px 20px;
+    }
+
+    .admin-box {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .login-box {
+        max-width: 500px;
+        margin: 40px auto;
+        background: white;
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 10px 35px rgba(0,0,0,.08);
+    }
+
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-stats {
+        display: grid;
+        grid-template-columns:
+            repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 35px;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .stat-card h3 {
+        font-size: 35px;
+        margin: 0 0 8px;
+    }
+
+    .admin-section {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .admin-section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .registration-item {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .registration-item h3 {
+        margin-top: 0;
+    }
+
+    .registration-item p {
+        margin: 7px 0;
+    }
+
+    .registration-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+        flex-wrap: wrap;
+    }
+
+    .small-btn {
+        border: none;
+        padding: 10px 16px;
+        border-radius: 7px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .accept-btn {
+        background: #16833b;
+        color: white;
+    }
+
+    .decline-btn {
+        background: #c62828;
+        color: white;
+    }
+
+    .delete-btn {
+        background: #8b0000;
+        color: white;
+    }
+
+    .refresh-btn {
+        background: #16833b;
+        color: white;
+    }
+
+    .loading,
+    .empty-state {
+        padding: 25px;
+        text-align: center;
+        border-radius: 10px;
+        background: #f7f7f7;
+    }
+
+    .error {
+        color: #a00000;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .form-message {
+        margin: 15px 0;
+        padding: 13px;
+        border-radius: 8px;
+        display: none;
+    }
+
+    .form-message.show {
+        display: block;
+    }
+
+    .form-message.success {
+        background: #e7f7ec;
+        color: #12652c;
+    }
+
+    .form-message.error {
+        background: #fff0f0;
+        color: #a00000;
+    }
+
+    .form-message.info {
+        background: #edf6ff;
+        color: #14528a;
+    }
+
+    .member-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .member-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 700px;
+    }
+
+    .member-table th,
+    .member-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .member-table th {
+        background: #f5f5f5;
+    }
+
+    .ward-admin-section {
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .ward-admin-section h3 {
+        margin-bottom: 5px;
+    }
+
+    .exco-position {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .exco-position label {
+        font-weight: 600;
+    }
+
+    .exco-position select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    @media (max-width: 800px) {
+
+        .dashboard-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .exco-position {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+```
+
 </head>
 
 <body>
 
 <header class="site-header">
 
-    <div class="header-container">
+```
+<div class="header-container">
 
-        <a href="index.html" class="logo-area">
+    <a
+        href="index.html"
+        class="logo-area"
+    >
 
-            <img
-                src="logo.jpeg"
-                alt="BWI-RHA Logo"
-                class="site-logo"
-            >
+        <img
+            src="logo.jpeg"
+            alt="BWI-RHA Logo"
+            class="site-logo"
+        >
 
-            <div class="logo-text">
-                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
-                <p>ADO LOCAL GOVERNMENT</p>
-            </div>
+        <div class="logo-text">
 
+            <h1>
+                BWI-RHA EKITI STATE CHAPTER
+            </h1>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+    </a>
+
+
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuButton"
+    >
+        ☰
+    </button>
+
+
+    <nav
+        class="main-nav"
+        id="mobileNav"
+    >
+
+        <a href="index.html">
+            Home
         </a>
 
-        <button
-            type="button"
-            class="menu-btn"
-            id="menuButton"
+        <a href="wards.html">
+            Wards
+        </a>
+
+        <a href="register.html">
+            Register
+        </a>
+
+        <a
+            href="admin.html"
+            class="active"
         >
-            ☰
-        </button>
+            Admin
+        </a>
 
-        <nav
-            class="main-nav"
-            id="mobileNav"
-        >
+    </nav>
 
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="wards.html">
-                Wards
-            </a>
-
-            <a href="register.html">
-                Register
-            </a>
-
-            <a
-                href="admin.html"
-                class="active"
-            >
-                Admin
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
 <main>
 
-    <!-- =================================================
-         LOGIN
-    ================================================== -->
+<!-- =====================================================
+     LOGIN
+====================================================== -->
 
-    <section
-        class="section"
-        id="loginSection"
-    >
+<section
+    id="loginSection"
+    class="admin-page"
+>
 
-        <div class="container">
+```
+<div class="login-box">
 
-            <div class="section-title">
+    <div class="registration-title">
 
-                <span>
-                    ADMINISTRATION
-                </span>
+        <h2>
+            Admin Login
+        </h2>
 
-                <h2>
-                    Admin Login
-                </h2>
+        <p>
+            BWI-RHA Ado Local Government
+        </p>
 
-                <p>
-                    Authorized administrators only.
-                </p>
-
-            </div>
+    </div>
 
 
-            <div class="form-container">
+    <form id="loginForm">
 
-                <form id="adminLoginForm">
+        <div class="form-group">
 
-                    <div class="form-group">
+            <label for="email">
+                Admin Email
+            </label>
 
-                        <label for="adminEmail">
-                            Admin Email
-                        </label>
-
-                        <input
-                            type="email"
-                            id="adminEmail"
-                            placeholder="Enter admin email"
-                            autocomplete="username"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="adminPassword">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="adminPassword"
-                            placeholder="Enter password"
-                            autocomplete="current-password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn primary"
-                        id="loginButton"
-                        style="width:100%;"
-                    >
-                        Login
-                    </button>
-
-
-                    <div
-                        id="loginMessage"
-                        class="form-message"
-                    ></div>
-
-                </form>
-
-            </div>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter admin email"
+                required
+            >
 
         </div>
 
-    </section>
 
-
-    <!-- =================================================
-         ADMIN DASHBOARD
-    ================================================== -->
-
-    <section
-        class="section"
-        id="dashboardSection"
-        style="display:none;"
-    >
-
-        <div class="container">
-
-            <div class="admin-header">
-
-                <div>
-
-                    <span class="hero-label">
-                        ADMIN DASHBOARD
-                    </span>
-
-                    <h2>
-                        BWI-RHA Ado LG
-                    </h2>
-
-                    <p id="loggedInEmail"></p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="btn"
-                    id="logoutButton"
-                >
-                    Logout
-                </button>
-
-            </div>
-
-
-            <!-- STATS -->
-
-            <div class="dashboard-stats">
-
-                <div class="stat-card">
-
-                    <h3 id="totalCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Total Registrations
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <h3 id="pendingCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Pending
-                    </p>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <h3 id="approvedCount">
-                        0
-                    </h3>
-
-                    <p>
-                        Approved
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- MESSAGE -->
-
-            <div
-                id="adminMessage"
-                class="form-message"
-            ></div>
-
-
-            <!-- PENDING -->
-
-            <div class="admin-section">
-
-                <div class="admin-section-header">
-
-                    <h2>
-                        Pending Registrations
-                    </h2>
-
-                    <button
-                        type="button"
-                        class="small-btn accept-btn"
-                        id="refreshButton"
-                    >
-                        Refresh
-                    </button>
-
-                </div>
-
-
-                <div id="pendingMembers">
-
-                    <div class="loading">
-                        Loading registrations...
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- APPROVED -->
-
-            <div class="admin-section">
-
-                <div class="admin-section-header">
-
-                    <h2>
-                        Approved Members
-                    </h2>
-
-                </div>
-
-
-                <div id="approvedMembers">
-
-                    <div class="loading">
-                        Loading approved members...
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXCO -->
-
-            <div class="admin-section">
-
-                <div class="admin-section-header">
-
-                    <div>
-
-                        <h2>
-                            Ward EXCO Management
-                        </h2>
-
-                        <p>
-                            Assign approved members to
-                            the structured ward offices.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div id="excoManagement">
-
-                    <div class="loading">
-                        Loading EXCO management...
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h3>
-
-                <p>
-                    ADO LOCAL GOVERNMENT
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <p>
-                    Green Economy E-Mobility Program
-                </p>
-
-            </div>
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
 
         </div>
 
 
-        <div class="footer-bottom">
+        <button
+            type="submit"
+            class="btn primary"
+            id="loginButton"
+            style="width:100%;"
+        >
+            Login
+        </button>
+
+
+        <div
+            id="loginMessage"
+            class="form-message"
+        ></div>
+
+    </form>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+<section
+    id="dashboardSection"
+    class="admin-page hidden"
+>
+
+```
+<div class="admin-box">
+
+
+    <div class="admin-header">
+
+        <div>
+
+            <span class="hero-label">
+                ADMIN DASHBOARD
+            </span>
+
+            <h2>
+                BWI-RHA ADO LG
+            </h2>
+
+            <p id="adminEmailDisplay"></p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="small-btn decline-btn"
+            id="logoutButton"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="dashboard-stats">
+
+        <div class="stat-card">
+
+            <h3 id="totalCount">
+                0
+            </h3>
 
             <p>
-                ©
-                <span id="currentYear"></span>
-                BWI-RHA Ekiti State Chapter.
+                Total Registrations
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3 id="pendingCount">
+                0
+            </h3>
+
+            <p>
+                Pending
+            </p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3 id="approvedCount">
+                0
+            </h3>
+
+            <p>
+                Approved
             </p>
 
         </div>
 
     </div>
 
-</footer>
 
+    <div
+        id="adminMessage"
+        class="form-message"
+    ></div>
+
+
+    <!-- =================================================
+         PENDING
+    ================================================== -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <h2>
+                Pending Registrations
+            </h2>
+
+            <button
+                type="button"
+                class="small-btn refresh-btn"
+                id="refreshButton"
+            >
+                Refresh
+            </button>
+
+        </div>
+
+
+        <div id="pendingMembers">
+
+            <div class="loading">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         APPROVED
+    ================================================== -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <h2>
+                Approved Members
+            </h2>
+
+        </div>
+
+
+        <div id="approvedMembers">
+
+            <div class="loading">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REJECTED
+    ================================================== -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <h2>
+                Rejected Members
+            </h2>
+
+        </div>
+
+
+        <div id="rejectedMembers">
+
+            <div class="loading">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         EXCO
+    ================================================== -->
+
+    <div class="admin-section">
+
+        <div class="admin-section-header">
+
+            <div>
+
+                <h2>
+                    Ward EXCO Management
+                </h2>
+
+                <p>
+                    Assign approved members to
+                    ward offices.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="excoManagement">
+
+            <div class="loading">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+
+```
+<div class="container">
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>
+                BWI-RHA EKITI STATE CHAPTER
+            </h3>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+        <div>
+
+            <p>
+                Green Economy E-Mobility Program
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©
+            <span id="currentYear"></span>
+            BWI-RHA Ekiti State Chapter.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
     "https://xfjrmgendmmpnumsbjte.supabase.co";
@@ -413,9 +710,17 @@ const supabaseClient =
     );
 
 
+/* =====================================================
+   ADMIN
+===================================================== */
+
 const ADMIN_EMAIL =
     "agatha4jesu@gmail.com";
 
+
+/* =====================================================
+   WARDS
+===================================================== */
 
 const WARDS = [
 
@@ -500,6 +805,10 @@ const WARDS = [
 ];
 
 
+/* =====================================================
+   OFFICES
+===================================================== */
+
 const WARD_OFFICES = [
 
     "Ward Coordinator",
@@ -521,59 +830,59 @@ const WARD_OFFICES = [
 ];
 
 
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
 const loginSection =
     document.getElementById(
         "loginSection"
     );
-
 
 const dashboardSection =
     document.getElementById(
         "dashboardSection"
     );
 
-
 const loginForm =
     document.getElementById(
-        "adminLoginForm"
+        "loginForm"
     );
-
 
 const loginMessage =
     document.getElementById(
         "loginMessage"
     );
 
-
 const loginButton =
     document.getElementById(
         "loginButton"
     );
-
 
 const logoutButton =
     document.getElementById(
         "logoutButton"
     );
 
-
 const adminMessage =
     document.getElementById(
         "adminMessage"
     );
-
 
 const pendingMembers =
     document.getElementById(
         "pendingMembers"
     );
 
-
 const approvedMembers =
     document.getElementById(
         "approvedMembers"
     );
 
+const rejectedMembers =
+    document.getElementById(
+        "rejectedMembers"
+    );
 
 const excoManagement =
     document.getElementById(
@@ -581,132 +890,87 @@ const excoManagement =
     );
 
 
-const totalCount =
-    document.getElementById(
-        "totalCount"
-    );
-
-
-const pendingCount =
-    document.getElementById(
-        "pendingCount"
-    );
-
-
-const approvedCount =
-    document.getElementById(
-        "approvedCount"
-    );
-
-
-const refreshButton =
-    document.getElementById(
-        "refreshButton"
-    );
-
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHTML(value) {
 
     return String(value ?? "")
 
-        .replaceAll("&", "&amp;")
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
 
-        .replaceAll("<", "&lt;")
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
 
-        .replaceAll(">", "&gt;")
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
 
-        .replaceAll('"', "&quot;")
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
 
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
 }
 
 
-function showLoginMessage(
-    text,
-    type = "error"
-) {
-
-    loginMessage.textContent =
-        text;
-
-    loginMessage.className =
-        "form-message " + type;
-
-}
-
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 function showAdminMessage(
     text,
-    type = "info"
+    type
 ) {
 
     adminMessage.textContent =
         text;
 
     adminMessage.className =
-        "form-message " + type;
+        "form-message show " +
+        type;
 
 }
 
 
-/* =================================================
-   CHECK CURRENT LOGIN
-================================================= */
+/* =====================================================
+   LOGIN MESSAGE
+===================================================== */
 
-async function checkAdminSession() {
+function showLoginMessage(
+    text,
+    type
+) {
 
-    const {
-        data
-    } =
-        await supabaseClient
-            .auth
-            .getSession();
+    loginMessage.textContent =
+        text;
 
-
-    const session =
-        data.session;
-
-
-    if (
-        session &&
-        session.user
-    ) {
-
-        if (
-            session.user.email
-                .toLowerCase() !==
-            ADMIN_EMAIL.toLowerCase()
-        ) {
-
-            await supabaseClient
-                .auth
-                .signOut();
-
-            showLoginMessage(
-                "This account is not authorized as an administrator.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        openDashboard(
-            session.user.email
-        );
-
-    }
+    loginMessage.className =
+        "form-message show " +
+        type;
 
 }
 
 
-/* =================================================
+/* =====================================================
    LOGIN
-================================================= */
+===================================================== */
 
 loginForm.addEventListener(
     "submit",
-    async event => {
+    async function(event) {
 
         event.preventDefault();
 
@@ -714,7 +978,7 @@ loginForm.addEventListener(
         const email =
             document
                 .getElementById(
-                    "adminEmail"
+                    "email"
                 )
                 .value
                 .trim();
@@ -723,7 +987,7 @@ loginForm.addEventListener(
         const password =
             document
                 .getElementById(
-                    "adminPassword"
+                    "password"
                 )
                 .value;
 
@@ -734,11 +998,12 @@ loginForm.addEventListener(
         ) {
 
             showLoginMessage(
-                "Only the authorized admin email can log in.",
+                "Unauthorized admin email.",
                 "error"
             );
 
             return;
+
         }
 
 
@@ -772,8 +1037,7 @@ loginForm.addEventListener(
 
             if (
                 !data.user ||
-                data.user.email
-                    .toLowerCase() !==
+                data.user.email.toLowerCase() !==
                 ADMIN_EMAIL.toLowerCase()
             ) {
 
@@ -782,16 +1046,10 @@ loginForm.addEventListener(
                     .signOut();
 
                 throw new Error(
-                    "This account is not authorized."
+                    "Unauthorized administrator."
                 );
 
             }
-
-
-            showLoginMessage(
-                "Login successful.",
-                "success"
-            );
 
 
             openDashboard(
@@ -804,7 +1062,6 @@ loginForm.addEventListener(
             console.error(
                 error
             );
-
 
             showLoginMessage(
                 "Login failed: " +
@@ -826,23 +1083,25 @@ loginForm.addEventListener(
 );
 
 
-/* =================================================
+/* =====================================================
    OPEN DASHBOARD
-================================================= */
+===================================================== */
 
 function openDashboard(
     email
 ) {
 
-    loginSection.style.display =
-        "none";
+    loginSection.classList.add(
+        "hidden"
+    );
 
-    dashboardSection.style.display =
-        "block";
+    dashboardSection.classList.remove(
+        "hidden"
+    );
 
 
     document.getElementById(
-        "loggedInEmail"
+        "adminEmailDisplay"
     ).textContent =
         email;
 
@@ -852,23 +1111,71 @@ function openDashboard(
 }
 
 
-/* =================================================
+/* =====================================================
+   CHECK SESSION
+===================================================== */
+
+async function checkSession() {
+
+    const {
+        data
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+    if (
+        data.session &&
+        data.session.user
+    ) {
+
+        const email =
+            data.session.user.email;
+
+
+        if (
+            email.toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
+        ) {
+
+            await supabaseClient
+                .auth
+                .signOut();
+
+            return;
+
+        }
+
+
+        openDashboard(
+            email
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    LOGOUT
-================================================= */
+===================================================== */
 
 logoutButton.addEventListener(
     "click",
-    async () => {
+    async function() {
 
         await supabaseClient
             .auth
             .signOut();
 
-        dashboardSection.style.display =
-            "none";
+        dashboardSection.classList.add(
+            "hidden"
+        );
 
-        loginSection.style.display =
-            "block";
+        loginSection.classList.remove(
+            "hidden"
+        );
 
         loginForm.reset();
 
@@ -876,9 +1183,9 @@ logoutButton.addEventListener(
 );
 
 
-/* =================================================
-   LOAD DASHBOARD
-================================================= */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 async function loadDashboard() {
 
@@ -890,6 +1197,8 @@ async function loadDashboard() {
 
         loadApprovedMembers(),
 
+        loadRejectedMembers(),
+
         loadExcoManagement()
 
     ]);
@@ -897,9 +1206,9 @@ async function loadDashboard() {
 }
 
 
-/* =================================================
+/* =====================================================
    STATS
-================================================= */
+===================================================== */
 
 async function loadStats() {
 
@@ -927,32 +1236,30 @@ async function loadStats() {
             data || [];
 
 
-        const pending =
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            members.length;
+
+
+        document.getElementById(
+            "pendingCount"
+        ).textContent =
             members.filter(
-                member =>
-                    member.status ===
+                m =>
+                    m.status ===
                     "pending"
             ).length;
 
 
-        const approved =
+        document.getElementById(
+            "approvedCount"
+        ).textContent =
             members.filter(
-                member =>
-                    member.status ===
-                        "approved" ||
-                    member.status ===
-                        "accepted"
+                m =>
+                    m.status ===
+                    "approved"
             ).length;
-
-
-        totalCount.textContent =
-            members.length;
-
-        pendingCount.textContent =
-            pending;
-
-        approvedCount.textContent =
-            approved;
 
 
     } catch (error) {
@@ -966,19 +1273,16 @@ async function loadStats() {
 }
 
 
-/* =================================================
-   PENDING MEMBERS
-================================================= */
+/* =====================================================
+   PENDING
+===================================================== */
 
 async function loadPendingMembers() {
 
-    pendingMembers.innerHTML = `
-
-        <div class="loading">
+    pendingMembers.innerHTML =
+        `<div class="loading">
             Loading pending registrations...
-        </div>
-
-    `;
+        </div>`;
 
 
     try {
@@ -1014,15 +1318,10 @@ async function loadPendingMembers() {
             data.length === 0
         ) {
 
-            pendingMembers.innerHTML = `
-
-                <div class="empty-state">
-
+            pendingMembers.innerHTML =
+                `<div class="empty-state">
                     No pending registrations.
-
-                </div>
-
-            `;
+                </div>`;
 
             return;
 
@@ -1031,35 +1330,27 @@ async function loadPendingMembers() {
 
         pendingMembers.innerHTML =
             data.map(
-                member =>
-                    renderPendingMember(
-                        member
-                    )
+                renderPendingMember
             ).join("");
 
 
     } catch (error) {
 
-        pendingMembers.innerHTML = `
-
-            <div class="empty-state error">
-
+        pendingMembers.innerHTML =
+            `<div class="empty-state error">
                 ${escapeHTML(
                     error.message
                 )}
-
-            </div>
-
-        `;
+            </div>`;
 
     }
 
 }
 
 
-/* =================================================
-   RENDER PENDING MEMBER
-================================================= */
+/* =====================================================
+   PENDING CARD
+===================================================== */
 
 function renderPendingMember(
     member
@@ -1067,8 +1358,8 @@ function renderPendingMember(
 
     const ward =
         WARDS.find(
-            item =>
-                item.id ===
+            w =>
+                w.id ===
                 Number(
                     member.ward_id
                 )
@@ -1093,46 +1384,6 @@ function renderPendingMember(
             </p>
 
             <p>
-                <strong>Email:</strong>
-                ${escapeHTML(
-                    member.email ||
-                    "Not provided"
-                )}
-            </p>
-
-            <p>
-                <strong>Gender:</strong>
-                ${escapeHTML(
-                    member.gender ||
-                    "Not provided"
-                )}
-            </p>
-
-            <p>
-                <strong>Address:</strong>
-                ${escapeHTML(
-                    member.address
-                )}
-            </p>
-
-            <p>
-                <strong>Ward:</strong>
-                ${
-                    ward
-                    ?
-                    `Ward ${ward.id} —
-                     ${escapeHTML(
-                         ward.name
-                     )} —
-                     ${escapeHTML(
-                         ward.area
-                     )}`
-                    :
-                    "Unknown"
-                }
-            </p>
-
-            <p>
                 <strong>Bank:</strong>
                 ${escapeHTML(
                     member.bank_name
@@ -1146,12 +1397,32 @@ function renderPendingMember(
                 )}
             </p>
 
+            <p>
+                <strong>Ward:</strong>
+                ${
+                    ward
+                    ?
+                    `Ward ${ward.id} —
+                    ${escapeHTML(
+                        ward.name
+                    )} —
+                    ${escapeHTML(
+                        ward.area
+                    )}`
+                    :
+                    "Unknown"
+                }
+            </p>
+
             <div class="registration-actions">
 
                 <button
                     type="button"
                     class="small-btn accept-btn"
-                    onclick="updateMemberStatus('${member.id}', 'approved')"
+                    onclick="updateMemberStatus(
+                        '${member.id}',
+                        'approved'
+                    )"
                 >
                     Approve
                 </button>
@@ -1159,7 +1430,10 @@ function renderPendingMember(
                 <button
                     type="button"
                     class="small-btn decline-btn"
-                    onclick="updateMemberStatus('${member.id}', 'rejected')"
+                    onclick="updateMemberStatus(
+                        '${member.id}',
+                        'declined'
+                    )"
                 >
                     Reject
                 </button>
@@ -1173,9 +1447,9 @@ function renderPendingMember(
 }
 
 
-/* =================================================
-   APPROVE / REJECT
-================================================= */
+/* =====================================================
+   UPDATE STATUS
+===================================================== */
 
 async function updateMemberStatus(
     memberId,
@@ -1190,7 +1464,7 @@ async function updateMemberStatus(
 
     if (
         !confirm(
-            `Are you sure you want to ${action} this registration?`
+            `Are you sure you want to ${action} this member?`
         )
     ) {
 
@@ -1249,19 +1523,16 @@ async function updateMemberStatus(
 }
 
 
-/* =================================================
-   APPROVED MEMBERS
-================================================= */
+/* =====================================================
+   APPROVED
+===================================================== */
 
 async function loadApprovedMembers() {
 
-    approvedMembers.innerHTML = `
-
-        <div class="loading">
+    approvedMembers.innerHTML =
+        `<div class="loading">
             Loading approved members...
-        </div>
-
-    `;
+        </div>`;
 
 
     try {
@@ -1273,12 +1544,9 @@ async function loadApprovedMembers() {
             await supabaseClient
                 .from("members")
                 .select("*")
-                .in(
+                .eq(
                     "status",
-                    [
-                        "approved",
-                        "accepted"
-                    ]
+                    "approved"
                 )
                 .order(
                     "full_name",
@@ -1300,106 +1568,48 @@ async function loadApprovedMembers() {
             data.length === 0
         ) {
 
-            approvedMembers.innerHTML = `
-
-                <div class="empty-state">
-
-                    No approved members yet.
-
-                </div>
-
-            `;
+            approvedMembers.innerHTML =
+                `<div class="empty-state">
+                    No approved members.
+                </div>`;
 
             return;
 
         }
 
 
-        approvedMembers.innerHTML = `
-
-            <div class="member-table-wrapper">
-
-                <table class="member-table">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Name
-                            </th>
-
-                            <th>
-                                Phone
-                            </th>
-
-                            <th>
-                                Ward
-                            </th>
-
-                            <th>
-                                Office
-                            </th>
-
-                            <th>
-                                Status
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        ${
-                            data.map(
-                                member =>
-                                    renderApprovedRow(
-                                        member
-                                    )
-                            ).join("")
-                        }
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        `;
+        approvedMembers.innerHTML =
+            data.map(
+                renderApprovedMember
+            ).join("");
 
 
     } catch (error) {
 
-        approvedMembers.innerHTML = `
-
-            <div class="empty-state error">
-
+        approvedMembers.innerHTML =
+            `<div class="empty-state error">
                 ${escapeHTML(
                     error.message
                 )}
-
-            </div>
-
-        `;
+            </div>`;
 
     }
 
 }
 
 
-/* =================================================
-   APPROVED ROW
-================================================= */
+/* =====================================================
+   APPROVED MEMBER
+===================================================== */
 
-function renderApprovedRow(
+function renderApprovedMember(
     member
 ) {
 
     const ward =
         WARDS.find(
-            item =>
-                item.id ===
+            w =>
+                w.id ===
                 Number(
                     member.ward_id
                 )
@@ -1408,65 +1618,330 @@ function renderApprovedRow(
 
     return `
 
-        <tr>
+        <div class="registration-item">
 
-            <td>
+            <h3>
                 ${escapeHTML(
                     member.full_name
                 )}
-            </td>
+            </h3>
 
-            <td>
+            <p>
+                <strong>Phone:</strong>
                 ${escapeHTML(
                     member.phone
                 )}
-            </td>
+            </p>
 
-            <td>
+            <p>
+                <strong>Bank:</strong>
+                ${escapeHTML(
+                    member.bank_name
+                )}
+            </p>
+
+            <p>
+                <strong>Account:</strong>
+                ${escapeHTML(
+                    member.account_number
+                )}
+            </p>
+
+            <p>
+                <strong>Ward:</strong>
                 ${
                     ward
                     ?
-                    `Ward ${ward.id} — ${escapeHTML(
+                    `Ward ${ward.id} —
+                    ${escapeHTML(
                         ward.name
+                    )} —
+                    ${escapeHTML(
+                        ward.area
                     )}`
                     :
                     "Unknown"
                 }
-            </td>
+            </p>
 
-            <td>
+            <p>
+                <strong>Office:</strong>
                 ${escapeHTML(
                     member.exco_position ||
-                    "Member"
+                    "General Member"
                 )}
-            </td>
+            </p>
 
-            <td>
-                ${escapeHTML(
-                    member.status
-                )}
-            </td>
+            <div class="registration-actions">
 
-        </tr>
+                <button
+                    type="button"
+                    class="small-btn decline-btn"
+                    onclick="updateMemberStatus(
+                        '${member.id}',
+                        'declined'
+                    )"
+                >
+                    Reject
+                </button>
+
+                <button
+                    type="button"
+                    class="small-btn delete-btn"
+                    onclick="deleteMember(
+                        '${member.id}'
+                    )"
+                >
+                    🗑 Delete Permanently
+                </button>
+
+            </div>
+
+        </div>
 
     `;
 
 }
 
 
-/* =================================================
-   EXCO MANAGEMENT
-================================================= */
+/* =====================================================
+   REJECTED
+===================================================== */
 
-async function loadExcoManagement() {
+async function loadRejectedMembers() {
 
-    excoManagement.innerHTML = `
+    rejectedMembers.innerHTML =
+        `<div class="loading">
+            Loading rejected members...
+        </div>`;
 
-        <div class="loading">
-            Loading approved members...
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq(
+                    "status",
+                    "declined"
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            rejectedMembers.innerHTML =
+                `<div class="empty-state">
+                    No rejected members.
+                </div>`;
+
+            return;
+
+        }
+
+
+        rejectedMembers.innerHTML =
+            data.map(
+                renderRejectedMember
+            ).join("");
+
+
+    } catch (error) {
+
+        rejectedMembers.innerHTML =
+            `<div class="empty-state error">
+                ${escapeHTML(
+                    error.message
+                )}
+            </div>`;
+
+    }
+
+}
+
+
+/* =====================================================
+   REJECTED MEMBER
+===================================================== */
+
+function renderRejectedMember(
+    member
+) {
+
+    return `
+
+        <div class="registration-item">
+
+            <h3>
+                ${escapeHTML(
+                    member.full_name
+                )}
+            </h3>
+
+            <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(
+                    member.phone
+                )}
+            </p>
+
+            <p>
+                <strong>Bank:</strong>
+                ${escapeHTML(
+                    member.bank_name
+                )}
+            </p>
+
+            <p>
+                <strong>Account:</strong>
+                ${escapeHTML(
+                    member.account_number
+                )}
+            </p>
+
+            <div class="registration-actions">
+
+                <button
+                    type="button"
+                    class="small-btn accept-btn"
+                    onclick="updateMemberStatus(
+                        '${member.id}',
+                        'approved'
+                    )"
+                >
+                    Approve Again
+                </button>
+
+                <button
+                    type="button"
+                    class="small-btn delete-btn"
+                    onclick="deleteMember(
+                        '${member.id}'
+                    )"
+                >
+                    🗑 Delete Permanently
+                </button>
+
+            </div>
+
         </div>
 
     `;
+
+}
+
+
+/* =====================================================
+   DELETE MEMBER
+===================================================== */
+
+async function deleteMember(
+    memberId
+) {
+
+    const confirmed =
+        confirm(
+            "WARNING: This will permanently delete this member and all their registration information.\n\nDo you want to continue?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    const secondConfirmation =
+        confirm(
+            "Confirm permanent deletion?"
+        );
+
+
+    if (!secondConfirmation) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("members")
+                .delete()
+                .eq(
+                    "id",
+                    memberId
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        showAdminMessage(
+            "Member permanently deleted.",
+            "success"
+        );
+
+
+        await loadDashboard();
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        showAdminMessage(
+            "Unable to delete member: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   EXCO MANAGEMENT
+===================================================== */
+
+async function loadExcoManagement() {
+
+    excoManagement.innerHTML =
+        `<div class="loading">
+            Loading EXCO management...
+        </div>`;
 
 
     try {
@@ -1480,12 +1955,9 @@ async function loadExcoManagement() {
                 .select(
                     "id,full_name,ward_id,status,exco_position"
                 )
-                .in(
+                .eq(
                     "status",
-                    [
-                        "approved",
-                        "accepted"
-                    ]
+                    "approved"
                 )
                 .order(
                     "full_name",
@@ -1524,13 +1996,10 @@ async function loadExcoManagement() {
                     <div class="ward-admin-section">
 
                         <h3>
-
-                            Ward ${ward.id}
-                            —
+                            Ward ${ward.id} —
                             ${escapeHTML(
                                 ward.name
                             )}
-
                         </h3>
 
                         <p>
@@ -1540,6 +2009,20 @@ async function loadExcoManagement() {
                         </p>
 
                 `;
+
+
+                if (
+                    members.length === 0
+                ) {
+
+                    html += `
+                        <p>
+                            No approved members
+                            in this ward.
+                        </p>
+                    `;
+
+                }
 
 
                 WARD_OFFICES.forEach(
@@ -1558,13 +2041,10 @@ async function loadExcoManagement() {
                             <div class="exco-position">
 
                                 <label>
-
                                     ${escapeHTML(
                                         office
                                     )}
-
                                 </label>
-
 
                                 <select
                                     class="exco-select"
@@ -1579,30 +2059,29 @@ async function loadExcoManagement() {
                                     </option>
 
                                     ${
-                                        members.map(
-                                            member => `
-
-                                                <option
-                                                    value="${member.id}"
-                                                    ${
-                                                        holder &&
-                                                        holder.id ===
-                                                        member.id
-                                                        ?
-                                                        "selected"
-                                                        :
-                                                        ""
-                                                    }
-                                                >
-
-                                                    ${escapeHTML(
-                                                        member.full_name
-                                                    )}
-
-                                                </option>
-
-                                            `
-                                        ).join("")
+                                        members
+                                            .map(
+                                                member =>
+                                                    `
+                                                    <option
+                                                        value="${member.id}"
+                                                        ${
+                                                            holder &&
+                                                            holder.id ===
+                                                            member.id
+                                                            ?
+                                                            "selected"
+                                                            :
+                                                            ""
+                                                        }
+                                                    >
+                                                        ${escapeHTML(
+                                                            member.full_name
+                                                        )}
+                                                    </option>
+                                                    `
+                                            )
+                                            .join("")
                                     }
 
                                 </select>
@@ -1617,13 +2096,15 @@ async function loadExcoManagement() {
 
                 html += `
 
-                        <button
-                            type="button"
-                            class="btn primary"
-                            onclick="saveWardExco(${ward.id})"
-                        >
-                            Save Ward ${ward.id} EXCO
-                        </button>
+                    <button
+                        type="button"
+                        class="btn primary"
+                        onclick="saveWardExco(
+                            ${ward.id}
+                        )"
+                    >
+                        Save Ward ${ward.id} EXCO
+                    </button>
 
                     </div>
 
@@ -1639,26 +2120,21 @@ async function loadExcoManagement() {
 
     } catch (error) {
 
-        excoManagement.innerHTML = `
-
-            <div class="empty-state error">
-
+        excoManagement.innerHTML =
+            `<div class="empty-state error">
                 ${escapeHTML(
                     error.message
                 )}
-
-            </div>
-
-        `;
+            </div>`;
 
     }
 
 }
 
 
-/* =================================================
-   SAVE WARD EXCO
-================================================= */
+/* =====================================================
+   SAVE EXCO
+===================================================== */
 
 async function saveWardExco(
     wardId
@@ -1672,10 +2148,9 @@ async function saveWardExco(
 
     try {
 
-        /*
-         * First clear current EXCO positions
-         * for this ward.
-         */
+        /* ---------------------------------------------
+           Remove old positions
+        --------------------------------------------- */
 
         const {
             error: clearError
@@ -1698,9 +2173,9 @@ async function saveWardExco(
         }
 
 
-        /*
-         * Assign selected positions.
-         */
+        /* ---------------------------------------------
+           Assign new positions
+        --------------------------------------------- */
 
         for (
             const select of selects
@@ -1708,6 +2183,7 @@ async function saveWardExco(
 
             const memberId =
                 select.value;
+
 
             const position =
                 select.dataset.position;
@@ -1754,9 +2230,7 @@ async function saveWardExco(
         );
 
 
-        await loadApprovedMembers();
-
-        await loadExcoManagement();
+        await loadDashboard();
 
 
     } catch (error) {
@@ -1767,7 +2241,7 @@ async function saveWardExco(
 
 
         showAdminMessage(
-            "Could not save EXCO: " +
+            "Unable to save EXCO: " +
             error.message,
             "error"
         );
@@ -1777,19 +2251,23 @@ async function saveWardExco(
 }
 
 
-/* =================================================
+/* =====================================================
    REFRESH
-================================================= */
+===================================================== */
 
-refreshButton.addEventListener(
-    "click",
-    loadDashboard
-);
+document
+    .getElementById(
+        "refreshButton"
+    )
+    .addEventListener(
+        "click",
+        loadDashboard
+    );
 
 
-/* =================================================
+/* =====================================================
    MOBILE MENU
-================================================= */
+===================================================== */
 
 const menuButton =
     document.getElementById(
@@ -1809,7 +2287,7 @@ if (
 
     menuButton.addEventListener(
         "click",
-        () => {
+        function() {
 
             mobileNav.classList.toggle(
                 "active"
@@ -1821,31 +2299,24 @@ if (
 }
 
 
-/* =================================================
+/* =====================================================
    YEAR
-================================================= */
+===================================================== */
 
-const currentYear =
-    document.getElementById(
-        "currentYear"
-    );
-
-
-if (currentYear) {
-
-    currentYear.textContent =
-        new Date().getFullYear();
-
-}
+document.getElementById(
+    "currentYear"
+).textContent =
+    new Date().getFullYear();
 
 
-/* =================================================
+/* =====================================================
    START
-================================================= */
+===================================================== */
 
-checkAdminSession();
+checkSession();
 
 </script>
 
 </body>
+
 </html>
