@@ -10,7 +10,7 @@
     >
 
     <title>
-        Login | BWI-RHA Ekiti State Chapter
+        Login | BWI-RHA EKITI STATE CHAPTER
     </title>
 
     <link rel="stylesheet" href="style.css">
@@ -50,6 +50,7 @@
             class="menu-btn"
             id="menuBtn"
             type="button"
+            aria-label="Open menu"
         >
             ☰
         </button>
@@ -68,12 +69,14 @@
                 Wards
             </a>
 
-            <a href="login.html"
-               class="active">
+            <a
+                href="member-login.html"
+                class="active"
+            >
                 Login
             </a>
 
-            <a href="signup.html">
+            <a href="member-signup.html">
                 Create Account
             </a>
 
@@ -108,7 +111,7 @@
 
 
         <p class="auth-subtitle">
-            Login to continue your membership registration.
+            Login to continue your BWI-RHA registration.
         </p>
 
 
@@ -123,6 +126,7 @@
                 <input
                     type="email"
                     id="loginEmail"
+                    name="email"
                     required
                     autocomplete="email"
                     placeholder="Enter your email"
@@ -140,6 +144,7 @@
                 <input
                     type="password"
                     id="loginPassword"
+                    name="password"
                     required
                     autocomplete="current-password"
                     placeholder="Enter your password"
@@ -171,15 +176,14 @@
 
             <p>
                 Don't have an account?
-                <a href="signup.html">
+                <a href="member-signup.html">
                     Create an account
                 </a>
             </p>
 
+
             <p>
-                <a href="register.html">
-                    Continue to registration
-                </a>
+                After login, you can continue your membership registration.
             </p>
 
         </div>
@@ -191,13 +195,21 @@
 
 <footer class="site-footer">
 
-    <p>
-        BWI-RHA EKITI STATE CHAPTER
-    </p>
+    <div class="container">
 
-    <p>
-        ADO LG
-    </p>
+        <p>
+            BWI-RHA EKITI STATE CHAPTER
+        </p>
+
+        <p>
+            ADO LG
+        </p>
+
+        <p>
+            Green Economy E-Mobility Program
+        </p>
+
+    </div>
 
 </footer>
 
