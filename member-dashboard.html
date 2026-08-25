@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Member Dashboard | BWI-RHA Ado LG</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+margin:0;
+background:#f4f7f5;
+}
+
+.dashboard{
+max-width:1000px;
+margin:auto;
+padding:35px 20px;
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.top h1{
+margin:0;
+}
+
+.logout{
+background:#b42318;
+color:#fff;
+border:0;
+padding:11px 18px;
+border-radius:8px;
+cursor:pointer;
+font-weight:700;
+}
+
+.card{
+background:#fff;
+border-radius:16px;
+padding:25px;
+margin-bottom:22px;
+box-shadow:0 6px 25px rgba(0,0,0,.07);
+}
+
+.status{
+display:inline-block;
+padding:9px 15px;
+border-radius:30px;
+font-weight:800;
+}
+
+.pending{
+background:#fff4cc;
+color:#8a6200;
+}
+
+.approved{
+background:#dff6e7;
+color:#12652c;
+}
+
+.rejected{
+background:#ffe3e3;
+color:#a00000;
+}
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.info{
+background:#f7f7f7;
+padding:15px;
+border-radius:9px;
+}
+
+.info strong{
+display:block;
+margin-bottom:5px;
+}
+
+form{
+margin-top:20px;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-weight:700;
+margin-bottom:7px;
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+box-sizing:border-box;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+
+button.primary{
+background:#16833b;
+color:#fff;
+border:0;
+padding:13px 20px;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+}
+
+.message{
+display:none;
+padding:13px;
+margin:15px 0;
+border-radius:8px;
+}
+
+.message.show{
+display:block;
+}
+
+.error{
+background:#fff0f0;
+color:#a00000;
+}
+
+.success{
+background:#e8f7ed;
+color:#12652c;
+}
+
+@media(max-width:650px){
+
+.info-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-container">
+
+<a href="index.html" class="logo-area">
+
+<img
+src="logo.jpeg"
+alt="BWI-RHA Logo"
+class="site-logo"
+
+>
+
+<div class="logo-text">
+
+<h1>
+BWI-RHA EKITI STATE CHAPTER
+</h1>
+
+<p>
+ADO LOCAL GOVERNMENT
+</p>
+
+</div>
+
+</a>
+
+</div>
+
+</header>
+
+<main class="dashboard">
+
+<div class="top">
+
+<div>
+
+<h1>
+My Member Dashboard
+</h1>
+
+<p id="welcome">
+Loading...
+</p>
+
+</div>
+
+<button
+class="logout"
+id="logoutButton"
+
+>
+
+Logout </button>
+
+</div>
+
+<div
+id="message"
+class="message"
+></div>
+
+<!-- STATUS -->
+
+<div class="card">
+
+<h2>
+Registration Status
+</h2>
+
+<div id="statusArea">
+Loading...
+</div>
+
+</div>
+
+<!-- MEMBER INFORMATION -->
+
+<div
+class="card"
+id="memberInfoCard"
+>
+
+<h2>
+My Registration
+</h2>
+
+<div
+id="memberInfo"
+>
+Loading...
+</div>
+
+</div>
+
+<!-- REGISTRATION FORM -->
+
+<div
+class="card"
+id="registrationCard"
+>
+
+<h2>
+Complete Registration
+</h2>
+
+<p>
+Submit your membership information below.
+</p>
+
+<form id="registrationForm">
+
+<div class="form-group">
+
+<label>
+Full Name
+</label>
+
+<input
+id="fullName"
+required
+
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Phone Number
+</label>
+
+<input
+id="phone"
+type="tel"
+required
+
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Gender
+</label>
+
+<select id="gender">
+
+<option value="">
+Select gender
+</option>
+
+<option value="Female">
+Female
+</option>
+
+<option value="Male">
+Male
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Address
+</label>
+
+<textarea
+id="address"
+rows="3"
+></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Ward
+</label>
+
+<select
+id="ward"
+required
+
+>
+
+<option value="">
+Select your ward
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Bank Name
+</label>
+
+<input id="bankName">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Account Name
+</label>
+
+<input id="accountName">
+
+</div>
+
+<div class="form-group">
+
+<label>
+Account Number
+</label>
+
+<input
+id="accountNumber"
+inputmode="numeric"
+
+>
+
+</div>
+
+<div class="form-group">
+
+<label>
+Polling Booth
+</label>
+
+<input id="pollingBooth">
+
+</div>
+
+<button
+type="submit"
+class="primary"
+id="submitButton"
+
+>
+
+Submit Registration </button>
+
+</form>
+
+</div>
+
+<!-- APPROVED -->
+
+<div
+class="card"
+id="approvedCard"
+style="display:none"
+>
+
+<h2>
+🎉 Membership Approved
+</h2>
+
+<p>
+Your BWI-RHA membership has been approved.
+</p>
+
+<div id="excoInfo"></div>
+
+</div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+const WARDS = [
+
+{ id:1,name:"Ado A",area:"Idofin" },
+{ id:2,name:"Ado B",area:"Inisa" },
+{ id:3,name:"Ado C",area:"Idolofin" },
+{ id:4,name:"Ado D",area:"Ijigbo" },
+{ id:5,name:"Ado E",area:"Ijoka / Orereowu" },
+{ id:6,name:"Ado F",area:"Okeyinmi" },
+{ id:7,name:"Ado G",area:"Oke Ila" },
+{ id:8,name:"Ado H",area:"Ereguru" },
+{ id:9,name:"Ado I",area:"Dallimore" },
+{ id:10,name:"Ado J",area:"Okesa" },
+{ id:11,name:"Ado K",area:"Irona" },
+{ id:12,name:"Ado L",area:"Igbehin" },
+{ id:13,name:"Ado M",area:"Farm Settlement" }
+
+];
+
+
+let currentUser = null;
+let currentMember = null;
+
+
+const statusArea =
+document.getElementById("statusArea");
+
+const memberInfo =
+document.getElementById("memberInfo");
+
+const registrationCard =
+document.getElementById("registrationCard");
+
+const approvedCard =
+document.getElementById("approvedCard");
+
+const form =
+document.getElementById("registrationForm");
+
+const message =
+document.getElementById("message");
+
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function showMessage(text,type){
+
+message.textContent=text;
+
+message.className=
+"message show "+type;
+
+}
+
+
+function loadWards(){
+
+const wardSelect =
+document.getElementById("ward");
+
+WARDS.forEach(ward=>{
+
+const option =
+document.createElement("option");
+
+option.value=ward.id;
+
+option.textContent=
+`Ward ${ward.id} — ${ward.name} — ${ward.area}`;
+
+wardSelect.appendChild(option);
+
+});
+
+}
+
+
+function getWard(id){
+
+return WARDS.find(
+ward=>ward.id===Number(id)
+);
+
+}
+
+
+async function start(){
+
+const {
+data
+} =
+await supabaseClient.auth.getSession();
+
+if(
+!data.session ||
+!data.session.user
+){
+
+window.location.href=
+"member-login.html";
+
+return;
+
+}
+
+currentUser =
+data.session.user;
+
+document.getElementById("welcome").textContent =
+`Signed in as ${currentUser.email}`;
+
+loadWards();
+
+await loadMember();
+
+}
+
+
+async function loadMember(){
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("members")
+.select("*")
+.eq(
+"auth_user_id",
+currentUser.id
+)
+.maybeSingle();
+
+if(error){
+
+console.error(error);
+
+showMessage(
+"Unable to load your registration: "+
+error.message,
+"error"
+);
+
+return;
+
+}
+
+
+currentMember=data;
+
+
+if(!currentMember){
+
+statusArea.innerHTML=`
+
+<p>
+You have not submitted your membership
+registration yet.
+</p>
+
+<span class="status pending">
+NOT REGISTERED
+</span>
+
+`;
+
+registrationCard.style.display=
+"block";
+
+memberInfo.innerHTML=
+"<p>Please complete the registration form below.</p>";
+
+return;
+
+}
+
+
+registrationCard.style.display=
+"none";
+
+
+const status =
+currentMember.status;
+
+
+if(status==="approved"){
+
+statusArea.innerHTML=`
+
+<span class="status approved">
+🟢 APPROVED
+</span>
+
+<p>
+Congratulations! Your BWI-RHA membership
+has been approved.
+</p>
+
+`;
+
+approvedCard.style.display=
+"block";
+
+if(currentMember.exco_position){
+
+document.getElementById(
+"excoInfo"
+).innerHTML=`
+
+<p>
+<strong>Your EXCO Position:</strong>
+</p>
+
+<span class="status approved">
+${escapeHTML(
+currentMember.exco_position
+)}
+</span>
+
+`;
+
+}else{
+
+document.getElementById(
+"excoInfo"
+).innerHTML=`
+
+<p>
+No EXCO position has been assigned
+to you yet.
+</p>
+
+`;
+
+}
+
+}else if(status==="rejected"){
+
+statusArea.innerHTML=`
+
+<span class="status rejected">
+🔴 REJECTED
+</span>
+
+<p>
+Your registration was not approved.
+Please contact the administrator
+for further information.
+</p>
+
+`;
+
+}else{
+
+statusArea.innerHTML=`
+
+<span class="status pending">
+🟡 PENDING
+</span>
+
+<p>
+Your registration has been submitted
+successfully and is currently awaiting
+administrator approval.
+</p>
+
+`;
+
+}
+
+
+const ward =
+getWard(currentMember.ward_id);
+
+
+memberInfo.innerHTML=`
+
+<div class="info-grid">
+
+<div class="info">
+<strong>Full Name</strong>
+${escapeHTML(currentMember.full_name)}
+</div>
+
+<div class="info">
+<strong>Email</strong>
+${escapeHTML(currentMember.email)}
+</div>
+
+<div class="info">
+<strong>Phone</strong>
+${escapeHTML(currentMember.phone)}
+</div>
+
+<div class="info">
+<strong>Ward</strong>
+${
+ward
+?
+`Ward ${ward.id} — ${escapeHTML(ward.name)}`
+:
+"Unknown"
+}
+</div>
+
+<div class="info">
+<strong>Gender</strong>
+${escapeHTML(currentMember.gender)}
+</div>
+
+<div class="info">
+<strong>Bank</strong>
+${escapeHTML(currentMember.bank_name)}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+form.addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+
+const {
+data:sessionData
+} =
+await supabaseClient.auth.getSession();
+
+
+if(
+!sessionData.session
+){
+
+window.location.href=
+"member-login.html";
+
+return;
+
+}
+
+
+const user =
+sessionData.session.user;
+
+
+const payload={
+
+auth_user_id:user.id,
+
+full_name:
+document.getElementById(
+"fullName"
+).value.trim(),
+
+email:user.email,
+
+phone:
+document.getElementById(
+"phone"
+).value.trim(),
+
+gender:
+document.getElementById(
+"gender"
+).value,
+
+address:
+document.getElementById(
+"address"
+).value.trim(),
+
+ward_id:Number(
+document.getElementById(
+"ward"
+).value
+),
+
+bank_name:
+document.getElementById(
+"bankName"
+).value.trim(),
+
+account_name:
+document.getElementById(
+"accountName"
+).value.trim(),
+
+account_number:
+document.getElementById(
+"accountNumber"
+).value.trim(),
+
+polling_booth:
+document.getElementById(
+"pollingBooth"
+).value.trim(),
+
+status:"pending"
+
+};
+
+
+const button =
+document.getElementById(
+"submitButton"
+);
+
+button.disabled=true;
+button.textContent=
+"Submitting...";
+
+
+try{
+
+const {
+error
+} =
+await supabaseClient
+.from("members")
+.insert(payload);
+
+if(error) throw error;
+
+
+showMessage(
+"Registration submitted successfully. Your status is now Pending.",
+"success"
+);
+
+form.reset();
+
+registrationCard.style.display=
+"none";
+
+await loadMember();
+
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+"Unable to submit registration: "+
+error.message,
+"error"
+);
+
+}finally{
+
+button.disabled=false;
+button.textContent=
+"Submit Registration";
+
+}
+
+});
+
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+async function(){
+
+await supabaseClient.auth.signOut();
+
+window.location.href=
+"member-login.html";
+
+});
+
+
+start();
+
+</script>
+
+</body>
+</html>
