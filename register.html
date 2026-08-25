@@ -1,379 +1,785 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register | BWI-RHA Ado LG</title>
+```
+<title>Registration | BWI-RHA Ado LG</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
 <header class="site-header">
 
-    <div class="header-container">
+```
+<div class="header-container">
 
-        <a href="index.html" class="logo-area">
+    <a href="index.html" class="logo-area">
 
-            <img
-                src="logo.jpeg"
-                alt="BWI-RHA Logo"
-                class="site-logo"
-            >
+        <img
+            src="logo.jpeg"
+            alt="BWI-RHA Logo"
+            class="site-logo"
+        >
 
-            <div class="logo-text">
-                <h1>BWI-RHA EKITI STATE CHAPTER</h1>
-                <p>ADO LOCAL GOVERNMENT</p>
-            </div>
+        <div class="logo-text">
 
+            <h1>
+                BWI-RHA EKITI STATE CHAPTER
+            </h1>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+    </a>
+
+
+    <button
+        type="button"
+        class="menu-btn"
+        id="menuButton"
+    >
+        ☰
+    </button>
+
+
+    <nav
+        class="main-nav"
+        id="mobileNav"
+    >
+
+        <a href="index.html">
+            Home
         </a>
 
-        <button
-            type="button"
-            class="menu-btn"
-            id="menuButton"
+        <a href="wards.html">
+            Wards
+        </a>
+
+        <a
+            href="register.html"
+            class="active"
         >
-            ☰
-        </button>
+            Register
+        </a>
 
-        <nav
-            class="main-nav"
-            id="mobileNav"
-        >
+        <a href="admin.html">
+            Admin
+        </a>
 
-            <a href="index.html">
-                Home
-            </a>
+    </nav>
 
-            <a href="wards.html">
-                Wards
-            </a>
-
-            <a
-                href="register.html"
-                class="active"
-            >
-                Register
-            </a>
-
-            <a href="admin.html">
-                Admin
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
 <main>
 
-    <section class="section">
+```
+<!-- HERO -->
 
-        <div class="container">
+<section class="hero">
 
-            <div class="section-title">
+    <div class="container hero-content">
 
-                <span>
-                    MEMBERSHIP REGISTRATION
-                </span>
+        <div class="hero-text">
 
-                <h2>
-                    Join BWI-RHA Ado LG
-                </h2>
-
-                <p>
-                    Complete the form below to register.
-                    Your information will be reviewed by
-                    the administrator before approval.
-                </p>
-
-            </div>
-
-
-            <div class="form-container">
-
-                <form id="registrationForm">
-
-                    <!-- FULL NAME -->
-
-                    <div class="form-group">
-
-                        <label for="fullName">
-                            Full Name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="full_name"
-                            placeholder="Enter your full name"
-                            autocomplete="name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- PHONE -->
-
-                    <div class="form-group">
-
-                        <label for="phone">
-                            Phone Number *
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="08012345678"
-                            autocomplete="tel"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- EMAIL -->
-
-                    <div class="form-group">
-
-                        <label for="email">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="example@email.com"
-                            autocomplete="email"
-                        >
-
-                    </div>
-
-
-                    <!-- GENDER -->
-
-                    <div class="form-group">
-
-                        <label for="gender">
-                            Gender
-                        </label>
-
-                        <select
-                            id="gender"
-                            name="gender"
-                        >
-
-                            <option value="">
-                                Select gender
-                            </option>
-
-                            <option value="Female">
-                                Female
-                            </option>
-
-                            <option value="Male">
-                                Male
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- ADDRESS -->
-
-                    <div class="form-group">
-
-                        <label for="address">
-                            Address *
-                        </label>
-
-                        <textarea
-                            id="address"
-                            name="address"
-                            placeholder="Enter your residential address"
-                            required
-                        ></textarea>
-
-                    </div>
-
-
-                    <!-- WARD -->
-
-                    <div class="form-group">
-
-                        <label for="ward">
-                            Ward *
-                        </label>
-
-                    <select
-    id="ward"
-    name="ward"
-    required
->
-    <option value="">Select your ward</option>
-
-    <option value="1">Ward 1 — Ado A — Idofin</option>
-    <option value="2">Ward 2 — Ado B — Inisa</option>
-    <option value="3">Ward 3 — Ado C — Idolofin</option>
-    <option value="4">Ward 4 — Ado D — Ijigbo</option>
-    <option value="5">Ward 5 — Ado E — Ijoka / Orereowu</option>
-    <option value="6">Ward 6 — Ado F — Okeyinmi</option>
-    <option value="7">Ward 7 — Ado G — Oke Ila</option>
-    <option value="8">Ward 8 — Ado H — Ereguru</option>
-    <option value="9">Ward 9 — Ado I — Dallimore</option>
-    <option value="10">Ward 10 — Ado J — Okesa</option>
-    <option value="11">Ward 11 — Ado K — Irona</option>
-    <option value="12">Ward 12 — Ado L — Igbehin</option>
-    <option value="13">Ward 13 — Ado M — Farm Settlement</option>
-</select>
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- BANK -->
-
-                    <div class="form-group">
-
-                        <label for="bankName">
-                            Bank Name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="bankName"
-                            name="bank_name"
-                            placeholder="Enter your bank name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- ACCOUNT -->
-
-                    <div class="form-group">
-
-                        <label for="accountNumber">
-                            Account Number *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="accountNumber"
-                            name="account_number"
-                            inputmode="numeric"
-                            maxlength="10"
-                            minlength="10"
-                            placeholder="10-digit account number"
-                            required
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn primary"
-                        style="width:100%;"
-                    >
-                        Submit Registration
-                    </button>
-
-
-                    <div
-                        id="formMessage"
-                        class="form-message"
-                    ></div>
-
-                </form>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="cta-section">
-
-        <div class="container">
+            <span class="hero-label">
+                BWI-RHA ADO LOCAL GOVERNMENT
+            </span>
 
             <h2>
-                Thank You
+                Membership Registration
             </h2>
 
             <p>
-                Your registration helps us build a
-                stronger and more connected BWI-RHA
-                community across Ado LG.
+                EKITI STATE WOMEN OF INFLUENCE
             </p>
 
-        </div>
-
-    </section>
-
-</main>
-
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-content">
-
-            <div>
-
-                <h3>
-                    BWI-RHA EKITI STATE CHAPTER
-                </h3>
-
-                <p>
-                    ADO LOCAL GOVERNMENT
-                </p>
-
-            </div>
-
-            <div>
-
-                <p>
-                    Green Economy E-Mobility Program
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
             <p>
-                ©
-                <span id="currentYear"></span>
-                BWI-RHA Ekiti State Chapter.
-                All rights reserved.
+                Register to become part of our
+                growing community.
             </p>
 
         </div>
 
     </div>
 
+</section>
+
+
+<!-- REGISTRATION -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                REGISTER NOW
+            </span>
+
+            <h2>
+                Member Information
+            </h2>
+
+            <p>
+                Please provide the information
+                below correctly.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+            <form id="registrationForm">
+
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="full_name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone No *
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="08012345678"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- BANK -->
+
+                <div class="form-group">
+
+                    <label for="bankName">
+                        Bank Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bankName"
+                        name="bank_name"
+                        placeholder="Enter your bank name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ACCOUNT -->
+
+                <div class="form-group">
+
+                    <label for="accountNumber">
+                        Account No *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        name="account_number"
+                        inputmode="numeric"
+                        maxlength="10"
+                        minlength="10"
+                        pattern="[0-9]{10}"
+                        placeholder="Enter 10-digit account number"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- WARD -->
+
+                <div class="form-group">
+
+                    <label for="ward">
+                        Ward *
+                    </label>
+
+                    <select
+                        id="ward"
+                        name="ward"
+                        required
+                    >
+
+                        <option value="">
+                            Select your ward
+                        </option>
+
+                        <option value="1">
+                            Ward 1 — Ado A — Idofin
+                        </option>
+
+                        <option value="2">
+                            Ward 2 — Ado B — Inisa
+                        </option>
+
+                        <option value="3">
+                            Ward 3 — Ado C — Idolofin
+                        </option>
+
+                        <option value="4">
+                            Ward 4 — Ado D — Ijigbo
+                        </option>
+
+                        <option value="5">
+                            Ward 5 — Ado E — Ijoka / Orereowu
+                        </option>
+
+                        <option value="6">
+                            Ward 6 — Ado F — Okeyinmi
+                        </option>
+
+                        <option value="7">
+                            Ward 7 — Ado G — Oke Ila
+                        </option>
+
+                        <option value="8">
+                            Ward 8 — Ado H — Ereguru
+                        </option>
+
+                        <option value="9">
+                            Ward 9 — Ado I — Dallimore
+                        </option>
+
+                        <option value="10">
+                            Ward 10 — Ado J — Okesa
+                        </option>
+
+                        <option value="11">
+                            Ward 11 — Ado K — Irona
+                        </option>
+
+                        <option value="12">
+                            Ward 12 — Ado L — Igbehin
+                        </option>
+
+                        <option value="13">
+                            Ward 13 — Ado M — Farm Settlement
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="btn primary"
+                    id="submitButton"
+                    style="width:100%;"
+                >
+                    Submit Registration
+                </button>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INFORMATION -->
+
+<section class="section light-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>
+                BWI-RHA
+            </span>
+
+            <h2>
+                Empowering Our Community
+            </h2>
+
+            <p>
+                This platform serves as the hub for
+                mobilizing, empowering, connecting,
+                and supporting women across Ekiti
+                State through entrepreneurship,
+                leadership development, business
+                growth, mentorship, advocacy, and
+                community impact.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<footer class="site-footer">
+
+```
+<div class="container">
+
+    <div class="footer-content">
+
+        <div>
+
+            <h3>
+                BWI-RHA EKITI STATE CHAPTER
+            </h3>
+
+            <p>
+                ADO LOCAL GOVERNMENT
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <p>
+                Green Economy E-Mobility Program
+            </p>
+
+            <p>
+                Empowering women, youths and
+                persons with disabilities.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©
+            <span id="currentYear"></span>
+            BWI-RHA Ekiti State Chapter.
+            All rights reserved.
+        </p>
+
+    </div>
+
+</div>
+```
+
 </footer>
 
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="script.js"></script>
+<script>
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const registrationForm =
+    document.getElementById(
+        "registrationForm"
+    );
+
+const submitButton =
+    document.getElementById(
+        "submitButton"
+    );
+
+const formMessage =
+    document.getElementById(
+        "formMessage"
+    );
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    message,
+    type
+) {
+
+    formMessage.textContent =
+        message;
+
+    formMessage.className =
+        "form-message " + type;
+
+}
+
+
+/* =====================================================
+   FORM SUBMISSION
+===================================================== */
+
+registrationForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* ---------------------------------------------
+           GET VALUES
+        --------------------------------------------- */
+
+        const fullName =
+            document
+                .getElementById(
+                    "fullName"
+                )
+                .value
+                .trim();
+
+
+        const phone =
+            document
+                .getElementById(
+                    "phone"
+                )
+                .value
+                .trim();
+
+
+        const bankName =
+            document
+                .getElementById(
+                    "bankName"
+                )
+                .value
+                .trim();
+
+
+        const accountNumber =
+            document
+                .getElementById(
+                    "accountNumber"
+                )
+                .value
+                .trim();
+
+
+        const ward =
+            document
+                .getElementById(
+                    "ward"
+                )
+                .value;
+
+
+        /* ---------------------------------------------
+           VALIDATION
+        --------------------------------------------- */
+
+        if (!fullName) {
+
+            showMessage(
+                "Please enter your name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!phone) {
+
+            showMessage(
+                "Please enter your phone number.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!bankName) {
+
+            showMessage(
+                "Please enter your bank name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!/^[0-9]{10}$/.test(accountNumber)) {
+
+            showMessage(
+                "Account number must contain exactly 10 digits.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!ward) {
+
+            showMessage(
+                "Please select your ward.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           DISABLE BUTTON
+        --------------------------------------------- */
+
+        submitButton.disabled =
+            true;
+
+        submitButton.textContent =
+            "Submitting...";
+
+
+        showMessage(
+            "Submitting your registration...",
+            "info"
+        );
+
+
+        try {
+
+            /* -----------------------------------------
+               INSERT INTO SUPABASE
+            ----------------------------------------- */
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from("members")
+                    .insert({
+
+                        full_name:
+                            fullName,
+
+                        phone:
+                            phone,
+
+                        bank_name:
+                            bankName,
+
+                        account_number:
+                            accountNumber,
+
+                        ward_id:
+                            Number(ward),
+
+                        status:
+                            "pending"
+
+                    })
+                    .select();
+
+
+            /* -----------------------------------------
+               HANDLE ERROR
+            ----------------------------------------- */
+
+            if (error) {
+
+                console.error(
+                    "Supabase error:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+
+            /* -----------------------------------------
+               SUCCESS
+            ----------------------------------------- */
+
+            showMessage(
+                "Registration submitted successfully! Your information is now awaiting admin approval.",
+                "success"
+            );
+
+
+            registrationForm.reset();
+
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            let message =
+                "Registration failed. Please try again.";
+
+
+            if (
+                error.message
+            ) {
+
+                message =
+                    error.message;
+
+            }
+
+
+            showMessage(
+                message,
+                "error"
+            );
+
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "Submit Registration";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById(
+        "menuButton"
+    );
+
+const mobileNav =
+    document.getElementById(
+        "mobileNav"
+    );
+
+
+if (
+    menuButton &&
+    mobileNav
+) {
+
+    menuButton.addEventListener(
+        "click",
+        function() {
+
+            mobileNav.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CURRENT YEAR
+===================================================== */
+
+const currentYear =
+    document.getElementById(
+        "currentYear"
+    );
+
+
+if (currentYear) {
+
+    currentYear.textContent =
+        new Date().getFullYear();
+
+}
+
+</script>
 
 </body>
 </html>
