@@ -15,9 +15,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
-
 let supabaseClient = null;
-
 
 if (
     window.supabase &&
@@ -127,7 +125,7 @@ const wards = [
 
 
 /* =========================================================
-   WARD OFFICES
+   WARD EXCO POSITIONS
 ========================================================= */
 
 const wardOffices = [
@@ -152,7 +150,7 @@ const wardOffices = [
 
 
 /* =========================================================
-   LG OFFICES
+   LG EXCO POSITIONS
 ========================================================= */
 
 const lgOffices = [
@@ -165,29 +163,20 @@ const lgOffices = [
 
 
 /* =========================================================
-   HTML SECURITY
+   HELPERS
 ========================================================= */
 
 function escapeHTML(value) {
 
     return String(value ?? "")
-
         .replaceAll("&", "&amp;")
-
         .replaceAll("<", "&lt;")
-
         .replaceAll(">", "&gt;")
-
         .replaceAll('"', "&quot;")
-
         .replaceAll("'", "&#039;");
 
 }
 
-
-/* =========================================================
-   MESSAGE
-========================================================= */
 
 function showMessage(
     element,
@@ -210,12 +199,12 @@ function showMessage(
 
 /* =========================================================
    MOBILE MENU
+   Supports both versions of your HTML
 ========================================================= */
 
 const menuButton =
     document.getElementById("menuButton") ||
     document.getElementById("menuBtn");
-
 
 const mobileNav =
     document.getElementById("mobileNav") ||
@@ -243,33 +232,24 @@ if (
     );
 
 
-    const navLinks =
-        mobileNav.querySelectorAll("a");
+    mobileNav
+        .querySelectorAll("a")
+        .forEach(
+            function (link) {
 
+                link.addEventListener(
+                    "click",
+                    function () {
 
-    navLinks.forEach(
-        function (link) {
+                        mobileNav.classList.remove(
+                            "active"
+                        );
 
-            link.addEventListener(
-                "click",
-                function () {
+                    }
+                );
 
-                    mobileNav.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-} else {
-
-    console.warn(
-        "Mobile menu elements not found on this page."
-    );
+            }
+        );
 
 }
 
@@ -286,25 +266,19 @@ document.addEventListener(
             !mobileNav ||
             !menuButton
         ) {
+
             return;
+
         }
 
 
-        const clickedInsideMenu =
-            mobileNav.contains(
-                event.target
-            );
-
-
-        const clickedButton =
-            menuButton.contains(
-                event.target
-            );
-
-
         if (
-            !clickedInsideMenu &&
-            !clickedButton
+            !mobileNav.contains(
+                event.target
+            ) &&
+            !menuButton.contains(
+                event.target
+            )
         ) {
 
             mobileNav.classList.remove(
@@ -336,7 +310,7 @@ if (currentYear) {
 
 
 /* =========================================================
-   CREATE ACCOUNT
+   SIGNUP
 ========================================================= */
 
 const signupForm =
@@ -360,39 +334,6 @@ async function handleSignup(event) {
     event.preventDefault();
 
 
-    if (!supabaseClient) {
-
-        showMessage(
-            document.getElementById(
-                "signupMessage"
-            ),
-            "Supabase is not available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const emailInput =
-        document.getElementById(
-            "signupEmail"
-        );
-
-
-    const passwordInput =
-        document.getElementById(
-            "signupPassword"
-        );
-
-
-    const password2Input =
-        document.getElementById(
-            "signupPassword2"
-        );
-
-
     const message =
         document.getElementById(
             "signupMessage"
@@ -405,21 +346,52 @@ async function handleSignup(event) {
         );
 
 
+    if (!supabaseClient) {
+
+        showMessage(
+            message,
+            "Supabase is not available.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const emailElement =
+        document.getElementById(
+            "signupEmail"
+        );
+
+
+    const passwordElement =
+        document.getElementById(
+            "signupPassword"
+        );
+
+
+    const password2Element =
+        document.getElementById(
+            "signupPassword2"
+        );
+
+
     const email =
-        emailInput
-            ? emailInput.value.trim()
+        emailElement
+            ? emailElement.value.trim()
             : "";
 
 
     const password =
-        passwordInput
-            ? passwordInput.value
+        passwordElement
+            ? passwordElement.value
             : "";
 
 
     const password2 =
-        password2Input
-            ? password2Input.value
+        password2Element
+            ? password2Element.value
             : "";
 
 
@@ -498,6 +470,14 @@ async function handleSignup(event) {
         }
 
 
+        /*
+           If Supabase immediately created a session,
+           go directly to login.
+
+           If email confirmation is enabled,
+           tell the user to confirm email first.
+        */
+
         if (
             data &&
             data.session
@@ -520,12 +500,11 @@ async function handleSignup(event) {
                 1000
             );
 
-
         } else {
 
             showMessage(
                 message,
-                "Account created. Check your email if email confirmation is required, then login.",
+                "Account created successfully. Please check your email if confirmation is required, then login.",
                 "success"
             );
 
@@ -565,7 +544,7 @@ async function handleSignup(event) {
 
 
 /* =========================================================
-   MEMBER LOGIN
+   LOGIN
 ========================================================= */
 
 const loginForm =
@@ -589,33 +568,6 @@ async function handleLogin(event) {
     event.preventDefault();
 
 
-    if (!supabaseClient) {
-
-        showMessage(
-            document.getElementById(
-                "loginMessage"
-            ),
-            "Supabase is not available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const emailInput =
-        document.getElementById(
-            "loginEmail"
-        );
-
-
-    const passwordInput =
-        document.getElementById(
-            "loginPassword"
-        );
-
-
     const message =
         document.getElementById(
             "loginMessage"
@@ -628,15 +580,40 @@ async function handleLogin(event) {
         );
 
 
+    if (!supabaseClient) {
+
+        showMessage(
+            message,
+            "Supabase is not available.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const emailElement =
+        document.getElementById(
+            "loginEmail"
+        );
+
+
+    const passwordElement =
+        document.getElementById(
+            "loginPassword"
+        );
+
+
     const email =
-        emailInput
-            ? emailInput.value.trim()
+        emailElement
+            ? emailElement.value.trim()
             : "";
 
 
     const password =
-        passwordInput
-            ? passwordInput.value
+        passwordElement
+            ? passwordElement.value
             : "";
 
 
@@ -702,10 +679,15 @@ async function handleLogin(event) {
 
         showMessage(
             message,
-            "Login successful. Opening registration...",
+            "Login successful. Redirecting to registration...",
             "success"
         );
 
+
+        /*
+           IMPORTANT:
+           Login goes to register.html
+        */
 
         setTimeout(
             function () {
@@ -714,7 +696,7 @@ async function handleLogin(event) {
                     "register.html";
 
             },
-            800
+            700
         );
 
 
@@ -751,7 +733,37 @@ async function handleLogin(event) {
 
 
 /* =========================================================
-   CHECK AUTH BEFORE REGISTRATION
+   REGISTRATION DOM
+========================================================= */
+
+const registrationForm =
+    document.getElementById(
+        "registrationForm"
+    );
+
+const formMessage =
+    document.getElementById(
+        "formMessage"
+    );
+
+const wardSelect =
+    document.getElementById(
+        "ward"
+    );
+
+const wardsGrid =
+    document.getElementById(
+        "wardsGrid"
+    );
+
+const wardDisplay =
+    document.getElementById(
+        "wardDisplay"
+    );
+
+
+/* =========================================================
+   CHECK LOGIN BEFORE REGISTRATION
 ========================================================= */
 
 async function checkRegistrationLogin() {
@@ -793,7 +805,7 @@ async function checkRegistrationLogin() {
                     "member-login.html";
 
             },
-            1500
+            1200
         );
 
     }
@@ -804,18 +816,6 @@ async function checkRegistrationLogin() {
 /* =========================================================
    REGISTRATION FORM
 ========================================================= */
-
-const registrationForm =
-    document.getElementById(
-        "registrationForm"
-    );
-
-
-const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
-
 
 if (registrationForm) {
 
@@ -850,7 +850,7 @@ async function submitRegistration(event) {
 
 
     /*
-       Make sure the member is logged in.
+       Get currently logged-in user.
     */
 
     const {
@@ -990,8 +990,20 @@ async function submitRegistration(event) {
     try {
 
         /*
-           Check whether this email already
-           has a registration.
+           Prevent duplicate registration.
+
+           Your members table has:
+           id
+           full_name
+           phone
+           email
+           gender
+           address
+           ward_id
+           created_at
+           bank_name
+           account_number
+           status
         */
 
         const {
@@ -1025,7 +1037,7 @@ async function submitRegistration(event) {
 
             showMessage(
                 formMessage,
-                "You have already submitted a registration. Current status: " +
+                "You have already submitted a registration. Status: " +
                 existingMember.status,
                 "error"
             );
@@ -1036,23 +1048,10 @@ async function submitRegistration(event) {
 
 
         /*
-           IMPORTANT
+           Insert registration.
 
-           Your current members table contains:
-
-           id
-           full_name
-           phone
-           email
-           gender
-           address
-           ward_id
-           created_at
-           bank_name
-           account_number
-           status
-
-           Therefore we ONLY insert those columns.
+           We deliberately use ONLY the columns
+           that exist in your members table.
         */
 
         const {
@@ -1101,7 +1100,7 @@ async function submitRegistration(event) {
 
         showMessage(
             formMessage,
-            "Registration submitted successfully! Your application is awaiting admin approval.",
+            "Registration submitted successfully. Your application is awaiting admin approval.",
             "success"
         );
 
@@ -1117,21 +1116,25 @@ async function submitRegistration(event) {
         );
 
 
-        let message =
+        let errorMessage =
             error.message ||
             "Unknown error.";
 
 
+        /*
+           Friendly message for RLS.
+        */
+
         if (
-            message
+            errorMessage
                 .toLowerCase()
                 .includes(
                     "row-level security"
                 )
         ) {
 
-            message =
-                "Supabase blocked this registration because the members table policy does not allow the logged-in user to insert a row.";
+            errorMessage =
+                "Supabase blocked the registration because the members table does not currently allow logged-in users to insert registrations. The database RLS INSERT policy must be fixed.";
 
         }
 
@@ -1139,7 +1142,7 @@ async function submitRegistration(event) {
         showMessage(
             formMessage,
             "Registration failed: " +
-            message,
+            errorMessage,
             "error"
         );
 
@@ -1161,14 +1164,57 @@ async function submitRegistration(event) {
 
 
 /* =========================================================
-   WARD GRID
+   CREATE WARD SELECT OPTIONS
 ========================================================= */
 
-const wardsGrid =
-    document.getElementById(
-        "wardsGrid"
+function createWardOptions() {
+
+    if (!wardSelect) {
+
+        return;
+
+    }
+
+
+    wardSelect.innerHTML = `
+
+        <option value="">
+            Select your ward
+        </option>
+
+    `;
+
+
+    wards.forEach(
+        function (ward) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                ward.number;
+
+
+            option.textContent =
+                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
+
+
+            wardSelect.appendChild(
+                option
+            );
+
+        }
     );
 
+}
+
+
+/* =========================================================
+   CREATE WARD BUTTONS
+========================================================= */
 
 function createWardButtons() {
 
@@ -1247,69 +1293,8 @@ function createWardButtons() {
 
 
 /* =========================================================
-   WARD SELECT
-========================================================= */
-
-const wardSelect =
-    document.getElementById(
-        "ward"
-    );
-
-
-function createWardOptions() {
-
-    if (!wardSelect) {
-
-        return;
-
-    }
-
-
-    wardSelect.innerHTML = `
-
-        <option value="">
-            Select your ward
-        </option>
-
-    `;
-
-
-    wards.forEach(
-        function (ward) {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                ward.number;
-
-
-            option.textContent =
-                `Ward ${ward.number} — ${ward.name} — ${ward.area}`;
-
-
-            wardSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
    SHOW WARD
 ========================================================= */
-
-const wardDisplay =
-    document.getElementById(
-        "wardDisplay"
-    );
-
 
 async function showWard(
     wardNumber
@@ -1381,7 +1366,7 @@ async function showWard(
 
         wardDisplay.innerHTML = `
 
-            <div class="empty-state error">
+            <div class="empty-state">
 
                 Supabase is not available.
 
@@ -1411,9 +1396,12 @@ async function showWard(
                     "ward_id",
                     ward.number
                 )
-                .eq(
+                .in(
                     "status",
-                    "approved"
+                    [
+                        "approved",
+                        "accepted"
+                    ]
                 )
                 .order(
                     "full_name",
@@ -1485,6 +1473,34 @@ async function showWard(
         }
 
 
+        const officesHTML =
+            wardOffices
+                .map(
+                    function (position) {
+
+                        return `
+
+                            <div class="registration-item">
+
+                                <strong>
+                                    ${escapeHTML(
+                                        position
+                                    )}
+                                </strong>
+
+                                <p>
+                                    Not yet assigned
+                                </p>
+
+                            </div>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+
         wardDisplay.innerHTML = `
 
             <div class="panel">
@@ -1507,41 +1523,13 @@ async function showWard(
                     Ward Executive Offices
                 </h3>
 
-
-                ${
-                    wardOffices
-                        .map(
-                            function (position) {
-
-                                return `
-
-                                    <div class="registration-item">
-
-                                        <strong>
-                                            ${escapeHTML(
-                                                position
-                                            )}
-                                        </strong>
-
-                                        <p>
-                                            Not yet assigned
-                                        </p>
-
-                                    </div>
-
-                                `;
-
-                            }
-                        )
-                        .join("")
-                }
+                ${officesHTML}
 
 
                 <h3>
                     Approved Members
                     (${approvedMembers.length})
                 </h3>
-
 
                 ${membersHTML}
 
@@ -1560,7 +1548,7 @@ async function showWard(
 
         wardDisplay.innerHTML = `
 
-            <div class="empty-state error">
+            <div class="empty-state">
 
                 <strong>
                     Unable to load members.
@@ -1582,12 +1570,12 @@ async function showWard(
 
 
 /* =========================================================
-   START
+   INITIALIZE
 ========================================================= */
 
-createWardButtons();
-
 createWardOptions();
+
+createWardButtons();
 
 
 if (registrationForm) {
@@ -1600,21 +1588,3 @@ if (registrationForm) {
 console.log(
     "BWI-RHA Ado LG website loaded successfully."
 );
-                   /* =========================================================
-   MOBILE MENU FIX
-   PRESERVES EXISTING LAYOUT
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .menu-btn {
-        display: block;
-        cursor: pointer;
-        z-index: 1001;
-    }
-
-    .main-nav.active {
-        display: flex;
-    }
-
-}
