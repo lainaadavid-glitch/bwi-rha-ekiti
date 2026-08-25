@@ -20,6 +20,263 @@
     rel="stylesheet"
     href="style.css"
 >
+
+<style>
+
+    /* =========================================
+       ORGANIZATIONAL TREE
+    ========================================= */
+
+    .exco-tree-section {
+        background: #f7faf8;
+    }
+
+    .org-tree {
+        width: 100%;
+        max-width: 1100px;
+        margin: 40px auto 0;
+        text-align: center;
+    }
+
+    .tree-level {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tree-card {
+        width: 280px;
+        padding: 25px 20px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        border: 2px solid #e4eee7;
+        transition: transform 0.2s ease;
+    }
+
+    .tree-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .tree-card h3 {
+        margin: 10px 0 8px;
+        color: #17351f;
+        font-size: 18px;
+    }
+
+    .tree-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background: #16833b;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .tree-position {
+        margin: 0 0 12px;
+        color: #16833b;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .tree-phone {
+        display: inline-block;
+        color: #333333;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .tree-phone:hover {
+        color: #16833b;
+    }
+
+    .state-card {
+        background: #17351f;
+        color: #ffffff;
+        border-color: #17351f;
+    }
+
+    .state-card h3 {
+        color: #ffffff;
+    }
+
+    .state-card .tree-position {
+        color: #ffffff;
+    }
+
+    .state-card .tree-phone {
+        color: #ffffff;
+    }
+
+    .state-card .tree-icon {
+        background: #ffffff;
+        color: #17351f;
+    }
+
+    .coordinator-main {
+        border: 3px solid #16833b;
+    }
+
+    .coordinator-main h3 {
+        font-size: 21px;
+    }
+
+    .tree-line {
+        width: 3px;
+        height: 45px;
+        background: #16833b;
+        margin: 0 auto;
+    }
+
+    .tree-branches {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    .tree-branches::before {
+        content: "";
+        position: absolute;
+        top: -22px;
+        left: calc(16.666% + 12px);
+        right: calc(16.666% + 12px);
+        height: 3px;
+        background: #16833b;
+    }
+
+
+    /* =========================================
+       MOBILE TREE
+    ========================================= */
+
+    @media (max-width: 800px) {
+
+        .tree-branches {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .tree-branches::before {
+            display: none;
+        }
+
+        .tree-card {
+            width: 100%;
+            max-width: 330px;
+            margin: 0 auto;
+        }
+
+        .tree-line {
+            height: 30px;
+        }
+
+    }
+
+
+    @media (max-width: 480px) {
+
+        .org-tree {
+            margin-top: 25px;
+        }
+
+        .tree-card {
+            padding: 22px 15px;
+        }
+
+        .tree-card h3 {
+            font-size: 16px;
+        }
+
+        .coordinator-main h3 {
+            font-size: 18px;
+        }
+
+    }
+
+
+    /* =========================================
+       WARD PREVIEW
+    ========================================= */
+
+    .wards-preview {
+        display: grid;
+        grid-template-columns:
+            repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 30px;
+    }
+
+    .ward-preview-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #17351f;
+        box-shadow:
+            0 6px 20px
+            rgba(0,0,0,0.07);
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .ward-preview-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 10px 25px
+            rgba(0,0,0,0.12);
+    }
+
+    .ward-preview-card span {
+        font-size: 28px;
+        font-weight: 800;
+        color: #16833b;
+    }
+
+    .ward-preview-card strong {
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+
+    @media (max-width: 800px) {
+
+        .wards-preview {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 480px) {
+
+        .wards-preview {
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .ward-preview-card {
+            min-height: 100px;
+            padding: 15px;
+        }
+
+    }
+
+</style>
 ```
 
 </head>
@@ -35,6 +292,8 @@
 ```
 <div class="header-container">
 
+
+    <!-- LOGO -->
 
     <a
         href="index.html"
@@ -62,6 +321,8 @@
     </a>
 
 
+    <!-- MOBILE MENU -->
+
     <button
         type="button"
         class="menu-btn"
@@ -71,6 +332,8 @@
         ☰
     </button>
 
+
+    <!-- NAVIGATION -->
 
     <nav
         class="main-nav"
@@ -138,6 +401,7 @@
 
         <div class="buttons">
 
+
             <a
                 href="member-signup.html"
                 class="button signup-button"
@@ -152,6 +416,7 @@
             >
                 Login
             </a>
+
 
         </div>
 
@@ -261,10 +526,10 @@
 </section>
 
 <!-- =========================================
-     ADO LG EXCO
+     ORGANIZATIONAL TREE
 ========================================= -->
 
-<section class="section coordinator-section">
+<section class="section exco-tree-section">
 
 ```
 <div class="container">
@@ -273,279 +538,276 @@
     <div class="section-title">
 
         <span>
-            BWI-RHA ADO LOCAL GOVERNMENT
+            BWI-RHA EKITI STATE CHAPTER
         </span>
 
         <h2>
-            ADO LG EXCO
+            ADO LOCAL GOVERNMENT
         </h2>
 
         <p>
-            Leadership of BWI-RHA
-            Ado Local Government.
+            Organizational Leadership Structure
         </p>
 
     </div>
 
 
+    <div class="org-tree">
 
-    <!-- =================================
-         LG COORDINATOR
-    ================================== -->
 
-    <div class="coordinator-card">
+        <!-- ==============================
+             STATE SECRETARY
+        =============================== -->
 
-        <div class="coordinator-icon">
-            👑
+        <div class="tree-level">
+
+            <div class="tree-card state-card">
+
+                <div class="tree-icon">
+                    🏛️
+                </div>
+
+                <h3>
+                    ADALUMO OLUWATOSIN FELICIA
+                </h3>
+
+                <p class="tree-position">
+                    STATE SECRETARY
+                </p>
+
+                <a
+                    href="tel:+2347081530161"
+                    class="tree-phone"
+                >
+                    📞 +234 708 153 0161
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="coordinator-info">
 
-            <h3>
-                ADELUKA OLAJUMOKE AGATHA
-            </h3>
+        <div class="tree-line"></div>
 
-            <p class="coordinator-position">
-                ADO LG COORDINATOR
-            </p>
 
-            <p class="coordinator-contact">
-                📞 08061284006
-            </p>
+        <!-- ==============================
+             ADO LG COORDINATOR
+        =============================== -->
 
-            <a
-                href="tel:08061284006"
-                class="button"
+        <div class="tree-level">
+
+            <div
+                class="tree-card coordinator-main"
             >
-                Contact Coordinator
-            </a>
+
+                <div class="tree-icon">
+                    👑
+                </div>
+
+                <h3>
+                    ADELUKA OLAJUMOKE AGATHA
+                </h3>
+
+                <p class="tree-position">
+                    ADO LG COORDINATOR
+                </p>
+
+                <a
+                    href="tel:08061284006"
+                    class="tree-phone"
+                >
+                    📞 08061284006
+                </a>
+
+            </div>
 
         </div>
+
+
+        <div class="tree-line"></div>
+
+
+        <!-- ==============================
+             FIRST LEVEL
+        =============================== -->
+
+        <div class="tree-branches">
+
+
+            <!-- DEPUTY -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    🤝
+                </div>
+
+                <h3>
+                    LAFIAJI FUNKE CAROLINE
+                </h3>
+
+                <p class="tree-position">
+                    DEPUTY LG COORDINATOR
+                </p>
+
+                <a
+                    href="tel:09064084071"
+                    class="tree-phone"
+                >
+                    📞 09064084071
+                </a>
+
+            </div>
+
+
+            <!-- SECRETARY -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    📝
+                </div>
+
+                <h3>
+                    MUHAMMED TOYIN
+                </h3>
+
+                <p class="tree-position">
+                    SECRETARY
+                </p>
+
+                <a
+                    href="tel:09033454709"
+                    class="tree-phone"
+                >
+                    📞 09033454709
+                </a>
+
+            </div>
+
+
+            <!-- PRO -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    📣
+                </div>
+
+                <h3>
+                    AFOLABI IYABODE BETTY
+                </h3>
+
+                <p class="tree-position">
+                    PUBLIC RELATIONS
+                    OFFICER (PRO)
+                </p>
+
+                <a
+                    href="tel:09033792865"
+                    class="tree-phone"
+                >
+                    📞 09033792865
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="tree-line"></div>
+
+
+        <!-- ==============================
+             SECOND LEVEL
+        =============================== -->
+
+        <div class="tree-branches">
+
+
+            <!-- WOMEN EMPOWERMENT -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    👩‍💼
+                </div>
+
+                <h3>
+                    AKINOLA FEYISAYO
+                </h3>
+
+                <p class="tree-position">
+                    WOMEN EMPOWERMENT OFFICER
+                </p>
+
+                <a
+                    href="tel:07033779607"
+                    class="tree-phone"
+                >
+                    📞 07033779607
+                </a>
+
+            </div>
+
+
+            <!-- MOBILISATION -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    📣
+                </div>
+
+                <h3>
+                    AKINTEBI HELEN O.
+                </h3>
+
+                <p class="tree-position">
+                    MOBILISATION OFFICER
+                </p>
+
+                <a
+                    href="tel:08034696556"
+                    class="tree-phone"
+                >
+                    📞 08034696556
+                </a>
+
+            </div>
+
+
+            <!-- WELFARE -->
+
+            <div class="tree-card">
+
+                <div class="tree-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    OJO OLULDARE ALICE
+                </h3>
+
+                <p class="tree-position">
+                    WELFARE OFFICER
+                </p>
+
+                <a
+                    href="tel:07033229239"
+                    class="tree-phone"
+                >
+                    📞 07033229239
+                </a>
+
+            </div>
+
+
+        </div>
+
 
     </div>
-
-
-
-    <!-- =================================
-         DEPUTY COORDINATOR
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            🤝
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                LAFIAJI FUNKE CAROLINE
-            </h3>
-
-            <p class="coordinator-position">
-                DEPUTY LG COORDINATOR
-            </p>
-
-            <p class="coordinator-contact">
-                📞 09064084071
-            </p>
-
-            <a
-                href="tel:09064084071"
-                class="button"
-            >
-                Contact Deputy Coordinator
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================
-         SECRETARY
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            📝
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                MUHAMMED TOYIN
-            </h3>
-
-            <p class="coordinator-position">
-                SECRETARY
-            </p>
-
-            <p class="coordinator-contact">
-                📞 09033454709
-            </p>
-
-            <a
-                href="tel:09033454709"
-                class="button"
-            >
-                Contact Secretary
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================
-         PRO
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            📣
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                AFOLABI IYABODE BETTY
-            </h3>
-
-            <p class="coordinator-position">
-                PUBLIC RELATIONS OFFICER (PRO)
-            </p>
-
-            <p class="coordinator-contact">
-                📞 09033792865
-            </p>
-
-            <a
-                href="tel:09033792865"
-                class="button"
-            >
-                Contact PRO
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================
-         WOMEN EMPOWERMENT OFFICER
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            👩‍💼
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                AKINOLA FEYISAYO
-            </h3>
-
-            <p class="coordinator-position">
-                WOMEN EMPOWERMENT OFFICER
-            </p>
-
-            <p class="coordinator-contact">
-                📞 07033779607
-            </p>
-
-            <a
-                href="tel:07033779607"
-                class="button"
-            >
-                Contact Officer
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================
-         MOBILISATION OFFICER
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            📣
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                AKINTEBI HELEN O.
-            </h3>
-
-            <p class="coordinator-position">
-                MOBILISATION OFFICER
-            </p>
-
-            <p class="coordinator-contact">
-                📞 08034696556
-            </p>
-
-            <a
-                href="tel:08034696556"
-                class="button"
-            >
-                Contact Officer
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================
-         WELFARE OFFICER
-    ================================== -->
-
-    <div class="coordinator-card">
-
-        <div class="coordinator-icon">
-            ❤️
-        </div>
-
-        <div class="coordinator-info">
-
-            <h3>
-                OJO OLULDARE ALICE
-            </h3>
-
-            <p class="coordinator-position">
-                WELFARE OFFICER
-            </p>
-
-            <p class="coordinator-contact">
-                📞 07033229239
-            </p>
-
-            <a
-                href="tel:07033229239"
-                class="button"
-            >
-                Contact Welfare Officer
-            </a>
-
-        </div>
-
-    </div>
-
 
 </div>
 ```
@@ -553,7 +815,7 @@
 </section>
 
 <!-- =========================================
-     13 WARDS
+     WARDS
 ========================================= -->
 
 <section class="section">
@@ -914,13 +1176,12 @@ document.addEventListener(
     function () {
 
 
-        /* CURRENT YEAR */
+        /* YEAR */
 
         const year =
             document.getElementById(
                 "currentYear"
             );
-
 
         if (year) {
 
@@ -930,14 +1191,12 @@ document.addEventListener(
         }
 
 
-
         /* MOBILE MENU */
 
         const menuButton =
             document.getElementById(
                 "menuButton"
             );
-
 
         const mobileNav =
             document.getElementById(
