@@ -31,10 +31,6 @@ select {
     display: none !important;
 }
 
-/* =========================
-   LOGIN
-========================= */
-
 #loginScreen {
     min-height: 100vh;
     display: flex;
@@ -149,10 +145,6 @@ select {
     font-size: 14px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
 #dashboard {
     min-height: 100vh;
 }
@@ -212,10 +204,6 @@ select {
     font-weight: bold;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
-
 .nav {
     background: white;
     border-bottom: 1px solid #ddd;
@@ -239,10 +227,6 @@ select {
     color: #075c35;
     border-bottom-color: #075c35;
 }
-
-/* =========================
-   CONTENT
-========================= */
 
 .content {
     max-width: 1450px;
@@ -276,10 +260,6 @@ select {
     color: #666;
 }
 
-/* =========================
-   STATS
-========================= */
-
 .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -304,10 +284,6 @@ select {
     color: #777;
 }
 
-/* =========================
-   CARD
-========================= */
-
 .card {
     background: white;
     border-radius: 12px;
@@ -330,10 +306,6 @@ select {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-
-/* =========================
-   TABLE
-========================= */
 
 .table-wrap {
     width: 100%;
@@ -402,10 +374,6 @@ tr:hover td {
     font-size: 12px;
 }
 
-/* =========================
-   MODAL
-========================= */
-
 .modal {
     position: fixed;
     inset: 0;
@@ -466,10 +434,6 @@ tr:hover td {
     margin-top: 20px;
 }
 
-/* =========================
-   LOADING
-========================= */
-
 #loading {
     position: fixed;
     inset: 0;
@@ -491,10 +455,6 @@ tr:hover td {
     border-radius: 10px;
     font-weight: bold;
 }
-
-/* =========================
-   TOAST
-========================= */
 
 #toast {
     position: fixed;
@@ -521,22 +481,13 @@ tr:hover td {
     background: #b00020;
 }
 
-/* =========================
-   EMPTY
-========================= */
-
 .empty {
     padding: 35px;
     text-align: center;
     color: #777;
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 700px) {
-
     .topbar {
         padding: 12px 15px;
     }
@@ -579,18 +530,9 @@ tr:hover td {
 
 <body>
 
-<!-- =========================
-     LOADING
-========================= -->
-
 <div id="loading">
     <div class="loader">Please wait...</div>
 </div>
-
-
-<!-- =========================
-     LOGIN
-========================= -->
 
 <section id="loginScreen">
 
@@ -657,15 +599,7 @@ tr:hover td {
 
 </section>
 
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section
-    id="dashboard"
-    class="hidden"
->
+<section id="dashboard" class="hidden">
 
 <header class="topbar">
 
@@ -706,11 +640,6 @@ tr:hover td {
 
 </header>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
 <nav class="nav">
 
     <button
@@ -743,18 +672,9 @@ tr:hover td {
 
 </nav>
 
-
 <main class="content">
 
-
-<!-- =========================
-     OVERVIEW
-========================= -->
-
-<section
-    id="overview"
-    class="page active"
->
+<section id="overview" class="page active">
 
     <div class="page-header">
 
@@ -776,7 +696,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="stats">
 
@@ -811,7 +730,6 @@ tr:hover td {
         </div>
 
     </div>
-
 
     <div class="card">
 
@@ -848,15 +766,7 @@ tr:hover td {
 
 </section>
 
-
-<!-- =========================
-     MEMBERS
-========================= -->
-
-<section
-    id="members"
-    class="page"
->
+<section id="members" class="page">
 
     <div class="page-header">
 
@@ -878,7 +788,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="card">
 
@@ -920,7 +829,6 @@ tr:hover td {
 
         </div>
 
-
         <div class="table-wrap">
 
             <table>
@@ -950,15 +858,7 @@ tr:hover td {
 
 </section>
 
-
-<!-- =========================
-     LG EXCO
-========================= -->
-
-<section
-    id="lgExco"
-    class="page"
->
+<section id="lgExco" class="page">
 
     <div class="page-header">
 
@@ -980,7 +880,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="card">
 
@@ -1010,15 +909,7 @@ tr:hover td {
 
 </section>
 
-
-<!-- =========================
-     WARD EXCO
-========================= -->
-
-<section
-    id="wardExco"
-    class="page"
->
+<section id="wardExco" class="page">
 
     <div class="page-header">
 
@@ -1041,7 +932,6 @@ tr:hover td {
 
     </div>
 
-
     <div class="card">
 
         <div class="toolbar">
@@ -1055,10 +945,7 @@ tr:hover td {
                 "
             >
 
-                <option value="all">
-                    All Wards
-                </option>
-
+                <option value="all">All Wards</option>
                 <option value="Ward 1">Ward 1</option>
                 <option value="Ward 2">Ward 2</option>
                 <option value="Ward 3">Ward 3</option>
@@ -1076,7 +963,6 @@ tr:hover td {
             </select>
 
         </div>
-
 
         <div class="table-wrap">
 
@@ -1108,15 +994,7 @@ tr:hover td {
 
 </section>
 
-
-<!-- =========================
-     LG EXCO MODAL
-========================= -->
-
-<div
-    id="lgExcoModal"
-    class="modal"
->
+<div id="lgExcoModal" class="modal">
 
     <div class="modal-box">
 
@@ -1134,7 +1012,6 @@ tr:hover td {
             </button>
 
         </div>
-
 
         <form id="lgExcoForm">
 
@@ -1158,7 +1035,6 @@ tr:hover td {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>Member Name</label>
@@ -1172,7 +1048,6 @@ tr:hover td {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>Phone</label>
@@ -1184,7 +1059,6 @@ tr:hover td {
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1216,7 +1090,6 @@ tr:hover td {
 
             </div>
 
-
             <div class="modal-footer">
 
                 <button
@@ -1242,15 +1115,7 @@ tr:hover td {
 
 </div>
 
-
-<!-- =========================
-     WARD EXCO MODAL
-========================= -->
-
-<div
-    id="wardExcoModal"
-    class="modal"
->
+<div id="wardExcoModal" class="modal">
 
     <div class="modal-box">
 
@@ -1268,7 +1133,6 @@ tr:hover td {
             </button>
 
         </div>
-
 
         <form id="wardExcoForm">
 
@@ -1310,7 +1174,6 @@ tr:hover td {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>Position</label>
@@ -1323,7 +1186,6 @@ tr:hover td {
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -1338,7 +1200,6 @@ tr:hover td {
 
                 </div>
 
-
                 <div class="form-group">
 
                     <label>Phone</label>
@@ -1352,7 +1213,6 @@ tr:hover td {
                 </div>
 
             </div>
-
 
             <div class="modal-footer">
 
@@ -1379,15 +1239,9 @@ tr:hover td {
 
 </div>
 
-
 <div id="toast"></div>
 
-
 <script>
-
-/* =========================================================
-   SUPABASE CONFIGURATION
-========================================================= */
 
 const SUPABASE_URL =
     "https://xfjrmgendmmpnumsbjte.supabase.co";
@@ -1402,26 +1256,16 @@ const supabaseClient =
     );
 
 
-/* =========================================================
-   SINGLE ADMIN
-========================================================= */
+/* ONLY CHANGED THIS EMAIL */
 
 const ADMIN_EMAIL =
-    "agatha4jesu@gmail.com";
+    "bwirha@gmail.com";
 
-
-/* =========================================================
-   STATE
-========================================================= */
 
 let members = [];
 let lgExcos = [];
 let wardExcos = [];
 
-
-/* =========================================================
-   HELPERS
-========================================================= */
 
 function showLoading(show = true) {
 
@@ -1485,6 +1329,7 @@ function escapeHtml(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
 
@@ -1493,19 +1338,14 @@ function switchPage(pageName) {
     document
         .querySelectorAll(".page")
         .forEach(page => {
-
             page.classList.remove("active");
-
         });
 
     document
         .querySelectorAll(".nav-btn")
         .forEach(button => {
-
             button.classList.remove("active");
-
         });
-
 
     const page =
         document.getElementById(pageName);
@@ -1513,7 +1353,6 @@ function switchPage(pageName) {
     if (page) {
         page.classList.add("active");
     }
-
 
     const button =
         document.querySelector(
@@ -1523,7 +1362,6 @@ function switchPage(pageName) {
     if (button) {
         button.classList.add("active");
     }
-
 
     if (pageName === "members") {
         loadMembers();
@@ -1550,10 +1388,6 @@ function closeModal(id) {
 }
 
 
-/* =========================================================
-   AUTH
-========================================================= */
-
 async function checkSession() {
 
     try {
@@ -1561,7 +1395,8 @@ async function checkSession() {
         const {
             data,
             error
-        } = await supabaseClient.auth.getSession();
+        } =
+        await supabaseClient.auth.getSession();
 
         if (error) {
             throw error;
@@ -1670,7 +1505,8 @@ async function login(email, password) {
         const {
             data,
             error
-        } = await supabaseClient.auth.signInWithPassword({
+        } =
+        await supabaseClient.auth.signInWithPassword({
             email,
             password
         });
@@ -1750,10 +1586,6 @@ async function logout() {
 }
 
 
-/* =========================================================
-   MEMBERS
-========================================================= */
-
 async function loadMembers() {
 
     try {
@@ -1761,7 +1593,8 @@ async function loadMembers() {
         const {
             data,
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("members")
             .select("*")
             .order("created_at", {
@@ -1819,10 +1652,7 @@ function getMemberPhone(member) {
 
 function getMemberEmail(member) {
 
-    return (
-        member.email ||
-        ""
-    );
+    return member.email || "";
 
 }
 
@@ -1879,12 +1709,10 @@ function renderMembers() {
             .getElementById("memberStatusFilter")
             .value;
 
-
     let filtered =
         members.filter(member => {
 
             const text = [
-
                 getMemberName(member),
                 getMemberPhone(member),
                 getMemberEmail(member),
@@ -1892,7 +1720,6 @@ function renderMembers() {
                 getMemberBank(member),
                 getMemberAccount(member),
                 member.status || ""
-
             ]
             .join(" ")
             .toLowerCase();
@@ -1913,7 +1740,6 @@ function renderMembers() {
 
         });
 
-
     if (!filtered.length) {
 
         tbody.innerHTML = `
@@ -1928,7 +1754,6 @@ function renderMembers() {
 
     }
 
-
     tbody.innerHTML =
         filtered.map(member => {
 
@@ -1940,23 +1765,18 @@ function renderMembers() {
                     member.status || "pending"
                 ).toLowerCase();
 
-
             let badgeClass =
                 "badge-pending";
 
             if (memberStatus === "approved") {
-                badgeClass =
-                    "badge-approved";
+                badgeClass = "badge-approved";
             }
 
             if (memberStatus === "declined") {
-                badgeClass =
-                    "badge-declined";
+                badgeClass = "badge-declined";
             }
 
-
             let actions = "";
-
 
             if (memberStatus !== "approved") {
 
@@ -1971,7 +1791,6 @@ function renderMembers() {
 
             }
 
-
             if (memberStatus !== "declined") {
 
                 actions += `
@@ -1984,7 +1803,6 @@ function renderMembers() {
                 `;
 
             }
-
 
             if (memberStatus === "declined") {
 
@@ -1999,9 +1817,7 @@ function renderMembers() {
 
             }
 
-
             return `
-
                 <tr>
 
                     <td>
@@ -2055,7 +1871,6 @@ function renderMembers() {
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2072,7 +1887,6 @@ async function updateMemberStatus(id, status) {
         return;
     }
 
-
     if (
         !confirm(
             `Change this member's status to "${status}"?`
@@ -2081,14 +1895,14 @@ async function updateMemberStatus(id, status) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
         const {
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("members")
             .update({
                 status: status
@@ -2135,14 +1949,14 @@ async function deleteDeclinedMember(id) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
         const {
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("members")
             .delete()
             .eq("id", id)
@@ -2180,8 +1994,7 @@ async function deleteDeclinedMember(id) {
 
 function updateMemberStats() {
 
-    const total =
-        members.length;
+    const total = members.length;
 
     const pending =
         members.filter(
@@ -2197,7 +2010,6 @@ function updateMemberStats() {
         members.filter(
             m => m.status === "declined"
         ).length;
-
 
     document
         .getElementById("totalMembers")
@@ -2218,10 +2030,6 @@ function updateMemberStats() {
 }
 
 
-/* =========================================================
-   LG EXCO
-========================================================= */
-
 async function loadLgExcos() {
 
     try {
@@ -2229,7 +2037,8 @@ async function loadLgExcos() {
         const {
             data,
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("lg_exco")
             .select("*")
             .order("created_at", {
@@ -2269,7 +2078,6 @@ function renderLgExcos() {
     const tbody =
         document.getElementById("lgExcoTable");
 
-
     if (!lgExcos.length) {
 
         tbody.innerHTML = `
@@ -2283,7 +2091,6 @@ function renderLgExcos() {
         return;
 
     }
-
 
     tbody.innerHTML =
         lgExcos.map(row => {
@@ -2308,9 +2115,7 @@ function renderLgExcos() {
                 row.ward_name ||
                 "";
 
-
             return `
-
                 <tr>
 
                     <td>
@@ -2354,7 +2159,6 @@ function renderLgExcos() {
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2372,14 +2176,12 @@ function openLgExcoModal(id = null) {
         .getElementById("lgExcoId")
         .value = "";
 
-
     document
         .getElementById("lgModalTitle")
         .textContent =
         id
             ? "Edit LG EXCO"
             : "Add LG EXCO";
-
 
     if (id) {
 
@@ -2392,7 +2194,6 @@ function openLgExcoModal(id = null) {
         if (!row) {
             return;
         }
-
 
         document
             .getElementById("lgExcoId")
@@ -2426,7 +2227,6 @@ function openLgExcoModal(id = null) {
             "";
 
     }
-
 
     document
         .getElementById("lgExcoModal")
@@ -2479,40 +2279,36 @@ async function saveLgExco(event) {
 
     };
 
-
     showLoading(true);
 
     try {
 
         let error;
 
-
         if (id) {
 
             ({
                 error
             } =
-                await supabaseClient
-                    .from("lg_exco")
-                    .update(payload)
-                    .eq("id", id));
+            await supabaseClient
+                .from("lg_exco")
+                .update(payload)
+                .eq("id", id));
 
         } else {
 
             ({
                 error
             } =
-                await supabaseClient
-                    .from("lg_exco")
-                    .insert([payload]));
+            await supabaseClient
+                .from("lg_exco")
+                .insert([payload]));
 
         }
-
 
         if (error) {
             throw error;
         }
-
 
         closeModal("lgExcoModal");
 
@@ -2554,14 +2350,14 @@ async function deleteLgExco(id) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
         const {
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("lg_exco")
             .delete()
             .eq("id", id);
@@ -2596,10 +2392,6 @@ async function deleteLgExco(id) {
 }
 
 
-/* =========================================================
-   WARD EXCO
-========================================================= */
-
 async function loadWardExcos() {
 
     try {
@@ -2607,7 +2399,8 @@ async function loadWardExcos() {
         const {
             data,
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("ward_exco")
             .select("*")
             .order("created_at", {
@@ -2654,7 +2447,6 @@ function renderWardExcos() {
             .getElementById("wardFilter")
             .value;
 
-
     const filtered =
         filter === "all"
             ? wardExcos
@@ -2669,7 +2461,6 @@ function renderWardExcos() {
 
             });
 
-
     if (!filtered.length) {
 
         tbody.innerHTML = `
@@ -2683,7 +2474,6 @@ function renderWardExcos() {
         return;
 
     }
-
 
     tbody.innerHTML =
         filtered.map(row => {
@@ -2708,9 +2498,7 @@ function renderWardExcos() {
                 row.phone_no ||
                 "";
 
-
             return `
-
                 <tr>
 
                     <td>
@@ -2754,7 +2542,6 @@ function renderWardExcos() {
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2772,14 +2559,12 @@ function openWardExcoModal(id = null) {
         .getElementById("wardExcoId")
         .value = "";
 
-
     document
         .getElementById("wardModalTitle")
         .textContent =
         id
             ? "Edit Ward EXCO"
             : "Add Ward EXCO";
-
 
     if (id) {
 
@@ -2792,7 +2577,6 @@ function openWardExcoModal(id = null) {
         if (!row) {
             return;
         }
-
 
         document
             .getElementById("wardExcoId")
@@ -2826,7 +2610,6 @@ function openWardExcoModal(id = null) {
             "";
 
     }
-
 
     document
         .getElementById("wardExcoModal")
@@ -2879,40 +2662,36 @@ async function saveWardExco(event) {
 
     };
 
-
     showLoading(true);
 
     try {
 
         let error;
 
-
         if (id) {
 
             ({
                 error
             } =
-                await supabaseClient
-                    .from("ward_exco")
-                    .update(payload)
-                    .eq("id", id));
+            await supabaseClient
+                .from("ward_exco")
+                .update(payload)
+                .eq("id", id));
 
         } else {
 
             ({
                 error
             } =
-                await supabaseClient
-                    .from("ward_exco")
-                    .insert([payload]));
+            await supabaseClient
+                .from("ward_exco")
+                .insert([payload]));
 
         }
-
 
         if (error) {
             throw error;
         }
-
 
         closeModal("wardExcoModal");
 
@@ -2954,14 +2733,14 @@ async function deleteWardExco(id) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
         const {
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("ward_exco")
             .delete()
             .eq("id", id);
@@ -2996,10 +2775,6 @@ async function deleteWardExco(id) {
 }
 
 
-/* =========================================================
-   LOAD EVERYTHING
-========================================================= */
-
 async function loadEverything() {
 
     showLoading(true);
@@ -3007,11 +2782,9 @@ async function loadEverything() {
     try {
 
         await Promise.all([
-
             loadMembers(),
             loadLgExcos(),
             loadWardExcos()
-
         ]);
 
     } catch (error) {
@@ -3026,10 +2799,6 @@ async function loadEverything() {
 
 }
 
-
-/* =========================================================
-   EVENTS
-========================================================= */
 
 document
     .getElementById("loginForm")
@@ -3148,10 +2917,6 @@ document
     });
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
 supabaseClient.auth.onAuthStateChange(
     async (_event, session) => {
 
@@ -3163,12 +2928,10 @@ supabaseClient.auth.onAuthStateChange(
 
         }
 
-
         const email =
             session.user.email
                 ? session.user.email.toLowerCase()
                 : "";
-
 
         if (email !== ADMIN_EMAIL) {
 
@@ -3184,16 +2947,11 @@ supabaseClient.auth.onAuthStateChange(
 
         }
 
-
         showDashboard(email);
 
     }
 );
 
-
-/* =========================================================
-   START
-========================================================= */
 
 checkSession();
 
