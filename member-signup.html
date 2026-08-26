@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -18,10 +19,87 @@
         href="style.css"
     >
 
+    <style>
+
+        /* =========================================
+           SIGNUP MESSAGE
+        ========================================= */
+
+        .signup-success {
+            display: none;
+
+            margin-top: 20px;
+            padding: 18px;
+
+            background: #e8f7ee;
+            border: 1px solid #2d8f4e;
+
+            border-radius: 10px;
+
+            color: #145c2b;
+
+            text-align: center;
+
+            font-weight: 600;
+        }
+
+        .signup-success.show {
+            display: block;
+        }
+
+
+        .signup-error {
+            display: none;
+
+            margin-top: 20px;
+            padding: 15px;
+
+            background: #fff0f0;
+            border: 1px solid #d9534f;
+
+            border-radius: 10px;
+
+            color: #a30000;
+
+            line-height: 1.5;
+        }
+
+        .signup-error.show {
+            display: block;
+        }
+
+
+        .signup-button-loading {
+            opacity: .7;
+            cursor: not-allowed;
+        }
+
+
+        .success-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+
+        .redirect-text {
+            margin-top: 8px;
+
+            font-size: 14px;
+
+            color: #555;
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================
+     HEADER
+========================================= -->
 
 <header class="site-header">
 
@@ -100,6 +178,9 @@
 </header>
 
 
+<!-- =========================================
+     MAIN
+========================================= -->
 
 <main class="section">
 
@@ -107,6 +188,10 @@
 
         <div class="form-container">
 
+
+            <!-- =====================================
+                 TITLE
+            ====================================== -->
 
             <div class="section-title">
 
@@ -123,9 +208,17 @@
             </div>
 
 
+            <!-- =====================================
+                 SIGNUP FORM
+            ====================================== -->
 
-            <form id="signupForm">
+            <form
+                id="signupForm"
+                novalidate
+            >
 
+
+                <!-- EMAIL -->
 
                 <div class="form-group">
 
@@ -144,6 +237,7 @@
                 </div>
 
 
+                <!-- PASSWORD -->
 
                 <div class="form-group">
 
@@ -168,6 +262,7 @@
                 </div>
 
 
+                <!-- CONFIRM PASSWORD -->
 
                 <div class="form-group">
 
@@ -187,6 +282,7 @@
                 </div>
 
 
+                <!-- SUBMIT BUTTON -->
 
                 <button
                     type="submit"
@@ -197,18 +293,50 @@
                 </button>
 
 
+                <!-- =================================
+                     SUCCESS MESSAGE
+                ================================== -->
 
                 <div
-                    id="signupMessage"
-                    class="form-message"
-                    role="alert"
+                    id="signupSuccess"
+                    class="signup-success"
+                    role="status"
                     aria-live="polite"
+                >
+
+                    <div class="success-icon">
+                        ✅
+                    </div>
+
+                    <div>
+                        Account created successfully!
+                    </div>
+
+                    <div class="redirect-text">
+                        Opening the login page...
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ERROR MESSAGE
+                ================================== -->
+
+                <div
+                    id="signupError"
+                    class="signup-error"
+                    role="alert"
+                    aria-live="assertive"
                 ></div>
 
 
             </form>
 
 
+            <!-- =====================================
+                 LOGIN LINK
+            ====================================== -->
 
             <p class="form-link">
 
@@ -241,6 +369,9 @@
 </main>
 
 
+<!-- =========================================
+     FOOTER
+========================================= -->
 
 <footer class="site-footer">
 
@@ -263,10 +394,560 @@
 </footer>
 
 
+<!-- =========================================
+     SUPABASE
+========================================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="script.js"></script>
+
+<script>
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const signupForm =
+    document.getElementById(
+        "signupForm"
+    );
+
+
+const signupEmail =
+    document.getElementById(
+        "signupEmail"
+    );
+
+
+const signupPassword =
+    document.getElementById(
+        "signupPassword"
+    );
+
+
+const signupPassword2 =
+    document.getElementById(
+        "signupPassword2"
+    );
+
+
+const signupButton =
+    document.getElementById(
+        "signupButton"
+    );
+
+
+const signupSuccess =
+    document.getElementById(
+        "signupSuccess"
+    );
+
+
+const signupError =
+    document.getElementById(
+        "signupError"
+    );
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showSignupError(
+    message
+) {
+
+    signupError.textContent =
+        message;
+
+    signupError.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   HIDE ERROR
+===================================================== */
+
+function hideSignupError() {
+
+    signupError.textContent =
+        "";
+
+    signupError.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   SHOW SUCCESS
+===================================================== */
+
+function showSignupSuccess() {
+
+    signupSuccess.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   REDIRECT TO LOGIN
+===================================================== */
+
+function redirectToLogin(
+    email
+) {
+
+    /*
+     * Put the email in the URL so
+     * member-login.html can automatically
+     * fill the email field.
+     *
+     * Example:
+     *
+     * member-login.html?email=user@gmail.com
+     */
+
+    const encodedEmail =
+        encodeURIComponent(
+            email
+        );
+
+
+    window.location.href =
+        "member-login.html?email=" +
+        encodedEmail;
+
+}
+
+
+/* =====================================================
+   CREATE ACCOUNT
+===================================================== */
+
+signupForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        hideSignupError();
+
+
+        /*
+         * Get values
+         */
+
+        const email =
+            signupEmail
+                .value
+                .trim()
+                .toLowerCase();
+
+
+        const password =
+            signupPassword.value;
+
+
+        const password2 =
+            signupPassword2.value;
+
+
+        /* =============================================
+           VALIDATE EMAIL
+        ============================================== */
+
+        if (!email) {
+
+            showSignupError(
+                "Please enter your email address."
+            );
+
+            signupEmail.focus();
+
+            return;
+
+        }
+
+
+        /*
+         * Basic email validation
+         */
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+            !emailPattern.test(email)
+        ) {
+
+            showSignupError(
+                "Please enter a valid email address."
+            );
+
+            signupEmail.focus();
+
+            return;
+
+        }
+
+
+        /* =============================================
+           VALIDATE PASSWORD
+        ============================================== */
+
+        if (
+            password.length < 6
+        ) {
+
+            showSignupError(
+                "Password must contain at least 6 characters."
+            );
+
+            signupPassword.focus();
+
+            return;
+
+        }
+
+
+        /* =============================================
+           CONFIRM PASSWORD
+        ============================================== */
+
+        if (
+            password !== password2
+        ) {
+
+            showSignupError(
+                "Passwords do not match."
+            );
+
+            signupPassword2.focus();
+
+            return;
+
+        }
+
+
+        /* =============================================
+           DISABLE BUTTON
+        ============================================== */
+
+        signupButton.disabled =
+            true;
+
+        signupButton.textContent =
+            "Creating Account...";
+
+        signupButton.classList.add(
+            "signup-button-loading"
+        );
+
+
+        try {
+
+
+            /* =========================================
+               SUPABASE SIGN UP
+            ========================================== */
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .auth
+                    .signUp({
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
+                    });
+
+
+            /* =========================================
+               HANDLE SUPABASE ERROR
+            ========================================== */
+
+            if (error) {
+
+                console.error(
+                    "Supabase signup error:",
+                    error
+                );
+
+
+                let message =
+                    error.message ||
+                    "Unable to create your account.";
+
+
+                /*
+                 * Friendly duplicate-account message
+                 */
+
+                if (
+                    message
+                        .toLowerCase()
+                        .includes(
+                            "user already registered"
+                        )
+                ) {
+
+                    message =
+                        "An account with this email already exists. Please login instead.";
+
+                }
+
+
+                /*
+                 * Email confirmation is still enabled
+                 */
+
+                else if (
+                    message
+                        .toLowerCase()
+                        .includes(
+                            "email not confirmed"
+                        )
+                ) {
+
+                    message =
+                        "Email confirmation is enabled in Supabase. Please disable Confirm Email in Authentication settings.";
+
+                }
+
+
+                showSignupError(
+                    message
+                );
+
+                return;
+
+            }
+
+
+            /* =========================================
+               VERIFY USER WAS CREATED
+            ========================================== */
+
+            if (
+                !data ||
+                !data.user
+            ) {
+
+                showSignupError(
+                    "The account could not be created. Please try again."
+                );
+
+                return;
+
+            }
+
+
+            console.log(
+                "Account created:",
+                data.user.id
+            );
+
+
+            /* =========================================
+               SUCCESS
+            ========================================== */
+
+            showSignupSuccess();
+
+
+            /*
+             * Prevent changing the form
+             */
+
+            signupEmail.disabled =
+                true;
+
+            signupPassword.disabled =
+                true;
+
+            signupPassword2.disabled =
+                true;
+
+
+            signupButton.disabled =
+                true;
+
+            signupButton.textContent =
+                "Account Created ✓";
+
+
+            /*
+             * Redirect after a short delay.
+             *
+             * The email is passed to the login page.
+             */
+
+            setTimeout(
+                function () {
+
+                    redirectToLogin(
+                        email
+                    );
+
+                },
+                1800
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Unexpected signup error:",
+                error
+            );
+
+
+            showSignupError(
+                "Something went wrong while creating your account. Please try again."
+            );
+
+
+        } finally {
+
+            /*
+             * Don't re-enable the button if
+             * account creation succeeded.
+             */
+
+            if (
+                !signupSuccess.classList.contains(
+                    "show"
+                )
+            ) {
+
+                signupButton.disabled =
+                    false;
+
+                signupButton.textContent =
+                    "Create Account";
+
+                signupButton.classList.remove(
+                    "signup-button-loading"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById(
+        "menuButton"
+    );
+
+
+const mobileNav =
+    document.getElementById(
+        "mobileNav"
+    );
+
+
+if (
+    menuButton &&
+    mobileNav
+) {
+
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            mobileNav.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PASSWORD CONFIRMATION VISUAL CHECK
+===================================================== */
+
+signupPassword2.addEventListener(
+    "input",
+    function () {
+
+        hideSignupError();
+
+
+        if (
+            signupPassword2.value &&
+            signupPassword.value !==
+            signupPassword2.value
+        ) {
+
+            signupPassword2.setCustomValidity(
+                "Passwords do not match."
+            );
+
+        } else {
+
+            signupPassword2.setCustomValidity(
+                ""
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+console.log(
+    "BWI-RHA signup page ready."
+);
+
+</script>
 
 
 </body>
