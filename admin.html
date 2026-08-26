@@ -31,6 +31,12 @@ select {
     display: none !important;
 }
 
+button {
+    cursor: pointer;
+}
+
+/* LOGIN */
+
 #loginScreen {
     min-height: 100vh;
     display: flex;
@@ -97,14 +103,12 @@ select {
     border: none;
     border-radius: 8px;
     padding: 10px 15px;
-    cursor: pointer;
     font-weight: bold;
     transition: .2s;
 }
 
 .btn:hover {
-    transform: translateY(-1px);
-    opacity: .92;
+    opacity: .9;
 }
 
 .btn-primary {
@@ -144,6 +148,8 @@ select {
     margin-bottom: 15px;
     font-size: 14px;
 }
+
+/* DASHBOARD */
 
 #dashboard {
     min-height: 100vh;
@@ -200,9 +206,10 @@ select {
     border: none;
     border-radius: 7px;
     padding: 9px 13px;
-    cursor: pointer;
     font-weight: bold;
 }
+
+/* NAV */
 
 .nav {
     background: white;
@@ -216,7 +223,6 @@ select {
     background: transparent;
     border: none;
     padding: 16px 20px;
-    cursor: pointer;
     font-weight: bold;
     color: #555;
     white-space: nowrap;
@@ -227,6 +233,8 @@ select {
     color: #075c35;
     border-bottom-color: #075c35;
 }
+
+/* CONTENT */
 
 .content {
     max-width: 1450px;
@@ -260,6 +268,8 @@ select {
     color: #666;
 }
 
+/* STATS */
+
 .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -284,6 +294,8 @@ select {
     color: #777;
 }
 
+/* CARD */
+
 .card {
     background: white;
     border-radius: 12px;
@@ -306,6 +318,8 @@ select {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
+
+/* TABLE */
 
 .table-wrap {
     width: 100%;
@@ -334,10 +348,6 @@ th {
 
 td {
     font-size: 14px;
-}
-
-tr:hover td {
-    background: #fafafa;
 }
 
 .badge {
@@ -373,6 +383,8 @@ tr:hover td {
     padding: 7px 9px;
     font-size: 12px;
 }
+
+/* MODAL */
 
 .modal {
     position: fixed;
@@ -414,7 +426,6 @@ tr:hover td {
     border: none;
     background: transparent;
     font-size: 25px;
-    cursor: pointer;
 }
 
 .form-grid {
@@ -433,6 +444,8 @@ tr:hover td {
     gap: 10px;
     margin-top: 20px;
 }
+
+/* LOADING */
 
 #loading {
     position: fixed;
@@ -455,6 +468,8 @@ tr:hover td {
     border-radius: 10px;
     font-weight: bold;
 }
+
+/* TOAST */
 
 #toast {
     position: fixed;
@@ -487,7 +502,8 @@ tr:hover td {
     color: #777;
 }
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
+
     .topbar {
         padding: 12px 15px;
     }
@@ -534,6 +550,8 @@ tr:hover td {
     <div class="loader">Please wait...</div>
 </div>
 
+<!-- LOGIN -->
+
 <section id="loginScreen">
 
     <div class="login-box">
@@ -551,15 +569,11 @@ tr:hover td {
             Administration Portal
         </p>
 
-        <div
-            id="loginError"
-            class="error hidden"
-        ></div>
+        <div id="loginError" class="error hidden"></div>
 
         <form id="loginForm">
 
             <div class="form-group">
-
                 <label>Email</label>
 
                 <input
@@ -569,11 +583,9 @@ tr:hover td {
                     autocomplete="username"
                     required
                 >
-
             </div>
 
             <div class="form-group">
-
                 <label>Password</label>
 
                 <input
@@ -583,7 +595,6 @@ tr:hover td {
                     autocomplete="current-password"
                     required
                 >
-
             </div>
 
             <button
@@ -599,40 +610,28 @@ tr:hover td {
 
 </section>
 
+<!-- DASHBOARD -->
+
 <section id="dashboard" class="hidden">
 
 <header class="topbar">
 
     <div class="brand">
 
-        <img
-            src="logo.jpeg"
-            alt="Logo"
-        >
+        <img src="logo.jpeg" alt="Logo">
 
         <div>
-
             <h2>BWI-RHA Ado LG</h2>
-
-            <small>
-                Admin Dashboard
-            </small>
-
+            <small>Admin Dashboard</small>
         </div>
 
     </div>
 
     <div class="admin-info">
 
-        <span
-            id="adminEmail"
-            class="admin-email"
-        ></span>
+        <span id="adminEmail" class="admin-email"></span>
 
-        <button
-            class="logout-btn"
-            id="logoutBtn"
-        >
+        <button class="logout-btn" id="logoutBtn">
             Logout
         </button>
 
@@ -642,31 +641,19 @@ tr:hover td {
 
 <nav class="nav">
 
-    <button
-        class="nav-btn active"
-        data-page="overview"
-    >
+    <button class="nav-btn active" data-page="overview">
         Dashboard
     </button>
 
-    <button
-        class="nav-btn"
-        data-page="members"
-    >
+    <button class="nav-btn" data-page="members">
         Members
     </button>
 
-    <button
-        class="nav-btn"
-        data-page="lgExco"
-    >
+    <button class="nav-btn" data-page="lgExco">
         LG EXCO
     </button>
 
-    <button
-        class="nav-btn"
-        data-page="wardExco"
-    >
+    <button class="nav-btn" data-page="wardExco">
         Ward EXCO
     </button>
 
@@ -674,23 +661,20 @@ tr:hover td {
 
 <main class="content">
 
+<!-- OVERVIEW -->
+
 <section id="overview" class="page active">
 
     <div class="page-header">
 
         <div>
-
             <h2>Dashboard</h2>
-
-            <p>
-                Manage BWI-RHA Ado LG
-            </p>
-
+            <p>Manage BWI-RHA Ado LG</p>
         </div>
 
         <button
             class="btn btn-primary"
-            onclick="loadEverything()"
+            id="refreshEverythingBtn"
         >
             Refresh
         </button>
@@ -766,25 +750,22 @@ tr:hover td {
 
 </section>
 
+<!-- MEMBERS -->
+
 <section id="members" class="page">
 
     <div class="page-header">
 
         <div>
-
             <h2>Members</h2>
-
-            <p>
-                Review and manage registered members.
-            </p>
-
+            <p>Review and manage registered members.</p>
         </div>
 
         <button
             class="btn btn-primary"
             onclick="loadMembers()"
         >
-            Refresh
+            Refresh Members
         </button>
 
     </div>
@@ -800,30 +781,13 @@ tr:hover td {
                 placeholder="Search name, phone, email, ward..."
             >
 
-            <select
-                id="memberStatusFilter"
-                style="
-                    padding:11px;
-                    border:1px solid #ccc;
-                    border-radius:8px;
-                "
-            >
+            <select id="memberStatusFilter"
+                style="padding:11px;border:1px solid #ccc;border-radius:8px;">
 
-                <option value="all">
-                    All Status
-                </option>
-
-                <option value="pending">
-                    Pending
-                </option>
-
-                <option value="approved">
-                    Approved
-                </option>
-
-                <option value="declined">
-                    Declined
-                </option>
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="declined">Declined</option>
 
             </select>
 
@@ -834,7 +798,6 @@ tr:hover td {
             <table>
 
                 <thead>
-
                     <tr>
                         <th>Name</th>
                         <th>Phone</th>
@@ -845,7 +808,6 @@ tr:hover td {
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
-
                 </thead>
 
                 <tbody id="membersTable"></tbody>
@@ -858,18 +820,15 @@ tr:hover td {
 
 </section>
 
+<!-- LG EXCO -->
+
 <section id="lgExco" class="page">
 
     <div class="page-header">
 
         <div>
-
             <h2>LG EXCO Management</h2>
-
-            <p>
-                Manage the Ado LG executive committee.
-            </p>
-
+            <p>Manage the Ado LG executive committee.</p>
         </div>
 
         <button
@@ -888,7 +847,6 @@ tr:hover td {
             <table>
 
                 <thead>
-
                     <tr>
                         <th>Position</th>
                         <th>Member</th>
@@ -896,7 +854,6 @@ tr:hover td {
                         <th>Ward</th>
                         <th>Actions</th>
                     </tr>
-
                 </thead>
 
                 <tbody id="lgExcoTable"></tbody>
@@ -909,18 +866,15 @@ tr:hover td {
 
 </section>
 
+<!-- WARD EXCO -->
+
 <section id="wardExco" class="page">
 
     <div class="page-header">
 
         <div>
-
             <h2>Ward EXCO Management</h2>
-
-            <p>
-                Manage executives assigned to each ward.
-            </p>
-
+            <p>Manage executives assigned to each ward.</p>
         </div>
 
         <button
@@ -938,28 +892,9 @@ tr:hover td {
 
             <select
                 id="wardFilter"
-                style="
-                    padding:11px;
-                    border:1px solid #ccc;
-                    border-radius:8px;
-                "
+                style="padding:11px;border:1px solid #ccc;border-radius:8px;"
             >
-
                 <option value="all">All Wards</option>
-                <option value="Ward 1">Ward 1</option>
-                <option value="Ward 2">Ward 2</option>
-                <option value="Ward 3">Ward 3</option>
-                <option value="Ward 4">Ward 4</option>
-                <option value="Ward 5">Ward 5</option>
-                <option value="Ward 6">Ward 6</option>
-                <option value="Ward 7">Ward 7</option>
-                <option value="Ward 8">Ward 8</option>
-                <option value="Ward 9">Ward 9</option>
-                <option value="Ward 10">Ward 10</option>
-                <option value="Ward 11">Ward 11</option>
-                <option value="Ward 12">Ward 12</option>
-                <option value="Ward 13">Ward 13</option>
-
             </select>
 
         </div>
@@ -969,7 +904,6 @@ tr:hover td {
             <table>
 
                 <thead>
-
                     <tr>
                         <th>Ward</th>
                         <th>Position</th>
@@ -977,7 +911,6 @@ tr:hover td {
                         <th>Phone</th>
                         <th>Actions</th>
                     </tr>
-
                 </thead>
 
                 <tbody id="wardExcoTable"></tbody>
@@ -994,15 +927,15 @@ tr:hover td {
 
 </section>
 
+<!-- LG MODAL -->
+
 <div id="lgExcoModal" class="modal">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <h3 id="lgModalTitle">
-                Add LG EXCO
-            </h3>
+            <h3 id="lgModalTitle">Add LG EXCO</h3>
 
             <button
                 class="close"
@@ -1015,75 +948,30 @@ tr:hover td {
 
         <form id="lgExcoForm">
 
-            <input
-                type="hidden"
-                id="lgExcoId"
-            >
+            <input type="hidden" id="lgExcoId">
 
             <div class="form-grid">
 
                 <div class="form-group">
-
                     <label>Position</label>
-
-                    <input
-                        type="text"
-                        id="lgPosition"
-                        placeholder="e.g. Chairperson"
-                        required
-                    >
-
+                    <input id="lgPosition" required>
                 </div>
 
                 <div class="form-group">
-
                     <label>Member Name</label>
-
-                    <input
-                        type="text"
-                        id="lgMemberName"
-                        placeholder="Full name"
-                        required
-                    >
-
+                    <input id="lgMemberName" required>
                 </div>
 
                 <div class="form-group">
-
                     <label>Phone</label>
-
-                    <input
-                        type="tel"
-                        id="lgPhone"
-                        placeholder="Phone number"
-                    >
-
+                    <input id="lgPhone">
                 </div>
 
                 <div class="form-group">
-
                     <label>Ward</label>
 
                     <select id="lgWard">
-
-                        <option value="">
-                            Select Ward
-                        </option>
-
-                        <option value="Ward 1">Ward 1</option>
-                        <option value="Ward 2">Ward 2</option>
-                        <option value="Ward 3">Ward 3</option>
-                        <option value="Ward 4">Ward 4</option>
-                        <option value="Ward 5">Ward 5</option>
-                        <option value="Ward 6">Ward 6</option>
-                        <option value="Ward 7">Ward 7</option>
-                        <option value="Ward 8">Ward 8</option>
-                        <option value="Ward 9">Ward 9</option>
-                        <option value="Ward 10">Ward 10</option>
-                        <option value="Ward 11">Ward 11</option>
-                        <option value="Ward 12">Ward 12</option>
-                        <option value="Ward 13">Ward 13</option>
-
+                        <option value="">Select Ward</option>
                     </select>
 
                 </div>
@@ -1115,15 +1003,15 @@ tr:hover td {
 
 </div>
 
+<!-- WARD MODAL -->
+
 <div id="wardExcoModal" class="modal">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <h3 id="wardModalTitle">
-                Add Ward EXCO
-            </h3>
+            <h3 id="wardModalTitle">Add Ward EXCO</h3>
 
             <button
                 class="close"
@@ -1136,10 +1024,7 @@ tr:hover td {
 
         <form id="wardExcoForm">
 
-            <input
-                type="hidden"
-                id="wardExcoId"
-            >
+            <input type="hidden" id="wardExcoId">
 
             <div class="form-grid">
 
@@ -1147,29 +1032,8 @@ tr:hover td {
 
                     <label>Ward</label>
 
-                    <select
-                        id="wardExcoWard"
-                        required
-                    >
-
-                        <option value="">
-                            Select Ward
-                        </option>
-
-                        <option value="Ward 1">Ward 1</option>
-                        <option value="Ward 2">Ward 2</option>
-                        <option value="Ward 3">Ward 3</option>
-                        <option value="Ward 4">Ward 4</option>
-                        <option value="Ward 5">Ward 5</option>
-                        <option value="Ward 6">Ward 6</option>
-                        <option value="Ward 7">Ward 7</option>
-                        <option value="Ward 8">Ward 8</option>
-                        <option value="Ward 9">Ward 9</option>
-                        <option value="Ward 10">Ward 10</option>
-                        <option value="Ward 11">Ward 11</option>
-                        <option value="Ward 12">Ward 12</option>
-                        <option value="Ward 13">Ward 13</option>
-
+                    <select id="wardExcoWard" required>
+                        <option value="">Select Ward</option>
                     </select>
 
                 </div>
@@ -1177,38 +1041,21 @@ tr:hover td {
                 <div class="form-group">
 
                     <label>Position</label>
-
-                    <input
-                        type="text"
-                        id="wardPosition"
-                        placeholder="e.g. Chairperson"
-                        required
-                    >
+                    <input id="wardPosition" required>
 
                 </div>
 
                 <div class="form-group">
 
                     <label>Member Name</label>
-
-                    <input
-                        type="text"
-                        id="wardMemberName"
-                        placeholder="Full name"
-                        required
-                    >
+                    <input id="wardMemberName" required>
 
                 </div>
 
                 <div class="form-group">
 
                     <label>Phone</label>
-
-                    <input
-                        type="tel"
-                        id="wardPhone"
-                        placeholder="Phone number"
-                    >
+                    <input id="wardPhone">
 
                 </div>
 
@@ -1243,6 +1090,10 @@ tr:hover td {
 
 <script>
 
+/* =========================================================
+   SUPABASE
+========================================================= */
+
 const SUPABASE_URL =
     "https://xfjrmgendmmpnumsbjte.supabase.co";
 
@@ -1256,16 +1107,68 @@ const supabaseClient =
     );
 
 
-/* ONLY CHANGED THIS EMAIL */
+/* =========================================================
+   ADMIN
+========================================================= */
 
-const ADMIN_EMAIL =
-    "bwirha@gmail.com";
+const ADMIN_EMAIL = "bwirha@gmail.com";
 
+
+/* =========================================================
+   DATA
+========================================================= */
 
 let members = [];
 let lgExcos = [];
 let wardExcos = [];
 
+
+/* =========================================================
+   WARDS
+========================================================= */
+
+const WARDS = Array.from(
+    { length: 13 },
+    (_, i) => `Ward ${i + 1}`
+);
+
+function populateWards() {
+
+    const selects = [
+        document.getElementById("lgWard"),
+        document.getElementById("wardExcoWard"),
+        document.getElementById("wardFilter")
+    ];
+
+    selects.forEach(select => {
+
+        if (!select) return;
+
+        const first =
+            select.options[0]?.outerHTML || "";
+
+        select.innerHTML = first;
+
+        WARDS.forEach(ward => {
+
+            const option =
+                document.createElement("option");
+
+            option.value = ward;
+            option.textContent = ward;
+
+            select.appendChild(option);
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function showLoading(show = true) {
 
@@ -1284,12 +1187,11 @@ function showToast(message, type = "") {
 
     toast.textContent = message;
 
-    toast.className = "show " + type;
+    toast.className =
+        "show " + type;
 
     setTimeout(() => {
-
         toast.className = "";
-
     }, 3500);
 
 }
@@ -1319,7 +1221,10 @@ function clearLoginError() {
 
 function escapeHtml(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
@@ -1380,13 +1285,19 @@ function switchPage(pageName) {
 
 function closeModal(id) {
 
-    document
-        .getElementById(id)
-        .classList
-        .remove("show");
+    const modal =
+        document.getElementById(id);
+
+    if (modal) {
+        modal.classList.remove("show");
+    }
 
 }
 
+
+/* =========================================================
+   AUTH
+========================================================= */
 
 async function checkSession() {
 
@@ -1402,10 +1313,7 @@ async function checkSession() {
             throw error;
         }
 
-        const session =
-            data.session;
-
-        if (!session) {
+        if (!data.session) {
 
             showLogin();
 
@@ -1414,9 +1322,10 @@ async function checkSession() {
         }
 
         const email =
-            session.user.email
-                ? session.user.email.toLowerCase()
-                : "";
+            (
+                data.session.user.email || ""
+            )
+            .toLowerCase();
 
         if (email !== ADMIN_EMAIL) {
 
@@ -1425,18 +1334,21 @@ async function checkSession() {
             showLogin();
 
             showLoginError(
-                "This account is not authorized to access the admin dashboard."
+                "This account is not authorized."
             );
 
             return;
 
         }
 
-        showDashboard(email);
+        await showDashboard(email);
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "SESSION ERROR:",
+            error
+        );
 
         showLogin();
 
@@ -1520,9 +1432,10 @@ async function login(email, password) {
         }
 
         const loggedEmail =
-            data.user.email
-                ? data.user.email.toLowerCase()
-                : "";
+            (
+                data.user.email || ""
+            )
+            .toLowerCase();
 
         if (loggedEmail !== ADMIN_EMAIL) {
 
@@ -1538,7 +1451,10 @@ async function login(email, password) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
 
         showLoginError(
             error.message ||
@@ -1586,6 +1502,10 @@ async function logout() {
 }
 
 
+/* =========================================================
+   MEMBERS
+========================================================= */
+
 async function loadMembers() {
 
     try {
@@ -1607,13 +1527,27 @@ async function loadMembers() {
 
         members = data || [];
 
+        console.log(
+            "MEMBERS LOADED:",
+            members
+        );
+
         renderMembers();
 
         updateMemberStats();
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "MEMBERS ERROR:",
+            error
+        );
+
+        members = [];
+
+        renderMembers();
+
+        updateMemberStats();
 
         showToast(
             "Unable to load members: " +
@@ -1632,6 +1566,7 @@ function getMemberName(member) {
         member.name ||
         member.full_name ||
         member.fullname ||
+        member.member_name ||
         ""
     );
 
@@ -1693,26 +1628,33 @@ function getMemberAccount(member) {
 function renderMembers() {
 
     const tbody =
-        document.getElementById("membersTable");
+        document.getElementById(
+            "membersTable"
+        );
+
+    if (!tbody) return;
 
     const search =
         (
             document
                 .getElementById("memberSearch")
-                .value || ""
+                ?.value || ""
         )
         .toLowerCase()
         .trim();
 
     const status =
         document
-            .getElementById("memberStatusFilter")
-            .value;
+            .getElementById(
+                "memberStatusFilter"
+            )
+            ?.value || "all";
 
-    let filtered =
+    const filtered =
         members.filter(member => {
 
             const text = [
+
                 getMemberName(member),
                 getMemberPhone(member),
                 getMemberEmail(member),
@@ -1720,6 +1662,7 @@ function renderMembers() {
                 getMemberBank(member),
                 getMemberAccount(member),
                 member.status || ""
+
             ]
             .join(" ")
             .toLowerCase();
@@ -1728,10 +1671,15 @@ function renderMembers() {
                 !search ||
                 text.includes(search);
 
+            const memberStatus =
+                String(
+                    member.status || "pending"
+                )
+                .toLowerCase();
+
             const matchesStatus =
                 status === "all" ||
-                String(member.status || "")
-                    .toLowerCase() === status;
+                memberStatus === status;
 
             return (
                 matchesSearch &&
@@ -1739,6 +1687,7 @@ function renderMembers() {
             );
 
         });
+
 
     if (!filtered.length) {
 
@@ -1754,6 +1703,7 @@ function renderMembers() {
 
     }
 
+
     tbody.innerHTML =
         filtered.map(member => {
 
@@ -1762,23 +1712,35 @@ function renderMembers() {
 
             const memberStatus =
                 String(
-                    member.status || "pending"
+                    member.status ||
+                    "pending"
                 ).toLowerCase();
 
             let badgeClass =
                 "badge-pending";
 
-            if (memberStatus === "approved") {
-                badgeClass = "badge-approved";
+            if (
+                memberStatus ===
+                "approved"
+            ) {
+                badgeClass =
+                    "badge-approved";
             }
 
-            if (memberStatus === "declined") {
-                badgeClass = "badge-declined";
+            if (
+                memberStatus ===
+                "declined"
+            ) {
+                badgeClass =
+                    "badge-declined";
             }
 
             let actions = "";
 
-            if (memberStatus !== "approved") {
+            if (
+                memberStatus !==
+                "approved"
+            ) {
 
                 actions += `
                     <button
@@ -1791,7 +1753,10 @@ function renderMembers() {
 
             }
 
-            if (memberStatus !== "declined") {
+            if (
+                memberStatus !==
+                "declined"
+            ) {
 
                 actions += `
                     <button
@@ -1804,7 +1769,10 @@ function renderMembers() {
 
             }
 
-            if (memberStatus === "declined") {
+            if (
+                memberStatus ===
+                "declined"
+            ) {
 
                 actions += `
                     <button
@@ -1860,7 +1828,9 @@ function renderMembers() {
 
                     <td>
                         <span class="badge ${badgeClass}">
-                            ${escapeHtml(memberStatus)}
+                            ${escapeHtml(
+                                memberStatus
+                            )}
                         </span>
                     </td>
 
@@ -1878,11 +1848,17 @@ function renderMembers() {
 }
 
 
-async function updateMemberStatus(id, status) {
+async function updateMemberStatus(
+    id,
+    status
+) {
 
     if (
-        !["pending", "approved", "declined"]
-            .includes(status)
+        ![
+            "pending",
+            "approved",
+            "declined"
+        ].includes(status)
     ) {
         return;
     }
@@ -1905,7 +1881,7 @@ async function updateMemberStatus(id, status) {
         await supabaseClient
             .from("members")
             .update({
-                status: status
+                status
             })
             .eq("id", id);
 
@@ -1994,41 +1970,63 @@ async function deleteDeclinedMember(id) {
 
 function updateMemberStats() {
 
-    const total = members.length;
+    const total =
+        members.length;
 
     const pending =
         members.filter(
-            m => m.status === "pending"
+            m =>
+                String(m.status)
+                    .toLowerCase() ===
+                "pending"
         ).length;
 
     const approved =
         members.filter(
-            m => m.status === "approved"
+            m =>
+                String(m.status)
+                    .toLowerCase() ===
+                "approved"
         ).length;
 
     const declined =
         members.filter(
-            m => m.status === "declined"
+            m =>
+                String(m.status)
+                    .toLowerCase() ===
+                "declined"
         ).length;
 
     document
-        .getElementById("totalMembers")
+        .getElementById(
+            "totalMembers"
+        )
         .textContent = total;
 
     document
-        .getElementById("pendingMembers")
+        .getElementById(
+            "pendingMembers"
+        )
         .textContent = pending;
 
     document
-        .getElementById("approvedMembers")
+        .getElementById(
+            "approvedMembers"
+        )
         .textContent = approved;
 
     document
-        .getElementById("declinedMembers")
+        .getElementById(
+            "declinedMembers"
+        )
         .textContent = declined;
 
 }
 
+
+/* =========================================================
+   LG EXCO
+========================================================= */
 
 async function loadLgExcos() {
 
@@ -2054,7 +2052,9 @@ async function loadLgExcos() {
         renderLgExcos();
 
         document
-            .getElementById("lgExcoCount")
+            .getElementById(
+                "lgExcoCount"
+            )
             .textContent =
             lgExcos.length;
 
@@ -2076,7 +2076,11 @@ async function loadLgExcos() {
 function renderLgExcos() {
 
     const tbody =
-        document.getElementById("lgExcoTable");
+        document.getElementById(
+            "lgExcoTable"
+        );
+
+    if (!tbody) return;
 
     if (!lgExcos.length) {
 
@@ -2102,8 +2106,7 @@ function renderLgExcos() {
                 "";
 
             const position =
-                row.position ||
-                "";
+                row.position || "";
 
             const phone =
                 row.phone ||
@@ -2137,7 +2140,6 @@ function renderLgExcos() {
                     </td>
 
                     <td>
-
                         <div class="actions">
 
                             <button
@@ -2155,7 +2157,6 @@ function renderLgExcos() {
                             </button>
 
                         </div>
-
                     </td>
 
                 </tr>
@@ -2169,15 +2170,21 @@ function renderLgExcos() {
 function openLgExcoModal(id = null) {
 
     document
-        .getElementById("lgExcoForm")
+        .getElementById(
+            "lgExcoForm"
+        )
         .reset();
 
     document
-        .getElementById("lgExcoId")
+        .getElementById(
+            "lgExcoId"
+        )
         .value = "";
 
     document
-        .getElementById("lgModalTitle")
+        .getElementById(
+            "lgModalTitle"
+        )
         .textContent =
         id
             ? "Edit LG EXCO"
@@ -2188,24 +2195,29 @@ function openLgExcoModal(id = null) {
         const row =
             lgExcos.find(
                 item =>
-                    String(item.id) === String(id)
+                    String(item.id) ===
+                    String(id)
             );
 
-        if (!row) {
-            return;
-        }
+        if (!row) return;
 
         document
-            .getElementById("lgExcoId")
+            .getElementById(
+                "lgExcoId"
+            )
             .value = row.id;
 
         document
-            .getElementById("lgPosition")
+            .getElementById(
+                "lgPosition"
+            )
             .value =
             row.position || "";
 
         document
-            .getElementById("lgMemberName")
+            .getElementById(
+                "lgMemberName"
+            )
             .value =
             row.member_name ||
             row.name ||
@@ -2213,14 +2225,18 @@ function openLgExcoModal(id = null) {
             "";
 
         document
-            .getElementById("lgPhone")
+            .getElementById(
+                "lgPhone"
+            )
             .value =
             row.phone ||
             row.phone_no ||
             "";
 
         document
-            .getElementById("lgWard")
+            .getElementById(
+                "lgWard"
+            )
             .value =
             row.ward ||
             row.ward_name ||
@@ -2229,7 +2245,9 @@ function openLgExcoModal(id = null) {
     }
 
     document
-        .getElementById("lgExcoModal")
+        .getElementById(
+            "lgExcoModal"
+        )
         .classList
         .add("show");
 
@@ -2249,32 +2267,42 @@ async function saveLgExco(event) {
 
     const id =
         document
-            .getElementById("lgExcoId")
+            .getElementById(
+                "lgExcoId"
+            )
             .value;
 
     const payload = {
 
         position:
             document
-                .getElementById("lgPosition")
+                .getElementById(
+                    "lgPosition"
+                )
                 .value
                 .trim(),
 
         member_name:
             document
-                .getElementById("lgMemberName")
+                .getElementById(
+                    "lgMemberName"
+                )
                 .value
                 .trim(),
 
         phone:
             document
-                .getElementById("lgPhone")
+                .getElementById(
+                    "lgPhone"
+                )
                 .value
                 .trim(),
 
         ward:
             document
-                .getElementById("lgWard")
+                .getElementById(
+                    "lgWard"
+                )
                 .value
 
     };
@@ -2283,31 +2311,27 @@ async function saveLgExco(event) {
 
     try {
 
-        let error;
+        let result;
 
         if (id) {
 
-            ({
-                error
-            } =
-            await supabaseClient
-                .from("lg_exco")
-                .update(payload)
-                .eq("id", id));
+            result =
+                await supabaseClient
+                    .from("lg_exco")
+                    .update(payload)
+                    .eq("id", id);
 
         } else {
 
-            ({
-                error
-            } =
-            await supabaseClient
-                .from("lg_exco")
-                .insert([payload]));
+            result =
+                await supabaseClient
+                    .from("lg_exco")
+                    .insert([payload]);
 
         }
 
-        if (error) {
-            throw error;
+        if (result.error) {
+            throw result.error;
         }
 
         closeModal("lgExcoModal");
@@ -2392,6 +2416,10 @@ async function deleteLgExco(id) {
 }
 
 
+/* =========================================================
+   WARD EXCO
+========================================================= */
+
 async function loadWardExcos() {
 
     try {
@@ -2416,7 +2444,9 @@ async function loadWardExcos() {
         renderWardExcos();
 
         document
-            .getElementById("wardExcoCount")
+            .getElementById(
+                "wardExcoCount"
+            )
             .textContent =
             wardExcos.length;
 
@@ -2442,24 +2472,26 @@ function renderWardExcos() {
             "wardExcoTable"
         );
 
+    if (!tbody) return;
+
     const filter =
         document
-            .getElementById("wardFilter")
+            .getElementById(
+                "wardFilter"
+            )
             .value;
 
     const filtered =
         filter === "all"
             ? wardExcos
-            : wardExcos.filter(row => {
-
-                const ward =
-                    row.ward ||
-                    row.ward_name ||
-                    "";
-
-                return ward === filter;
-
-            });
+            : wardExcos.filter(
+                row =>
+                    (
+                        row.ward ||
+                        row.ward_name ||
+                        ""
+                    ) === filter
+            );
 
     if (!filtered.length) {
 
@@ -2484,8 +2516,7 @@ function renderWardExcos() {
                 "";
 
             const position =
-                row.position ||
-                "";
+                row.position || "";
 
             const name =
                 row.member_name ||
@@ -2552,15 +2583,21 @@ function renderWardExcos() {
 function openWardExcoModal(id = null) {
 
     document
-        .getElementById("wardExcoForm")
+        .getElementById(
+            "wardExcoForm"
+        )
         .reset();
 
     document
-        .getElementById("wardExcoId")
+        .getElementById(
+            "wardExcoId"
+        )
         .value = "";
 
     document
-        .getElementById("wardModalTitle")
+        .getElementById(
+            "wardModalTitle"
+        )
         .textContent =
         id
             ? "Edit Ward EXCO"
@@ -2571,31 +2608,38 @@ function openWardExcoModal(id = null) {
         const row =
             wardExcos.find(
                 item =>
-                    String(item.id) === String(id)
+                    String(item.id) ===
+                    String(id)
             );
 
-        if (!row) {
-            return;
-        }
+        if (!row) return;
 
         document
-            .getElementById("wardExcoId")
+            .getElementById(
+                "wardExcoId"
+            )
             .value = row.id;
 
         document
-            .getElementById("wardExcoWard")
+            .getElementById(
+                "wardExcoWard"
+            )
             .value =
             row.ward ||
             row.ward_name ||
             "";
 
         document
-            .getElementById("wardPosition")
+            .getElementById(
+                "wardPosition"
+            )
             .value =
             row.position || "";
 
         document
-            .getElementById("wardMemberName")
+            .getElementById(
+                "wardMemberName"
+            )
             .value =
             row.member_name ||
             row.name ||
@@ -2603,7 +2647,9 @@ function openWardExcoModal(id = null) {
             "";
 
         document
-            .getElementById("wardPhone")
+            .getElementById(
+                "wardPhone"
+            )
             .value =
             row.phone ||
             row.phone_no ||
@@ -2612,7 +2658,9 @@ function openWardExcoModal(id = null) {
     }
 
     document
-        .getElementById("wardExcoModal")
+        .getElementById(
+            "wardExcoModal"
+        )
         .classList
         .add("show");
 
@@ -2632,31 +2680,41 @@ async function saveWardExco(event) {
 
     const id =
         document
-            .getElementById("wardExcoId")
+            .getElementById(
+                "wardExcoId"
+            )
             .value;
 
     const payload = {
 
         ward:
             document
-                .getElementById("wardExcoWard")
+                .getElementById(
+                    "wardExcoWard"
+                )
                 .value,
 
         position:
             document
-                .getElementById("wardPosition")
+                .getElementById(
+                    "wardPosition"
+                )
                 .value
                 .trim(),
 
         member_name:
             document
-                .getElementById("wardMemberName")
+                .getElementById(
+                    "wardMemberName"
+                )
                 .value
                 .trim(),
 
         phone:
             document
-                .getElementById("wardPhone")
+                .getElementById(
+                    "wardPhone"
+                )
                 .value
                 .trim()
 
@@ -2666,34 +2724,32 @@ async function saveWardExco(event) {
 
     try {
 
-        let error;
+        let result;
 
         if (id) {
 
-            ({
-                error
-            } =
-            await supabaseClient
-                .from("ward_exco")
-                .update(payload)
-                .eq("id", id));
+            result =
+                await supabaseClient
+                    .from("ward_exco")
+                    .update(payload)
+                    .eq("id", id);
 
         } else {
 
-            ({
-                error
-            } =
-            await supabaseClient
-                .from("ward_exco")
-                .insert([payload]));
+            result =
+                await supabaseClient
+                    .from("ward_exco")
+                    .insert([payload]);
 
         }
 
-        if (error) {
-            throw error;
+        if (result.error) {
+            throw result.error;
         }
 
-        closeModal("wardExcoModal");
+        closeModal(
+            "wardExcoModal"
+        );
 
         showToast(
             id
@@ -2775,6 +2831,10 @@ async function deleteWardExco(id) {
 }
 
 
+/* =========================================================
+   LOAD EVERYTHING
+========================================================= */
+
 async function loadEverything() {
 
     showLoading(true);
@@ -2789,7 +2849,10 @@ async function loadEverything() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "LOAD EVERYTHING ERROR:",
+            error
+        );
 
     } finally {
 
@@ -2800,27 +2863,32 @@ async function loadEverything() {
 }
 
 
+/* =========================================================
+   EVENTS
+========================================================= */
+
 document
-    .getElementById("loginForm")
+    .getElementById(
+        "loginForm"
+    )
     .addEventListener(
         "submit",
         event => {
 
             event.preventDefault();
 
-            const email =
-                document
-                    .getElementById("loginEmail")
-                    .value;
-
-            const password =
-                document
-                    .getElementById("loginPassword")
-                    .value;
-
             login(
-                email,
-                password
+                document
+                    .getElementById(
+                        "loginEmail"
+                    )
+                    .value,
+
+                document
+                    .getElementById(
+                        "loginPassword"
+                    )
+                    .value
             );
 
         }
@@ -2828,7 +2896,9 @@ document
 
 
 document
-    .getElementById("logoutBtn")
+    .getElementById(
+        "logoutBtn"
+    )
     .addEventListener(
         "click",
         logout
@@ -2836,7 +2906,9 @@ document
 
 
 document
-    .querySelectorAll(".nav-btn")
+    .querySelectorAll(
+        ".nav-btn"
+    )
     .forEach(button => {
 
         button.addEventListener(
@@ -2854,7 +2926,9 @@ document
 
 
 document
-    .getElementById("memberSearch")
+    .getElementById(
+        "memberSearch"
+    )
     .addEventListener(
         "input",
         renderMembers
@@ -2862,7 +2936,9 @@ document
 
 
 document
-    .getElementById("memberStatusFilter")
+    .getElementById(
+        "memberStatusFilter"
+    )
     .addEventListener(
         "change",
         renderMembers
@@ -2870,7 +2946,9 @@ document
 
 
 document
-    .getElementById("wardFilter")
+    .getElementById(
+        "wardFilter"
+    )
     .addEventListener(
         "change",
         renderWardExcos
@@ -2878,7 +2956,9 @@ document
 
 
 document
-    .getElementById("lgExcoForm")
+    .getElementById(
+        "lgExcoForm"
+    )
     .addEventListener(
         "submit",
         saveLgExco
@@ -2886,7 +2966,9 @@ document
 
 
 document
-    .getElementById("wardExcoForm")
+    .getElementById(
+        "wardExcoForm"
+    )
     .addEventListener(
         "submit",
         saveWardExco
@@ -2894,7 +2976,19 @@ document
 
 
 document
-    .querySelectorAll(".modal")
+    .getElementById(
+        "refreshEverythingBtn"
+    )
+    .addEventListener(
+        "click",
+        loadEverything
+    );
+
+
+document
+    .querySelectorAll(
+        ".modal"
+    )
     .forEach(modal => {
 
         modal.addEventListener(
@@ -2904,11 +2998,9 @@ document
                 if (
                     event.target === modal
                 ) {
-
                     modal.classList.remove(
                         "show"
                     );
-
                 }
 
             }
@@ -2917,8 +3009,12 @@ document
     });
 
 
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
 supabaseClient.auth.onAuthStateChange(
-    async (_event, session) => {
+    (_event, session) => {
 
         if (!session) {
 
@@ -2929,13 +3025,16 @@ supabaseClient.auth.onAuthStateChange(
         }
 
         const email =
-            session.user.email
-                ? session.user.email.toLowerCase()
-                : "";
+            (
+                session.user.email || ""
+            )
+            .toLowerCase();
 
-        if (email !== ADMIN_EMAIL) {
+        if (
+            email !== ADMIN_EMAIL
+        ) {
 
-            await supabaseClient.auth.signOut();
+            supabaseClient.auth.signOut();
 
             showLogin();
 
@@ -2952,6 +3051,12 @@ supabaseClient.auth.onAuthStateChange(
     }
 );
 
+
+/* =========================================================
+   START
+========================================================= */
+
+populateWards();
 
 checkSession();
 
