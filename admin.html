@@ -271,11 +271,6 @@ select {
     color: #075c35;
 }
 
-.page-header p {
-    margin-top: 5px;
-    color: #666;
-}
-
 /* =========================
    STATS
 ========================= */
@@ -569,10 +564,6 @@ tr:hover td {
         padding: 13px 12px;
         font-size: 13px;
     }
-
-    .login-box {
-        padding: 25px 20px;
-    }
 }
 </style>
 </head>
@@ -586,7 +577,6 @@ tr:hover td {
 <div id="loading">
     <div class="loader">Please wait...</div>
 </div>
-
 
 <!-- =========================
      LOGIN
@@ -624,7 +614,6 @@ tr:hover td {
                     type="email"
                     id="loginEmail"
                     placeholder="Admin email"
-                    autocomplete="username"
                     required
                 >
 
@@ -638,7 +627,6 @@ tr:hover td {
                     type="password"
                     id="loginPassword"
                     placeholder="Password"
-                    autocomplete="current-password"
                     required
                 >
 
@@ -647,6 +635,7 @@ tr:hover td {
             <button
                 type="submit"
                 class="btn btn-primary btn-block"
+                id="loginBtn"
             >
                 Login
             </button>
@@ -656,7 +645,6 @@ tr:hover td {
     </div>
 
 </section>
-
 
 <!-- =========================
      DASHBOARD
@@ -680,9 +668,7 @@ tr:hover td {
 
             <h2>BWI-RHA Ado LG</h2>
 
-            <small>
-                Admin Dashboard
-            </small>
+            <small>Admin Dashboard</small>
 
         </div>
 
@@ -705,11 +691,6 @@ tr:hover td {
     </div>
 
 </header>
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
 
 <nav class="nav">
 
@@ -743,9 +724,7 @@ tr:hover td {
 
 </nav>
 
-
 <main class="content">
-
 
 <!-- =========================
      OVERVIEW
@@ -762,9 +741,7 @@ tr:hover td {
 
             <h2>Dashboard</h2>
 
-            <p>
-                Manage BWI-RHA Ado LG
-            </p>
+            <p>Manage BWI-RHA Ado LG</p>
 
         </div>
 
@@ -776,7 +753,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="stats">
 
@@ -811,7 +787,6 @@ tr:hover td {
         </div>
 
     </div>
-
 
     <div class="card">
 
@@ -848,7 +823,6 @@ tr:hover td {
 
 </section>
 
-
 <!-- =========================
      MEMBERS
 ========================= -->
@@ -864,9 +838,7 @@ tr:hover td {
 
             <h2>Members</h2>
 
-            <p>
-                Review and manage registered members.
-            </p>
+            <p>Review and manage registered members.</p>
 
         </div>
 
@@ -878,7 +850,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="card">
 
@@ -920,7 +891,6 @@ tr:hover td {
 
         </div>
 
-
         <div class="table-wrap">
 
             <table>
@@ -949,7 +919,6 @@ tr:hover td {
     </div>
 
 </section>
-
 
 <!-- =========================
      LG EXCO
@@ -981,7 +950,6 @@ tr:hover td {
 
     </div>
 
-
     <div class="card">
 
         <div class="table-wrap">
@@ -1009,7 +977,6 @@ tr:hover td {
     </div>
 
 </section>
-
 
 <!-- =========================
      WARD EXCO
@@ -1040,7 +1007,6 @@ tr:hover td {
         </button>
 
     </div>
-
 
     <div class="card">
 
@@ -1077,7 +1043,6 @@ tr:hover td {
 
         </div>
 
-
         <div class="table-wrap">
 
             <table>
@@ -1087,7 +1052,7 @@ tr:hover td {
                     <tr>
                         <th>Ward</th>
                         <th>Position</th>
-                        <th>Member</th>
+                        <th>Name</th>
                         <th>Phone</th>
                         <th>Actions</th>
                     </tr>
@@ -1108,6 +1073,167 @@ tr:hover td {
 
 </section>
 
+<!-- =========================
+     MEMBER MODAL
+========================= -->
+
+<div
+    id="memberModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Edit Member</h3>
+
+            <button
+                class="close"
+                onclick="closeModal('memberModal')"
+            >
+                &times;
+            </button>
+
+        </div>
+
+        <form id="memberForm">
+
+            <input
+                type="hidden"
+                id="memberId"
+            >
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Name</label>
+
+                    <input
+                        id="memberName"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phone</label>
+
+                    <input
+                        id="memberPhone"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="memberEmail"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Ward</label>
+
+                    <select id="memberWard">
+
+                        <option value="">
+                            Select Ward
+                        </option>
+
+                        <option>Ward 1</option>
+                        <option>Ward 2</option>
+                        <option>Ward 3</option>
+                        <option>Ward 4</option>
+                        <option>Ward 5</option>
+                        <option>Ward 6</option>
+                        <option>Ward 7</option>
+                        <option>Ward 8</option>
+                        <option>Ward 9</option>
+                        <option>Ward 10</option>
+                        <option>Ward 11</option>
+                        <option>Ward 12</option>
+                        <option>Ward 13</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Bank</label>
+
+                    <input
+                        id="memberBank"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Account Number</label>
+
+                    <input
+                        id="memberAccount"
+                    >
+
+                </div>
+
+                <div class="form-group full">
+
+                    <label>Status</label>
+
+                    <select id="memberStatus">
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="declined">
+                            Declined
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeModal('memberModal')"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 <!-- =========================
      LG EXCO MODAL
@@ -1122,9 +1248,7 @@ tr:hover td {
 
         <div class="modal-header">
 
-            <h3 id="lgModalTitle">
-                Add LG EXCO
-            </h3>
+            <h3>Add LG EXCO</h3>
 
             <button
                 class="close"
@@ -1135,22 +1259,15 @@ tr:hover td {
 
         </div>
 
-
         <form id="lgExcoForm">
-
-            <input
-                type="hidden"
-                id="lgExcoId"
-            >
 
             <div class="form-grid">
 
-                <div class="form-group">
+                <div class="form-group full">
 
                     <label>Position</label>
 
                     <input
-                        type="text"
                         id="lgPosition"
                         placeholder="e.g. Chairperson"
                         required
@@ -1158,35 +1275,28 @@ tr:hover td {
 
                 </div>
 
-
                 <div class="form-group">
 
-                    <label>Member Name</label>
+                    <label>Name</label>
 
                     <input
-                        type="text"
-                        id="lgMemberName"
-                        placeholder="Full name"
+                        id="lgName"
                         required
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
                     <label>Phone</label>
 
                     <input
-                        type="tel"
                         id="lgPhone"
-                        placeholder="Phone number"
                     >
 
                 </div>
 
-
-                <div class="form-group">
+                <div class="form-group full">
 
                     <label>Ward</label>
 
@@ -1196,26 +1306,25 @@ tr:hover td {
                             Select Ward
                         </option>
 
-                        <option value="Ward 1">Ward 1</option>
-                        <option value="Ward 2">Ward 2</option>
-                        <option value="Ward 3">Ward 3</option>
-                        <option value="Ward 4">Ward 4</option>
-                        <option value="Ward 5">Ward 5</option>
-                        <option value="Ward 6">Ward 6</option>
-                        <option value="Ward 7">Ward 7</option>
-                        <option value="Ward 8">Ward 8</option>
-                        <option value="Ward 9">Ward 9</option>
-                        <option value="Ward 10">Ward 10</option>
-                        <option value="Ward 11">Ward 11</option>
-                        <option value="Ward 12">Ward 12</option>
-                        <option value="Ward 13">Ward 13</option>
+                        <option>Ward 1</option>
+                        <option>Ward 2</option>
+                        <option>Ward 3</option>
+                        <option>Ward 4</option>
+                        <option>Ward 5</option>
+                        <option>Ward 6</option>
+                        <option>Ward 7</option>
+                        <option>Ward 8</option>
+                        <option>Ward 9</option>
+                        <option>Ward 10</option>
+                        <option>Ward 11</option>
+                        <option>Ward 12</option>
+                        <option>Ward 13</option>
 
                     </select>
 
                 </div>
 
             </div>
-
 
             <div class="modal-footer">
 
@@ -1231,7 +1340,7 @@ tr:hover td {
                     type="submit"
                     class="btn btn-primary"
                 >
-                    Save
+                    Add EXCO
                 </button>
 
             </div>
@@ -1241,7 +1350,6 @@ tr:hover td {
     </div>
 
 </div>
-
 
 <!-- =========================
      WARD EXCO MODAL
@@ -1256,9 +1364,7 @@ tr:hover td {
 
         <div class="modal-header">
 
-            <h3 id="wardModalTitle">
-                Add Ward EXCO
-            </h3>
+            <h3>Add Ward EXCO</h3>
 
             <button
                 class="close"
@@ -1269,13 +1375,7 @@ tr:hover td {
 
         </div>
 
-
         <form id="wardExcoForm">
-
-            <input
-                type="hidden"
-                id="wardExcoId"
-            >
 
             <div class="form-grid">
 
@@ -1283,76 +1383,64 @@ tr:hover td {
 
                     <label>Ward</label>
 
-                    <select
-                        id="wardExcoWard"
-                        required
-                    >
+                    <select id="wardExcoWard" required>
 
                         <option value="">
                             Select Ward
                         </option>
 
-                        <option value="Ward 1">Ward 1</option>
-                        <option value="Ward 2">Ward 2</option>
-                        <option value="Ward 3">Ward 3</option>
-                        <option value="Ward 4">Ward 4</option>
-                        <option value="Ward 5">Ward 5</option>
-                        <option value="Ward 6">Ward 6</option>
-                        <option value="Ward 7">Ward 7</option>
-                        <option value="Ward 8">Ward 8</option>
-                        <option value="Ward 9">Ward 9</option>
-                        <option value="Ward 10">Ward 10</option>
-                        <option value="Ward 11">Ward 11</option>
-                        <option value="Ward 12">Ward 12</option>
-                        <option value="Ward 13">Ward 13</option>
+                        <option>Ward 1</option>
+                        <option>Ward 2</option>
+                        <option>Ward 3</option>
+                        <option>Ward 4</option>
+                        <option>Ward 5</option>
+                        <option>Ward 6</option>
+                        <option>Ward 7</option>
+                        <option>Ward 8</option>
+                        <option>Ward 9</option>
+                        <option>Ward 10</option>
+                        <option>Ward 11</option>
+                        <option>Ward 12</option>
+                        <option>Ward 13</option>
 
                     </select>
 
                 </div>
-
 
                 <div class="form-group">
 
                     <label>Position</label>
 
                     <input
-                        type="text"
-                        id="wardPosition"
-                        placeholder="e.g. Chairperson"
+                        id="wardExcoPosition"
+                        placeholder="e.g. Coordinator"
                         required
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
-                    <label>Member Name</label>
+                    <label>Name</label>
 
                     <input
-                        type="text"
-                        id="wardMemberName"
-                        placeholder="Full name"
+                        id="wardExcoName"
                         required
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
                     <label>Phone</label>
 
                     <input
-                        type="tel"
-                        id="wardPhone"
-                        placeholder="Phone number"
+                        id="wardExcoPhone"
                     >
 
                 </div>
 
             </div>
-
 
             <div class="modal-footer">
 
@@ -1368,7 +1456,7 @@ tr:hover td {
                     type="submit"
                     class="btn btn-primary"
                 >
-                    Save
+                    Add Ward EXCO
                 </button>
 
             </div>
@@ -1379,21 +1467,27 @@ tr:hover td {
 
 </div>
 
-
 <div id="toast"></div>
-
 
 <script>
 
 /* =========================================================
-   SUPABASE CONFIGURATION
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
     "https://xfjrmgendmmpnumsbjte.supabase.co";
 
+/*
+   IMPORTANT:
+   Put the SAME publishable/anon key you were already
+   using in your previous admin.html here.
+
+   DO NOT use the service_role key.
+*/
+
 const SUPABASE_KEY =
-    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+    "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1403,15 +1497,17 @@ const supabaseClient =
 
 
 /* =========================================================
-   SINGLE ADMIN
+   ALLOWED ADMINS
 ========================================================= */
 
-const ADMIN_EMAIL =
-    "agatha4jesu@gmail.com";
+const ALLOWED_ADMINS = [
+    "agatha4jesu@gmail.com",
+    "adalumofelicia@gmail.com"
+].map(email => email.toLowerCase());
 
 
 /* =========================================================
-   STATE
+   DATA
 ========================================================= */
 
 let members = [];
@@ -1427,24 +1523,25 @@ function showLoading(show = true) {
 
     document
         .getElementById("loading")
-        .classList
-        .toggle("show", show);
+        .classList.toggle("show", show);
 
 }
 
 
-function showToast(message, type = "") {
+function showToast(message, type = "success") {
 
     const toast =
         document.getElementById("toast");
 
     toast.textContent = message;
 
-    toast.className = "show " + type;
+    toast.className = "";
+
+    toast.classList.add("show", type);
 
     setTimeout(() => {
 
-        toast.className = "";
+        toast.classList.remove("show");
 
     }, 3500);
 
@@ -1467,13 +1564,12 @@ function clearLoginError() {
 
     document
         .getElementById("loginError")
-        .classList
-        .add("hidden");
+        .classList.add("hidden");
 
 }
 
 
-function escapeHtml(value) {
+function escapeHTML(value) {
 
     if (value === null || value === undefined) {
         return "";
@@ -1485,27 +1581,36 @@ function escapeHtml(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
+
+function closeModal(id) {
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   PAGE SWITCH
+========================================================= */
 
 function switchPage(pageName) {
 
     document
         .querySelectorAll(".page")
         .forEach(page => {
-
             page.classList.remove("active");
-
         });
 
     document
         .querySelectorAll(".nav-btn")
         .forEach(button => {
-
             button.classList.remove("active");
-
         });
-
 
     const page =
         document.getElementById(pageName);
@@ -1513,7 +1618,6 @@ function switchPage(pageName) {
     if (page) {
         page.classList.add("active");
     }
-
 
     const button =
         document.querySelector(
@@ -1524,199 +1628,150 @@ function switchPage(pageName) {
         button.classList.add("active");
     }
 
-
-    if (pageName === "members") {
-        loadMembers();
-    }
-
-    if (pageName === "lgExco") {
-        loadLgExcos();
-    }
-
-    if (pageName === "wardExco") {
-        loadWardExcos();
-    }
-
 }
 
 
-function closeModal(id) {
+/* =========================================================
+   AUTHORIZATION
+========================================================= */
 
-    document
-        .getElementById(id)
-        .classList
-        .remove("show");
+function isAllowedAdmin(email) {
+
+    if (!email) {
+        return false;
+    }
+
+    return ALLOWED_ADMINS.includes(
+        email.toLowerCase()
+    );
 
 }
 
 
 /* =========================================================
-   AUTH
+   SHOW DASHBOARD
 ========================================================= */
 
-async function checkSession() {
+async function showDashboard(user) {
 
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.getSession();
-
-        if (error) {
-            throw error;
-        }
-
-        const session =
-            data.session;
-
-        if (!session) {
-
-            showLogin();
-
-            return;
-
-        }
-
-        const email =
-            session.user.email
-                ? session.user.email.toLowerCase()
-                : "";
-
-        if (email !== ADMIN_EMAIL) {
-
-            await supabaseClient.auth.signOut();
-
-            showLogin();
-
-            showLoginError(
-                "This account is not authorized to access the admin dashboard."
-            );
-
-            return;
-
-        }
-
-        showDashboard(email);
-
-    } catch (error) {
-
-        console.error(error);
-
-        showLogin();
-
+    if (!user || !user.email) {
+        await logout();
+        return;
     }
 
-}
+    if (!isAllowedAdmin(user.email)) {
 
+        await supabaseClient.auth.signOut();
 
-function showLogin() {
+        showLoginError(
+            "This account is not authorized to access the admin dashboard."
+        );
 
-    document
-        .getElementById("loginScreen")
-        .classList
-        .remove("hidden");
-
-    document
-        .getElementById("dashboard")
-        .classList
-        .add("hidden");
-
-}
-
-
-async function showDashboard(email) {
+        return;
+    }
 
     document
         .getElementById("loginScreen")
-        .classList
-        .add("hidden");
+        .classList.add("hidden");
 
     document
         .getElementById("dashboard")
-        .classList
-        .remove("hidden");
+        .classList.remove("hidden");
 
     document
         .getElementById("adminEmail")
-        .textContent = email;
+        .textContent = user.email;
 
     await loadEverything();
 
 }
 
 
-async function login(email, password) {
+/* =========================================================
+   LOGIN
+========================================================= */
 
-    clearLoginError();
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
 
-    email =
-        email.trim().toLowerCase();
+        event.preventDefault();
 
-    if (email !== ADMIN_EMAIL) {
+        clearLoginError();
 
-        showLoginError(
-            "Only the authorized administrator can log in."
-        );
+        const email =
+            document
+                .getElementById("loginEmail")
+                .value
+                .trim()
+                .toLowerCase();
 
-        return;
+        const password =
+            document
+                .getElementById("loginPassword")
+                .value;
 
-    }
+        if (!isAllowedAdmin(email)) {
 
-    showLoading(true);
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if (error) {
-            throw error;
-        }
-
-        if (!data.user) {
-            throw new Error("Login failed.");
-        }
-
-        const loggedEmail =
-            data.user.email
-                ? data.user.email.toLowerCase()
-                : "";
-
-        if (loggedEmail !== ADMIN_EMAIL) {
-
-            await supabaseClient.auth.signOut();
-
-            throw new Error(
-                "This account is not authorized."
+            showLoginError(
+                "Only authorized administrators can log in."
             );
 
+            return;
         }
 
-        await showDashboard(loggedEmail);
+        showLoading(true);
 
-    } catch (error) {
+        try {
 
-        console.error(error);
+            const { data, error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
 
-        showLoginError(
-            error.message ||
-            "Unable to login."
-        );
+            if (error) {
+                throw error;
+            }
 
-    } finally {
+            if (!data.user) {
+                throw new Error(
+                    "Login succeeded but no user was returned."
+                );
+            }
 
-        showLoading(false);
+            if (!isAllowedAdmin(data.user.email)) {
 
-    }
+                await supabaseClient.auth.signOut();
 
-}
+                throw new Error(
+                    "This account is not authorized as an administrator."
+                );
+            }
 
+            await showDashboard(data.user);
+
+        } catch (error) {
+
+            console.error(error);
+
+            showLoginError(
+                error.message ||
+                "Unable to login."
+            );
+
+        } finally {
+
+            showLoading(false);
+
+        }
+
+    });
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 async function logout() {
 
@@ -1726,18 +1781,92 @@ async function logout() {
 
         await supabaseClient.auth.signOut();
 
-        showLogin();
+    } catch (error) {
+
+        console.error(error);
+
+    } finally {
+
+        document
+            .getElementById("dashboard")
+            .classList.add("hidden");
+
+        document
+            .getElementById("loginScreen")
+            .classList.remove("hidden");
 
         document
             .getElementById("loginPassword")
             .value = "";
+
+        showLoading(false);
+
+    }
+
+}
+
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener("click", logout);
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    async function(event, session) {
+
+        if (session && session.user) {
+
+            if (
+                isAllowedAdmin(
+                    session.user.email
+                )
+            ) {
+
+                await showDashboard(
+                    session.user
+                );
+
+            } else {
+
+                await supabaseClient.auth.signOut();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOAD EVERYTHING
+========================================================= */
+
+async function loadEverything() {
+
+    showLoading(true);
+
+    try {
+
+        await Promise.all([
+            loadMembers(),
+            loadLgExcos(),
+            loadWardExcos()
+        ]);
+
+        updateStats();
 
     } catch (error) {
 
         console.error(error);
 
         showToast(
-            "Logout failed.",
+            error.message ||
+            "Unable to load dashboard data.",
             "error"
         );
 
@@ -1756,106 +1885,24 @@ async function logout() {
 
 async function loadMembers() {
 
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
+    const { data, error } =
+        await supabaseClient
             .from("members")
             .select("*")
             .order("created_at", {
                 ascending: false
             });
 
-        if (error) {
-            throw error;
-        }
-
-        members = data || [];
-
-        renderMembers();
-
-        updateMemberStats();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to load members: " +
-            error.message,
-            "error"
-        );
-
+    if (error) {
+        console.error("Members error:", error);
+        throw error;
     }
 
-}
+    members = data || [];
 
+    renderMembers();
 
-function getMemberName(member) {
-
-    return (
-        member.name ||
-        member.full_name ||
-        member.fullname ||
-        ""
-    );
-
-}
-
-
-function getMemberPhone(member) {
-
-    return (
-        member.phone ||
-        member.phone_no ||
-        member.phone_number ||
-        ""
-    );
-
-}
-
-
-function getMemberEmail(member) {
-
-    return (
-        member.email ||
-        ""
-    );
-
-}
-
-
-function getMemberWard(member) {
-
-    return (
-        member.ward ||
-        member.ward_name ||
-        ""
-    );
-
-}
-
-
-function getMemberBank(member) {
-
-    return (
-        member.bank_name ||
-        member.bank ||
-        ""
-    );
-
-}
-
-
-function getMemberAccount(member) {
-
-    return (
-        member.account_no ||
-        member.account_number ||
-        ""
-    );
+    updateStats();
 
 }
 
@@ -1863,37 +1910,35 @@ function getMemberAccount(member) {
 function renderMembers() {
 
     const tbody =
-        document.getElementById("membersTable");
+        document.getElementById(
+            "membersTable"
+        );
 
     const search =
-        (
-            document
-                .getElementById("memberSearch")
-                .value || ""
-        )
-        .toLowerCase()
-        .trim();
+        document
+            .getElementById("memberSearch")
+            .value
+            .trim()
+            .toLowerCase();
 
     const status =
         document
             .getElementById("memberStatusFilter")
             .value;
 
-
     let filtered =
         members.filter(member => {
 
             const text = [
-
-                getMemberName(member),
-                getMemberPhone(member),
-                getMemberEmail(member),
-                getMemberWard(member),
-                getMemberBank(member),
-                getMemberAccount(member),
-                member.status || ""
-
+                member.name,
+                member.full_name,
+                member.phone,
+                member.email,
+                member.ward,
+                member.bank_name,
+                member.bank
             ]
+            .filter(Boolean)
             .join(" ")
             .toLowerCase();
 
@@ -1901,10 +1946,14 @@ function renderMembers() {
                 !search ||
                 text.includes(search);
 
+            const memberStatus =
+                String(
+                    member.status || ""
+                ).toLowerCase();
+
             const matchesStatus =
                 status === "all" ||
-                String(member.status || "")
-                    .toLowerCase() === status;
+                memberStatus === status;
 
             return (
                 matchesSearch &&
@@ -1913,149 +1962,133 @@ function renderMembers() {
 
         });
 
-
     if (!filtered.length) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="8" class="empty">
-                    No members found.
+                <td colspan="8">
+                    <div class="empty">
+                        No members found.
+                    </div>
                 </td>
             </tr>
         `;
 
         return;
-
     }
-
 
     tbody.innerHTML =
         filtered.map(member => {
 
-            const memberId =
-                member.id;
+            const name =
+                member.name ||
+                member.full_name ||
+                "—";
 
-            const memberStatus =
+            const bank =
+                member.bank_name ||
+                member.bank ||
+                "—";
+
+            const account =
+                member.account_no ||
+                member.account_number ||
+                "—";
+
+            const status =
                 String(
-                    member.status || "pending"
+                    member.status ||
+                    "pending"
                 ).toLowerCase();
-
 
             let badgeClass =
                 "badge-pending";
 
-            if (memberStatus === "approved") {
+            if (status === "approved") {
                 badgeClass =
                     "badge-approved";
             }
 
-            if (memberStatus === "declined") {
+            if (status === "declined") {
                 badgeClass =
                     "badge-declined";
             }
 
-
-            let actions = "";
-
-
-            if (memberStatus !== "approved") {
-
-                actions += `
-                    <button
-                        class="btn btn-success"
-                        onclick="updateMemberStatus('${escapeHtml(memberId)}','approved')"
-                    >
-                        Approve
-                    </button>
-                `;
-
-            }
-
-
-            if (memberStatus !== "declined") {
-
-                actions += `
-                    <button
-                        class="btn btn-warning"
-                        onclick="updateMemberStatus('${escapeHtml(memberId)}','declined')"
-                    >
-                        Decline
-                    </button>
-                `;
-
-            }
-
-
-            if (memberStatus === "declined") {
-
-                actions += `
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteDeclinedMember('${escapeHtml(memberId)}')"
-                    >
-                        Delete
-                    </button>
-                `;
-
-            }
-
-
             return `
-
                 <tr>
 
                     <td>
-                        <strong>
-                            ${escapeHtml(
-                                getMemberName(member)
-                            )}
-                        </strong>
+                        ${escapeHTML(name)}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            getMemberPhone(member)
-                        )}
+                        ${escapeHTML(member.phone || "—")}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            getMemberEmail(member)
-                        )}
+                        ${escapeHTML(member.email || "—")}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            getMemberWard(member)
-                        )}
+                        ${escapeHTML(member.ward || "—")}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            getMemberBank(member)
-                        )}
+                        ${escapeHTML(bank)}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            getMemberAccount(member)
-                        )}
+                        ${escapeHTML(account)}
                     </td>
 
                     <td>
                         <span class="badge ${badgeClass}">
-                            ${escapeHtml(memberStatus)}
+                            ${escapeHTML(status)}
                         </span>
                     </td>
 
                     <td>
+
                         <div class="actions">
-                            ${actions}
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="editMember('${member.id}')"
+                            >
+                                Edit
+                            </button>
+
+                            ${
+                                status !== "approved"
+                                ? `
+                                <button
+                                    class="btn btn-success"
+                                    onclick="changeMemberStatus('${member.id}', 'approved')"
+                                >
+                                    Approve
+                                </button>
+                                `
+                                : ""
+                            }
+
+                            ${
+                                status !== "declined"
+                                ? `
+                                <button
+                                    class="btn btn-warning"
+                                    onclick="changeMemberStatus('${member.id}', 'declined')"
+                                >
+                                    Decline
+                                </button>
+                                `
+                                : ""
+                            }
+
                         </div>
+
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2063,45 +2096,363 @@ function renderMembers() {
 }
 
 
-async function updateMemberStatus(id, status) {
+document
+    .getElementById("memberSearch")
+    .addEventListener(
+        "input",
+        renderMembers
+    );
 
-    if (
-        !["pending", "approved", "declined"]
-            .includes(status)
-    ) {
+
+document
+    .getElementById("memberStatusFilter")
+    .addEventListener(
+        "change",
+        renderMembers
+    );
+
+
+/* =========================================================
+   EDIT MEMBER
+========================================================= */
+
+function editMember(id) {
+
+    const member =
+        members.find(
+            item => String(item.id) === String(id)
+        );
+
+    if (!member) {
+        showToast(
+            "Member not found.",
+            "error"
+        );
         return;
     }
 
+    document
+        .getElementById("memberId")
+        .value = member.id;
+
+    document
+        .getElementById("memberName")
+        .value =
+            member.name ||
+            member.full_name ||
+            "";
+
+    document
+        .getElementById("memberPhone")
+        .value =
+            member.phone ||
+            "";
+
+    document
+        .getElementById("memberEmail")
+        .value =
+            member.email ||
+            "";
+
+    document
+        .getElementById("memberWard")
+        .value =
+            member.ward ||
+            "";
+
+    document
+        .getElementById("memberBank")
+        .value =
+            member.bank_name ||
+            member.bank ||
+            "";
+
+    document
+        .getElementById("memberAccount")
+        .value =
+            member.account_no ||
+            member.account_number ||
+            "";
+
+    document
+        .getElementById("memberStatus")
+        .value =
+            member.status ||
+            "pending";
+
+    document
+        .getElementById("memberModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================================================
+   SAVE MEMBER
+========================================================= */
+
+document
+    .getElementById("memberForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            const id =
+                document
+                    .getElementById("memberId")
+                    .value;
+
+            const name =
+                document
+                    .getElementById("memberName")
+                    .value
+                    .trim();
+
+            const phone =
+                document
+                    .getElementById("memberPhone")
+                    .value
+                    .trim();
+
+            const email =
+                document
+                    .getElementById("memberEmail")
+                    .value
+                    .trim();
+
+            const ward =
+                document
+                    .getElementById("memberWard")
+                    .value;
+
+            const bank =
+                document
+                    .getElementById("memberBank")
+                    .value
+                    .trim();
+
+            const account =
+                document
+                    .getElementById("memberAccount")
+                    .value
+                    .trim();
+
+            const status =
+                document
+                    .getElementById("memberStatus")
+                    .value;
+
+            showLoading(true);
+
+            try {
+
+                const existing =
+                    members.find(
+                        item =>
+                            String(item.id) ===
+                            String(id)
+                    );
+
+                if (!existing) {
+                    throw new Error(
+                        "Member record not found."
+                    );
+                }
+
+                /*
+                   Update only fields that already exist
+                   in the member record. This avoids changing
+                   your database structure.
+                */
+
+                const updateData = {};
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "name"
+                    )
+                ) {
+                    updateData.name = name;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "full_name"
+                    )
+                ) {
+                    updateData.full_name = name;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "phone"
+                    )
+                ) {
+                    updateData.phone = phone;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "email"
+                    )
+                ) {
+                    updateData.email = email;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "ward"
+                    )
+                ) {
+                    updateData.ward = ward;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "bank_name"
+                    )
+                ) {
+                    updateData.bank_name = bank;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "bank"
+                    )
+                ) {
+                    updateData.bank = bank;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "account_no"
+                    )
+                ) {
+                    updateData.account_no = account;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "account_number"
+                    )
+                ) {
+                    updateData.account_number =
+                        account;
+                }
+
+                if (
+                    Object.prototype.hasOwnProperty.call(
+                        existing,
+                        "status"
+                    )
+                ) {
+                    updateData.status = status;
+                }
+
+                const { error } =
+                    await supabaseClient
+                        .from("members")
+                        .update(updateData)
+                        .eq("id", id);
+
+                if (error) {
+                    throw error;
+                }
+
+                closeModal("memberModal");
+
+                showToast(
+                    "Member updated successfully."
+                );
+
+                await loadMembers();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    "Unable to update member: " +
+                    error.message,
+                    "error"
+                );
+
+            } finally {
+
+                showLoading(false);
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CHANGE MEMBER STATUS
+========================================================= */
+
+async function changeMemberStatus(
+    id,
+    status
+) {
+
+    const member =
+        members.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+    if (!member) {
+        showToast(
+            "Member not found.",
+            "error"
+        );
+        return;
+    }
+
+    const name =
+        member.name ||
+        member.full_name ||
+        "this member";
 
     if (
         !confirm(
-            `Change this member's status to "${status}"?`
+            `Change ${name} status to ${status}?`
         )
     ) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
-        const {
-            error
-        } = await supabaseClient
-            .from("members")
-            .update({
-                status: status
-            })
-            .eq("id", id);
+        const { error } =
+            await supabaseClient
+                .from("members")
+                .update({
+                    status
+                })
+                .eq("id", id);
 
         if (error) {
             throw error;
         }
 
         showToast(
-            "Member status updated.",
-            "success"
+            `Member ${status} successfully.`
         );
 
         await loadMembers();
@@ -2111,7 +2462,7 @@ async function updateMemberStatus(id, status) {
         console.error(error);
 
         showToast(
-            "Unable to update member: " +
+            "Unable to update status: " +
             error.message,
             "error"
         );
@@ -2121,99 +2472,6 @@ async function updateMemberStatus(id, status) {
         showLoading(false);
 
     }
-
-}
-
-
-async function deleteDeclinedMember(id) {
-
-    if (
-        !confirm(
-            "Delete this declined member permanently?"
-        )
-    ) {
-        return;
-    }
-
-
-    showLoading(true);
-
-    try {
-
-        const {
-            error
-        } = await supabaseClient
-            .from("members")
-            .delete()
-            .eq("id", id)
-            .eq("status", "declined");
-
-        if (error) {
-            throw error;
-        }
-
-        showToast(
-            "Declined member deleted.",
-            "success"
-        );
-
-        await loadMembers();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to delete member: " +
-            error.message,
-            "error"
-        );
-
-    } finally {
-
-        showLoading(false);
-
-    }
-
-}
-
-
-function updateMemberStats() {
-
-    const total =
-        members.length;
-
-    const pending =
-        members.filter(
-            m => m.status === "pending"
-        ).length;
-
-    const approved =
-        members.filter(
-            m => m.status === "approved"
-        ).length;
-
-    const declined =
-        members.filter(
-            m => m.status === "declined"
-        ).length;
-
-
-    document
-        .getElementById("totalMembers")
-        .textContent = total;
-
-    document
-        .getElementById("pendingMembers")
-        .textContent = pending;
-
-    document
-        .getElementById("approvedMembers")
-        .textContent = approved;
-
-    document
-        .getElementById("declinedMembers")
-        .textContent = declined;
 
 }
 
@@ -2224,42 +2482,32 @@ function updateMemberStats() {
 
 async function loadLgExcos() {
 
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
+    const { data, error } =
+        await supabaseClient
             .from("lg_exco")
             .select("*")
             .order("created_at", {
-                ascending: true
+                ascending: false
             });
 
-        if (error) {
-            throw error;
-        }
+    if (error) {
 
-        lgExcos = data || [];
+        console.warn(
+            "LG EXCO table could not be loaded:",
+            error.message
+        );
+
+        lgExcos = [];
 
         renderLgExcos();
 
-        document
-            .getElementById("lgExcoCount")
-            .textContent =
-            lgExcos.length;
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to load LG EXCO: " +
-            error.message,
-            "error"
-        );
+        return;
 
     }
+
+    lgExcos = data || [];
+
+    renderLgExcos();
 
 }
 
@@ -2267,68 +2515,55 @@ async function loadLgExcos() {
 function renderLgExcos() {
 
     const tbody =
-        document.getElementById("lgExcoTable");
-
+        document.getElementById(
+            "lgExcoTable"
+        );
 
     if (!lgExcos.length) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="5" class="empty">
-                    No LG EXCO records found.
+                <td colspan="5">
+                    <div class="empty">
+                        No LG EXCO records found.
+                    </div>
                 </td>
             </tr>
         `;
 
         return;
-
     }
 
-
     tbody.innerHTML =
-        lgExcos.map(row => {
-
-            const name =
-                row.member_name ||
-                row.name ||
-                row.full_name ||
-                "";
-
-            const position =
-                row.position ||
-                "";
-
-            const phone =
-                row.phone ||
-                row.phone_no ||
-                "";
-
-            const ward =
-                row.ward ||
-                row.ward_name ||
-                "";
-
+        lgExcos.map(item => {
 
             return `
-
                 <tr>
 
                     <td>
-                        ${escapeHtml(position)}
+                        ${escapeHTML(
+                            item.position || "—"
+                        )}
                     </td>
 
                     <td>
-                        <strong>
-                            ${escapeHtml(name)}
-                        </strong>
+                        ${escapeHTML(
+                            item.name ||
+                            item.full_name ||
+                            "—"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(phone)}
+                        ${escapeHTML(
+                            item.phone || "—"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(ward)}
+                        ${escapeHTML(
+                            item.ward || "—"
+                        )}
                     </td>
 
                     <td>
@@ -2336,15 +2571,8 @@ function renderLgExcos() {
                         <div class="actions">
 
                             <button
-                                class="btn btn-primary"
-                                onclick="editLgExco('${escapeHtml(row.id)}')"
-                            >
-                                Edit
-                            </button>
-
-                            <button
                                 class="btn btn-danger"
-                                onclick="deleteLgExco('${escapeHtml(row.id)}')"
+                                onclick="deleteLgExco('${item.id}')"
                             >
                                 Delete
                             </button>
@@ -2354,7 +2582,6 @@ function renderLgExcos() {
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2362,220 +2589,129 @@ function renderLgExcos() {
 }
 
 
-function openLgExcoModal(id = null) {
+function openLgExcoModal() {
 
     document
         .getElementById("lgExcoForm")
         .reset();
 
     document
-        .getElementById("lgExcoId")
-        .value = "";
-
-
-    document
-        .getElementById("lgModalTitle")
-        .textContent =
-        id
-            ? "Edit LG EXCO"
-            : "Add LG EXCO";
-
-
-    if (id) {
-
-        const row =
-            lgExcos.find(
-                item =>
-                    String(item.id) === String(id)
-            );
-
-        if (!row) {
-            return;
-        }
-
-
-        document
-            .getElementById("lgExcoId")
-            .value = row.id;
-
-        document
-            .getElementById("lgPosition")
-            .value =
-            row.position || "";
-
-        document
-            .getElementById("lgMemberName")
-            .value =
-            row.member_name ||
-            row.name ||
-            row.full_name ||
-            "";
-
-        document
-            .getElementById("lgPhone")
-            .value =
-            row.phone ||
-            row.phone_no ||
-            "";
-
-        document
-            .getElementById("lgWard")
-            .value =
-            row.ward ||
-            row.ward_name ||
-            "";
-
-    }
-
-
-    document
         .getElementById("lgExcoModal")
-        .classList
-        .add("show");
+        .classList.add("show");
 
 }
 
 
-function editLgExco(id) {
+document
+    .getElementById("lgExcoForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
 
-    openLgExcoModal(id);
+            event.preventDefault();
 
-}
+            const position =
+                document
+                    .getElementById("lgPosition")
+                    .value
+                    .trim();
 
+            const name =
+                document
+                    .getElementById("lgName")
+                    .value
+                    .trim();
 
-async function saveLgExco(event) {
+            const phone =
+                document
+                    .getElementById("lgPhone")
+                    .value
+                    .trim();
 
-    event.preventDefault();
+            const ward =
+                document
+                    .getElementById("lgWard")
+                    .value;
 
-    const id =
-        document
-            .getElementById("lgExcoId")
-            .value;
+            showLoading(true);
 
-    const payload = {
+            try {
 
-        position:
-            document
-                .getElementById("lgPosition")
-                .value
-                .trim(),
+                const { error } =
+                    await supabaseClient
+                        .from("lg_exco")
+                        .insert({
+                            position,
+                            name,
+                            phone,
+                            ward
+                        });
 
-        member_name:
-            document
-                .getElementById("lgMemberName")
-                .value
-                .trim(),
+                if (error) {
+                    throw error;
+                }
 
-        phone:
-            document
-                .getElementById("lgPhone")
-                .value
-                .trim(),
+                closeModal("lgExcoModal");
 
-        ward:
-            document
-                .getElementById("lgWard")
-                .value
+                showToast(
+                    "LG EXCO added successfully."
+                );
 
-    };
+                await loadLgExcos();
 
+                updateStats();
 
-    showLoading(true);
+            } catch (error) {
 
-    try {
+                console.error(error);
 
-        let error;
+                showToast(
+                    "Unable to add LG EXCO: " +
+                    error.message,
+                    "error"
+                );
 
+            } finally {
 
-        if (id) {
+                showLoading(false);
 
-            ({
-                error
-            } =
-                await supabaseClient
-                    .from("lg_exco")
-                    .update(payload)
-                    .eq("id", id));
-
-        } else {
-
-            ({
-                error
-            } =
-                await supabaseClient
-                    .from("lg_exco")
-                    .insert([payload]));
+            }
 
         }
-
-
-        if (error) {
-            throw error;
-        }
-
-
-        closeModal("lgExcoModal");
-
-        showToast(
-            id
-                ? "LG EXCO updated."
-                : "LG EXCO added.",
-            "success"
-        );
-
-        await loadLgExcos();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to save LG EXCO: " +
-            error.message,
-            "error"
-        );
-
-    } finally {
-
-        showLoading(false);
-
-    }
-
-}
+    );
 
 
 async function deleteLgExco(id) {
 
     if (
         !confirm(
-            "Delete this LG EXCO member?"
+            "Delete this LG EXCO record?"
         )
     ) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
-        const {
-            error
-        } = await supabaseClient
-            .from("lg_exco")
-            .delete()
-            .eq("id", id);
+        const { error } =
+            await supabaseClient
+                .from("lg_exco")
+                .delete()
+                .eq("id", id);
 
         if (error) {
             throw error;
         }
 
         showToast(
-            "LG EXCO deleted.",
-            "success"
+            "LG EXCO deleted."
         );
 
         await loadLgExcos();
+
+        updateStats();
 
     } catch (error) {
 
@@ -2602,42 +2738,32 @@ async function deleteLgExco(id) {
 
 async function loadWardExcos() {
 
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient
+    const { data, error } =
+        await supabaseClient
             .from("ward_exco")
             .select("*")
             .order("created_at", {
-                ascending: true
+                ascending: false
             });
 
-        if (error) {
-            throw error;
-        }
+    if (error) {
 
-        wardExcos = data || [];
+        console.warn(
+            "Ward EXCO table could not be loaded:",
+            error.message
+        );
+
+        wardExcos = [];
 
         renderWardExcos();
 
-        document
-            .getElementById("wardExcoCount")
-            .textContent =
-            wardExcos.length;
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to load Ward EXCO: " +
-            error.message,
-            "error"
-        );
+        return;
 
     }
+
+    wardExcos = data || [];
+
+    renderWardExcos();
 
 }
 
@@ -2654,28 +2780,23 @@ function renderWardExcos() {
             .getElementById("wardFilter")
             .value;
 
-
     const filtered =
         filter === "all"
-            ? wardExcos
-            : wardExcos.filter(row => {
-
-                const ward =
-                    row.ward ||
-                    row.ward_name ||
-                    "";
-
-                return ward === filter;
-
-            });
-
+        ? wardExcos
+        : wardExcos.filter(
+            item =>
+                String(item.ward || "")
+                === filter
+        );
 
     if (!filtered.length) {
 
         tbody.innerHTML = `
             <tr>
-                <td colspan="5" class="empty">
-                    No Ward EXCO records found.
+                <td colspan="5">
+                    <div class="empty">
+                        No Ward EXCO records found.
+                    </div>
                 </td>
             </tr>
         `;
@@ -2684,51 +2805,36 @@ function renderWardExcos() {
 
     }
 
-
     tbody.innerHTML =
-        filtered.map(row => {
-
-            const ward =
-                row.ward ||
-                row.ward_name ||
-                "";
-
-            const position =
-                row.position ||
-                "";
-
-            const name =
-                row.member_name ||
-                row.name ||
-                row.full_name ||
-                "";
-
-            const phone =
-                row.phone ||
-                row.phone_no ||
-                "";
-
+        filtered.map(item => {
 
             return `
-
                 <tr>
 
                     <td>
-                        ${escapeHtml(ward)}
+                        ${escapeHTML(
+                            item.ward || "—"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(position)}
+                        ${escapeHTML(
+                            item.position || "—"
+                        )}
                     </td>
 
                     <td>
-                        <strong>
-                            ${escapeHtml(name)}
-                        </strong>
+                        ${escapeHTML(
+                            item.name ||
+                            item.full_name ||
+                            "—"
+                        )}
                     </td>
 
                     <td>
-                        ${escapeHtml(phone)}
+                        ${escapeHTML(
+                            item.phone || "—"
+                        )}
                     </td>
 
                     <td>
@@ -2736,15 +2842,8 @@ function renderWardExcos() {
                         <div class="actions">
 
                             <button
-                                class="btn btn-primary"
-                                onclick="editWardExco('${escapeHtml(row.id)}')"
-                            >
-                                Edit
-                            </button>
-
-                            <button
                                 class="btn btn-danger"
-                                onclick="deleteWardExco('${escapeHtml(row.id)}')"
+                                onclick="deleteWardExco('${item.id}')"
                             >
                                 Delete
                             </button>
@@ -2754,7 +2853,6 @@ function renderWardExcos() {
                     </td>
 
                 </tr>
-
             `;
 
         }).join("");
@@ -2762,220 +2860,139 @@ function renderWardExcos() {
 }
 
 
-function openWardExcoModal(id = null) {
+document
+    .getElementById("wardFilter")
+    .addEventListener(
+        "change",
+        renderWardExcos
+    );
+
+
+function openWardExcoModal() {
 
     document
         .getElementById("wardExcoForm")
         .reset();
 
     document
-        .getElementById("wardExcoId")
-        .value = "";
-
-
-    document
-        .getElementById("wardModalTitle")
-        .textContent =
-        id
-            ? "Edit Ward EXCO"
-            : "Add Ward EXCO";
-
-
-    if (id) {
-
-        const row =
-            wardExcos.find(
-                item =>
-                    String(item.id) === String(id)
-            );
-
-        if (!row) {
-            return;
-        }
-
-
-        document
-            .getElementById("wardExcoId")
-            .value = row.id;
-
-        document
-            .getElementById("wardExcoWard")
-            .value =
-            row.ward ||
-            row.ward_name ||
-            "";
-
-        document
-            .getElementById("wardPosition")
-            .value =
-            row.position || "";
-
-        document
-            .getElementById("wardMemberName")
-            .value =
-            row.member_name ||
-            row.name ||
-            row.full_name ||
-            "";
-
-        document
-            .getElementById("wardPhone")
-            .value =
-            row.phone ||
-            row.phone_no ||
-            "";
-
-    }
-
-
-    document
         .getElementById("wardExcoModal")
-        .classList
-        .add("show");
+        .classList.add("show");
 
 }
 
 
-function editWardExco(id) {
+document
+    .getElementById("wardExcoForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
 
-    openWardExcoModal(id);
+            event.preventDefault();
 
-}
+            const ward =
+                document
+                    .getElementById("wardExcoWard")
+                    .value;
 
+            const position =
+                document
+                    .getElementById("wardExcoPosition")
+                    .value
+                    .trim();
 
-async function saveWardExco(event) {
+            const name =
+                document
+                    .getElementById("wardExcoName")
+                    .value
+                    .trim();
 
-    event.preventDefault();
+            const phone =
+                document
+                    .getElementById("wardExcoPhone")
+                    .value
+                    .trim();
 
-    const id =
-        document
-            .getElementById("wardExcoId")
-            .value;
+            showLoading(true);
 
-    const payload = {
+            try {
 
-        ward:
-            document
-                .getElementById("wardExcoWard")
-                .value,
+                const { error } =
+                    await supabaseClient
+                        .from("ward_exco")
+                        .insert({
+                            ward,
+                            position,
+                            name,
+                            phone
+                        });
 
-        position:
-            document
-                .getElementById("wardPosition")
-                .value
-                .trim(),
+                if (error) {
+                    throw error;
+                }
 
-        member_name:
-            document
-                .getElementById("wardMemberName")
-                .value
-                .trim(),
+                closeModal(
+                    "wardExcoModal"
+                );
 
-        phone:
-            document
-                .getElementById("wardPhone")
-                .value
-                .trim()
+                showToast(
+                    "Ward EXCO added successfully."
+                );
 
-    };
+                await loadWardExcos();
 
+                updateStats();
 
-    showLoading(true);
+            } catch (error) {
 
-    try {
+                console.error(error);
 
-        let error;
+                showToast(
+                    "Unable to add Ward EXCO: " +
+                    error.message,
+                    "error"
+                );
 
+            } finally {
 
-        if (id) {
+                showLoading(false);
 
-            ({
-                error
-            } =
-                await supabaseClient
-                    .from("ward_exco")
-                    .update(payload)
-                    .eq("id", id));
-
-        } else {
-
-            ({
-                error
-            } =
-                await supabaseClient
-                    .from("ward_exco")
-                    .insert([payload]));
+            }
 
         }
-
-
-        if (error) {
-            throw error;
-        }
-
-
-        closeModal("wardExcoModal");
-
-        showToast(
-            id
-                ? "Ward EXCO updated."
-                : "Ward EXCO added.",
-            "success"
-        );
-
-        await loadWardExcos();
-
-    } catch (error) {
-
-        console.error(error);
-
-        showToast(
-            "Unable to save Ward EXCO: " +
-            error.message,
-            "error"
-        );
-
-    } finally {
-
-        showLoading(false);
-
-    }
-
-}
+    );
 
 
 async function deleteWardExco(id) {
 
     if (
         !confirm(
-            "Delete this Ward EXCO member?"
+            "Delete this Ward EXCO record?"
         )
     ) {
         return;
     }
 
-
     showLoading(true);
 
     try {
 
-        const {
-            error
-        } = await supabaseClient
-            .from("ward_exco")
-            .delete()
-            .eq("id", id);
+        const { error } =
+            await supabaseClient
+                .from("ward_exco")
+                .delete()
+                .eq("id", id);
 
         if (error) {
             throw error;
         }
 
         showToast(
-            "Ward EXCO deleted.",
-            "success"
+            "Ward EXCO deleted."
         );
 
         await loadWardExcos();
+
+        updateStats();
 
     } catch (error) {
 
@@ -2997,74 +3014,73 @@ async function deleteWardExco(id) {
 
 
 /* =========================================================
-   LOAD EVERYTHING
+   STATS
 ========================================================= */
 
-async function loadEverything() {
+function updateStats() {
 
-    showLoading(true);
+    const total =
+        members.length;
 
-    try {
+    const pending =
+        members.filter(
+            member =>
+                String(
+                    member.status || ""
+                ).toLowerCase()
+                === "pending"
+        ).length;
 
-        await Promise.all([
+    const approved =
+        members.filter(
+            member =>
+                String(
+                    member.status || ""
+                ).toLowerCase()
+                === "approved"
+        ).length;
 
-            loadMembers(),
-            loadLgExcos(),
-            loadWardExcos()
+    const declined =
+        members.filter(
+            member =>
+                String(
+                    member.status || ""
+                ).toLowerCase()
+                === "declined"
+        ).length;
 
-        ]);
+    document
+        .getElementById("totalMembers")
+        .textContent = total;
 
-    } catch (error) {
+    document
+        .getElementById("pendingMembers")
+        .textContent = pending;
 
-        console.error(error);
+    document
+        .getElementById("approvedMembers")
+        .textContent = approved;
 
-    } finally {
+    document
+        .getElementById("declinedMembers")
+        .textContent = declined;
 
-        showLoading(false);
+    document
+        .getElementById("lgExcoCount")
+        .textContent =
+            lgExcos.length;
 
-    }
+    document
+        .getElementById("wardExcoCount")
+        .textContent =
+            wardExcos.length;
 
 }
 
 
 /* =========================================================
-   EVENTS
+   NAV BUTTONS
 ========================================================= */
-
-document
-    .getElementById("loginForm")
-    .addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-            const email =
-                document
-                    .getElementById("loginEmail")
-                    .value;
-
-            const password =
-                document
-                    .getElementById("loginPassword")
-                    .value;
-
-            login(
-                email,
-                password
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        logout
-    );
-
 
 document
     .querySelectorAll(".nav-btn")
@@ -3072,10 +3088,10 @@ document
 
         button.addEventListener(
             "click",
-            () => {
+            function() {
 
                 switchPage(
-                    button.dataset.page
+                    this.dataset.page
                 );
 
             }
@@ -3084,45 +3100,9 @@ document
     });
 
 
-document
-    .getElementById("memberSearch")
-    .addEventListener(
-        "input",
-        renderMembers
-    );
-
-
-document
-    .getElementById("memberStatusFilter")
-    .addEventListener(
-        "change",
-        renderMembers
-    );
-
-
-document
-    .getElementById("wardFilter")
-    .addEventListener(
-        "change",
-        renderWardExcos
-    );
-
-
-document
-    .getElementById("lgExcoForm")
-    .addEventListener(
-        "submit",
-        saveLgExco
-    );
-
-
-document
-    .getElementById("wardExcoForm")
-    .addEventListener(
-        "submit",
-        saveWardExco
-    );
-
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
 
 document
     .querySelectorAll(".modal")
@@ -3130,16 +3110,14 @@ document
 
         modal.addEventListener(
             "click",
-            event => {
+            function(event) {
 
                 if (
                     event.target === modal
                 ) {
-
                     modal.classList.remove(
                         "show"
                     );
-
                 }
 
             }
@@ -3149,51 +3127,62 @@ document
 
 
 /* =========================================================
-   AUTH STATE
+   INITIAL SESSION CHECK
 ========================================================= */
 
-supabaseClient.auth.onAuthStateChange(
-    async (_event, session) => {
+async function checkSession() {
 
-        if (!session) {
+    showLoading(true);
 
-            showLogin();
+    try {
 
-            return;
+        const { data, error } =
+            await supabaseClient.auth.getSession();
 
+        if (error) {
+            throw error;
         }
 
+        if (
+            data.session &&
+            data.session.user
+        ) {
 
-        const email =
-            session.user.email
-                ? session.user.email.toLowerCase()
-                : "";
-
-
-        if (email !== ADMIN_EMAIL) {
-
-            await supabaseClient.auth.signOut();
-
-            showLogin();
-
-            showLoginError(
-                "This account is not authorized."
+            await showDashboard(
+                data.session.user
             );
 
-            return;
+        } else {
+
+            document
+                .getElementById("loginScreen")
+                .classList.remove("hidden");
+
+            document
+                .getElementById("dashboard")
+                .classList.add("hidden");
 
         }
 
+    } catch (error) {
 
-        showDashboard(email);
+        console.error(
+            "Session error:",
+            error
+        );
+
+        showLoginError(
+            "Unable to check login session."
+        );
+
+    } finally {
+
+        showLoading(false);
 
     }
-);
 
+}
 
-/* =========================================================
-   START
-========================================================= */
 
 checkSession();
 
