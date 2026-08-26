@@ -1,209 +1,244 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 
- 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>
-    Wards | BWI-RHA Ado LG
-</title>
+    <title>
+        Wards | BWI-RHA Ado LG
+    </title>
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-<style>
+    <style>
 
-    /* ================================
-       MEMBER DIRECTORY
-    ================================= */
+        /* =====================================================
+           MEMBER DIRECTORY
+        ===================================================== */
 
-    .member-directory {
-        margin-top: 35px;
-    }
-
-    .member-directory-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-    }
-
-    .member-directory-header h3 {
-        margin: 0;
-    }
-
-    .member-count {
-        background: #16833b;
-        color: #fff;
-        padding: 8px 14px;
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 14px;
-    }
-
-    .members-grid {
-        display: grid;
-        grid-template-columns:
-            repeat(auto-fit, minmax(250px, 1fr));
-        gap: 18px;
-    }
-
-    .member-card {
-        background: #fff;
-        border-radius: 14px;
-        padding: 20px;
-        box-shadow: 0 5px 20px rgba(0,0,0,.07);
-        cursor: pointer;
-        transition: .2s ease;
-        border: 1px solid #eee;
-    }
-
-    .member-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 9px 28px rgba(0,0,0,.12);
-    }
-
-    .member-card h4 {
-        margin: 0 0 12px;
-        color: #16833b;
-        font-size: 18px;
-    }
-
-    .member-card p {
-        margin: 7px 0;
-        color: #555;
-        font-size: 14px;
-    }
-
-    .approved-badge {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 6px 11px;
-        border-radius: 20px;
-        background: #dff6e7;
-        color: #12652c;
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    .loading-members {
-        text-align: center;
-        padding: 30px;
-        background: #fff;
-        border-radius: 12px;
-    }
-
-    .no-members {
-        background: #fff;
-        padding: 30px;
-        text-align: center;
-        border-radius: 12px;
-        color: #666;
-    }
-
-    /* ================================
-       MEMBER MODAL
-    ================================= */
-
-    .member-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(0,0,0,.6);
-        padding: 20px;
-        overflow-y: auto;
-    }
-
-    .member-modal.show {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .member-modal-box {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        background: #fff;
-        border-radius: 18px;
-        padding: 30px;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .member-modal-box h2 {
-        margin-top: 0;
-        color: #16833b;
-        padding-right: 35px;
-    }
-
-    .close-member-modal {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        width: 38px;
-        height: 38px;
-        border: 0;
-        border-radius: 50%;
-        background: #eee;
-        font-size: 22px;
-        cursor: pointer;
-    }
-
-    .member-detail {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 13px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .member-detail strong {
-        color: #555;
-    }
-
-    .member-detail span {
-        text-align: right;
-        font-weight: 600;
-        word-break: break-word;
-    }
-
-    .status-approved {
-        color: #12652c;
-        font-weight: 800;
-    }
-
-    @media(max-width:600px) {
-
-        .member-detail {
-            flex-direction: column;
-            gap: 5px;
+        .member-directory {
+            margin-top: 35px;
         }
 
-        .member-detail span {
-            text-align: left;
+        .member-directory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .member-directory-header h3 {
+            margin: 0;
+        }
+
+        .member-count {
+            background: #16833b;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+        }
+
+        .member-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.07);
+            cursor: pointer;
+            transition: .2s ease;
+            border: 1px solid #eee;
+        }
+
+        .member-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 28px rgba(0,0,0,.12);
+        }
+
+        .member-card h4 {
+            margin: 0 0 12px;
+            color: #16833b;
+            font-size: 18px;
+        }
+
+        .member-card p {
+            margin: 7px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .approved-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #dff6e7;
+            color: #12652c;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .loading-members,
+        .no-members {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        /* =====================================================
+           WARD EXCO
+        ===================================================== */
+
+        .ward-exco-section {
+            margin-top: 35px;
+        }
+
+        .ward-exco-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .ward-exco-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.07);
+            border: 1px solid #eee;
+        }
+
+        .ward-exco-card h4 {
+            color: #16833b;
+            margin: 0 0 8px;
+        }
+
+        .ward-exco-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .exco-position {
+            font-weight: 800;
+            color: #16833b !important;
+        }
+
+        .unassigned {
+            color: #999 !important;
+            font-style: italic;
+        }
+
+        /* =====================================================
+           MEMBER MODAL
+        ===================================================== */
+
+        .member-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.6);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .member-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .member-modal-box {
-            padding: 22px;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-    }
+        .member-modal-box h2 {
+            margin-top: 0;
+            color: #16833b;
+            padding-right: 35px;
+        }
 
-</style>
- 
+        .close-member-modal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 50%;
+            background: #eee;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .member-detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 13px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .member-detail strong {
+            color: #555;
+        }
+
+        .member-detail span {
+            text-align: right;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .status-approved {
+            color: #12652c;
+            font-weight: 800;
+        }
+
+        @media(max-width:600px) {
+
+            .member-detail {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .member-detail span {
+                text-align: left;
+            }
+
+            .member-modal-box {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -211,472 +246,518 @@
 
 <header class="site-header">
 
- 
-<div class="header-container">
-
-    <a
-        href="index.html"
-        class="logo-area"
-    >
-
-        <img
-            src="logo.jpeg"
-            alt="BWI-RHA Logo"
-            class="site-logo"
-        >
-
-        <div class="logo-text">
-
-            <h1>
-                BWI-RHA EKITI STATE CHAPTER
-            </h1>
-
-            <p>
-                ADO LOCAL GOVERNMENT
-            </p>
-
-        </div>
-
-    </a>
-
-
-    <button
-        type="button"
-        class="menu-btn"
-        id="menuButton"
-    >
-        ☰
-    </button>
-
-
-    <nav
-        class="main-nav"
-        id="mobileNav"
-    >
-
-        <a href="index.html">
-            Home
-        </a>
+    <div class="header-container">
 
         <a
-            href="wards.html"
-            class="active"
+            href="index.html"
+            class="logo-area"
         >
-            Wards
+
+            <img
+                src="logo.jpeg"
+                alt="BWI-RHA Logo"
+                class="site-logo"
+            >
+
+            <div class="logo-text">
+
+                <h1>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h1>
+
+                <p>
+                    ADO LOCAL GOVERNMENT
+                </p>
+
+            </div>
+
         </a>
 
-        <a href="member-signup.html">
-            Register
-        </a>
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuButton"
+        >
+            ☰
+        </button>
 
-        <a href="admin.html">
-            Admin
-        </a>
+        <nav
+            class="main-nav"
+            id="mobileNav"
+        >
 
-    </nav>
+            <a href="index.html">
+                Home
+            </a>
 
-</div>
- 
+            <a
+                href="wards.html"
+                class="active"
+            >
+                Wards
+            </a>
+
+            <a href="member-signup.html">
+                Register
+            </a>
+
+            <a href="admin.html">
+                Admin
+            </a>
+
+        </nav>
+
+    </div>
 
 </header>
 
 <main>
 
- 
-<!-- PAGE HEADER -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-<section class="hero">
+    <section class="hero">
 
-    <div class="container hero-content">
+        <div class="container hero-content">
 
-        <div class="hero-text">
+            <div class="hero-text">
 
-            <span class="hero-label">
-                ADO LOCAL GOVERNMENT
-            </span>
+                <span class="hero-label">
+                    ADO LOCAL GOVERNMENT
+                </span>
 
-            <h2>
-                Our 13 Wards
-            </h2>
-
-            <p>
-                Explore the wards of BWI-RHA
-                Ado Local Government.
-            </p>
-
-            <p>
-                Select a ward below to view
-                approved members and its
-                executive structure.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- WARDS -->
-
-<section class="section light-section">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>
-                WARD STRUCTURE
-            </span>
-
-            <h2>
-                Select Your Ward
-            </h2>
-
-            <p>
-                There are 13 wards within
-                Ado Local Government.
-            </p>
-
-        </div>
-
-
-        <div
-            class="wards-grid"
-            id="wardsGrid"
-        ></div>
-
-
-        <div
-            id="wardDisplay"
-            class="ward-display"
-        >
-
-            <div class="empty-state">
-
-                <div
-                    class="empty-icon"
-                    style="font-size:35px;"
-                >
-                    👥
-                </div>
-
-                <h3>
-                    Select a Ward
-                </h3>
+                <h2>
+                    Our 13 Wards
+                </h2>
 
                 <p>
-                    Click a ward above to
-                    view approved members.
+                    Explore the wards of BWI-RHA
+                    Ado Local Government.
+                </p>
+
+                <p>
+                    Select a ward below to view
+                    approved members and its
+                    executive structure.
                 </p>
 
             </div>
 
         </div>
 
+    </section>
 
-        <!-- MEMBER DIRECTORY -->
 
-        <div
-            id="memberDirectory"
-            class="member-directory"
-            style="display:none;"
-        >
+    <!-- =====================================================
+         WARDS
+    ====================================================== -->
 
-            <div class="member-directory-header">
+    <section class="section light-section">
 
-                <h3 id="memberWardTitle">
-                    Approved Members
-                </h3>
+        <div class="container">
 
-                <span
-                    id="memberCount"
-                    class="member-count"
-                >
-                    0 Members
+            <div class="section-title">
+
+                <span>
+                    WARD STRUCTURE
                 </span>
+
+                <h2>
+                    Select Your Ward
+                </h2>
+
+                <p>
+                    There are 13 wards within
+                    Ado Local Government.
+                </p>
 
             </div>
 
 
             <div
-                id="membersGrid"
-                class="members-grid"
-            ></div>
+                class="wards-grid"
+                id="wardsGrid"
+            >
+
+                <div class="loading-members">
+                    Loading wards...
+                </div>
+
+            </div>
+
+
+            <div
+                id="wardDisplay"
+                class="ward-display"
+            >
+
+                <div class="empty-state">
+
+                    <div
+                        class="empty-icon"
+                        style="font-size:35px;"
+                    >
+                        👥
+                    </div>
+
+                    <h3>
+                        Select a Ward
+                    </h3>
+
+                    <p>
+                        Click a ward above to
+                        view approved members.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MEMBER DIRECTORY
+            ================================================== -->
+
+            <div
+                id="memberDirectory"
+                class="member-directory"
+                style="display:none;"
+            >
+
+                <div class="member-directory-header">
+
+                    <h3 id="memberWardTitle">
+                        Approved Members
+                    </h3>
+
+                    <span
+                        id="memberCount"
+                        class="member-count"
+                    >
+                        0 Members
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="membersGrid"
+                    class="members-grid"
+                ></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 WARD EXCO
+            ================================================== -->
+
+            <div
+                id="wardExcoSection"
+                class="ward-exco-section"
+                style="display:none;"
+            >
+
+                <div class="section-title">
+
+                    <span>
+                        WARD EXECUTIVE
+                    </span>
+
+                    <h2 id="wardExcoTitle">
+                        Ward Executive Structure
+                    </h2>
+
+                    <p>
+                        Current executive assignments
+                        for this ward.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="wardExcoGrid"
+                    class="ward-exco-grid"
+                ></div>
+
+            </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<!-- EXCO STRUCTURE -->
+    <!-- =====================================================
+         EXCO OFFICES
+    ====================================================== -->
 
-<section class="section">
+    <section class="section">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="section-title">
+            <div class="section-title">
 
-            <span>
-                WARD EXECUTIVE STRUCTURE
-            </span>
+                <span>
+                    WARD EXECUTIVE STRUCTURE
+                </span>
 
-            <h2>
-                Structured Offices
-            </h2>
+                <h2>
+                    Structured Offices
+                </h2>
 
-            <p>
-                Each ward is structured around
-                the following executive offices.
-            </p>
+                <p>
+                    Each ward is structured around
+                    the following executive offices.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        👑
+                    </div>
+
+                    <h3>
+                        Ward Coordinator
+                    </h3>
+
+                    <p>
+                        Leads and coordinates activities
+                        within the ward.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Deputy Ward Coordinator
+                    </h3>
+
+                    <p>
+                        Supports the Ward Coordinator
+                        in organizational activities.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Secretary
+                    </h3>
+
+                    <p>
+                        Handles records, documentation
+                        and communications.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        📣
+                    </div>
+
+                    <h3>
+                        Mobilization Officer
+                    </h3>
+
+                    <p>
+                        Coordinates mobilization and
+                        community participation.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        💼
+                    </div>
+
+                    <h3>
+                        Women Empowerment Officer
+                    </h3>
+
+                    <p>
+                        Supports women empowerment
+                        initiatives and opportunities.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        📱
+                    </div>
+
+                    <h3>
+                        Media/Publicity Officer
+                    </h3>
+
+                    <p>
+                        Handles publicity, information
+                        and media communication.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        ❤️
+                    </div>
+
+                    <h3>
+                        Welfare Officer
+                    </h3>
+
+                    <p>
+                        Supports member welfare and
+                        community assistance.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        🗳️
+                    </div>
+
+                    <h3>
+                        Polling Unit Officer
+                    </h3>
+
+                    <p>
+                        Coordinates activities relating
+                        to polling units.
+                    </p>
+
+                </article>
+
+            </div>
 
         </div>
 
-
-        <div class="feature-grid">
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    👑
-                </div>
-
-                <h3>
-                    Ward Coordinator
-                </h3>
-
-                <p>
-                    Leads and coordinates activities
-                    within the ward.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    🤝
-                </div>
-
-                <h3>
-                    Deputy Ward Coordinator
-                </h3>
-
-                <p>
-                    Supports the Ward Coordinator
-                    in organizational activities.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    📝
-                </div>
-
-                <h3>
-                    Secretary
-                </h3>
-
-                <p>
-                    Handles records, documentation
-                    and communications.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    📣
-                </div>
-
-                <h3>
-                    Mobilization Officer
-                </h3>
-
-                <p>
-                    Coordinates mobilization and
-                    community participation.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    💼
-                </div>
-
-                <h3>
-                    Women Empowerment Officer
-                </h3>
-
-                <p>
-                    Supports women empowerment
-                    initiatives and opportunities.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    📱
-                </div>
-
-                <h3>
-                    Media/Publicity Officer
-                </h3>
-
-                <p>
-                    Handles publicity, information
-                    and media communication.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    ❤️
-                </div>
-
-                <h3>
-                    Welfare Officer
-                </h3>
-
-                <p>
-                    Supports member welfare and
-                    community assistance.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-icon">
-                    🗳️
-                </div>
-
-                <h3>
-                    Polling Unit Officer
-                </h3>
-
-                <p>
-                    Coordinates activities relating
-                    to polling units.
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
- 
+    </section>
 
 </main>
 
-<!-- MEMBER DETAILS MODAL -->
+
+<!-- =========================================================
+     MEMBER DETAILS MODAL
+========================================================== -->
 
 <div
     id="memberModal"
     class="member-modal"
 >
 
- 
-<div class="member-modal-box">
+    <div class="member-modal-box">
 
-    <button
-        type="button"
-        id="closeMemberModal"
-        class="close-member-modal"
-    >
-        ×
-    </button>
+        <button
+            type="button"
+            id="closeMemberModal"
+            class="close-member-modal"
+        >
+            ×
+        </button>
 
-    <h2 id="modalMemberName">
-        Member Details
-    </h2>
+        <h2 id="modalMemberName">
+            Member Details
+        </h2>
 
-    <div
-        id="memberDetails"
-    ></div>
+        <div
+            id="memberDetails"
+        ></div>
 
-</div>
- 
+    </div>
 
 </div>
+
 
 <footer class="site-footer">
 
- 
-<div class="container">
+    <div class="container">
 
-    <div class="footer-content">
+        <div class="footer-content">
 
-        <div>
+            <div>
 
-            <h3>
-                BWI-RHA EKITI STATE CHAPTER
-            </h3>
+                <h3>
+                    BWI-RHA EKITI STATE CHAPTER
+                </h3>
 
-            <p>
-                ADO LOCAL GOVERNMENT
-            </p>
+                <p>
+                    ADO LOCAL GOVERNMENT
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    Green Economy E-Mobility Program
+                </p>
+
+                <p>
+                    Empowering women, youths and
+                    persons with disabilities.
+                </p>
+
+            </div>
 
         </div>
 
 
-        <div>
+        <div class="footer-bottom">
 
             <p>
-                Green Economy E-Mobility Program
-            </p>
-
-            <p>
-                Empowering women, youths and
-                persons with disabilities.
+                ©
+                <span id="currentYear"></span>
+                BWI-RHA Ekiti State Chapter.
+                All rights reserved.
             </p>
 
         </div>
 
     </div>
-
-
-    <div class="footer-bottom">
-
-        <p>
-            ©
-            <span id="currentYear"></span>
-            BWI-RHA Ekiti State Chapter.
-            All rights reserved.
-        </p>
-
-    </div>
-
-</div>
- 
 
 </footer>
 
-<!-- SUPABASE -->
 
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<!-- =========================================================
+     SUPABASE
+========================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -694,9 +775,9 @@ const supabaseClient =
     );
 
 
-/* ================================
+/* =========================================================
    HELPERS
-================================ */
+========================================================= */
 
 function escapeHTML(value) {
 
@@ -710,77 +791,176 @@ function escapeHTML(value) {
 }
 
 
-/* ================================
-   WARDS
-================================ */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const wardsGrid =
-    document.getElementById(
-        "wardsGrid"
-    );
+    document.getElementById("wardsGrid");
 
 const wardDisplay =
-    document.getElementById(
-        "wardDisplay"
-    );
+    document.getElementById("wardDisplay");
 
 const memberDirectory =
-    document.getElementById(
-        "memberDirectory"
-    );
+    document.getElementById("memberDirectory");
 
 const memberWardTitle =
-    document.getElementById(
-        "memberWardTitle"
-    );
+    document.getElementById("memberWardTitle");
 
 const memberCount =
-    document.getElementById(
-        "memberCount"
-    );
+    document.getElementById("memberCount");
 
 const membersGrid =
-    document.getElementById(
-        "membersGrid"
-    );
+    document.getElementById("membersGrid");
+
+const wardExcoSection =
+    document.getElementById("wardExcoSection");
+
+const wardExcoTitle =
+    document.getElementById("wardExcoTitle");
+
+const wardExcoGrid =
+    document.getElementById("wardExcoGrid");
 
 
-for (
-    let ward = 1;
-    ward <= 13;
-    ward++
-) {
+/* =========================================================
+   LOAD WARDS FROM SUPABASE
+========================================================= */
 
-    const button =
-        document.createElement("button");
+async function loadWards() {
 
-    button.type = "button";
+    wardsGrid.innerHTML = `
+        <div class="loading-members">
+            Loading wards...
+        </div>
+    `;
 
-    button.className =
-        "ward-button";
 
-    button.textContent =
-        `Ward ${ward}`;
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("wards")
+        .select(
+            "id, ward_code, ward_name, area"
+        )
+        .order(
+            "id",
+            {
+                ascending: true
+            }
+        );
 
-    button.dataset.ward =
-        ward;
 
-    button.addEventListener(
-        "click",
-        () => loadWard(ward, button)
-    );
+    if (error) {
 
-    wardsGrid.appendChild(button);
+        console.error(
+            "Unable to load wards:",
+            error
+        );
+
+
+        wardsGrid.innerHTML = `
+            <div class="no-members">
+
+                <h3>
+                    Unable to load wards
+                </h3>
+
+                <p>
+                    ${escapeHTML(error.message)}
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    if (!data || !data.length) {
+
+        wardsGrid.innerHTML = `
+            <div class="no-members">
+
+                <h3>
+                    No wards found
+                </h3>
+
+                <p>
+                    No wards are currently available.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    wardsGrid.innerHTML = "";
+
+
+    data.forEach(ward => {
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+            "ward-button";
+
+        button.dataset.ward =
+            ward.id;
+
+        button.innerHTML = `
+            <strong>
+                ${escapeHTML(
+                    ward.ward_name ||
+                    `Ward ${ward.id}`
+                )}
+            </strong>
+        `;
+
+
+        if (ward.area) {
+
+            button.innerHTML += `
+                <small>
+                    ${escapeHTML(ward.area)}
+                </small>
+            `;
+
+        }
+
+
+        button.addEventListener(
+            "click",
+            () => loadWard(
+                ward.id,
+                ward,
+                button
+            )
+        );
+
+
+        wardsGrid.appendChild(button);
+
+    });
 
 }
 
 
-/* ================================
-   LOAD MEMBERS
-================================ */
+/* =========================================================
+   LOAD SELECTED WARD
+========================================================= */
 
 async function loadWard(
     wardNumber,
+    ward,
     clickedButton
 ) {
 
@@ -800,6 +980,11 @@ async function loadWard(
     );
 
 
+    const wardName =
+        ward?.ward_name ||
+        `Ward ${wardNumber}`;
+
+
     wardDisplay.innerHTML = `
 
         <div class="empty-state">
@@ -812,11 +997,12 @@ async function loadWard(
             </div>
 
             <h3>
-                Loading Ward ${wardNumber}
+                Loading ${escapeHTML(wardName)}
             </h3>
 
             <p>
-                Loading approved members...
+                Loading approved members
+                and executive structure...
             </p>
 
         </div>
@@ -828,8 +1014,16 @@ async function loadWard(
         "block";
 
 
+    wardExcoSection.style.display =
+        "block";
+
+
     memberWardTitle.textContent =
-        `Ward ${wardNumber} — Approved Members`;
+        `${wardName} — Approved Members`;
+
+
+    wardExcoTitle.textContent =
+        `${wardName} — Executive Structure`;
 
 
     memberCount.textContent =
@@ -837,22 +1031,36 @@ async function loadWard(
 
 
     membersGrid.innerHTML = `
-
         <div class="loading-members">
-
             Loading members...
-
         </div>
-
     `;
 
 
+    wardExcoGrid.innerHTML = `
+        <div class="loading-members">
+            Loading executives...
+        </div>
+    `;
+
+
+    /* =====================================================
+       LOAD MEMBERS
+    ===================================================== */
+
     const {
-        data,
-        error
+        data: members,
+        error: membersError
     } = await supabaseClient
         .from("members")
-        .select("*")
+        .select(`
+            id,
+            full_name,
+            phone,
+            polling_booth,
+            exco_position,
+            status
+        `)
         .eq(
             "ward_id",
             wardNumber
@@ -869,16 +1077,15 @@ async function loadWard(
         );
 
 
-    if (error) {
+    if (membersError) {
 
         console.error(
-            "Supabase error:",
-            error
+            "Members error:",
+            membersError
         );
 
 
         membersGrid.innerHTML = `
-
             <div class="no-members">
 
                 <h3>
@@ -887,8 +1094,43 @@ async function loadWard(
 
                 <p>
                     ${escapeHTML(
-                        error.message
+                        membersError.message
                     )}
+                </p>
+
+            </div>
+        `;
+
+
+        memberCount.textContent =
+            "Error";
+
+    } else {
+
+        wardDisplay.innerHTML = `
+
+            <div class="empty-state">
+
+                <div
+                    class="empty-icon"
+                    style="font-size:35px;"
+                >
+                    👥
+                </div>
+
+                <h3>
+                    ${escapeHTML(wardName)}
+                </h3>
+
+                <p>
+                    ${
+                        members.length
+                    }
+                    approved member${
+                        members.length === 1
+                            ? ""
+                            : "s"
+                    } found.
                 </p>
 
             </div>
@@ -897,143 +1139,265 @@ async function loadWard(
 
 
         memberCount.textContent =
-            "Error";
+            `${members.length} Member${
+                members.length === 1
+                    ? ""
+                    : "s"
+            }`;
 
-        return;
+
+        if (!members.length) {
+
+            membersGrid.innerHTML = `
+
+                <div class="no-members">
+
+                    <h3>
+                        No Approved Members
+                    </h3>
+
+                    <p>
+                        There are currently no approved
+                        members in ${escapeHTML(wardName)}.
+                    </p>
+
+                </div>
+
+            `;
+
+        } else {
+
+            membersGrid.innerHTML = "";
+
+
+            members.forEach(member => {
+
+                const card =
+                    document.createElement("article");
+
+                card.className =
+                    "member-card";
+
+
+                card.innerHTML = `
+
+                    <h4>
+                        ${escapeHTML(
+                            member.full_name
+                        )}
+                    </h4>
+
+                    <p>
+                        <strong>
+                            Phone:
+                        </strong>
+
+                        ${escapeHTML(
+                            member.phone ||
+                            "Not provided"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Polling Booth:
+                        </strong>
+
+                        ${escapeHTML(
+                            member.polling_booth ||
+                            "Not provided"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>
+                            EXCO:
+                        </strong>
+
+                        ${escapeHTML(
+                            member.exco_position ||
+                            "Not assigned"
+                        )}
+                    </p>
+
+                    <span class="approved-badge">
+                        ✓ Approved Member
+                    </span>
+
+                `;
+
+
+                card.addEventListener(
+                    "click",
+                    () => showMemberDetails(member)
+                );
+
+
+                membersGrid.appendChild(card);
+
+            });
+
+        }
 
     }
 
 
-    wardDisplay.innerHTML = `
+    /* =====================================================
+       LOAD WARD EXCO
+    ===================================================== */
 
-        <div class="empty-state">
+    const {
+        data: exco,
+        error: excoError
+    } = await supabaseClient
+        .from("ward_exco")
+        .select(`
+            id,
+            position,
+            member_id,
+            members (
+                id,
+                full_name,
+                phone
+            )
+        `)
+        .eq(
+            "ward_id",
+            wardNumber
+        )
+        .order(
+            "position",
+            {
+                ascending: true
+            }
+        );
 
-            <div
-                class="empty-icon"
-                style="font-size:35px;"
-            >
-                👥
-            </div>
 
-            <h3>
-                Ward ${wardNumber}
-            </h3>
+    if (excoError) {
 
-            <p>
-                ${data.length}
-                approved member${data.length === 1 ? "" : "s"} found.
-            </p>
-
-        </div>
-
-    `;
+        console.error(
+            "Ward EXCO error:",
+            excoError
+        );
 
 
-    memberCount.textContent =
-        `${data.length} Member${data.length === 1 ? "" : "s"}`;
-
-
-    if (!data.length) {
-
-        membersGrid.innerHTML = `
+        wardExcoGrid.innerHTML = `
 
             <div class="no-members">
 
                 <h3>
-                    No Approved Members
+                    Unable to load executives
                 </h3>
 
                 <p>
-                    There are currently no approved
-                    members in Ward ${wardNumber}.
+                    ${escapeHTML(
+                        excoError.message
+                    )}
                 </p>
 
             </div>
 
         `;
 
-        return;
+    } else if (!exco || !exco.length) {
 
-    }
+        wardExcoGrid.innerHTML = `
 
+            <div class="no-members">
 
-    membersGrid.innerHTML = "";
+                <h3>
+                    No EXCO Assigned
+                </h3>
 
+                <p>
+                    No ward executive positions have
+                    been assigned yet.
+                </p>
 
-    data.forEach(member => {
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            "member-card";
-
-
-        card.innerHTML = `
-
-            <h4>
-                ${escapeHTML(
-                    member.full_name
-                )}
-            </h4>
-
-            <p>
-                <strong>
-                    Phone:
-                </strong>
-
-                ${escapeHTML(
-                    member.phone
-                )}
-            </p>
-
-            <p>
-                <strong>
-                    Polling Booth:
-                </strong>
-
-                ${escapeHTML(
-                    member.polling_booth ||
-                    "Not provided"
-                )}
-            </p>
-
-            <p>
-                <strong>
-                    EXCO:
-                </strong>
-
-                ${escapeHTML(
-                    member.exco_position ||
-                    "Not assigned"
-                )}
-            </p>
-
-            <span class="approved-badge">
-                ✓ Approved Member
-            </span>
+            </div>
 
         `;
 
+    } else {
 
-        card.addEventListener(
-            "click",
-            () => showMemberDetails(member)
-        );
+        wardExcoGrid.innerHTML = "";
 
 
-        membersGrid.appendChild(
-            card
-        );
+        exco.forEach(item => {
 
-    });
+            const card =
+                document.createElement("article");
+
+            card.className =
+                "ward-exco-card";
+
+
+            const memberName =
+                item.members?.full_name;
+
+
+            const phone =
+                item.members?.phone;
+
+
+            card.innerHTML = `
+
+                <h4>
+                    ${escapeHTML(
+                        item.position ||
+                        "Executive Position"
+                    )}
+                </h4>
+
+                ${
+                    memberName
+                        ? `
+                            <p>
+                                <strong>
+                                    Officer:
+                                </strong>
+
+                                ${escapeHTML(
+                                    memberName
+                                )}
+                            </p>
+                        `
+                        : `
+                            <p class="unassigned">
+                                No member assigned
+                            </p>
+                        `
+                }
+
+                ${
+                    phone
+                        ? `
+                            <p>
+                                <strong>
+                                    Phone:
+                                </strong>
+
+                                ${escapeHTML(phone)}
+                            </p>
+                        `
+                        : ""
+                }
+
+            `;
+
+
+            wardExcoGrid.appendChild(card);
+
+        });
+
+    }
 
 }
 
 
-/* ================================
-   MEMBER DETAILS
-================================ */
+/* =========================================================
+   MEMBER MODAL
+========================================================= */
 
 const memberModal =
     document.getElementById(
@@ -1051,13 +1415,24 @@ const memberDetails =
     );
 
 
-function showMemberDetails(
-    member
-) {
+function showMemberDetails(member) {
 
     modalMemberName.textContent =
         member.full_name ||
         "Member Details";
+
+
+    /*
+       IMPORTANT:
+
+       Bank name,
+       account name,
+       account number
+
+       are intentionally NOT displayed here.
+
+       They are private financial details.
+    */
 
 
     memberDetails.innerHTML = `
@@ -1085,52 +1460,8 @@ function showMemberDetails(
 
             <span>
                 ${escapeHTML(
-                    member.phone
-                )}
-            </span>
-
-        </div>
-
-
-        <div class="member-detail">
-
-            <strong>
-                Bank Name
-            </strong>
-
-            <span>
-                ${escapeHTML(
-                    member.bank_name
-                )}
-            </span>
-
-        </div>
-
-
-        <div class="member-detail">
-
-            <strong>
-                Account Name
-            </strong>
-
-            <span>
-                ${escapeHTML(
-                    member.account_name
-                )}
-            </span>
-
-        </div>
-
-
-        <div class="member-detail">
-
-            <strong>
-                Account Number
-            </strong>
-
-            <span>
-                ${escapeHTML(
-                    member.account_number
+                    member.phone ||
+                    "Not provided"
                 )}
             </span>
 
@@ -1176,9 +1507,7 @@ function showMemberDetails(
             </strong>
 
             <span class="status-approved">
-                ${escapeHTML(
-                    member.status
-                )}
+                ✓ Approved
             </span>
 
         </div>
@@ -1193,9 +1522,9 @@ function showMemberDetails(
 }
 
 
-/* ================================
+/* =========================================================
    CLOSE MODAL
-================================ */
+========================================================= */
 
 document
     .getElementById(
@@ -1231,9 +1560,27 @@ memberModal.addEventListener(
 );
 
 
-/* ================================
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            memberModal.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
    YEAR
-================================ */
+========================================================= */
 
 document
     .getElementById(
@@ -1242,7 +1589,15 @@ document
     .textContent =
         new Date().getFullYear();
 
+
+/* =========================================================
+   START
+========================================================= */
+
+loadWards();
+
 </script>
+
 
 <!-- EXISTING SITE SCRIPT -->
 
