@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lainaadavid-glitch.github.io/bwi-rha-ekiti/sitemap.xml
