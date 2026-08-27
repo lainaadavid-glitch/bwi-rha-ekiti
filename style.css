@@ -1467,11 +1467,9 @@ form textarea::placeholder {
         align-items: stretch;
     }
 
-    .main-nav.show,
-    .main-nav.active {
-        display: flex;
-    }
-
+  .main-nav.open {
+    display: flex;
+}
     .main-nav a {
         text-align: center;
     }
