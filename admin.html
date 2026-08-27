@@ -1395,6 +1395,11 @@ function memberEmail(m) {
 }
 
 function memberWard(m) {
+
+    if (m.ward_id !== null && m.ward_id !== undefined && m.ward_id !== "") {
+        return `Ward ${m.ward_id}`;
+    }
+
     return m.ward || m.ward_name || "";
 }
 
@@ -1773,6 +1778,57 @@ async function loadLgExcos() {
 }
 
 
+function findMemberForExco(name, phone = "") {
+
+    const cleanName = String(name || "")
+        .trim()
+        .toLowerCase();
+
+    const cleanPhone = String(phone || "")
+        .trim();
+
+    let member = members.find(m =>
+        memberName(m).trim().toLowerCase() === cleanName
+    );
+
+    if (!member && cleanPhone) {
+        member = members.find(m =>
+            memberPhone(m).trim() === cleanPhone
+        );
+    }
+
+    return member || null;
+}
+
+
+function getMemberById(id) {
+
+    if (!id) {
+        return null;
+    }
+
+    return members.find(m =>
+        String(m.id) === String(id)
+    ) || null;
+}
+
+
+function wardNumberFromValue(value) {
+
+    const match = String(value || "").match(/(\d+)/);
+
+    if (!match) {
+        return null;
+    }
+
+    const number = Number(match[1]);
+
+    return number >= 1 && number <= 13
+        ? number
+        : null;
+}
+
+
 function renderLgExcos() {
 
     const tbody = $("lgExcoTable");
@@ -1793,6 +1849,20 @@ function renderLgExcos() {
     tbody.innerHTML =
         lgExcos.map(row => {
 
+            const member = getMemberById(row.member_id);
+
+            const name = member
+                ? memberName(member)
+                : (row.member_name || row.name || row.full_name || "");
+
+            const phone = member
+                ? memberPhone(member)
+                : (row.phone || row.phone_no || "");
+
+            const ward = member
+                ? memberWard(member)
+                : (row.ward || row.ward_name || "");
+
             return `
                 <tr>
 
@@ -1802,29 +1872,16 @@ function renderLgExcos() {
 
                     <td>
                         <strong>
-                            ${escapeHtml(
-                                row.member_name ||
-                                row.name ||
-                                row.full_name ||
-                                ""
-                            )}
+                            ${escapeHtml(name)}
                         </strong>
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            row.phone ||
-                            row.phone_no ||
-                            ""
-                        )}
+                        ${escapeHtml(phone)}
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            row.ward ||
-                            row.ward_name ||
-                            ""
-                        )}
+                        ${escapeHtml(ward)}
                     </td>
 
                     <td>
@@ -1873,26 +1930,24 @@ function openLgExcoModal(id = null) {
             return;
         }
 
+        const member = getMemberById(row.member_id);
+
         $("lgExcoId").value = row.id;
 
         $("lgPosition").value =
             row.position || "";
 
-        $("lgMemberName").value =
-            row.member_name ||
-            row.name ||
-            row.full_name ||
-            "";
+        $("lgMemberName").value = member
+            ? memberName(member)
+            : (row.member_name || row.name || row.full_name || "");
 
-        $("lgPhone").value =
-            row.phone ||
-            row.phone_no ||
-            "";
+        $("lgPhone").value = member
+            ? memberPhone(member)
+            : (row.phone || row.phone_no || "");
 
-        $("lgWard").value =
-            row.ward ||
-            row.ward_name ||
-            "";
+        $("lgWard").value = member
+            ? memberWard(member)
+            : (row.ward || row.ward_name || "");
     }
 
     $("lgExcoModal").classList.add("show");
@@ -1905,19 +1960,28 @@ async function saveLgExco(event) {
 
     const id = $("lgExcoId").value;
 
+    const name = $("lgMemberName").value.trim();
+    const phone = $("lgPhone").value.trim();
+
+    const member = findMemberForExco(name, phone);
+
+    if (!member) {
+
+        toast(
+            "The EXCO member must be a registered member. Check the name or phone number.",
+            "error"
+        );
+
+        return;
+    }
+
     const payload = {
 
         position:
             $("lgPosition").value.trim(),
 
-        member_name:
-            $("lgMemberName").value.trim(),
-
-        phone:
-            $("lgPhone").value.trim(),
-
-        ward:
-            $("lgWard").value
+        member_id:
+            member.id
 
     };
 
@@ -2085,9 +2149,8 @@ function renderWardExcos() {
     const rows =
         filter === "all"
             ? wardExcos
-            : wardExcos.filter(
-                row =>
-                    (row.ward || row.ward_name || "") === filter
+            : wardExcos.filter(row =>
+                `Ward ${row.ward_id}` === filter
             );
 
     if (!rows.length) {
@@ -2106,15 +2169,25 @@ function renderWardExcos() {
     tbody.innerHTML =
         rows.map(row => {
 
+            const member = getMemberById(row.member_id);
+
+            const ward = row.ward_id
+                ? `Ward ${row.ward_id}`
+                : (row.ward || row.ward_name || "");
+
+            const name = member
+                ? memberName(member)
+                : (row.member_name || row.name || row.full_name || "");
+
+            const phone = member
+                ? memberPhone(member)
+                : (row.phone || row.phone_no || "");
+
             return `
                 <tr>
 
                     <td>
-                        ${escapeHtml(
-                            row.ward ||
-                            row.ward_name ||
-                            ""
-                        )}
+                        ${escapeHtml(ward)}
                     </td>
 
                     <td>
@@ -2123,21 +2196,12 @@ function renderWardExcos() {
 
                     <td>
                         <strong>
-                            ${escapeHtml(
-                                row.member_name ||
-                                row.name ||
-                                row.full_name ||
-                                ""
-                            )}
+                            ${escapeHtml(name)}
                         </strong>
                     </td>
 
                     <td>
-                        ${escapeHtml(
-                            row.phone ||
-                            row.phone_no ||
-                            ""
-                        )}
+                        ${escapeHtml(phone)}
                     </td>
 
                     <td>
@@ -2186,26 +2250,24 @@ function openWardExcoModal(id = null) {
             return;
         }
 
+        const member = getMemberById(row.member_id);
+
         $("wardExcoId").value = row.id;
 
-        $("wardExcoWard").value =
-            row.ward ||
-            row.ward_name ||
-            "";
+        $("wardExcoWard").value = row.ward_id
+            ? `Ward ${row.ward_id}`
+            : (row.ward || row.ward_name || "");
 
         $("wardPosition").value =
             row.position || "";
 
-        $("wardMemberName").value =
-            row.member_name ||
-            row.name ||
-            row.full_name ||
-            "";
+        $("wardMemberName").value = member
+            ? memberName(member)
+            : (row.member_name || row.name || row.full_name || "");
 
-        $("wardPhone").value =
-            row.phone ||
-            row.phone_no ||
-            "";
+        $("wardPhone").value = member
+            ? memberPhone(member)
+            : (row.phone || row.phone_no || "");
     }
 
     $("wardExcoModal").classList.add("show");
@@ -2224,19 +2286,50 @@ async function saveWardExco(event) {
     const id =
         $("wardExcoId").value;
 
+    const wardValue =
+        $("wardExcoWard").value;
+
+    const wardId = wardNumberFromValue(wardValue);
+
+    if (!wardId) {
+
+        toast(
+            "Please select a valid ward.",
+            "error"
+        );
+
+        return;
+    }
+
+    const name =
+        $("wardMemberName").value.trim();
+
+    const phone =
+        $("wardPhone").value.trim();
+
+    const member =
+        findMemberForExco(name, phone);
+
+    if (!member) {
+
+        toast(
+            "The EXCO member must be a registered member. Check the name or phone number.",
+            "error"
+        );
+
+        return;
+    }
+
     const payload = {
 
-        ward:
-            $("wardExcoWard").value,
+        ward_id:
+            wardId,
 
         position:
             $("wardPosition").value.trim(),
 
-        member_name:
-            $("wardMemberName").value.trim(),
-
-        phone:
-            $("wardPhone").value.trim()
+        member_id:
+            member.id
 
     };
 
