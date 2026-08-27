@@ -1447,7 +1447,7 @@ form textarea::placeholder {
 
         position: absolute;
 
-        top: 82px;
+        top: 100%;
 
         left: 0;
         right: 0;
@@ -1465,13 +1465,19 @@ form textarea::placeholder {
         flex-direction: column;
 
         align-items: stretch;
+
+        width: 100%;
     }
 
-  .main-nav.open {
-    display: flex;
-}
+    /* MOBILE MENU FIX */
+    .main-nav.open {
+        display: flex;
+    }
+
     .main-nav a {
         text-align: center;
+        width: 100%;
+        padding: 14px 12px;
     }
 
     .feature-grid {
