@@ -1,22 +1,27 @@
+
+```html
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
+<title>Member Dashboard | BWI-RHA Ado LG</title>
 
->
-
-<title>
-Member Dashboard | BWI-RHA Ado LG
-</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+:root{
+    --green:#16833b;
+    --dark-green:#17351f;
+    --light-green:#e9f7ef;
+    --white:#ffffff;
+    --gray:#f4f7f5;
+    --border:#dfe7e1;
+    --text:#222;
+    --danger:#c62828;
+    --warning:#b77900;
+}
 
 *{
     box-sizing:border-box;
@@ -25,18 +30,20 @@ Member Dashboard | BWI-RHA Ado LG
 body{
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#f4f7f5;
-    color:#222;
+    background:var(--gray);
+    color:var(--text);
 }
 
-.header{
-    background:#16833b;
+/* HEADER */
+header{
+    background:var(--green);
     color:white;
-    padding:16px 20px;
+    padding:15px 20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
 .header-inner{
-    max-width:1100px;
+    max-width:1000px;
     margin:auto;
     display:flex;
     align-items:center;
@@ -50,561 +57,736 @@ body{
     gap:12px;
 }
 
-.logo{
-    width:58px;
-    height:58px;
-    object-fit:contain;
-    background:white;
+.brand img{
+    width:52px;
+    height:52px;
+    object-fit:cover;
     border-radius:50%;
+    background:white;
 }
 
-.brand h1{
+.brand-text h2{
     margin:0;
     font-size:18px;
 }
 
-.brand p{
+.brand-text p{
     margin:4px 0 0;
-    font-size:13px;
+    font-size:12px;
+    opacity:.9;
 }
 
-.logout{
+#logoutButton{
+    border:1px solid rgba(255,255,255,.5);
     background:white;
-    color:#16833b;
-    border:0;
+    color:var(--green);
     padding:10px 15px;
     border-radius:7px;
-    font-weight:bold;
     cursor:pointer;
+    font-weight:bold;
 }
 
+#logoutButton:hover{
+    background:#f1f1f1;
+}
+
+/* MAIN */
 .container{
     max-width:850px;
-    margin:auto;
-    padding:30px 20px;
+    margin:30px auto;
+    padding:0 15px;
 }
 
 .welcome{
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
-.welcome h2{
-    margin-bottom:8px;
+.welcome h1{
+    margin:0 0 6px;
+    font-size:27px;
+    color:var(--dark-green);
 }
 
 .welcome p{
+    margin:0;
     color:#666;
+}
+
+.message{
+    display:none;
+    padding:12px 15px;
+    border-radius:7px;
+    margin-bottom:18px;
+    font-size:14px;
+}
+
+.message.success{
+    display:block;
+    background:#e8f7ed;
+    color:#12652d;
+    border:1px solid #b8e2c4;
+}
+
+.message.error{
+    display:block;
+    background:#fdecec;
+    color:#9c1c1c;
+    border:1px solid #efb7b7;
 }
 
 .card{
     background:white;
-    border-radius:16px;
-    padding:28px;
-    box-shadow:0 7px 25px rgba(0,0,0,.08);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:25px;
     margin-bottom:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
 }
 
-.card h3{
+.card h2{
     margin-top:0;
-    color:#16833b;
+    color:var(--dark-green);
+    font-size:21px;
 }
 
-.status{
-    padding:18px;
-    border-radius:10px;
-    margin-bottom:20px;
+/* FORM */
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
 }
 
-.pending{
-    background:#fff5cc;
-    color:#755900;
+.form-group{
+    display:flex;
+    flex-direction:column;
 }
 
-.approved{
-    background:#dff6e7;
-    color:#12652c;
-}
-
-.rejected{
-    background:#ffe5e5;
-    color:#9a0000;
-}
-
-.group{
-    margin-bottom:17px;
+.form-group.full{
+    grid-column:1/-1;
 }
 
 label{
-    display:block;
+    font-size:14px;
     font-weight:bold;
     margin-bottom:7px;
+    color:#333;
 }
 
 input,
 select{
     width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-size:15px;
+    padding:12px;
+    border:1px solid #ccd7cf;
+    border-radius:7px;
+    outline:none;
+    font-size:14px;
     background:white;
 }
 
 input:focus,
 select:focus{
-    outline:none;
-    border-color:#16833b;
+    border-color:var(--green);
+    box-shadow:0 0 0 2px rgba(22,131,59,.1);
 }
 
-button.submit{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:8px;
-    background:#16833b;
+input[readonly]{
+    background:#f1f4f2;
+    color:#666;
+}
+
+.help-text{
+    font-size:12px;
+    color:#777;
+    margin-top:5px;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.primary-button{
+    background:var(--green);
     color:white;
-    font-size:16px;
-    font-weight:bold;
+    border:none;
+    padding:12px 20px;
+    border-radius:7px;
     cursor:pointer;
+    font-weight:bold;
 }
 
-button.submit:disabled{
+.primary-button:hover{
+    background:#116b30;
+}
+
+.secondary-button{
+    background:#eef2ef;
+    color:#333;
+    border:1px solid #d5ddd7;
+    padding:12px 20px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.secondary-button:hover{
+    background:#e2e8e3;
+}
+
+.primary-button:disabled{
     opacity:.6;
+    cursor:not-allowed;
 }
 
-.message{
-    display:none;
-    padding:12px;
+/* STATUS */
+.status-box{
+    padding:15px;
     border-radius:8px;
-    margin-bottom:18px;
-    line-height:1.5;
+    margin-bottom:20px;
+    font-weight:bold;
 }
 
-.error{
-    display:block;
-    background:#ffe5e5;
-    color:#a00000;
+.status-pending{
+    background:#fff7df;
+    color:#8a6200;
+    border:1px solid #f1d98c;
 }
 
-.success{
-    display:block;
-    background:#e1f6e8;
-    color:#12652c;
+.status-approved{
+    background:#e8f7ed;
+    color:#12652d;
+    border:1px solid #b8e2c4;
 }
 
-.details{
+.status-declined{
+    background:#fdecec;
+    color:#a11d1d;
+    border:1px solid #efb7b7;
+}
+
+.details-grid{
     display:grid;
-    gap:0;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 
 .detail{
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    padding:13px 0;
-    border-bottom:1px solid #eee;
+    border:1px solid #e3e9e5;
+    background:#fafcfb;
+    border-radius:7px;
+    padding:12px;
 }
 
-.detail strong{
-    color:#555;
+.detail.full{
+    grid-column:1/-1;
 }
 
-.detail span{
-    text-align:right;
+.detail-label{
+    font-size:11px;
+    color:#777;
+    text-transform:uppercase;
+    margin-bottom:4px;
+}
+
+.detail-value{
+    font-weight:bold;
+    word-break:break-word;
+}
+
+.edit-area{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid #e2e8e3;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#666;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
     font-weight:bold;
 }
 
-@media(max-width:600px){
+.badge-pending{
+    background:#fff0bd;
+    color:#815d00;
+}
 
+.badge-approved{
+    background:#d8f3df;
+    color:#12652d;
+}
+
+.badge-declined{
+    background:#f8d8d8;
+    color:#a11d1d;
+}
+
+@media(max-width:650px){
     .header-inner{
         align-items:flex-start;
     }
 
-    .brand h1{
+    .brand-text h2{
         font-size:15px;
     }
 
-    .container{
-        padding:20px 15px;
+    .brand-text p{
+        font-size:10px;
+    }
+
+    .form-grid,
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full,
+    .detail.full{
+        grid-column:auto;
     }
 
     .card{
-        padding:20px;
+        padding:18px;
     }
 
-    .detail{
-        flex-direction:column;
-        gap:5px;
+    .welcome h1{
+        font-size:23px;
     }
 
-    .detail span{
-        text-align:left;
+    #logoutButton{
+        padding:8px 11px;
+        font-size:12px;
     }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
-<header class="header">
+<header>
+    <div class="header-inner">
 
-<div class="header-inner">
+        <div class="brand">
+            <img src="logo.jpeg" alt="BWI-RHA Logo">
 
-<div class="brand">
+            <div class="brand-text">
+                <h2>BWI-RHA EKITI STATE CHAPTER</h2>
+                <p>ADO LOCAL GOVERNMENT</p>
+            </div>
+        </div>
 
-<img
-src="logo.jpeg"
-class="logo"
-alt="BWI-RHA Logo"
+        <button id="logoutButton">Logout</button>
 
->
-
-<div>
-
-<h1>
-BWI-RHA EKITI STATE CHAPTER
-</h1>
-
-<p>
-ADO LOCAL GOVERNMENT
-</p>
-
-</div>
-
-</div>
-
-<button
-id="logoutButton"
-class="logout"
-
->
-
-Logout </button>
-
-</div>
-
+    </div>
 </header>
+
 
 <main class="container">
 
-<div class="welcome">
+    <div class="welcome">
+        <h1>Welcome, <span id="welcomeName">Member</span> 👋</h1>
+        <p>Manage your BWI-RHA membership information.</p>
+    </div>
 
-<h2 id="welcomeName">
-Member Dashboard
-</h2>
+    <div id="message" class="message"></div>
 
-<p>
-Complete your registration below.
-Your registration will be reviewed by the administrator.
-</p>
 
-</div>
+    <!-- =========================
+         NEW REGISTRATION FORM
+    ========================== -->
+    <div id="registrationCard" class="card hidden">
 
-<div
-    id="message"
-    class="message"
-></div>
+        <h2>Complete Your Registration</h2>
 
-<!-- REGISTRATION FORM -->
+        <p style="color:#666;font-size:14px;">
+            Please provide your membership information below.
+        </p>
 
-<div
-    id="registrationCard"
-    class="card"
-    style="display:none;"
->
+        <form id="registrationForm">
 
-<h3>
-Complete Your Registration
-</h3>
+            <div class="form-grid">
 
-<form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        required
+                        placeholder="Enter your full name"
+                    >
+                </div>
 
-<div class="group">
 
-<label for="fullName">
-Full Name
-</label>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        readonly
+                    >
+                </div>
 
-<input
-id="fullName"
-type="text"
-required
 
->
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="Enter phone number"
+                    >
+                </div>
 
-</div>
 
-<div class="group">
+                <div class="form-group">
+                    <label for="pvcNumber">PVC Number</label>
+                    <input
+                        type="text"
+                        id="pvcNumber"
+                        placeholder="Enter PVC number"
+                    >
+                </div>
 
-<label for="phone">
-Phone Number
-</label>
 
-<input
-id="phone"
-type="tel"
-required
+                <div class="form-group">
+                    <label for="nin">NIN</label>
+                    <input
+                        type="text"
+                        id="nin"
+                        maxlength="11"
+                        inputmode="numeric"
+                        placeholder="Enter 11-digit NIN"
+                    >
 
->
+                    <span class="help-text">
+                        NIN should contain 11 digits.
+                    </span>
+                </div>
 
-</div>
 
-<div class="group">
+                <div class="form-group">
+                    <label for="natureOfJob">Nature of Job</label>
+                    <input
+                        type="text"
+                        id="natureOfJob"
+                        placeholder="e.g. Trader, Teacher, Farmer"
+                    >
+                </div>
 
-<label for="ward">
-Ward
-</label>
 
-<select
-id="ward"
-required
+                <div class="form-group">
+                    <label for="ward">Ward *</label>
 
->
+                    <select id="ward" required>
+                        <option value="">Select Ward</option>
+                        <option value="1">Ward 1</option>
+                        <option value="2">Ward 2</option>
+                        <option value="3">Ward 3</option>
+                        <option value="4">Ward 4</option>
+                        <option value="5">Ward 5</option>
+                        <option value="6">Ward 6</option>
+                        <option value="7">Ward 7</option>
+                        <option value="8">Ward 8</option>
+                        <option value="9">Ward 9</option>
+                        <option value="10">Ward 10</option>
+                        <option value="11">Ward 11</option>
+                        <option value="12">Ward 12</option>
+                        <option value="13">Ward 13</option>
+                    </select>
+                </div>
 
-<option value="">
-Select your ward
-</option>
 
-<option value="1">Ward 1</option>
-<option value="2">Ward 2</option>
-<option value="3">Ward 3</option>
-<option value="4">Ward 4</option>
-<option value="5">Ward 5</option>
-<option value="6">Ward 6</option>
-<option value="7">Ward 7</option>
-<option value="8">Ward 8</option>
-<option value="9">Ward 9</option>
-<option value="10">Ward 10</option>
-<option value="11">Ward 11</option>
-<option value="12">Ward 12</option>
-<option value="13">Ward 13</option>
+                <div class="form-group">
+                    <label for="bankName">Bank Name</label>
 
-</select>
+                    <input
+                        type="text"
+                        id="bankName"
+                        placeholder="Enter bank name"
+                    >
+                </div>
 
-</div>
 
-<div class="group">
+                <div class="form-group">
+                    <label for="accountName">Account Name</label>
 
-<label for="bankName">
-Bank Name
-</label>
+                    <input
+                        type="text"
+                        id="accountName"
+                        placeholder="Enter account name"
+                    >
+                </div>
 
-<input
-id="bankName"
-type="text"
-placeholder="Enter bank name"
 
->
+                <div class="form-group">
+                    <label for="accountNumber">Account Number</label>
 
-</div>
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        maxlength="20"
+                        inputmode="numeric"
+                        placeholder="Enter account number"
+                    >
+                </div>
 
-<div class="group">
 
-<label for="accountName">
-Account Name
-</label>
+                <div class="form-group">
+                    <label for="pollingBooth">Polling Booth</label>
 
-<input
-id="accountName"
-type="text"
-placeholder="Enter account name"
+                    <input
+                        type="text"
+                        id="pollingBooth"
+                        placeholder="Enter polling booth"
+                    >
+                </div>
 
->
+            </div>
 
-</div>
 
-<div class="group">
+            <div class="form-actions">
 
-<label for="accountNumber">
-Account Number
-</label>
+                <button
+                    type="submit"
+                    id="submitButton"
+                    class="primary-button"
+                >
+                    Submit Registration
+                </button>
 
-<input
-id="accountNumber"
-type="text"
-inputmode="numeric"
-maxlength="20"
-placeholder="Enter account number"
+                <button
+                    type="button"
+                    id="cancelEditButton"
+                    class="secondary-button hidden"
+                >
+                    Cancel
+                </button>
 
->
+            </div>
 
-</div>
+        </form>
 
-<div class="group">
+    </div>
 
-<label for="pollingBooth">
-Polling Booth
-</label>
 
-<input
-id="pollingBooth"
-type="text"
-placeholder="Enter polling booth"
 
->
+    <!-- =========================
+         MEMBER STATUS
+    ========================== -->
+    <div id="statusCard" class="card hidden">
 
-</div>
+        <h2>Membership Status</h2>
 
-<button
-id="submitButton"
-class="submit"
-type="submit"
+        <div id="statusBox" class="status-box"></div>
 
->
+        <div id="memberDetails"></div>
 
-Submit Registration </button>
+        <div class="form-actions">
+            <button
+                type="button"
+                id="editButton"
+                class="primary-button"
+            >
+                ✏️ Edit My Details
+            </button>
+        </div>
 
-</form>
+    </div>
 
-</div>
 
-<!-- PENDING/APPROVED INFORMATION -->
-
-<div
-    id="statusCard"
-    class="card"
-    style="display:none;"
->
-
-<h3>
-Registration Status
-</h3>
-
-<div
-    id="statusBox"
-    class="status"
-></div>
-
-<div
-    id="memberDetails"
-    class="details"
-></div>
-
-</div>
+    <div id="loading" class="card loading">
+        Loading your membership information...
+    </div>
 
 </main>
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
 
 <script>
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
-"https://xfjrmgendmmpnumsbjte.supabase.co";
+    "https://xfjrmgendmmpnumsbjte.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7";
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loading =
+    document.getElementById("loading");
 
 const registrationCard =
-document.getElementById(
-    "registrationCard"
-);
+    document.getElementById("registrationCard");
 
 const statusCard =
-document.getElementById(
-    "statusCard"
-);
+    document.getElementById("statusCard");
 
-const statusBox =
-document.getElementById(
-    "statusBox"
-);
-
-const memberDetails =
-document.getElementById(
-    "memberDetails"
-);
+const registrationForm =
+    document.getElementById("registrationForm");
 
 const message =
-document.getElementById(
-    "message"
-);
+    document.getElementById("message");
 
 const welcomeName =
-document.getElementById(
-    "welcomeName"
-);
+    document.getElementById("welcomeName");
+
+const statusBox =
+    document.getElementById("statusBox");
+
+const memberDetails =
+    document.getElementById("memberDetails");
+
+const editButton =
+    document.getElementById("editButton");
+
+const cancelEditButton =
+    document.getElementById("cancelEditButton");
+
+const submitButton =
+    document.getElementById("submitButton");
+
+const logoutButton =
+    document.getElementById("logoutButton");
 
 
-function showMessage(
-    text,
-    type
-){
+let currentUser = null;
+let currentMember = null;
+let editing = false;
 
-    message.textContent=text;
 
-    message.className=
-        "message "+type;
+/* =========================================================
+   MESSAGE
+========================================================= */
 
+function showMessage(text, type = "success") {
+
+    message.textContent = text;
+
+    message.className =
+        "message " + type;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
 
-function escapeHTML(value){
+function clearMessage(){
 
-    return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    message.textContent = "";
 
+    message.className =
+        "message";
 }
 
 
-/* ================================
-   CHECK LOGIN
-================================ */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 async function initialize(){
 
-    const {
-        data:{
-            user
+    try{
+
+        const {
+            data: { user },
+            error
+        } =
+        await supabaseClient.auth.getUser();
+
+
+        if(error){
+
+            console.error(error);
+
+            window.location.href =
+                "member-login.html";
+
+            return;
         }
-    } =
-    await supabaseClient.auth.getUser();
 
 
-    if(!user){
+        if(!user){
 
-        window.location.href=
-            "member-login.html";
+            window.location.href =
+                "member-login.html";
 
-        return;
+            return;
+        }
+
+
+        currentUser = user;
+
+
+        document.getElementById("email").value =
+            user.email || "";
+
+
+        const metadataName =
+            user.user_metadata?.full_name || "";
+
+
+        welcomeName.textContent =
+            metadataName || "Member";
+
+
+        await loadRegistration(user);
 
     }
 
+    catch(error){
 
-    const fullName =
-        user.user_metadata?.full_name ||
-        "Member";
+        console.error(error);
 
+        loading.innerHTML =
+            "Unable to load your account. Please refresh the page.";
 
-    welcomeName.textContent =
-        `Welcome, ${fullName}`;
-
-
-    await loadRegistration(user);
+    }
 
 }
 
 
-/* ================================
-   LOAD MEMBER RECORD
-================================ */
+/* =========================================================
+   LOAD MEMBER
+========================================================= */
 
 async function loadRegistration(user){
+
+    clearMessage();
+
+    loading.classList.remove("hidden");
+
+    registrationCard.classList.add("hidden");
+
+    statusCard.classList.add("hidden");
+
 
     const {
         data,
@@ -613,462 +795,856 @@ async function loadRegistration(user){
     await supabaseClient
         .from("members")
         .select("*")
-        .eq(
-            "auth_user_id",
-            user.id
-        )
+        .eq("auth_user_id", user.id)
         .maybeSingle();
+
+
+    loading.classList.add("hidden");
 
 
     if(error){
 
-        console.error(error);
+        console.error("Member loading error:", error);
 
         showMessage(
+            "Unable to load your membership information. " +
             error.message,
             "error"
         );
 
         return;
-
     }
 
+
+    currentMember = data;
+
+
+    /* ---------------------------------------------
+       NO MEMBER RECORD
+    --------------------------------------------- */
 
     if(!data){
 
-        registrationCard.style.display=
-            "block";
+        editing = false;
 
-        statusCard.style.display=
-            "none";
+        registrationCard.classList.remove("hidden");
 
+        statusCard.classList.add("hidden");
 
-        document.getElementById(
-            "fullName"
-        ).value =
-            user.user_metadata?.full_name ||
-            "";
+        submitButton.textContent =
+            "Submit Registration";
+
+        cancelEditButton.classList.add("hidden");
 
 
-        document.getElementById(
-            "phone"
-        ).value =
-            user.user_metadata?.phone ||
-            "";
+        document.getElementById("fullName").value =
+            user.user_metadata?.full_name || "";
 
+        document.getElementById("phone").value =
+            user.user_metadata?.phone || "";
+
+        document.getElementById("email").value =
+            user.email || "";
 
         return;
-
     }
 
 
-    registrationCard.style.display=
-        "none";
+    /* ---------------------------------------------
+       EXISTING MEMBER
+    --------------------------------------------- */
 
-    statusCard.style.display=
-        "block";
-
+    fillForm(data);
 
     showRegistrationStatus(data);
 
 }
 
 
-/* ================================
-   SHOW STATUS
-================================ */
+/* =========================================================
+   FILL FORM WITH OLD DETAILS
+========================================================= */
 
-function showRegistrationStatus(member){
+function fillForm(data){
+
+    document.getElementById("fullName").value =
+        data.full_name || "";
+
+    document.getElementById("email").value =
+        currentUser?.email || data.email || "";
+
+    document.getElementById("phone").value =
+        data.phone || "";
+
+    document.getElementById("pvcNumber").value =
+        data.pvc_number || "";
+
+    document.getElementById("nin").value =
+        data.nin || "";
+
+    document.getElementById("natureOfJob").value =
+        data.nature_of_job || "";
+
+    document.getElementById("ward").value =
+        data.ward_id || "";
+
+    document.getElementById("bankName").value =
+        data.bank_name || "";
+
+    document.getElementById("accountName").value =
+        data.account_name || "";
+
+    document.getElementById("accountNumber").value =
+        data.account_number || "";
+
+    document.getElementById("pollingBooth").value =
+        data.polling_booth || "";
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function showRegistrationStatus(data){
+
+    registrationCard.classList.add("hidden");
+
+    statusCard.classList.remove("hidden");
+
 
     const status =
-        member.status;
+        String(data.status || "pending").toLowerCase();
 
 
-    if(status === "pending"){
+    if(status === "approved"){
 
-        statusBox.className=
-            "status pending";
+        statusBox.className =
+            "status-box status-approved";
 
-        statusBox.innerHTML=
-            "<strong>🟡 Pending Registration</strong><br><br>" +
-            "Your registration has been submitted and is waiting for administrator approval.";
+        statusBox.innerHTML =
+            "✅ Your membership has been <strong>APPROVED</strong>.";
 
-    }
-
-
-    else if(status === "approved"){
-
-        statusBox.className=
-            "status approved";
-
-        statusBox.innerHTML=
-            "<strong>🟢 Approved</strong><br><br>" +
-            "Congratulations! Your BWI-RHA membership has been approved.";
+        editButton.style.display =
+            "inline-block";
 
     }
 
+    else if(status === "declined"){
 
-    else if(status === "rejected"){
+        statusBox.className =
+            "status-box status-declined";
 
-        statusBox.className=
-            "status rejected";
+        statusBox.innerHTML =
+            "❌ Your membership was <strong>DECLINED</strong>. " +
+            "You can update your details and resubmit.";
 
-        statusBox.innerHTML=
-            "<strong>🔴 Registration Rejected</strong><br><br>" +
-            "Your registration was not approved. Please contact the administrator.";
+        editButton.style.display =
+            "inline-block";
 
     }
 
+    else{
 
-    memberDetails.innerHTML=`
+        statusBox.className =
+            "status-box status-pending";
 
-        <div class="detail">
-            <strong>Full Name</strong>
-            <span>
-                ${escapeHTML(member.full_name)}
-            </span>
+        statusBox.innerHTML =
+            "⏳ Your membership is currently <strong>PENDING</strong> " +
+            "and is awaiting admin review.";
+
+        editButton.style.display =
+            "inline-block";
+    }
+
+
+    let wardText =
+        data.ward_id
+        ? "Ward " + data.ward_id
+        : "Not provided";
+
+
+    memberDetails.innerHTML = `
+
+        <div class="details-grid">
+
+            <div class="detail">
+                <div class="detail-label">
+                    Full Name
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.full_name || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Email
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.email || currentUser?.email || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Phone Number
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.phone || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    PVC Number
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.pvc_number || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    NIN
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.nin || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Nature of Job
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.nature_of_job || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Ward
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(wardText)}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Bank Name
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.bank_name || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Account Name
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.account_name || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Account Number
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.account_number || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Polling Booth
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.polling_booth || "Not provided")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    EXCO Position
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHtml(data.exco_position || "Not assigned")}
+                </div>
+            </div>
+
+
+            <div class="detail">
+                <div class="detail-label">
+                    Membership Status
+                </div>
+
+                <div class="detail-value">
+                    ${getStatusBadge(status)}
+                </div>
+            </div>
+
         </div>
-
-        <div class="detail">
-            <strong>Phone</strong>
-            <span>
-                ${escapeHTML(member.phone)}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>Ward</strong>
-            <span>
-                Ward ${escapeHTML(member.ward_id)}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>Bank Name</strong>
-            <span>
-                ${escapeHTML(member.bank_name || "Not provided")}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>Account Name</strong>
-            <span>
-                ${escapeHTML(member.account_name || "Not provided")}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>Account Number</strong>
-            <span>
-                ${escapeHTML(member.account_number || "Not provided")}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>Polling Booth</strong>
-            <span>
-                ${escapeHTML(member.polling_booth || "Not provided")}
-            </span>
-        </div>
-
-        <div class="detail">
-            <strong>EXCO Position</strong>
-            <span>
-                ${escapeHTML(member.exco_position || "Not assigned")}
-            </span>
-        </div>
-
     `;
 
 }
 
 
-/* ================================
-   SUBMIT REGISTRATION
-================================ */
+/* =========================================================
+   STATUS BADGE
+========================================================= */
 
-document
-.getElementById("registrationForm")
-.addEventListener(
-"submit",
-async(event)=>{
+function getStatusBadge(status){
 
-    event.preventDefault();
+    if(status === "approved"){
 
-
-    const {
-        data:{
-            user
-        }
-    } =
-    await supabaseClient.auth.getUser();
-
-
-    if(!user){
-
-        window.location.href=
-            "member-login.html";
-
-        return;
+        return `
+            <span class="badge badge-approved">
+                APPROVED
+            </span>
+        `;
 
     }
 
+    if(status === "declined"){
 
-    const fullName =
-        document
-        .getElementById("fullName")
-        .value.trim();
-
-
-    const phone =
-        document
-        .getElementById("phone")
-        .value.trim();
-
-
-    const ward =
-        Number(
-            document
-            .getElementById("ward")
-            .value
-        );
-
-
-    const bankName =
-        document
-        .getElementById("bankName")
-        .value.trim();
-
-
-    const accountName =
-        document
-        .getElementById("accountName")
-        .value.trim();
-
-
-    const accountNumber =
-        document
-        .getElementById("accountNumber")
-        .value.trim();
-
-
-    const pollingBooth =
-        document
-        .getElementById("pollingBooth")
-        .value.trim();
-
-
-    if(
-        !fullName ||
-        !phone ||
-        !ward
-    ){
-
-        showMessage(
-            "Please complete your name, phone number and ward.",
-            "error"
-        );
-
-        return;
+        return `
+            <span class="badge badge-declined">
+                DECLINED
+            </span>
+        `;
 
     }
 
+    return `
+        <span class="badge badge-pending">
+            PENDING
+        </span>
+    `;
+}
 
-    if(
-        ward < 1 ||
-        ward > 13
-    ){
 
-        showMessage(
-            "Please select a valid ward from Ward 1 to Ward 13.",
-            "error"
-        );
+/* =========================================================
+   EDIT
+========================================================= */
 
+editButton.addEventListener("click", function(){
+
+    if(!currentMember)
         return;
+
+
+    editing = true;
+
+    fillForm(currentMember);
+
+
+    statusCard.classList.add("hidden");
+
+    registrationCard.classList.remove("hidden");
+
+
+    submitButton.textContent =
+        "Save Changes";
+
+    cancelEditButton.classList.remove("hidden");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================================================
+   CANCEL EDIT
+========================================================= */
+
+cancelEditButton.addEventListener("click", function(){
+
+    if(currentMember){
+
+        editing = false;
+
+        registrationCard.classList.add("hidden");
+
+        showRegistrationStatus(currentMember);
+
+        clearMessage();
 
     }
 
-
-    const submitButton =
-        document.getElementById(
-            "submitButton"
-        );
+});
 
 
-    submitButton.disabled=true;
+/* =========================================================
+   SUBMIT / UPDATE
+========================================================= */
 
-    submitButton.textContent=
-        "Submitting...";
+registrationForm.addEventListener(
+    "submit",
+    async function(event){
 
+        event.preventDefault();
 
-    const {
-        data:existing,
-        error:findError
-    } =
-    await supabaseClient
-        .from("members")
-        .select("id,status")
-        .eq(
-            "auth_user_id",
-            user.id
-        )
-        .maybeSingle();
+        clearMessage();
 
 
-    if(findError){
+        if(!currentUser){
 
-        showMessage(
-            findError.message,
-            "error"
-        );
-
-        submitButton.disabled=false;
-        submitButton.textContent=
-            "Submit Registration";
-
-        return;
-
-    }
-
-
-    let result;
-
-
-    if(existing){
-
-        /*
-         * Update an existing registration.
-         * A rejected member can resubmit.
-         */
-
-        result =
-        await supabaseClient
-            .from("members")
-            .update({
-
-                full_name:fullName,
-
-                phone:phone,
-
-                ward_id:ward,
-
-                bank_name:bankName || null,
-
-                account_name:accountName || null,
-
-                account_number:accountNumber || null,
-
-                polling_booth:pollingBooth || null,
-
-                status:"pending",
-
-                reviewed_at:null
-
-            })
-            .eq(
-                "id",
-                existing.id
+            showMessage(
+                "Your session has expired. Please log in again.",
+                "error"
             );
 
-    }else{
+            return;
+        }
 
-        /*
-         * Create the member record.
-         *
-         * id is generated by the database.
-         * auth_user_id connects the record
-         * to the logged-in Supabase user.
-         */
 
-        result =
-        await supabaseClient
-            .from("members")
-            .insert({
+        const fullName =
+            document.getElementById("fullName")
+                .value
+                .trim();
 
-                full_name:fullName,
 
-                phone:phone,
+        const phone =
+            document.getElementById("phone")
+                .value
+                .trim();
 
-                email:user.email,
 
-                ward_id:ward,
+        const email =
+            document.getElementById("email")
+                .value
+                .trim();
 
-                bank_name:bankName || null,
 
-                account_name:accountName || null,
+        const pvcNumber =
+            document.getElementById("pvcNumber")
+                .value
+                .trim();
 
-                account_number:accountNumber || null,
 
-                polling_booth:pollingBooth || null,
+        const nin =
+            document.getElementById("nin")
+                .value
+                .trim();
 
-                status:"pending",
 
-                auth_user_id:user.id
+        const natureOfJob =
+            document.getElementById("natureOfJob")
+                .value
+                .trim();
 
-            });
+
+        const ward =
+            document.getElementById("ward")
+                .value;
+
+
+        const bankName =
+            document.getElementById("bankName")
+                .value
+                .trim();
+
+
+        const accountName =
+            document.getElementById("accountName")
+                .value
+                .trim();
+
+
+        const accountNumber =
+            document.getElementById("accountNumber")
+                .value
+                .trim();
+
+
+        const pollingBooth =
+            document.getElementById("pollingBooth")
+                .value
+                .trim();
+
+
+        /* VALIDATION */
+
+        if(!fullName){
+
+            showMessage(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(!phone){
+
+            showMessage(
+                "Please enter your phone number.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(!ward){
+
+            showMessage(
+                "Please select your ward.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(nin && !/^\d{11}$/.test(nin)){
+
+            showMessage(
+                "NIN must contain exactly 11 digits.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if(accountNumber &&
+           !/^\d+$/.test(accountNumber)){
+
+            showMessage(
+                "Account number should contain numbers only.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            editing
+            ? "Saving..."
+            : "Submitting...";
+
+
+        try{
+
+            /* ---------------------------------------------
+               FIND EXISTING RECORD AGAIN
+            --------------------------------------------- */
+
+            const {
+                data: existing,
+                error: findError
+            } =
+            await supabaseClient
+                .from("members")
+                .select("*")
+                .eq("auth_user_id", currentUser.id)
+                .maybeSingle();
+
+
+            if(findError)
+                throw findError;
+
+
+            /* ---------------------------------------------
+               UPDATE EXISTING MEMBER
+            --------------------------------------------- */
+
+            if(existing){
+
+                let updateData = {
+
+                    full_name: fullName,
+
+                    phone: phone,
+
+                    ward_id: Number(ward),
+
+                    bank_name:
+                        bankName || null,
+
+                    account_name:
+                        accountName || null,
+
+                    account_number:
+                        accountNumber || null,
+
+                    polling_booth:
+                        pollingBooth || null,
+
+                    pvc_number:
+                        pvcNumber || null,
+
+                    nin:
+                        nin || null,
+
+                    nature_of_job:
+                        natureOfJob || null
+                };
+
+
+                /*
+                 * If the member was declined,
+                 * editing and saving resubmits
+                 * the membership for review.
+                 *
+                 * Approved and pending members
+                 * keep their current status.
+                 */
+
+                if(existing.status === "declined"){
+
+                    updateData.status =
+                        "pending";
+
+                    updateData.reviewed_at =
+                        null;
+                }
+
+
+                const {
+                    error: updateError
+                } =
+                await supabaseClient
+                    .from("members")
+                    .update(updateData)
+                    .eq("id", existing.id);
+
+
+                if(updateError)
+                    throw updateError;
+
+
+                showMessage(
+                    existing.status === "declined"
+                    ? "Your details have been updated and your membership has been resubmitted for approval."
+                    : "Your membership details have been updated successfully.",
+                    "success"
+                );
+
+            }
+
+
+            /* ---------------------------------------------
+               CREATE NEW MEMBER
+            --------------------------------------------- */
+
+            else{
+
+                const insertData = {
+
+                    full_name: fullName,
+
+                    phone: phone,
+
+                    email: email || currentUser.email,
+
+                    ward_id: Number(ward),
+
+                    bank_name:
+                        bankName || null,
+
+                    account_name:
+                        accountName || null,
+
+                    account_number:
+                        accountNumber || null,
+
+                    polling_booth:
+                        pollingBooth || null,
+
+                    pvc_number:
+                        pvcNumber || null,
+
+                    nin:
+                        nin || null,
+
+                    nature_of_job:
+                        natureOfJob || null,
+
+                    status:
+                        "pending",
+
+                    auth_user_id:
+                        currentUser.id
+                };
+
+
+                const {
+                    error: insertError
+                } =
+                await supabaseClient
+                    .from("members")
+                    .insert(insertData);
+
+
+                if(insertError)
+                    throw insertError;
+
+
+                showMessage(
+                    "Registration submitted successfully. Your membership is now pending approval.",
+                    "success"
+                );
+
+            }
+
+
+            editing = false;
+
+            await loadRegistration(currentUser);
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Registration/update error:",
+                error
+            );
+
+
+            let errorMessage =
+                error?.message ||
+                "Unable to save your information.";
+
+
+            if(
+                errorMessage
+                    .toLowerCase()
+                    .includes("row-level security")
+            ){
+
+                errorMessage =
+                    "You are not permitted to update this membership record. Please contact the administrator.";
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+        }
+
+        finally{
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                editing
+                ? "Save Changes"
+                : "Submit Registration";
+
+        }
 
     }
+);
 
 
-    if(result.error){
-
-        console.error(
-            result.error
-        );
-
-        showMessage(
-            result.error.message,
-            "error"
-        );
-
-        submitButton.disabled=false;
-        submitButton.textContent=
-            "Submit Registration";
-
-        return;
-
-    }
-
-
-    showMessage(
-        "Registration submitted successfully. Your status is now Pending.",
-        "success"
-    );
-
-
-    setTimeout(
-        ()=>{
-
-            loadRegistration(user);
-
-        },
-        800
-    );
-
-});
-
-
-/* ================================
+/* =========================================================
    LOGOUT
-================================ */
+========================================================= */
 
-document
-.getElementById("logoutButton")
-.addEventListener(
-"click",
-async()=>{
+logoutButton.addEventListener(
+    "click",
+    async function(){
 
-    await supabaseClient.auth.signOut();
+        logoutButton.disabled = true;
 
-    window.location.href=
-        "index.html";
-
-});
+        logoutButton.textContent =
+            "Logging out...";
 
 
-/* ================================
+        await supabaseClient.auth.signOut();
+
+
+        window.location.href =
+            "index.html";
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined)
+        return "";
+
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    function(event, session){
+
+        if(
+            event === "SIGNED_OUT" ||
+            !session
+        ){
+
+            window.location.href =
+                "member-login.html";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
    START
-================================ */
+========================================================= */
 
 initialize();
 
@@ -1076,3 +1652,4 @@ initialize();
 
 </body>
 </html>
+```
