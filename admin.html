@@ -1,1096 +1,2602 @@
-\\\<!DOCTYPE html>
-\\\<html lang="en">
-\\\<head>
-\\\<meta charset="UTF-8">
-\\\<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-\\\<title>BWI-RHA | Admin Dashboard\\\</title>
+<title>BWI-RHA | Admin Dashboard</title>
 
-\\\<script src="[[https://cdn.jsdelivr.net/npm/\](https://cdn.jsdelivr.net/npm/)](https://cdn.jsdelivr.net/npm/]\(https://cdn.jsdelivr.net/npm/\))@Supabase/supabase-js\\@2">\\\</script>
+<script src="https://cdn.jsdelivr.net/npm/@Supabase/supabase-js@2"></script>
 
-\\\<style>
-\\\* {
-&#x20;   box-sizing: border-box;
-&#x20;   margin: 0;
-&#x20;   padding: 0;
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-&#x20;   font-family: Arial, Helvetica, sans-serif;
-&#x20;   background: #f4f6f8;
-&#x20;   color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #222;
 }
 
 button,
 input,
 select {
-&#x20;   font: inherit;
+    font: inherit;
 }
 
 .hidden {
-&#x20;   display: none !important;
+    display: none !important;
 }
 
-/\\\* LOGIN \\\*/
-\\#loginScreen {
-&#x20;   min-height: 100vh;
-&#x20;   display: flex;
-&#x20;   align-items: center;
-&#x20;   justify-content: center;
-&#x20;   padding: 20px;
-&#x20;   background: linear-gradient(135deg, #071b12, #0d5c38);
+/* LOGIN */
+#loginScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #071b12, #0d5c38);
 }
 
 .login-box {
-&#x20;   width: 100%;
-&#x20;   max-width: 430px;
-&#x20;   background: #fff;
-&#x20;   border-radius: 18px;
-&#x20;   padding: 35px;
-&#x20;   box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    width: 100%;
+    max-width: 430px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 
 .login-logo {
-&#x20;   width: 90px;
-&#x20;   height: 90px;
-&#x20;   object-fit: contain;
-&#x20;   display: block;
-&#x20;   margin: 0 auto 15px;
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 15px;
 }
 
 .login-box h1 {
-&#x20;   text-align: center;
-&#x20;   color: #075c35;
-&#x20;   margin-bottom: 8px;
+    text-align: center;
+    color: #075c35;
+    margin-bottom: 8px;
 }
 
 .login-box p {
-&#x20;   text-align: center;
-&#x20;   color: #777;
-&#x20;   margin-bottom: 25px;
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
 }
 
 .form-group {
-&#x20;   margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .form-group label {
-&#x20;   display: block;
-&#x20;   margin-bottom: 7px;
-&#x20;   font-weight: bold;
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
 }
 
 .form-group input,
 .form-group select {
-&#x20;   width: 100%;
-&#x20;   padding: 12px;
-&#x20;   border: 1px solid #ccc;
-&#x20;   border-radius: 9px;
-&#x20;   outline: none;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    outline: none;
 }
 
-.form-group input\\\:focus,
-.form-group select\\\:focus {
-&#x20;   border-color: #087443;
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #087443;
 }
 
 .btn {
-&#x20;   border: none;
-&#x20;   border-radius: 8px;
-&#x20;   padding: 10px 15px;
-&#x20;   cursor: pointer;
-&#x20;   font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.btn\\\:hover {
-&#x20;   opacity: .9;
+.btn:hover {
+    opacity: .9;
 }
 
 .btn-primary {
-&#x20;   background: #087443;
-&#x20;   color: white;
+    background: #087443;
+    color: white;
 }
 
 .btn-danger {
-&#x20;   background: #c62828;
-&#x20;   color: white;
+    background: #c62828;
+    color: white;
 }
 
 .btn-warning {
-&#x20;   background: #e99b00;
-&#x20;   color: white;
+    background: #e99b00;
+    color: white;
 }
 
 .btn-success {
-&#x20;   background: #168447;
-&#x20;   color: white;
+    background: #168447;
+    color: white;
 }
 
 .btn-secondary {
-&#x20;   background: #6c757d;
-&#x20;   color: white;
+    background: #6c757d;
+    color: white;
 }
 
 .btn-block {
-&#x20;   width: 100%;
+    width: 100%;
 }
 
 .error {
-&#x20;   background: #ffe5e5;
-&#x20;   color: #b00020;
-&#x20;   padding: 11px;
-&#x20;   border-radius: 8px;
-&#x20;   margin-bottom: 15px;
-&#x20;   font-size: 14px;
+    background: #ffe5e5;
+    color: #b00020;
+    padding: 11px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
 }
 
-/\\\* DASHBOARD \\\*/
-\\#dashboard {
-&#x20;   min-height: 100vh;
+/* DASHBOARD */
+#dashboard {
+    min-height: 100vh;
 }
 
 .topbar {
-&#x20;   background: #075c35;
-&#x20;   color: white;
-&#x20;   min-height: 70px;
-&#x20;   display: flex;
-&#x20;   align-items: center;
-&#x20;   justify-content: space-between;
-&#x20;   padding: 12px 25px;
-&#x20;   gap: 15px;
-&#x20;   flex-wrap: wrap;
+    background: #075c35;
+    color: white;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 25px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .brand {
-&#x20;   display: flex;
-&#x20;   align-items: center;
-&#x20;   gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .brand img {
-&#x20;   width: 48px;
-&#x20;   height: 48px;
-&#x20;   object-fit: contain;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
 .brand h2 {
-&#x20;   font-size: 19px;
+    font-size: 19px;
 }
 
 .brand small {
-&#x20;   display: block;
-&#x20;   opacity: .8;
-&#x20;   margin-top: 3px;
+    display: block;
+    opacity: .8;
+    margin-top: 3px;
 }
 
 .admin-info {
-&#x20;   display: flex;
-&#x20;   align-items: center;
-&#x20;   gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .admin-email {
-&#x20;   font-size: 13px;
+    font-size: 13px;
 }
 
 .logout-btn {
-&#x20;   background: #b91c1c;
-&#x20;   color: white;
-&#x20;   border: none;
-&#x20;   border-radius: 7px;
-&#x20;   padding: 9px 13px;
-&#x20;   cursor: pointer;
-&#x20;   font-weight: bold;
+    background: #b91c1c;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 13px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-/\\\* NAV \\\*/
+/* NAV */
 .nav {
-&#x20;   background: white;
-&#x20;   border-bottom: 1px solid #ddd;
-&#x20;   display: flex;
-&#x20;   overflow-x: auto;
-&#x20;   padding: 0 20px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    overflow-x: auto;
+    padding: 0 20px;
 }
 
 .nav button {
-&#x20;   background: transparent;
-&#x20;   border: none;
-&#x20;   padding: 16px 20px;
-&#x20;   cursor: pointer;
-&#x20;   font-weight: bold;
-&#x20;   color: #555;
-&#x20;   white-space: nowrap;
-&#x20;   border-bottom: 3px solid transparent;
+    background: transparent;
+    border: none;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
 }
 
 .nav button.active {
-&#x20;   color: #075c35;
-&#x20;   border-bottom-color: #075c35;
+    color: #075c35;
+    border-bottom-color: #075c35;
 }
 
-/\\\* CONTENT \\\*/
+/* CONTENT */
 .content {
-&#x20;   max-width: 1450px;
-&#x20;   margin: auto;
-&#x20;   padding: 25px;
+    max-width: 1450px;
+    margin: auto;
+    padding: 25px;
 }
 
 .page {
-&#x20;   display: none;
+    display: none;
 }
 
 .page.active {
-&#x20;   display: block;
+    display: block;
 }
 
 .page-header {
-&#x20;   display: flex;
-&#x20;   justify-content: space-between;
-&#x20;   align-items: center;
-&#x20;   gap: 15px;
-&#x20;   margin-bottom: 20px;
-&#x20;   flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .page-header h2 {
-&#x20;   color: #075c35;
+    color: #075c35;
 }
 
 .page-header p {
-&#x20;   margin-top: 5px;
-&#x20;   color: #666;
+    margin-top: 5px;
+    color: #666;
 }
 
-/\\\* STATS \\\*/
+/* STATS */
 .stats {
-&#x20;   display: grid;
-&#x20;   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-&#x20;   gap: 15px;
-&#x20;   margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .stat-card {
-&#x20;   background: white;
-&#x20;   border-radius: 12px;
-&#x20;   padding: 20px;
-&#x20;   box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
 }
 
 .stat-card h3 {
-&#x20;   font-size: 30px;
-&#x20;   color: #075c35;
-&#x20;   margin-bottom: 5px;
+    font-size: 30px;
+    color: #075c35;
+    margin-bottom: 5px;
 }
 
 .stat-card p {
-&#x20;   color: #777;
+    color: #777;
 }
 
-/\\\* CARD \\\*/
+/* CARD */
 .card {
-&#x20;   background: white;
-&#x20;   border-radius: 12px;
-&#x20;   padding: 20px;
-&#x20;   box-shadow: 0 2px 10px rgba(0,0,0,.06);
-&#x20;   margin-bottom: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    margin-bottom: 20px;
 }
 
 .toolbar {
-&#x20;   display: flex;
-&#x20;   gap: 10px;
-&#x20;   margin-bottom: 15px;
-&#x20;   flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .search {
-&#x20;   flex: 1;
-&#x20;   min-width: 220px;
-&#x20;   padding: 11px;
-&#x20;   border: 1px solid #ccc;
-&#x20;   border-radius: 8px;
+    flex: 1;
+    min-width: 220px;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-/\\\* TABLE \\\*/
+/* TABLE */
 .table-wrap {
-&#x20;   width: 100%;
-&#x20;   overflow-x: auto;
+    width: 100%;
+    overflow-x: auto;
 }
 
 table {
-&#x20;   width: 100%;
-&#x20;   border-collapse: collapse;
-&#x20;   min-width: 900px;
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
 }
 
 th,
 td {
-&#x20;   padding: 12px;
-&#x20;   border-bottom: 1px solid #eee;
-&#x20;   text-align: left;
-&#x20;   vertical-align: middle;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    vertical-align: middle;
 }
 
 th {
-&#x20;   background: #f7f9f8;
-&#x20;   color: #075c35;
-&#x20;   font-size: 13px;
+    background: #f7f9f8;
+    color: #075c35;
+    font-size: 13px;
 }
 
 td {
-&#x20;   font-size: 14px;
+    font-size: 14px;
 }
 
 .badge {
-&#x20;   display: inline-block;
-&#x20;   padding: 5px 9px;
-&#x20;   border-radius: 20px;
-&#x20;   font-size: 12px;
-&#x20;   font-weight: bold;
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .badge-approved {
-&#x20;   background: #d9f7e6;
-&#x20;   color: #087443;
+    background: #d9f7e6;
+    color: #087443;
 }
 
 .badge-pending {
-&#x20;   background: #fff0c2;
-&#x20;   color: #946200;
+    background: #fff0c2;
+    color: #946200;
 }
 
 .badge-declined {
-&#x20;   background: #ffe0e0;
-&#x20;   color: #b00020;
+    background: #ffe0e0;
+    color: #b00020;
 }
 
 .actions {
-&#x20;   display: flex;
-&#x20;   gap: 6px;
-&#x20;   flex-wrap: wrap;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
 .actions .btn {
-&#x20;   padding: 7px 9px;
-&#x20;   font-size: 12px;
+    padding: 7px 9px;
+    font-size: 12px;
 }
 
-/\\\* MODAL \\\*/
+/* MODAL */
 .modal {
-&#x20;   position: fixed;
-&#x20;   inset: 0;
-&#x20;   background: rgba(0,0,0,.55);
-&#x20;   display: none;
-&#x20;   align-items: center;
-&#x20;   justify-content: center;
-&#x20;   padding: 20px;
-&#x20;   z-index: 1000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
 }
 
 .modal.show {
-&#x20;   display: flex;
+    display: flex;
 }
 
 .modal-box {
-&#x20;   background: white;
-&#x20;   width: 100%;
-&#x20;   max-width: 700px;
-&#x20;   max-height: 90vh;
-&#x20;   overflow-y: auto;
-&#x20;   border-radius: 15px;
-&#x20;   padding: 25px;
+    background: white;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 25px;
 }
 
 .modal-header {
-&#x20;   display: flex;
-&#x20;   justify-content: space-between;
-&#x20;   align-items: center;
-&#x20;   margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .modal-header h3 {
-&#x20;   color: #075c35;
+    color: #075c35;
 }
 
 .close {
-&#x20;   border: none;
-&#x20;   background: transparent;
-&#x20;   font-size: 25px;
-&#x20;   cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .form-grid {
-&#x20;   display: grid;
-&#x20;   grid-template-columns: 1fr 1fr;
-&#x20;   gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
 .form-grid .full {
-&#x20;   grid-column: 1 / -1;
+    grid-column: 1 / -1;
 }
 
 .modal-footer {
-&#x20;   display: flex;
-&#x20;   justify-content: flex-end;
-&#x20;   gap: 10px;
-&#x20;   margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-/\\\* LOADING \\\*/
-\\#loading {
-&#x20;   position: fixed;
-&#x20;   inset: 0;
-&#x20;   background: rgba(255,255,255,.75);
-&#x20;   display: none;
-&#x20;   align-items: center;
-&#x20;   justify-content: center;
-&#x20;   z-index: 2000;
+/* LOADING */
+#loading {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
 }
 
-\\#loading.show {
-&#x20;   display: flex;
+#loading.show {
+    display: flex;
 }
 
 .loader {
-&#x20;   background: #075c35;
-&#x20;   color: white;
-&#x20;   padding: 18px 25px;
-&#x20;   border-radius: 10px;
-&#x20;   font-weight: bold;
+    background: #075c35;
+    color: white;
+    padding: 18px 25px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-/\\\* TOAST \\\*/
-\\#toast {
-&#x20;   position: fixed;
-&#x20;   right: 20px;
-&#x20;   bottom: 20px;
-&#x20;   background: #222;
-&#x20;   color: white;
-&#x20;   padding: 14px 18px;
-&#x20;   border-radius: 9px;
-&#x20;   display: none;
-&#x20;   z-index: 3000;
-&#x20;   max-width: 350px;
+/* TOAST */
+#toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #222;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 9px;
+    display: none;
+    z-index: 3000;
+    max-width: 350px;
 }
 
-\\#toast.show {
-&#x20;   display: block;
+#toast.show {
+    display: block;
 }
 
-\\#toast.success {
-&#x20;   background: #087443;
+#toast.success {
+    background: #087443;
 }
 
-\\#toast.error {
-&#x20;   background: #b00020;
+#toast.error {
+    background: #b00020;
 }
 
 .empty {
-&#x20;   padding: 35px;
-&#x20;   text-align: center;
-&#x20;   color: #777;
+    padding: 35px;
+    text-align: center;
+    color: #777;
 }
 
-/\\\* MOBILE \\\*/
+/* MOBILE */
 @media (max-width: 700px) {
 
-&#x20;   .topbar {
-&#x20;       padding: 12px 15px;
-&#x20;   }
+    .topbar {
+        padding: 12px 15px;
+    }
 
-&#x20;   .brand h2 {
-&#x20;       font-size: 15px;
-&#x20;   }
+    .brand h2 {
+        font-size: 15px;
+    }
 
-&#x20;   .admin-email {
-&#x20;       display: none;
-&#x20;   }
+    .admin-email {
+        display: none;
+    }
 
-&#x20;   .content {
-&#x20;       padding: 15px;
-&#x20;   }
+    .content {
+        padding: 15px;
+    }
 
-&#x20;   .form-grid {
-&#x20;       grid-template-columns: 1fr;
-&#x20;   }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 
-&#x20;   .nav {
-&#x20;       padding: 0 5px;
-&#x20;   }
+    .nav {
+        padding: 0 5px;
+    }
 
-&#x20;   .nav button {
-&#x20;       padding: 13px 12px;
-&#x20;       font-size: 13px;
-&#x20;   }
+    .nav button {
+        padding: 13px 12px;
+        font-size: 13px;
+    }
 
-&#x20;   .login-box {
-&#x20;       padding: 25px 20px;
-&#x20;   }
+    .login-box {
+        padding: 25px 20px;
+    }
 }
-\\\</style>
-\\\</head>
+</style>
+</head>
 
-\\\<body>
+<body>
 
-\\\<div id="loading">
-&#x20;   \\\<div class="loader">Loading...\\\</div>
-\\\</div>
+<div id="loading">
+    <div class="loader">Loading...</div>
+</div>
 
-\\\<!-- LOGIN -->
-\\\<section id="loginScreen">
+<!-- LOGIN -->
+<section id="loginScreen">
 
-&#x20;   \\\<div class="login-box">
+    <div class="login-box">
 
-&#x20;       \\\<img src="logo.jpeg" class="login-logo" alt="BWI-RHA Logo">
+        <img src="logo.jpeg" class="login-logo" alt="BWI-RHA Logo">
 
-&#x20;       \\\<h1>BWI-RHA\\\</h1>
+        <h1>BWI-RHA</h1>
 
-&#x20;       \\\<p>
-&#x20;           Ado Local Government Chapter\\\<br>
-&#x20;           Administration Portal
-&#x20;       \\\</p>
+        <p>
+            Ado Local Government Chapter<br>
+            Administration Portal
+        </p>
 
-&#x20;       \\\<div id="loginError" class="error hidden">\\\</div>
+        <div id="loginError" class="error hidden"></div>
 
-&#x20;       \\\<form id="loginForm">
+        <form id="loginForm">
 
-&#x20;           \\\<div class="form-group">
-&#x20;               \\\<label>Email\\\</label>
-&#x20;               \\\<input
-&#x20;                   type="email"
-&#x20;                   id="loginEmail"
-&#x20;                   placeholder="Admin email"
-&#x20;                   autocomplete="username"
-&#x20;                   required
-&#x20;               \\>
-&#x20;           \\\</div>
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Admin email"
+                    autocomplete="username"
+                    required
+                >
+            </div>
 
-&#x20;           \\\<div class="form-group">
-&#x20;               \\\<label>Password\\\</label>
-&#x20;               \\\<input
-&#x20;                   type="password"
-&#x20;                   id="loginPassword"
-&#x20;                   placeholder="Password"
-&#x20;                   autocomplete="current-password"
-&#x20;                   required
-&#x20;               \\>
-&#x20;           \\\</div>
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
 
-&#x20;           \\\<button type="submit" class="btn btn-primary btn-block">
-&#x20;               Login
-&#x20;           \\\</button>
+            <button type="submit" class="btn btn-primary btn-block">
+                Login
+            </button>
 
-&#x20;       \\\</form>
+        </form>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</section>
+</section>
 
-\\\<!-- DASHBOARD -->
-\\\<section id="dashboard" class="hidden">
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
 
-\\\<header class="topbar">
+<header class="topbar">
 
-&#x20;   \\\<div class="brand">
+    <div class="brand">
 
-&#x20;       \\\<img src="logo.jpeg" alt="Logo">
+        <img src="logo.jpeg" alt="Logo">
 
-&#x20;       \\\<div>
-&#x20;           \\\<h2>BWI-RHA Ado LG\\\</h2>
-&#x20;           \\\<small>Admin Dashboard\\\</small>
-&#x20;       \\\</div>
+        <div>
+            <h2>BWI-RHA Ado LG</h2>
+            <small>Admin Dashboard</small>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="admin-info">
+    <div class="admin-info">
 
-&#x20;       \\\<span id="adminEmail" class="admin-email">\\\</span>
+        <span id="adminEmail" class="admin-email"></span>
 
-&#x20;       \\\<button class="logout-btn" id="logoutBtn">
-&#x20;           Logout
-&#x20;       \\\</button>
+        <button class="logout-btn" id="logoutBtn">
+            Logout
+        </button>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</header>
+</header>
 
-\\\<nav class="nav">
+<nav class="nav">
 
-&#x20;   \\\<button class="nav-btn active" data-page="overview">
-&#x20;       Dashboard
-&#x20;   \\\</button>
+    <button class="nav-btn active" data-page="overview">
+        Dashboard
+    </button>
 
-&#x20;   \\\<button class="nav-btn" data-page="members">
-&#x20;       Members
-&#x20;   \\\</button>
+    <button class="nav-btn" data-page="members">
+        Members
+    </button>
 
-&#x20;   \\\<button class="nav-btn" data-page="lgExco">
-&#x20;       LG EXCO
-&#x20;   \\\</button>
+    <button class="nav-btn" data-page="lgExco">
+        LG EXCO
+    </button>
 
-&#x20;   \\\<button class="nav-btn" data-page="wardExco">
-&#x20;       Ward EXCO
-&#x20;   \\\</button>
+    <button class="nav-btn" data-page="wardExco">
+        Ward EXCO
+    </button>
 
-\\\</nav>
+</nav>
 
-\\\<main class="content">
+<main class="content">
 
-\\\<!-- OVERVIEW -->
-\\\<section id="overview" class="page active">
+<!-- OVERVIEW -->
+<section id="overview" class="page active">
 
-&#x20;   \\\<div class="page-header">
+    <div class="page-header">
 
-&#x20;       \\\<div>
-&#x20;           \\\<h2>Dashboard\\\</h2>
-&#x20;           \\\<p>Manage BWI-RHA Ado LG\\\</p>
-&#x20;       \\\</div>
+        <div>
+            <h2>Dashboard</h2>
+            <p>Manage BWI-RHA Ado LG</p>
+        </div>
 
-&#x20;       \\\<button class="btn btn-primary" onclick="loadEverything()">
-&#x20;           Refresh
-&#x20;       \\\</button>
+        <button class="btn btn-primary" onclick="loadEverything()">
+            Refresh
+        </button>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="stats">
+    <div class="stats">
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="totalMembers">0\\\</h3>
-&#x20;           \\\<p>Total Members\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="totalMembers">0</h3>
+            <p>Total Members</p>
+        </div>
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="pendingMembers">0\\\</h3>
-&#x20;           \\\<p>Pending\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="pendingMembers">0</h3>
+            <p>Pending</p>
+        </div>
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="approvedMembers">0\\\</h3>
-&#x20;           \\\<p>Approved\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="approvedMembers">0</h3>
+            <p>Approved</p>
+        </div>
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="declinedMembers">0\\\</h3>
-&#x20;           \\\<p>Declined\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="declinedMembers">0</h3>
+            <p>Declined</p>
+        </div>
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="lgExcoCount">0\\\</h3>
-&#x20;           \\\<p>LG EXCO\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="lgExcoCount">0</h3>
+            <p>LG EXCO</p>
+        </div>
 
-&#x20;       \\\<div class="stat-card">
-&#x20;           \\\<h3 id="wardExcoCount">0\\\</h3>
-&#x20;           \\\<p>Ward EXCO\\\</p>
-&#x20;       \\\</div>
+        <div class="stat-card">
+            <h3 id="wardExcoCount">0</h3>
+            <p>Ward EXCO</p>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="card">
+    <div class="card">
 
-&#x20;       \\\<h3 style="margin-bottom:15px;">
-&#x20;           Quick Actions
-&#x20;       \\\</h3>
+        <h3 style="margin-bottom:15px;">
+            Quick Actions
+        </h3>
 
-&#x20;       \\\<div class="toolbar">
+        <div class="toolbar">
 
-&#x20;           \\\<button class="btn btn-success"
-&#x20;               onclick="switchPage('members')">
-&#x20;               Manage Members
-&#x20;           \\\</button>
+            <button class="btn btn-success"
+                onclick="switchPage('members')">
+                Manage Members
+            </button>
 
-&#x20;           \\\<button class="btn btn-primary"
-&#x20;               onclick="openLgExcoModal()">
-&#x20;               \\+ Add LG EXCO
-&#x20;           \\\</button>
+            <button class="btn btn-primary"
+                onclick="openLgExcoModal()">
+                + Add LG EXCO
+            </button>
 
-&#x20;           \\\<button class="btn btn-primary"
-&#x20;               onclick="openWardExcoModal()">
-&#x20;               \\+ Add Ward EXCO
-&#x20;           \\\</button>
+            <button class="btn btn-primary"
+                onclick="openWardExcoModal()">
+                + Add Ward EXCO
+            </button>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</section>
+</section>
 
-\\\<!-- MEMBERS -->
-\\\<section id="members" class="page">
+<!-- MEMBERS -->
+<section id="members" class="page">
 
-&#x20;   \\\<div class="page-header">
+    <div class="page-header">
 
-&#x20;       \\\<div>
-&#x20;           \\\<h2>Members\\\</h2>
-&#x20;           \\\<p>Registered BWI-RHA members.\\\</p>
-&#x20;       \\\</div>
+        <div>
+            <h2>Members</h2>
+            <p>Registered BWI-RHA members.</p>
+        </div>
 
-&#x20;       \\\<button class="btn btn-primary" onclick="loadMembers()">
-&#x20;           Refresh
-&#x20;       \\\</button>
+        <button class="btn btn-primary" onclick="loadMembers()">
+            Refresh
+        </button>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="card">
+    <div class="card">
 
-&#x20;       \\\<div class="toolbar">
+        <div class="toolbar">
 
-&#x20;           \\\<input
-&#x20;               type="search"
-&#x20;               id="memberSearch"
-&#x20;               class="search"
-&#x20;               placeholder="Search name, phone, email, ward..."
-&#x20;           \\>
+            <input
+                type="search"
+                id="memberSearch"
+                class="search"
+                placeholder="Search name, phone, email, ward..."
+            >
 
-&#x20;           \\\<select id="memberStatusFilter"
-&#x20;               style="padding:11px;border:1px solid #ccc;border-radius:8px;">
+            <select id="memberStatusFilter"
+                style="padding:11px;border:1px solid #ccc;border-radius:8px;">
 
-&#x20;               \\\<option value="all">All Status\\\</option>
-&#x20;               \\\<option value="pending">Pending\\\</option>
-&#x20;               \\\<option value="approved">Approved\\\</option>
-&#x20;               \\\<option value="declined">Declined\\\</option>
+                <option value="all">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="declined">Declined</option>
 
-&#x20;           \\\</select>
+            </select>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;       \\\<div class="table-wrap">
+        <div class="table-wrap">
 
-&#x20;           \\\<table>
+            <table>
 
-&#x20;               \\\<thead>
-&#x20;                   \\\<tr>
-&#x20;                       \\\<th>Name\\\</th>
-&#x20;                       \\\<th>Phone\\\</th>
-&#x20;                       \\\<th>Email\\\</th>
-&#x20;                       \\\<th>Ward\\\</th>
-&#x20;                       \\\<th>Bank\\\</th>
-&#x20;                       \\\<th>Account\\\</th>
-&#x20;                       \\\<th>Status\\\</th>
-&#x20;                       \\\<th>Actions\\\</th>
-&#x20;                   \\\</tr>
-&#x20;               \\\</thead>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Ward</th>
+                        <th>Bank</th>
+                        <th>Account</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-&#x20;               \\\<tbody id="membersTable">\\\</tbody>
+                <tbody id="membersTable"></tbody>
 
-&#x20;           \\\</table>
+            </table>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</section>
+</section>
 
-\\\<!-- LG EXCO -->
-\\\<section id="lgExco" class="page">
+<!-- LG EXCO -->
+<section id="lgExco" class="page">
 
-&#x20;   \\\<div class="page-header">
+    <div class="page-header">
 
-&#x20;       \\\<div>
-&#x20;           \\\<h2>LG EXCO Management\\\</h2>
-&#x20;           \\\<p>Manage the Ado LG executive committee.\\\</p>
-&#x20;       \\\</div>
+        <div>
+            <h2>LG EXCO Management</h2>
+            <p>Manage the Ado LG executive committee.</p>
+        </div>
 
-&#x20;       \\\<button class="btn btn-primary" onclick="openLgExcoModal()">
-&#x20;           \\+ Add LG EXCO
-&#x20;       \\\</button>
+        <button class="btn btn-primary" onclick="openLgExcoModal()">
+            + Add LG EXCO
+        </button>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="card">
+    <div class="card">
 
-&#x20;       \\\<div class="table-wrap">
+        <div class="table-wrap">
 
-&#x20;           \\\<table>
+            <table>
 
-&#x20;               \\\<thead>
-&#x20;                   \\\<tr>
-&#x20;                       \\\<th>Position\\\</th>
-&#x20;                       \\\<th>Member\\\</th>
-&#x20;                       \\\<th>Phone\\\</th>
-&#x20;                       \\\<th>Ward\\\</th>
-&#x20;                       \\\<th>Actions\\\</th>
-&#x20;                   \\\</tr>
-&#x20;               \\\</thead>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Member</th>
+                        <th>Phone</th>
+                        <th>Ward</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-&#x20;               \\\<tbody id="lgExcoTable">\\\</tbody>
+                <tbody id="lgExcoTable"></tbody>
 
-&#x20;           \\\</table>
+            </table>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</section>
+</section>
 
-\\\<!-- WARD EXCO -->
-\\\<section id="wardExco" class="page">
+<!-- WARD EXCO -->
+<section id="wardExco" class="page">
 
-&#x20;   \\\<div class="page-header">
+    <div class="page-header">
 
-&#x20;       \\\<div>
-&#x20;           \\\<h2>Ward EXCO Management\\\</h2>
-&#x20;           \\\<p>Manage executives assigned to each ward.\\\</p>
-&#x20;       \\\</div>
+        <div>
+            <h2>Ward EXCO Management</h2>
+            <p>Manage executives assigned to each ward.</p>
+        </div>
 
-&#x20;       \\\<button class="btn btn-primary" onclick="openWardExcoModal()">
-&#x20;           \\+ Add Ward EXCO
-&#x20;       \\\</button>
+        <button class="btn btn-primary" onclick="openWardExcoModal()">
+            + Add Ward EXCO
+        </button>
 
-&#x20;   \\\</div>
+    </div>
 
-&#x20;   \\\<div class="card">
+    <div class="card">
 
-&#x20;       \\\<div class="toolbar">
+        <div class="toolbar">
 
-&#x20;           \\\<select id="wardFilter"
-&#x20;               style="padding:11px;border:1px solid #ccc;border-radius:8px;">
+            <select id="wardFilter"
+                style="padding:11px;border:1px solid #ccc;border-radius:8px;">
 
-&#x20;               \\\<option value="all">All Wards\\\</option>
+                <option value="all">All Wards</option>
 
-&#x20;               \\\<option>Ward 1\\\</option>
-&#x20;               \\\<option>Ward 2\\\</option>
-&#x20;               \\\<option>Ward 3\\\</option>
-&#x20;               \\\<option>Ward 4\\\</option>
-&#x20;               \\\<option>Ward 5\\\</option>
-&#x20;               \\\<option>Ward 6\\\</option>
-&#x20;               \\\<option>Ward 7\\\</option>
-&#x20;               \\\<option>Ward 8\\\</option>
-&#x20;               \\\<option>Ward 9\\\</option>
-&#x20;               \\\<option>Ward 10\\\</option>
-&#x20;               \\\<option>Ward 11\\\</option>
-&#x20;               \\\<option>Ward 12\\\</option>
-&#x20;               \\\<option>Ward 13\\\</option>
+                <option>Ward 1</option>
+                <option>Ward 2</option>
+                <option>Ward 3</option>
+                <option>Ward 4</option>
+                <option>Ward 5</option>
+                <option>Ward 6</option>
+                <option>Ward 7</option>
+                <option>Ward 8</option>
+                <option>Ward 9</option>
+                <option>Ward 10</option>
+                <option>Ward 11</option>
+                <option>Ward 12</option>
+                <option>Ward 13</option>
 
-&#x20;           \\\</select>
+            </select>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;       \\\<div class="table-wrap">
+        <div class="table-wrap">
 
-&#x20;           \\\<table>
+            <table>
 
-&#x20;               \\\<thead>
-&#x20;                   \\\<tr>
-&#x20;                       \\\<th>Ward\\\</th>
-&#x20;                       \\\<th>Position\\\</th>
-&#x20;                       \\\<th>Member\\\</th>
-&#x20;                       \\\<th>Phone\\\</th>
-&#x20;                       \\\<th>Actions\\\</th>
-&#x20;                   \\\</tr>
-&#x20;               \\\</thead>
+                <thead>
+                    <tr>
+                        <th>Ward</th>
+                        <th>Position</th>
+                        <th>Member</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-&#x20;               \\\<tbody id="wardExcoTable">\\\</tbody>
+                <tbody id="wardExcoTable"></tbody>
 
-&#x20;           \\\</table>
+            </table>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</section>
+</section>
 
-\\\</main>
+</main>
 
-\\\</section>
+</section>
 
-\\\<!-- LG EXCO MODAL -->
-\\\<div id="lgExcoModal" class="modal">
+<!-- LG EXCO MODAL -->
+<div id="lgExcoModal" class="modal">
 
-&#x20;   \\\<div class="modal-box">
+    <div class="modal-box">
 
-&#x20;       \\\<div class="modal-header">
+        <div class="modal-header">
 
-&#x20;           \\\<h3 id="lgModalTitle">Add LG EXCO\\\</h3>
+            <h3 id="lgModalTitle">Add LG EXCO</h3>
 
-&#x20;           \\\<button class="close"
-&#x20;               onclick="closeModal('lgExcoModal')">
-&#x20;               &times;
-&#x20;           \\\</button>
+            <button class="close"
+                onclick="closeModal('lgExcoModal')">
+                &times;
+            </button>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;       \\\<form id="lgExcoForm">
+        <form id="lgExcoForm">
 
-&#x20;           \\\<input type="hidden" id="lgExcoId">
+            <input type="hidden" id="lgExcoId">
 
-&#x20;           \\\<div class="form-grid">
+            <div class="form-grid">
 
-&#x20;               \\\<div class="form-group">
-&#x20;                   \\\<label>Position\\\</label>
-&#x20;                   \\\<input id="lgPosition"
-&#x20;                       placeholder="e.g. Chairperson"
-&#x20;                       required>
-&#x20;               \\\</div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <input id="lgPosition"
+                        placeholder="e.g. Chairperson"
+                        required>
+                </div>
 
-&#x20;               \\\<div class="form-group">
-&#x20;                   \\\<label>Member Name\\\</label>
-&#x20;                   \\\<input id="lgMemberName"
-&#x20;                       placeholder="Full name"
-&#x20;                       required>
-&#x20;               \\\</div>
+                <div class="form-group">
+                    <label>Member Name</label>
+                    <input id="lgMemberName"
+                        placeholder="Full name"
+                        required>
+                </div>
 
-&#x20;               \\\<div class="form-group">
-&#x20;                   \\\<label>Phone\\\</label>
-&#x20;                   \\\<input id="lgPhone"
-&#x20;                       type="tel"
-&#x20;                       placeholder="Phone number">
-&#x20;               \\\</div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input id="lgPhone"
+                        type="tel"
+                        placeholder="Phone number">
+                </div>
 
-&#x20;               \\\<div class="form-group">
-&#x20;                   \\\<label>Ward\\\</label>
+                <div class="form-group">
+                    <label>Ward</label>
 
-&#x20;                   \\\<select id="lgWard">
+                    <select id="lgWard">
 
-&#x20;                       \\\<option value="">Select Ward\\\</option>
+                        <option value="">Select Ward</option>
 
-&#x20;                       \\\<option>Ward 1\\\</option>
-&#x20;                       \\\<option>Ward 2\\\</option>
-&#x20;                       \\\<option>Ward 3\\\</option>
-&#x20;                       \\\<option>Ward 4\\\</option>
-&#x20;                       \\\<option>Ward 5\\\</option>
-&#x20;                       \\\<option>Ward 6\\\</option>
-&#x20;                       \\\<option>Ward 7\\\</option>
-&#x20;                       \\\<option>Ward 8\\\</option>
-&#x20;                       \\\<option>Ward 9\\\</option>
-&#x20;                       \\\<option>Ward 10\\\</option>
-&#x20;                       \\\<option>Ward 11\\\</option>
-&#x20;                       \\\<option>Ward 12\\\</option>
-&#x20;                       \\\<option>Ward 13\\\</option>
+                        <option>Ward 1</option>
+                        <option>Ward 2</option>
+                        <option>Ward 3</option>
+                        <option>Ward 4</option>
+                        <option>Ward 5</option>
+                        <option>Ward 6</option>
+                        <option>Ward 7</option>
+                        <option>Ward 8</option>
+                        <option>Ward 9</option>
+                        <option>Ward 10</option>
+                        <option>Ward 11</option>
+                        <option>Ward 12</option>
+                        <option>Ward 13</option>
 
-&#x20;                   \\\</select>
-&#x20;               \\\</div>
+                    </select>
+                </div>
 
-&#x20;           \\\</div>
+            </div>
 
-&#x20;           \\\<div class="modal-footer">
+            <div class="modal-footer">
 
-&#x20;               \\\<button type="button"
-&#x20;                   class="btn btn-secondary"
-&#x20;                   onclick="closeModal('lgExcoModal')">
-&#x20;                   Cancel
-&#x20;               \\\</button>
+                <button type="button"
+                    class="btn btn-secondary"
+                    onclick="closeModal('lgExcoModal')">
+                    Cancel
+                </button>
 
-&#x20;               \\\<button type="submit"
-&#x20;                   class="btn btn-primary">
-&#x20;                   Save
-&#x20;               \\\</button>
+                <button type="submit"
+                    class="btn btn-primary">
+                    Save
+                </button>
 
-&#x20;           \\\</div>
+            </div>
 
-&#x20;       \\\</form>
+        </form>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</div>
+</div>
 
-\\\<!-- WARD EXCO MODAL -->
-\\\<div id="wardExcoModal" class="modal">
+<!-- WARD EXCO MODAL -->
+<div id="wardExcoModal" class="modal">
 
-&#x20;   \\\<div class="modal-box">
+    <div class="modal-box">
 
-&#x20;       \\\<div class="modal-header">
+        <div class="modal-header">
 
-&#x20;           \\\<h3 id="wardModalTitle">Add Ward EXCO\\\</h3>
+            <h3 id="wardModalTitle">Add Ward EXCO</h3>
 
-&#x20;           \\\<button class="close"
-&#x20;               onclick="closeModal('wardExcoModal')">
-&#x20;               &times;
-&#x20;           \\\</button>
+            <button class="close"
+                onclick="closeModal('wardExcoModal')">
+                &times;
+            </button>
 
-&#x20;       \\\</div>
+        </div>
 
-&#x20;       \\\<form id="wardExcoForm">
+        <form id="wardExcoForm">
 
-&#x20;           \\\<input type="hidden" id="wardExcoId">
+            <input type="hidden" id="wardExcoId">
 
-&#x20;           \\\<div class="form-grid">
+            <div class="form-grid">
 
-&#x20;               \\\<div class="form-group">
+                <div class="form-group">
 
-&#x20;                   \\\<label>Ward\\\</label>
+                    <label>Ward</label>
 
-&#x20;                   \\\<select id="wardExcoWard" required>
+                    <select id="wardExcoWard" required>
 
-&#x20;                       \\\<option value="">Select Ward\\\</option>
+                        <option value="">Select Ward</option>
 
-&#x20;                       \\\<option>Ward 1\\\</option>
-&#x20;                       \\\<option>Ward 2\\\</option>
-&#x20;                       \\\<option>Ward 3\\\</option>
-&#x20;                       \\\<option>Ward 4\\\</option>
-&#x20;                       \\\<option>Ward 5\\\</option>
-&#x20;                       \\\<option>Ward 6\\\</option>
-&#x20;                       \\\<option>Ward 7\\\</option>
-&#x20;                       \\\<option>Ward 8\\\</option>
-&#x20;                       \\\<option>Ward 9\\\</option>
-&#x20;                       \\\<option>Ward 10\\\</option>
-&#x20;                       \\\<option>Ward 11\\\</option>
-&#x20;                       \\\<option>Ward 12\\\</option>
-&#x20;                       \\\<option>Ward 13\\\</option>
+                        <option>Ward 1</option>
+                        <option>Ward 2</option>
+                        <option>Ward 3</option>
+                        <option>Ward 4</option>
+                        <option>Ward 5</option>
+                        <option>Ward 6</option>
+                        <option>Ward 7</option>
+                        <option>Ward 8</option>
+                        <option>Ward 9</option>
+                        <option>Ward 10</option>
+                        <option>Ward 11</option>
+                        <option>Ward 12</option>
+                        <option>Ward 13</option>
 
-&#x20;                   \\\</select>
+                    </select>
 
-&#x20;               \\\</div>
+                </div>
 
-&#x20;               \\\<div class="form-group">
+                <div class="form-group">
 
-&#x20;                   \\\<label>Position\\\</label>
+                    <label>Position</label>
 
-&#x20;                   \\\<input id="wardPosition"
-&#x20;                       placeholder="e.g. Chairperson"
-&#x20;                       required>
+                    <input id="wardPosition"
+                        placeholder="e.g. Chairperson"
+                        required>
 
-&#x20;               \\\</div>
+                </div>
 
-&#x20;               \\\<div class="form-group">
+                <div class="form-group">
 
-&#x20;                   \\\<label>Member Name\\\</label>
+                    <label>Member Name</label>
 
-&#x20;                   \\\<input id="wardMemberName"
-&#x20;                       placeholder="Full name"
-&#x20;                       required>
+                    <input id="wardMemberName"
+                        placeholder="Full name"
+                        required>
 
-&#x20;               \\\</div>
+                </div>
 
-&#x20;               \\\<div class="form-group">
+                <div class="form-group">
 
-&#x20;                   \\\<label>Phone\\\</label>
+                    <label>Phone</label>
 
-&#x20;                   \\\<input id="wardPhone"
-&#x20;                       type="tel"
-&#x20;                       placeholder="Phone number">
+                    <input id="wardPhone"
+                        type="tel"
+                        placeholder="Phone number">
 
-&#x20;               \\\</div>
+                </div>
 
-&#x20;           \\\</div>
+            </div>
 
-&#x20;           \\\<div class="modal-footer">
+            <div class="modal-footer">
 
-&#x20;               \\\<button type="button"
-&#x20;                   class="btn btn-secondary"
-&#x20;                   onclick="closeModal('wardExcoModal')">
-&#x20;                   Cancel
-&#x20;               \\\</button>
+                <button type="button"
+                    class="btn btn-secondary"
+                    onclick="closeModal('wardExcoModal')">
+                    Cancel
+                </button>
 
-&#x20;               \\\<button type="submit"
-&#x20;                   class="btn btn-primary">
-&#x20;                   Save
-&#x20;               \\\</button>
+                <button type="submit"
+                    class="btn btn-primary">
+                    Save
+                </button>
 
-&#x20;           \\\</div>
+            </div>
 
-&#x20;       \\\</form>
+        </form>
 
-&#x20;   \\\</div>
+    </div>
 
-\\\</div>
+</div>
 
-\\\<div id="toast">\\\</div>
+<div id="toast"></div>
 
-\\\<script>
+<script>
 
-/\\\* =========================================================
-&#x20;  SUPABASE
-\\========================================================= \\\*/
+/* =========================================================
+   SUPABASE
+========================================================= */
 
-const SUPABASE\\\_URL =
-&#x20;   "[https\://xfjrmgendmmpnumsbjte.supabase.co]\(https\://xfjrmgendmmpnumsbjte.supabase.co)";  const SUPABASE\\\_KEY =     "sb\\\_publishable\\\_qBhmzkK4DDeZk1\\\_pheHgRA\\\_rNKHDKS7";  const supabaseClient =     window\\.supabase.createClient(         SUPABASE\\\_URL,         SUPABASE\\\_KEY     );   /\\\* =========================================================    IMPORTANT ========================================================= \\\*/  const ADMIN\\\_EMAIL =     "bwirha\\@gmail.com";   /\\\* =========================================================    DATA ========================================================= \\\*/  let members = []; let lgExcos = []; let wardExcos = [];   /\\\* =========================================================    HELPERS ========================================================= \\\*/  function $(id) {     return document.getElementById(id); }  function showLoading(show) {     $("loading").classList.toggle("show", show); }  function toast(message, type = "") {      const el = $("toast");      el.textContent = message;     el.className = "show " + type;      setTimeout(() => {         el.className = "";     }, 3500); }  function loginError(message) {      const el = $("loginError");      el.textContent = message;     el.classList.remove("hidden"); }  function clearLoginError() {     $("loginError").classList.add("hidden"); }  function escapeHtml(value) {      if (value === null || value === undefined) {         return "";     }      return String(value)         .replace(/&/g, "&amp;")         .replace(/\\\</g, "&lt;")         .replace(/>/g, "&gt;")         .replace(/"/g, "&quot;")         .replace(/'/g, "&#039;"); }   /\\\* =========================================================    PAGE NAVIGATION ========================================================= \\\*/  function switchPage(page) {      document.querySelectorAll(".page")         .forEach(p => p.classList.remove("active"));      document.querySelectorAll(".nav-btn")         .forEach(b => b.classList.remove("active"));      const target = $(page);      if (target) {         target.classList.add("active");     }      const button =         document.querySelector(             \\\`.nav-btn[data-page="${page}"]\\\`         );      if (button) {         button.classList.add("active");     }      if (page === "members") {         loadMembers();     }      if (page === "lgExco") {         loadLgExcos();     }      if (page === "wardExco") {         loadWardExcos();     } }   /\\\* =========================================================    LOGIN / LOGOUT ========================================================= \\\*/  function showLogin() {      $("loginScreen").classList.remove("hidden");     $("dashboard").classList.add("hidden");  }  function showDashboard(email) {      $("loginScreen").classList.add("hidden");     $("dashboard").classList.remove("hidden");      $("adminEmail").textContent = email;  }   async function login(email, password) {      clearLoginError();      email = email.trim().toLowerCase();      if (email !== ADMIN\\\_EMAIL) {          loginError(             "Only bwirha\\@gmail.com can access this dashboard."         );          return;     }      showLoading(true);      try {          const { data, error } =             await supabaseClient.auth.signInWithPassword({                 email,                 password             });          if (error) {             throw error;         }          if (!data.user) {             throw new Error("Login failed.");         }          const loggedEmail =             (data.user.email || "").toLowerCase();          if (loggedEmail !== ADMIN\\\_EMAIL) {              await supabaseClient.auth.signOut();              throw new Error(                 "This account is not authorized."             );         }          showDashboard(loggedEmail);          await loadEverything();      } catch (error) {          console.error(error);          loginError(             error.message || "Unable to login."         );      } finally {          showLoading(false);      } }   async function logout() {      showLoading(true);      try {          await supabaseClient.auth.signOut();          showLogin();          $("loginPassword").value = "";      } catch (error) {          console.error(error);          toast("Logout failed.", "error");      } finally {          showLoading(false);      } }   /\\\* =========================================================    SESSION ========================================================= \\\*/  async function checkSession() {      try {          const { data, error } =             await supabaseClient.auth.getSession();          if (error) {             throw error;         }          const session = data.session;          if (!session) {             showLogin();             return;         }          const email =             (session.user.email || "").toLowerCase();          if (email !== ADMIN\\\_EMAIL) {              await supabaseClient.auth.signOut();              showLogin();              loginError(                 "This account is not authorized."             );              return;         }          showDashboard(email);          await loadEverything();      } catch (error) {          console.error(error);          showLogin();      } }   /\\\* =========================================================    MEMBERS ========================================================= \\\*/  function memberName(m) {     return m.name || m.full\\\_name || m.fullname || ""; }  function memberPhone(m) {     return m.phone || m.phone\\\_no || m.phone\\\_number || ""; }  function memberEmail(m) {     return m.email || ""; }  function memberWard(m) {      if (m.ward\\\_id !== null && m.ward\\\_id !== undefined && m.ward\\\_id !== "") {         return \\\`Ward ${m.ward\\\_id}\\\`;     }      return m.ward || m.ward\\\_name || ""; }  function memberBank(m) {     return m.bank\\\_name || m.bank || ""; }  function memberAccount(m) {     return m.account\\\_no || m.account\\\_number || ""; }   async function loadMembers() {      try {          const { data, error } =             await supabaseClient                 .from("members")                 .select("\\\*")                 .order("created\\\_at", {                     ascending: false                 });          if (error) {             throw error;         }          members = data || [];          renderMembers();         updateMemberStats();      } catch (error) {          console.error("MEMBERS ERROR:", error);          $("membersTable").innerHTML = \\\`             \\\<tr>                 \\\<td colspan="8" class="empty">                     Unable to load members.\\\<br>\\\<br>                     ${escapeHtml(error.message)}                 \\\</td>             \\\</tr>         \\\`;          toast(             "Unable to load members: " +             error.message,             "error"         );     } }   function renderMembers() {      const tbody = $("membersTable");      const search =         ($("memberSearch").value || "")         .toLowerCase()         .trim();      const filter =         $("memberStatusFilter").value;      const filtered =         members.filter(member => {              const text = [                  memberName(member),                 memberPhone(member),                 memberEmail(member),                 memberWard(member),                 memberBank(member),                 memberAccount(member),                 member.status || ""              ].join(" ").toLowerCase();              const matchesSearch =                 !search || text.includes(search);              const matchesStatus =                 filter === "all" ||                 String(member.status || "")                     .toLowerCase() === filter;              return matchesSearch && matchesStatus;         });       if (!filtered.length) {          tbody.innerHTML = \\\`             \\\<tr>                 \\\<td colspan="8" class="empty">                     No members found.                 \\\</td>             \\\</tr>         \\\`;          return;     }       tbody.innerHTML =         filtered.map(member => {              const id = String(member.id);              const status =                 String(member.status || "pending")                 .toLowerCase();              let badge = "badge-pending";              if (status === "approved") {                 badge = "badge-approved";             }              if (status === "declined") {                 badge = "badge-declined";             }              let actions = "";              if (status !== "approved") {                  actions += \\\`                     \\\<button                         class="btn btn-success"                         onclick="updateMemberStatus('${escapeHtml(id)}','approved')">                         Approve                     \\\</button>                 \\\`;             }              if (status !== "declined") {                  actions += \\\`                     \\\<button                         class="btn btn-warning"                         onclick="updateMemberStatus('${escapeHtml(id)}','declined')">                         Decline                     \\\</button>                 \\\`;             }              if (status === "declined") {                  actions += \\\`                     \\\<button                         class="btn btn-danger"                         onclick="deleteDeclinedMember('${escapeHtml(id)}')">                         Delete                     \\\</button>                 \\\`;             }              return \\\`                 \\\<tr>                      \\\<td>                         \\\<strong>                             ${escapeHtml(memberName(member))}                         \\\</strong>                     \\\</td>                      \\\<td>                         ${escapeHtml(memberPhone(member))}                     \\\</td>                      \\\<td>                         ${escapeHtml(memberEmail(member))}                     \\\</td>                      \\\<td>                         ${escapeHtml(memberWard(member))}                     \\\</td>                      \\\<td>                         ${escapeHtml(memberBank(member))}                     \\\</td>                      \\\<td>                         ${escapeHtml(memberAccount(member))}                     \\\</td>                      \\\<td>                         \\\<span class="badge ${badge}">                             ${escapeHtml(status)}                         \\\</span>                     \\\</td>                      \\\<td>                         \\\<div class="actions">                             ${actions}                         \\\</div>                     \\\</td>                  \\\</tr>             \\\`;          }).join(""); }   function updateMemberStats() {      $("totalMembers").textContent =         members.length;      $("pendingMembers").textContent =         members.filter(             m => String(m.status || "").toLowerCase() === "pending"         ).length;      $("approvedMembers").textContent =         members.filter(             m => String(m.status || "").toLowerCase() === "approved"         ).length;      $("declinedMembers").textContent =         members.filter(             m => String(m.status || "").toLowerCase() === "declined"         ).length; }   async function updateMemberStatus(id, status) {      if (!["pending", "approved", "declined"].includes(status)) {         return;     }      if (!confirm(         \\\`Change this member's status to "${status}"?\\\`     )) {         return;     }      showLoading(true);      try {          const { error } =             await supabaseClient                 .from("members")                 .update({ status })                 .eq("id", id);          if (error) {             throw error;         }          toast(             "Member status updated.",             "success"         );          await loadMembers();      } catch (error) {          console.error(error);          toast(             "Unable to update member: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   async function deleteDeclinedMember(id) {      if (!confirm(         "Delete this declined member permanently?"     )) {         return;     }      showLoading(true);      try {          const { error } =             await supabaseClient                 .from("members")                 .delete()                 .eq("id", id)                 .eq("status", "declined");          if (error) {             throw error;         }          toast(             "Declined member deleted.",             "success"         );          await loadMembers();      } catch (error) {          console.error(error);          toast(             "Unable to delete member: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   /\\\* =========================================================    LG EXCO ========================================================= \\\*/  async function loadLgExcos() {      try {          const { data, error } =             await supabaseClient                 .from("lg\\\_exco")                 .select("\\\*")                 .order("created\\\_at", {                     ascending: true                 });          if (error) {             throw error;         }          lgExcos = data || [];          renderLgExcos();          $("lgExcoCount").textContent =             lgExcos.length;      } catch (error) {          console.error(error);          $("lgExcoTable").innerHTML = \\\`             \\\<tr>                 \\\<td colspan="5" class="empty">                     Unable to load LG EXCO.\\\<br>\\\<br>                     ${escapeHtml(error.message)}                 \\\</td>             \\\</tr>         \\\`;          toast(             "Unable to load LG EXCO: " +             error.message,             "error"         );     } }   function findMemberForExco(name, phone = "") {      const cleanName = String(name || "")         .trim()         .toLowerCase();      const cleanPhone = String(phone || "")         .trim();      let member = members.find(m =>         memberName(m).trim().toLowerCase() === cleanName     );      if (!member && cleanPhone) {         member = members.find(m =>             memberPhone(m).trim() === cleanPhone         );     }      return member || null; }   function getMemberById(id) {      if (!id) {         return null;     }      return members.find(m =>         String(m.id) === String(id)     ) || null; }   function wardNumberFromValue(value) {      const match = String(value || "").match(/(\d+)/);      if (!match) {         return null;     }      const number = Number(match[1]);      return number >= 1 && number <= 13         ? number         : null; }   function renderLgExcos() {      const tbody = $("lgExcoTable");      if (!lgExcos.length) {          tbody.innerHTML = \\\`             \\\<tr>                 \\\<td colspan="5" class="empty">                     No LG EXCO records found.                 \\\</td>             \\\</tr>         \\\`;          return;     }      tbody.innerHTML =         lgExcos.map(row => {              const member = getMemberById(row\\.member\\\_id);              const name = member                 ? memberName(member)                 : (row\\.member\\\_name || row\\.name || row\\.full\\\_name || "");              const phone = member                 ? memberPhone(member)                 : (row\\.phone || row\\.phone\\\_no || "");              const ward = member                 ? memberWard(member)                 : (row\\.ward || row\\.ward\\\_name || "");              return \\\`                 \\\<tr>                      \\\<td>                         ${escapeHtml(row\\.position || "")}                     \\\</td>                      \\\<td>                         \\\<strong>                             ${escapeHtml(name)}                         \\\</strong>                     \\\</td>                      \\\<td>                         ${escapeHtml(phone)}                     \\\</td>                      \\\<td>                         ${escapeHtml(ward)}                     \\\</td>                      \\\<td>                          \\\<div class="actions">                              \\\<button                                 class="btn btn-primary"                                 onclick="editLgExco('${escapeHtml(String(row\\.id))}')">                                 Edit                             \\\</button>                              \\\<button                                 class="btn btn-danger"                                 onclick="deleteLgExco('${escapeHtml(String(row\\.id))}')">                                 Delete                             \\\</button>                          \\\</div>                      \\\</td>                  \\\</tr>             \\\`;          }).join(""); }   function openLgExcoModal(id = null) {      $("lgExcoForm").reset();     $("lgExcoId").value = "";      $("lgModalTitle").textContent =         id ? "Edit LG EXCO" : "Add LG EXCO";      if (id) {          const row =             lgExcos.find(                 x => String(x.id) === String(id)             );          if (!row) {             return;         }          const member = getMemberById(row\\.member\\\_id);          $("lgExcoId").value = row\\.id;          $("lgPosition").value =             row\\.position || "";          $("lgMemberName").value = member             ? memberName(member)             : (row\\.member\\\_name || row\\.name || row\\.full\\\_name || "");          $("lgPhone").value = member             ? memberPhone(member)             : (row\\.phone || row\\.phone\\\_no || "");          $("lgWard").value = member             ? memberWard(member)             : (row\\.ward || row\\.ward\\\_name || "");     }      $("lgExcoModal").classList.add("show"); }   async function saveLgExco(event) {      event.preventDefault();      const id = $("lgExcoId").value;      const name = $("lgMemberName").value.trim();     const phone = $("lgPhone").value.trim();      const member = findMemberForExco(name, phone);      if (!member) {          toast(             "The EXCO member must be a registered member. Check the name or phone number.",             "error"         );          return;     }      const payload = {          position:             $("lgPosition").value.trim(),          member\\\_id:             member.id      };      showLoading(true);      try {          let result;          if (id) {              result =                 await supabaseClient                     .from("lg\\\_exco")                     .update(payload)                     .eq("id", id);          } else {              result =                 await supabaseClient                     .from("lg\\\_exco")                     .insert([payload]);         }          if (result.error) {             throw result.error;         }          closeModal("lgExcoModal");          toast(             id                 ? "LG EXCO updated."                 : "LG EXCO added.",             "success"         );          await loadLgExcos();      } catch (error) {          console.error(error);          toast(             "Unable to save LG EXCO: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   function editLgExco(id) {     openLgExcoModal(id); }   async function deleteLgExco(id) {      if (!confirm(         "Delete this LG EXCO member?"     )) {         return;     }      showLoading(true);      try {          const { error } =             await supabaseClient                 .from("lg\\\_exco")                 .delete()                 .eq("id", id);          if (error) {             throw error;         }          toast(             "LG EXCO deleted.",             "success"         );          await loadLgExcos();      } catch (error) {          console.error(error);          toast(             "Unable to delete LG EXCO: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   /\\\* =========================================================    WARD EXCO ========================================================= \\\*/  async function loadWardExcos() {      try {          const { data, error } =             await supabaseClient                 .from("ward\\\_exco")                 .select("\\\*")                 .order("created\\\_at", {                     ascending: true                 });          if (error) {             throw error;         }          wardExcos = data || [];          renderWardExcos();          $("wardExcoCount").textContent =             wardExcos.length;      } catch (error) {          console.error(error);          $("wardExcoTable").innerHTML = \\\`             \\\<tr>                 \\\<td colspan="5" class="empty">                     Unable to load Ward EXCO.\\\<br>\\\<br>                     ${escapeHtml(error.message)}                 \\\</td>             \\\</tr>         \\\`;          toast(             "Unable to load Ward EXCO: " +             error.message,             "error"         );     } }   function renderWardExcos() {      const tbody = $("wardExcoTable");      const filter =         $("wardFilter").value;      const rows =         filter === "all"             ? wardExcos             : wardExcos.filter(row =>                 \\\`Ward ${row\\.ward\\\_id}\\\` === filter             );      if (!rows.length) {          tbody.innerHTML = \\\`             \\\<tr>                 \\\<td colspan="5" class="empty">                     No Ward EXCO records found.                 \\\</td>             \\\</tr>         \\\`;          return;     }      tbody.innerHTML =         rows.map(row => {              const member = getMemberById(row\\.member\\\_id);              const ward = row\\.ward\\\_id                 ? \\\`Ward ${row\\.ward\\\_id}\\\`                 : (row\\.ward || row\\.ward\\\_name || "");              const name = member                 ? memberName(member)                 : (row\\.member\\\_name || row\\.name || row\\.full\\\_name || "");              const phone = member                 ? memberPhone(member)                 : (row\\.phone || row\\.phone\\\_no || "");              return \\\`                 \\\<tr>                      \\\<td>                         ${escapeHtml(ward)}                     \\\</td>                      \\\<td>                         ${escapeHtml(row\\.position || "")}                     \\\</td>                      \\\<td>                         \\\<strong>                             ${escapeHtml(name)}                         \\\</strong>                     \\\</td>                      \\\<td>                         ${escapeHtml(phone)}                     \\\</td>                      \\\<td>                          \\\<div class="actions">                              \\\<button                                 class="btn btn-primary"                                 onclick="editWardExco('${escapeHtml(String(row\\.id))}')">                                 Edit                             \\\</button>                              \\\<button                                 class="btn btn-danger"                                 onclick="deleteWardExco('${escapeHtml(String(row\\.id))}')">                                 Delete                             \\\</button>                          \\\</div>                      \\\</td>                  \\\</tr>             \\\`;          }).join(""); }   function openWardExcoModal(id = null) {      $("wardExcoForm").reset();     $("wardExcoId").value = "";      $("wardModalTitle").textContent =         id ? "Edit Ward EXCO" : "Add Ward EXCO";      if (id) {          const row =             wardExcos.find(                 x => String(x.id) === String(id)             );          if (!row) {             return;         }          const member = getMemberById(row\\.member\\\_id);          $("wardExcoId").value = row\\.id;          $("wardExcoWard").value = row\\.ward\\\_id             ? \\\`Ward ${row\\.ward\\\_id}\\\`             : (row\\.ward || row\\.ward\\\_name || "");          $("wardPosition").value =             row\\.position || "";          $("wardMemberName").value = member             ? memberName(member)             : (row\\.member\\\_name || row\\.name || row\\.full\\\_name || "");          $("wardPhone").value = member             ? memberPhone(member)             : (row\\.phone || row\\.phone\\\_no || "");     }      $("wardExcoModal").classList.add("show"); }   function editWardExco(id) {     openWardExcoModal(id); }   async function saveWardExco(event) {      event.preventDefault();      const id =         $("wardExcoId").value;      const wardValue =         $("wardExcoWard").value;      const wardId = wardNumberFromValue(wardValue);      if (!wardId) {          toast(             "Please select a valid ward.",             "error"         );          return;     }      const name =         $("wardMemberName").value.trim();      const phone =         $("wardPhone").value.trim();      const member =         findMemberForExco(name, phone);      if (!member) {          toast(             "The EXCO member must be a registered member. Check the name or phone number.",             "error"         );          return;     }      const payload = {          ward\\\_id:             wardId,          position:             $("wardPosition").value.trim(),          member\\\_id:             member.id      };      showLoading(true);      try {          let result;          if (id) {              result =                 await supabaseClient                     .from("ward\\\_exco")                     .update(payload)                     .eq("id", id);          } else {              result =                 await supabaseClient                     .from("ward\\\_exco")                     .insert([payload]);         }          if (result.error) {             throw result.error;         }          closeModal("wardExcoModal");          toast(             id                 ? "Ward EXCO updated."                 : "Ward EXCO added.",             "success"         );          await loadWardExcos();      } catch (error) {          console.error(error);          toast(             "Unable to save Ward EXCO: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   async function deleteWardExco(id) {      if (!confirm(         "Delete this Ward EXCO member?"     )) {         return;     }      showLoading(true);      try {          const { error } =             await supabaseClient                 .from("ward\\\_exco")                 .delete()                 .eq("id", id);          if (error) {             throw error;         }          toast(             "Ward EXCO deleted.",             "success"         );          await loadWardExcos();      } catch (error) {          console.error(error);          toast(             "Unable to delete Ward EXCO: " +             error.message,             "error"         );      } finally {          showLoading(false);     } }   /\\\* =========================================================    LOAD EVERYTHING ========================================================= \\\*/  async function loadEverything() {      showLoading(true);      try {          await Promise.all([             loadMembers(),             loadLgExcos(),             loadWardExcos()         ]);      } catch (error) {          console.error(error);      } finally {          showLoading(false);     } }   /\\\* =========================================================    MODAL ========================================================= \\\*/  function closeModal(id) {      const modal = $(id);      if (modal) {         modal.classList.remove("show");     } }   /\\\* =========================================================    EVENTS ========================================================= \\\*/  $("loginForm").addEventListener(     "submit",     event => {          event.preventDefault();          login(             $("loginEmail").value,             $("loginPassword").value         );     } );   $("logoutBtn").addEventListener(     "click",     logout );   document.querySelectorAll(".nav-btn")     .forEach(button => {          button.addEventListener(             "click",             () => switchPage(button.dataset.page)         );      });   $("memberSearch").addEventListener(     "input",     renderMembers );   $("memberStatusFilter").addEventListener(     "change",     renderMembers );   $("wardFilter").addEventListener(     "change",     renderWardExcos );   $("lgExcoForm").addEventListener(     "submit",     saveLgExco );   $("wardExcoForm").addEventListener(     "submit",     saveWardExco );   document.querySelectorAll(".modal")     .forEach(modal => {          modal.addEventListener(             "click",             event => {                  if (event.target === modal) {                     modal.classList.remove("show");                 }              }         );      });   /\\\* =========================================================    AUTH STATE ========================================================= \\\*/  supabaseClient.auth.onAuthStateChange(     async (\\\_event, session) => {          if (!session) {             showLogin();             return;         }          const email =             (session.user.email || "").toLowerCase();          if (email !== ADMIN\\\_EMAIL) {              await supabaseClient.auth.signOut();              showLogin();              loginError(                 "This account is not authorized."             );              return;         }          showDashboard(email);     } );   /\\\* =========================================================    START ========================================================= \\\*/  checkSession();  \\\</script>  \\\</body> \\\</html>     
+const SUPABASE_URL =
+    "https://xfjrmgendmmpnumsbjte.supabase.co"; 
+ 
+const SUPABASE_KEY = 
+    "sb_publishable_qBhmzkK4DDeZk1_pheHgRA_rNKHDKS7"; 
+ 
+const supabaseClient = 
+    window.supabase.createClient( 
+        SUPABASE_URL, 
+        SUPABASE_KEY 
+    ); 
+ 
+ 
+/* ========================================================= 
+   IMPORTANT 
+========================================================= */ 
+ 
+const ADMIN_EMAIL = 
+    "bwirha@gmail.com"; 
+ 
+ 
+/* ========================================================= 
+   DATA 
+========================================================= */ 
+ 
+let members = []; 
+let lgExcos = []; 
+let wardExcos = []; 
+ 
+ 
+/* ========================================================= 
+   HELPERS 
+========================================================= */ 
+ 
+function $(id) { 
+    return document.getElementById(id); 
+} 
+ 
+function showLoading(show) { 
+    $("loading").classList.toggle("show", show); 
+} 
+ 
+function toast(message, type = "") { 
+ 
+    const el = $("toast"); 
+ 
+    el.textContent = message; 
+    el.className = "show " + type; 
+ 
+    setTimeout(() => { 
+        el.className = ""; 
+    }, 3500); 
+} 
+ 
+function loginError(message) { 
+ 
+    const el = $("loginError"); 
+ 
+    el.textContent = message; 
+    el.classList.remove("hidden"); 
+} 
+ 
+function clearLoginError() { 
+    $("loginError").classList.add("hidden"); 
+} 
+ 
+function escapeHtml(value) { 
+ 
+    if (value === null || value === undefined) { 
+        return ""; 
+    } 
+ 
+    return String(value) 
+        .replace(/&/g, "&amp;") 
+        .replace(/</g, "&lt;") 
+        .replace(/>/g, "&gt;") 
+        .replace(/"/g, "&quot;") 
+        .replace(/'/g, "&#039;"); 
+} 
+ 
+ 
+/* ========================================================= 
+   PAGE NAVIGATION 
+========================================================= */ 
+ 
+function switchPage(page) { 
+ 
+    document.querySelectorAll(".page") 
+        .forEach(p => p.classList.remove("active")); 
+ 
+    document.querySelectorAll(".nav-btn") 
+        .forEach(b => b.classList.remove("active")); 
+ 
+    const target = $(page); 
+ 
+    if (target) { 
+        target.classList.add("active"); 
+    } 
+ 
+    const button = 
+        document.querySelector( 
+            `.nav-btn[data-page="${page}"]` 
+        ); 
+ 
+    if (button) { 
+        button.classList.add("active"); 
+    } 
+ 
+    if (page === "members") { 
+        loadMembers(); 
+    } 
+ 
+    if (page === "lgExco") { 
+        loadLgExcos(); 
+    } 
+ 
+    if (page === "wardExco") { 
+        loadWardExcos(); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   LOGIN / LOGOUT 
+========================================================= */ 
+ 
+function showLogin() { 
+ 
+    $("loginScreen").classList.remove("hidden"); 
+    $("dashboard").classList.add("hidden"); 
+ 
+} 
+ 
+function showDashboard(email) { 
+ 
+    $("loginScreen").classList.add("hidden"); 
+    $("dashboard").classList.remove("hidden"); 
+ 
+    $("adminEmail").textContent = email; 
+ 
+} 
+ 
+ 
+async function login(email, password) { 
+ 
+    clearLoginError(); 
+ 
+    email = email.trim().toLowerCase(); 
+ 
+    if (email !== ADMIN_EMAIL) { 
+ 
+        loginError( 
+            "Only bwirha@gmail.com can access this dashboard." 
+        ); 
+ 
+        return; 
+    } 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        const { data, error } = 
+            await supabaseClient.auth.signInWithPassword({ 
+                email, 
+                password 
+            }); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        if (!data.user) { 
+            throw new Error("Login failed."); 
+        } 
+ 
+        const loggedEmail = 
+            (data.user.email || "").toLowerCase(); 
+ 
+        if (loggedEmail !== ADMIN_EMAIL) { 
+ 
+            await supabaseClient.auth.signOut(); 
+ 
+            throw new Error( 
+                "This account is not authorized." 
+            ); 
+        } 
+ 
+        showDashboard(loggedEmail); 
+ 
+        await loadEverything(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        loginError( 
+            error.message || "Unable to login." 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+ 
+    } 
+} 
+ 
+ 
+async function logout() { 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        await supabaseClient.auth.signOut(); 
+ 
+        showLogin(); 
+ 
+        $("loginPassword").value = ""; 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast("Logout failed.", "error"); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+ 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   SESSION 
+========================================================= */ 
+ 
+async function checkSession() { 
+ 
+    try { 
+ 
+        const { data, error } = 
+            await supabaseClient.auth.getSession(); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        const session = data.session; 
+ 
+        if (!session) { 
+            showLogin(); 
+            return; 
+        } 
+ 
+        const email = 
+            (session.user.email || "").toLowerCase(); 
+ 
+        if (email !== ADMIN_EMAIL) { 
+ 
+            await supabaseClient.auth.signOut(); 
+ 
+            showLogin(); 
+ 
+            loginError( 
+                "This account is not authorized." 
+            ); 
+ 
+            return; 
+        } 
+ 
+        showDashboard(email); 
+ 
+        await loadEverything(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        showLogin(); 
+ 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   MEMBERS 
+========================================================= */ 
+ 
+function memberName(m) { 
+    return m.name || m.full_name || m.fullname || ""; 
+} 
+ 
+function memberPhone(m) { 
+    return m.phone || m.phone_no || m.phone_number || ""; 
+} 
+ 
+function memberEmail(m) { 
+    return m.email || ""; 
+} 
+ 
+function memberWard(m) { 
+ 
+    if (m.ward_id !== null && m.ward_id !== undefined && m.ward_id !== "") { 
+        return `Ward ${m.ward_id}`; 
+    } 
+ 
+    return m.ward || m.ward_name || ""; 
+} 
+ 
+function memberBank(m) { 
+    return m.bank_name || m.bank || ""; 
+} 
+ 
+function memberAccount(m) { 
+    return m.account_no || m.account_number || ""; 
+} 
+ 
+ 
+async function loadMembers() { 
+ 
+    try { 
+ 
+        const { data, error } = 
+            await supabaseClient 
+                .from("members") 
+                .select("*") 
+                .order("created_at", { 
+                    ascending: false 
+                }); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        members = data || []; 
+ 
+        renderMembers(); 
+        updateMemberStats(); 
+ 
+    } catch (error) { 
+ 
+        console.error("MEMBERS ERROR:", error); 
+ 
+        $("membersTable").innerHTML = ` 
+            <tr> 
+                <td colspan="8" class="empty"> 
+                    Unable to load members.<br><br> 
+                    ${escapeHtml(error.message)} 
+                </td> 
+            </tr> 
+        `; 
+ 
+        toast( 
+            "Unable to load members: " + 
+            error.message, 
+            "error" 
+        ); 
+    } 
+} 
+ 
+ 
+function renderMembers() { 
+ 
+    const tbody = $("membersTable"); 
+ 
+    const search = 
+        ($("memberSearch").value || "") 
+        .toLowerCase() 
+        .trim(); 
+ 
+    const filter = 
+        $("memberStatusFilter").value; 
+ 
+    const filtered = 
+        members.filter(member => { 
+ 
+            const text = [ 
+ 
+                memberName(member), 
+                memberPhone(member), 
+                memberEmail(member), 
+                memberWard(member), 
+                memberBank(member), 
+                memberAccount(member), 
+                member.status || "" 
+ 
+            ].join(" ").toLowerCase(); 
+ 
+            const matchesSearch = 
+                !search || text.includes(search); 
+ 
+            const matchesStatus = 
+                filter === "all" || 
+                String(member.status || "") 
+                    .toLowerCase() === filter; 
+ 
+            return matchesSearch && matchesStatus; 
+        }); 
+ 
+ 
+    if (!filtered.length) { 
+ 
+        tbody.innerHTML = ` 
+            <tr> 
+                <td colspan="8" class="empty"> 
+                    No members found. 
+                </td> 
+            </tr> 
+        `; 
+ 
+        return; 
+    } 
+ 
+ 
+    tbody.innerHTML = 
+        filtered.map(member => { 
+ 
+            const id = String(member.id); 
+ 
+            const status = 
+                String(member.status || "pending") 
+                .toLowerCase(); 
+ 
+            let badge = "badge-pending"; 
+ 
+            if (status === "approved") { 
+                badge = "badge-approved"; 
+            } 
+ 
+            if (status === "declined") { 
+                badge = "badge-declined"; 
+            } 
+ 
+            let actions = ""; 
+ 
+            if (status !== "approved") { 
+ 
+                actions += ` 
+                    <button 
+                        class="btn btn-success" 
+                        onclick="updateMemberStatus('${escapeHtml(id)}','approved')"> 
+                        Approve 
+                    </button> 
+                `; 
+            } 
+ 
+            if (status !== "declined") { 
+ 
+                actions += ` 
+                    <button 
+                        class="btn btn-warning" 
+                        onclick="updateMemberStatus('${escapeHtml(id)}','declined')"> 
+                        Decline 
+                    </button> 
+                `; 
+            } 
+ 
+            if (status === "declined") { 
+ 
+                actions += ` 
+                    <button 
+                        class="btn btn-danger" 
+                        onclick="deleteDeclinedMember('${escapeHtml(id)}')"> 
+                        Delete 
+                    </button> 
+                `; 
+            } 
+ 
+            return ` 
+                <tr> 
+ 
+                    <td> 
+                        <strong> 
+                            ${escapeHtml(memberName(member))} 
+                        </strong> 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(memberPhone(member))} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(memberEmail(member))} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(memberWard(member))} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(memberBank(member))} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(memberAccount(member))} 
+                    </td> 
+ 
+                    <td> 
+                        <span class="badge ${badge}"> 
+                            ${escapeHtml(status)} 
+                        </span> 
+                    </td> 
+ 
+                    <td> 
+                        <div class="actions"> 
+                            ${actions} 
+                        </div> 
+                    </td> 
+ 
+                </tr> 
+            `; 
+ 
+        }).join(""); 
+} 
+ 
+ 
+function updateMemberStats() { 
+ 
+    $("totalMembers").textContent = 
+        members.length; 
+ 
+    $("pendingMembers").textContent = 
+        members.filter( 
+            m => String(m.status || "").toLowerCase() === "pending" 
+        ).length; 
+ 
+    $("approvedMembers").textContent = 
+        members.filter( 
+            m => String(m.status || "").toLowerCase() === "approved" 
+        ).length; 
+ 
+    $("declinedMembers").textContent = 
+        members.filter( 
+            m => String(m.status || "").toLowerCase() === "declined" 
+        ).length; 
+} 
+ 
+ 
+async function updateMemberStatus(id, status) { 
+ 
+    if (!["pending", "approved", "declined"].includes(status)) { 
+        return; 
+    } 
+ 
+    if (!confirm( 
+        `Change this member's status to "${status}"?` 
+    )) { 
+        return; 
+    } 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        const { error } = 
+            await supabaseClient 
+                .from("members") 
+                .update({ status }) 
+                .eq("id", id); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        toast( 
+            "Member status updated.", 
+            "success" 
+        ); 
+ 
+        await loadMembers(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to update member: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+async function deleteDeclinedMember(id) { 
+ 
+    if (!confirm( 
+        "Delete this declined member permanently?" 
+    )) { 
+        return; 
+    } 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        const { error } = 
+            await supabaseClient 
+                .from("members") 
+                .delete() 
+                .eq("id", id) 
+                .eq("status", "declined"); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        toast( 
+            "Declined member deleted.", 
+            "success" 
+        ); 
+ 
+        await loadMembers(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to delete member: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   LG EXCO 
+========================================================= */ 
+ 
+async function loadLgExcos() { 
+ 
+    try { 
+ 
+        const { data, error } = 
+            await supabaseClient 
+                .from("lg_exco") 
+                .select("*") 
+                .order("created_at", { 
+                    ascending: true 
+                }); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        lgExcos = data || []; 
+ 
+        renderLgExcos(); 
+ 
+        $("lgExcoCount").textContent = 
+            lgExcos.length; 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        $("lgExcoTable").innerHTML = ` 
+            <tr> 
+                <td colspan="5" class="empty"> 
+                    Unable to load LG EXCO.<br><br> 
+                    ${escapeHtml(error.message)} 
+                </td> 
+            </tr> 
+        `; 
+ 
+        toast( 
+            "Unable to load LG EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+    } 
+} 
+ 
+ 
+function findMemberForExco(name, phone = "") { 
+ 
+    const cleanName = String(name || "") 
+        .trim() 
+        .toLowerCase(); 
+ 
+    const cleanPhone = String(phone || "") 
+        .trim(); 
+ 
+    let member = members.find(m => 
+        memberName(m).trim().toLowerCase() === cleanName 
+    ); 
+ 
+    if (!member && cleanPhone) { 
+        member = members.find(m => 
+            memberPhone(m).trim() === cleanPhone 
+        ); 
+    } 
+ 
+    return member || null; 
+} 
+ 
+ 
+function getMemberById(id) { 
+ 
+    if (!id) { 
+        return null; 
+    } 
+ 
+    return members.find(m => 
+        String(m.id) === String(id) 
+    ) || null; 
+} 
+ 
+ 
+function wardNumberFromValue(value) { 
+ 
+    const match = String(value || "").match(/(\d+)/); 
+ 
+    if (!match) { 
+        return null; 
+    } 
+ 
+    const number = Number(match[1]); 
+ 
+    return number >= 1 && number <= 13 
+        ? number 
+        : null; 
+} 
+ 
+ 
+function renderLgExcos() { 
+ 
+    const tbody = $("lgExcoTable"); 
+ 
+    if (!lgExcos.length) { 
+ 
+        tbody.innerHTML = ` 
+            <tr> 
+                <td colspan="5" class="empty"> 
+                    No LG EXCO records found. 
+                </td> 
+            </tr> 
+        `; 
+ 
+        return; 
+    } 
+ 
+    tbody.innerHTML = 
+        lgExcos.map(row => { 
+ 
+            const member = getMemberById(row.member_id); 
+ 
+            const name = member 
+                ? memberName(member) 
+                : (row.member_name || row.name || row.full_name || ""); 
+ 
+            const phone = member 
+                ? memberPhone(member) 
+                : (row.phone || row.phone_no || ""); 
+ 
+            const ward = member 
+                ? memberWard(member) 
+                : (row.ward || row.ward_name || ""); 
+ 
+            return ` 
+                <tr> 
+ 
+                    <td> 
+                        ${escapeHtml(row.position || "")} 
+                    </td> 
+ 
+                    <td> 
+                        <strong> 
+                            ${escapeHtml(name)} 
+                        </strong> 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(phone)} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(ward)} 
+                    </td> 
+ 
+                    <td> 
+ 
+                        <div class="actions"> 
+ 
+                            <button 
+                                class="btn btn-primary" 
+                                onclick="editLgExco('${escapeHtml(String(row.id))}')"> 
+                                Edit 
+                            </button> 
+ 
+                            <button 
+                                class="btn btn-danger" 
+                                onclick="deleteLgExco('${escapeHtml(String(row.id))}')"> 
+                                Delete 
+                            </button> 
+ 
+                        </div> 
+ 
+                    </td> 
+ 
+                </tr> 
+            `; 
+ 
+        }).join(""); 
+} 
+ 
+ 
+function openLgExcoModal(id = null) { 
+ 
+    $("lgExcoForm").reset(); 
+    $("lgExcoId").value = ""; 
+ 
+    $("lgModalTitle").textContent = 
+        id ? "Edit LG EXCO" : "Add LG EXCO"; 
+ 
+    if (id) { 
+ 
+        const row = 
+            lgExcos.find( 
+                x => String(x.id) === String(id) 
+            ); 
+ 
+        if (!row) { 
+            return; 
+        } 
+ 
+        const member = getMemberById(row.member_id); 
+ 
+        $("lgExcoId").value = row.id; 
+ 
+        $("lgPosition").value = 
+            row.position || ""; 
+ 
+        $("lgMemberName").value = member 
+            ? memberName(member) 
+            : (row.member_name || row.name || row.full_name || ""); 
+ 
+        $("lgPhone").value = member 
+            ? memberPhone(member) 
+            : (row.phone || row.phone_no || ""); 
+ 
+        $("lgWard").value = member 
+            ? memberWard(member) 
+            : (row.ward || row.ward_name || ""); 
+    } 
+ 
+    $("lgExcoModal").classList.add("show"); 
+} 
+ 
+ 
+async function saveLgExco(event) { 
+ 
+    event.preventDefault(); 
+ 
+    const id = $("lgExcoId").value; 
+ 
+    const name = $("lgMemberName").value.trim(); 
+    const phone = $("lgPhone").value.trim(); 
+ 
+    const member = findMemberForExco(name, phone); 
+ 
+    if (!member) { 
+ 
+        toast( 
+            "The EXCO member must be a registered member. Check the name or phone number.", 
+            "error" 
+        ); 
+ 
+        return; 
+    } 
+ 
+    const payload = { 
+ 
+        position: 
+            $("lgPosition").value.trim(), 
+ 
+        member_id: 
+            member.id 
+ 
+    }; 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        let result; 
+ 
+        if (id) { 
+ 
+            result = 
+                await supabaseClient 
+                    .from("lg_exco") 
+                    .update(payload) 
+                    .eq("id", id); 
+ 
+        } else { 
+ 
+            result = 
+                await supabaseClient 
+                    .from("lg_exco") 
+                    .insert([payload]); 
+        } 
+ 
+        if (result.error) { 
+            throw result.error; 
+        } 
+ 
+        closeModal("lgExcoModal"); 
+ 
+        toast( 
+            id 
+                ? "LG EXCO updated." 
+                : "LG EXCO added.", 
+            "success" 
+        ); 
+ 
+        await loadLgExcos(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to save LG EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+function editLgExco(id) { 
+    openLgExcoModal(id); 
+} 
+ 
+ 
+async function deleteLgExco(id) { 
+ 
+    if (!confirm( 
+        "Delete this LG EXCO member?" 
+    )) { 
+        return; 
+    } 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        const { error } = 
+            await supabaseClient 
+                .from("lg_exco") 
+                .delete() 
+                .eq("id", id); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        toast( 
+            "LG EXCO deleted.", 
+            "success" 
+        ); 
+ 
+        await loadLgExcos(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to delete LG EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   WARD EXCO 
+========================================================= */ 
+ 
+async function loadWardExcos() { 
+ 
+    try { 
+ 
+        const { data, error } = 
+            await supabaseClient 
+                .from("ward_exco") 
+                .select("*") 
+                .order("created_at", { 
+                    ascending: true 
+                }); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        wardExcos = data || []; 
+ 
+        renderWardExcos(); 
+ 
+        $("wardExcoCount").textContent = 
+            wardExcos.length; 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        $("wardExcoTable").innerHTML = ` 
+            <tr> 
+                <td colspan="5" class="empty"> 
+                    Unable to load Ward EXCO.<br><br> 
+                    ${escapeHtml(error.message)} 
+                </td> 
+            </tr> 
+        `; 
+ 
+        toast( 
+            "Unable to load Ward EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+    } 
+} 
+ 
+ 
+function renderWardExcos() { 
+ 
+    const tbody = $("wardExcoTable"); 
+ 
+    const filter = 
+        $("wardFilter").value; 
+ 
+    const rows = 
+        filter === "all" 
+            ? wardExcos 
+            : wardExcos.filter(row => 
+                `Ward ${row.ward_id}` === filter 
+            ); 
+ 
+    if (!rows.length) { 
+ 
+        tbody.innerHTML = ` 
+            <tr> 
+                <td colspan="5" class="empty"> 
+                    No Ward EXCO records found. 
+                </td> 
+            </tr> 
+        `; 
+ 
+        return; 
+    } 
+ 
+    tbody.innerHTML = 
+        rows.map(row => { 
+ 
+            const member = getMemberById(row.member_id); 
+ 
+            const ward = row.ward_id 
+                ? `Ward ${row.ward_id}` 
+                : (row.ward || row.ward_name || ""); 
+ 
+            const name = member 
+                ? memberName(member) 
+                : (row.member_name || row.name || row.full_name || ""); 
+ 
+            const phone = member 
+                ? memberPhone(member) 
+                : (row.phone || row.phone_no || ""); 
+ 
+            return ` 
+                <tr> 
+ 
+                    <td> 
+                        ${escapeHtml(ward)} 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(row.position || "")} 
+                    </td> 
+ 
+                    <td> 
+                        <strong> 
+                            ${escapeHtml(name)} 
+                        </strong> 
+                    </td> 
+ 
+                    <td> 
+                        ${escapeHtml(phone)} 
+                    </td> 
+ 
+                    <td> 
+ 
+                        <div class="actions"> 
+ 
+                            <button 
+                                class="btn btn-primary" 
+                                onclick="editWardExco('${escapeHtml(String(row.id))}')"> 
+                                Edit 
+                            </button> 
+ 
+                            <button 
+                                class="btn btn-danger" 
+                                onclick="deleteWardExco('${escapeHtml(String(row.id))}')"> 
+                                Delete 
+                            </button> 
+ 
+                        </div> 
+ 
+                    </td> 
+ 
+                </tr> 
+            `; 
+ 
+        }).join(""); 
+} 
+ 
+ 
+function openWardExcoModal(id = null) { 
+ 
+    $("wardExcoForm").reset(); 
+    $("wardExcoId").value = ""; 
+ 
+    $("wardModalTitle").textContent = 
+        id ? "Edit Ward EXCO" : "Add Ward EXCO"; 
+ 
+    if (id) { 
+ 
+        const row = 
+            wardExcos.find( 
+                x => String(x.id) === String(id) 
+            ); 
+ 
+        if (!row) { 
+            return; 
+        } 
+ 
+        const member = getMemberById(row.member_id); 
+ 
+        $("wardExcoId").value = row.id; 
+ 
+        $("wardExcoWard").value = row.ward_id 
+            ? `Ward ${row.ward_id}` 
+            : (row.ward || row.ward_name || ""); 
+ 
+        $("wardPosition").value = 
+            row.position || ""; 
+ 
+        $("wardMemberName").value = member 
+            ? memberName(member) 
+            : (row.member_name || row.name || row.full_name || ""); 
+ 
+        $("wardPhone").value = member 
+            ? memberPhone(member) 
+            : (row.phone || row.phone_no || ""); 
+    } 
+ 
+    $("wardExcoModal").classList.add("show"); 
+} 
+ 
+ 
+function editWardExco(id) { 
+    openWardExcoModal(id); 
+} 
+ 
+ 
+async function saveWardExco(event) { 
+ 
+    event.preventDefault(); 
+ 
+    const id = 
+        $("wardExcoId").value; 
+ 
+    const wardValue = 
+        $("wardExcoWard").value; 
+ 
+    const wardId = wardNumberFromValue(wardValue); 
+ 
+    if (!wardId) { 
+ 
+        toast( 
+            "Please select a valid ward.", 
+            "error" 
+        ); 
+ 
+        return; 
+    } 
+ 
+    const name = 
+        $("wardMemberName").value.trim(); 
+ 
+    const phone = 
+        $("wardPhone").value.trim(); 
+ 
+    const member = 
+        findMemberForExco(name, phone); 
+ 
+    if (!member) { 
+ 
+        toast( 
+            "The EXCO member must be a registered member. Check the name or phone number.", 
+            "error" 
+        ); 
+ 
+        return; 
+    } 
+ 
+    const payload = { 
+ 
+        ward_id: 
+            wardId, 
+ 
+        position: 
+            $("wardPosition").value.trim(), 
+ 
+        member_id: 
+            member.id 
+ 
+    }; 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        let result; 
+ 
+        if (id) { 
+ 
+            result = 
+                await supabaseClient 
+                    .from("ward_exco") 
+                    .update(payload) 
+                    .eq("id", id); 
+ 
+        } else { 
+ 
+            result = 
+                await supabaseClient 
+                    .from("ward_exco") 
+                    .insert([payload]); 
+        } 
+ 
+        if (result.error) { 
+            throw result.error; 
+        } 
+ 
+        closeModal("wardExcoModal"); 
+ 
+        toast( 
+            id 
+                ? "Ward EXCO updated." 
+                : "Ward EXCO added.", 
+            "success" 
+        ); 
+ 
+        await loadWardExcos(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to save Ward EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+async function deleteWardExco(id) { 
+ 
+    if (!confirm( 
+        "Delete this Ward EXCO member?" 
+    )) { 
+        return; 
+    } 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        const { error } = 
+            await supabaseClient 
+                .from("ward_exco") 
+                .delete() 
+                .eq("id", id); 
+ 
+        if (error) { 
+            throw error; 
+        } 
+ 
+        toast( 
+            "Ward EXCO deleted.", 
+            "success" 
+        ); 
+ 
+        await loadWardExcos(); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+        toast( 
+            "Unable to delete Ward EXCO: " + 
+            error.message, 
+            "error" 
+        ); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   LOAD EVERYTHING 
+========================================================= */ 
+ 
+async function loadEverything() { 
+ 
+    showLoading(true); 
+ 
+    try { 
+ 
+        await Promise.all([ 
+            loadMembers(), 
+            loadLgExcos(), 
+            loadWardExcos() 
+        ]); 
+ 
+    } catch (error) { 
+ 
+        console.error(error); 
+ 
+    } finally { 
+ 
+        showLoading(false); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   MODAL 
+========================================================= */ 
+ 
+function closeModal(id) { 
+ 
+    const modal = $(id); 
+ 
+    if (modal) { 
+        modal.classList.remove("show"); 
+    } 
+} 
+ 
+ 
+/* ========================================================= 
+   EVENTS 
+========================================================= */ 
+ 
+$("loginForm").addEventListener( 
+    "submit", 
+    event => { 
+ 
+        event.preventDefault(); 
+ 
+        login( 
+            $("loginEmail").value, 
+            $("loginPassword").value 
+        ); 
+    } 
+); 
+ 
+ 
+$("logoutBtn").addEventListener( 
+    "click", 
+    logout 
+); 
+ 
+ 
+document.querySelectorAll(".nav-btn") 
+    .forEach(button => { 
+ 
+        button.addEventListener( 
+            "click", 
+            () => switchPage(button.dataset.page) 
+        ); 
+ 
+    }); 
+ 
+ 
+$("memberSearch").addEventListener( 
+    "input", 
+    renderMembers 
+); 
+ 
+ 
+$("memberStatusFilter").addEventListener( 
+    "change", 
+    renderMembers 
+); 
+ 
+ 
+$("wardFilter").addEventListener( 
+    "change", 
+    renderWardExcos 
+); 
+ 
+ 
+$("lgExcoForm").addEventListener( 
+    "submit", 
+    saveLgExco 
+); 
+ 
+ 
+$("wardExcoForm").addEventListener( 
+    "submit", 
+    saveWardExco 
+); 
+ 
+ 
+document.querySelectorAll(".modal") 
+    .forEach(modal => { 
+ 
+        modal.addEventListener( 
+            "click", 
+            event => { 
+ 
+                if (event.target === modal) { 
+                    modal.classList.remove("show"); 
+                } 
+ 
+            } 
+        ); 
+ 
+    }); 
+ 
+ 
+/* ========================================================= 
+   AUTH STATE 
+========================================================= */ 
+ 
+supabaseClient.auth.onAuthStateChange( 
+    async (_event, session) => { 
+ 
+        if (!session) { 
+            showLogin(); 
+            return; 
+        } 
+ 
+        const email = 
+            (session.user.email || "").toLowerCase(); 
+ 
+        if (email !== ADMIN_EMAIL) { 
+ 
+            await supabaseClient.auth.signOut(); 
+ 
+            showLogin(); 
+ 
+            loginError( 
+                "This account is not authorized." 
+            ); 
+ 
+            return; 
+        } 
+ 
+        showDashboard(email); 
+    } 
+); 
+ 
+ 
+/* ========================================================= 
+   START 
+========================================================= */ 
+ 
+checkSession(); 
+ 
+</script> 
+ 
+</body> 
+</html>   
+pls add export button as csv dont remove anytiong
