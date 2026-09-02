@@ -6,7 +6,7 @@
 
 <title>BWI-RHA | Admin Dashboard</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@Supabase/supabase-js@2"></script>
 
 <style>
 * {
@@ -751,6 +751,14 @@ td {
 
             </select>
 
+            <!-- NEW: EXPORT CSV BUTTON -->
+            <button
+                class="btn btn-success"
+                type="button"
+                onclick="exportMembersCSV()">
+                ⬇ Export CSV
+            </button>
+
         </div>
 
         <div class="table-wrap">
@@ -1455,9 +1463,7 @@ async function loadMembers() {
 }
 
 
-function renderMembers() {
-
-    const tbody = $("membersTable");
+function getFilteredMembers() {
 
     const search =
         ($("memberSearch").value || "")
@@ -1467,32 +1473,38 @@ function renderMembers() {
     const filter =
         $("memberStatusFilter").value;
 
-    const filtered =
-        members.filter(member => {
+    return members.filter(member => {
 
-            const text = [
+        const text = [
 
-                memberName(member),
-                memberPhone(member),
-                memberEmail(member),
-                memberWard(member),
-                memberBank(member),
-                memberAccount(member),
-                member.status || ""
+            memberName(member),
+            memberPhone(member),
+            memberEmail(member),
+            memberWard(member),
+            memberBank(member),
+            memberAccount(member),
+            member.status || ""
 
-            ].join(" ").toLowerCase();
+        ].join(" ").toLowerCase();
 
-            const matchesSearch =
-                !search || text.includes(search);
+        const matchesSearch =
+            !search || text.includes(search);
 
-            const matchesStatus =
-                filter === "all" ||
-                String(member.status || "")
-                    .toLowerCase() === filter;
+        const matchesStatus =
+            filter === "all" ||
+            String(member.status || "")
+                .toLowerCase() === filter;
 
-            return matchesSearch && matchesStatus;
-        });
+        return matchesSearch && matchesStatus;
+    });
+}
 
+
+function renderMembers() {
+
+    const tbody = $("membersTable");
+
+    const filtered = getFilteredMembers();
 
     if (!filtered.length) {
 
@@ -1629,6 +1641,170 @@ function updateMemberStats() {
         members.filter(
             m => String(m.status || "").toLowerCase() === "declined"
         ).length;
+}
+
+
+/* =========================================================
+   EXPORT MEMBERS CSV
+========================================================= */
+
+function csvValue(value) {
+
+    if (value === null || value === undefined) {
+        value = "";
+    }
+
+    value = String(value);
+
+    /*
+       Escape double quotes according to CSV rules.
+       Example:
+       John "Junior" Doe
+       becomes
+       "John ""Junior"" Doe"
+    */
+
+    return '"' + value.replace(/"/g, '""') + '"';
+}
+
+
+function formatCreatedAt(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return value;
+    }
+
+    return date.toLocaleString();
+}
+
+
+function exportMembersCSV() {
+
+    /*
+       Use exactly the same filtering used
+       by the Members table.
+    */
+
+    const filteredMembers =
+        getFilteredMembers();
+
+    if (!filteredMembers.length) {
+
+        toast(
+            "There are no members to export.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const headers = [
+
+        "Name",
+        "Phone",
+        "Email",
+        "Ward",
+        "Bank Name",
+        "Account Number",
+        "Status",
+        "Created At"
+
+    ];
+
+
+    const rows =
+        filteredMembers.map(member => {
+
+            return [
+
+                memberName(member),
+
+                memberPhone(member),
+
+                memberEmail(member),
+
+                memberWard(member),
+
+                memberBank(member),
+
+                memberAccount(member),
+
+                String(
+                    member.status || "pending"
+                ).toLowerCase(),
+
+                formatCreatedAt(
+                    member.created_at
+                )
+
+            ];
+        });
+
+
+    const csv = [
+
+        headers.map(csvValue).join(","),
+
+        ...rows.map(
+            row =>
+                row.map(csvValue).join(",")
+        )
+
+    ].join("\r\n");
+
+
+    /*
+       UTF-8 BOM helps Microsoft Excel
+       display Nigerian names and other
+       Unicode characters correctly.
+    */
+
+    const blob =
+        new Blob(
+            ["\uFEFF" + csv],
+            {
+                type: "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const link =
+        document.createElement("a");
+
+    const today =
+        new Date()
+            .toISOString()
+            .slice(0, 10);
+
+
+    link.href = url;
+
+    link.download =
+        `BWI-RHA-Members-${today}.csv`;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+
+    toast(
+        `${filteredMembers.length} member(s) exported successfully.`,
+        "success"
+    );
 }
 
 
